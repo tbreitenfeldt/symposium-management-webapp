@@ -1,10 +1,27 @@
 <?php
 
+/**
+ * PDOUtil class
+ * depends on the credentials for the database  found in creds.php
+ * uses the singleton pattern to insure that there is not more than one connection to the database open at any given time.
+ * Instantiate PDOUtil using the createPDOUtil method, query, and close.
+ * the query method returns an associative array based on the results of the query. Sometimes there will be nothing in the array, it will be a 1d array, or it could be a 2d array.
+ * 
+ * Example:
+ * $pdoUtil = PDOUtil::createPDOUtil();
+ * $results = $pdoUtil->query("select * from Users where id=?", [12]);
+ * echo var_dump($results);
+ * $pdoUtil->close();
+*/
 class PDOUtil {
 
     private static $instance = null;
     private $connection;
 
+    /**
+     * The private constructor only to be called by createPDOUtil
+     * This method creates a PDO object by using the credentials for the target database found in creds.php
+    */
     private function __construct() {
         REQUIRE_once "creds.php";
 
@@ -22,6 +39,10 @@ class PDOUtil {
         }//end try catch
     }//end constructor
 
+    /**
+     * Creates an instance of PDOUtil and returns it if there is not already an existing instance of PDOUtil
+     * if there is an existing instance, return that instance.
+    */
     public static function createPDOUtil() {
         if (self::$instance == null) {
             self::$instance = new PDOUtil();
@@ -30,6 +51,12 @@ class PDOUtil {
         return self::$instance;
     }//end method
 
+    /**
+     * Make a query using the open PDO connection 
+     * You may include an array of arguments to this object based on the order they would be put into the prepared statement
+     * an empty array means there are no arguments for the query
+     * This method returns an associative array based on the query results. The array can differ, being empty, 1d, or 2d.
+    */
     public function query($sql, $variables) {
         $statement = null;
 
@@ -47,10 +74,17 @@ class PDOUtil {
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }//end method
 
+    /**
+     * This method gets the id of the last inserted record 
+    */
     public function getLastInsertedID() {
         return $this->connection->lastInsertId();
     }//end method
 
+    /**
+     * This closes the PDO connection to the database.
+     Call this method after you are done making queries to the database.
+    */
     public function close() {
         $this->connection = null;
         self::$instance = null;

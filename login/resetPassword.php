@@ -1,10 +1,5 @@
 <?php
-session_start();
-
-if ( !isset($_SESSION["loggedin"]) || !$_SESSION["loggedin"]) {
-    header("location: login.php");
-    exit;
-}//end if
+require_once "loginAPI/validateUser.php";
 ?>
 
 
@@ -21,7 +16,7 @@ if ( !isset($_SESSION["loggedin"]) || !$_SESSION["loggedin"]) {
   <![endif]-->
 
   <script  src="//code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>
-  <script src="loginAJAX.js"></script>
+  <script src="loginAPI/js/loginAJAX.js"></script>
 </head>
 
 <body>

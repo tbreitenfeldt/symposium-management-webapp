@@ -1,10 +1,5 @@
 <?php
-session_start();
-
-if ( !isset($_SESSION["loggedin"]) || !$_SESSION["loggedin"]) {
-    header("location: login.php");
-    exit;
-}//end if
+require_once "loginAPI/validateUser.php";
 ?>
 
 
@@ -24,6 +19,8 @@ if ( !isset($_SESSION["loggedin"]) || !$_SESSION["loggedin"]) {
 <body>
 <header>
   <h1>Welcome <?php echo htmlspecialchars($_SESSION["username"]); ?></h1>
+  <p>email: <?php echo htmlspecialchars($_SESSION["userEmail"]); ?><br>
+  phone: <?php echo htmlspecialchars($_SESSION["userPhone"]); ?></p>
 </header>
 
 <main>

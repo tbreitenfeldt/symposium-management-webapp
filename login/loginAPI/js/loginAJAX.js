@@ -1,6 +1,8 @@
 
 $(document).ready(init);
 
+var OUTPUT_REGION_ID = "outputRegion";
+
 
 function init() {
     $("#userLogonForm").submit(submitForm);
@@ -23,19 +25,19 @@ function submitForm(event) {
 
 
 function outputError(error) {
-    $("#outputRegion").html("");
-    $("#outputRegion").html("<p>Error Region: There was an error in trying to process your request, please try again.</p><br>" + "status: " + error.status + " " + error.statusText + "<br>" + error.responseText);
+    $("#" + OUTPUT_REGION_ID).html("");
+    $("#" + OUTPUT_REGION_ID).html("<p>Error Region: There was an error in trying to process your request, please try again.</p><br>" + "status: " + error.status + " " + error.statusText + "<br>" + error.responseText);
 }//end function
 
 
 function outputResult(data) {
-    $("#outputRegion").html("");
+    $("#" + OUTPUT_REGION_ID).html("");
 
     if ("error" in data) {
-        $("#outputRegion").html("<p>" + data.error + "</p>");
+        $("#" + OUTPUT_REGION_ID).html("<p>" + data.error + "</p>");
     } else if ("success" in data) {
         window.location = data.success;
     } else {
-        $("#outputRegion").html("<p>There was a problem with your request, please try again.</p>");
+        $("#" + OUTPUT_REGION_ID).html("<p>There was a problem with your request, please try again.</p>");
     }//end else
 }//end function

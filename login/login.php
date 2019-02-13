@@ -19,9 +19,8 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]) {
     <script src="/js/html5shiv.js"></script>
   <![endif]-->
 
-  <!--<script  src="//code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>-->
-  <script src="jquery-3.3.1.min.js"></script>
-  <script src="loginAJAX.js"></script>
+  <script  src="//code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>
+  <script src="loginAPI/js/loginAJAX.js"></script>
 </head>
 
 <body>

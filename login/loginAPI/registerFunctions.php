@@ -1,7 +1,8 @@
 <?php
 
-require_once "databaseUtil/pdoUtil.php";
-require_once "usernameAndPassswordValidation.php";
+require_once "../databaseUtil/pdoUtil.php";
+require_once "dataValidation.php";
+require_once "config.php";
 
 
 function register() {
@@ -15,16 +16,26 @@ function register() {
             $password = $_POST["password"];
             $confirmPassword = $_POST["confirmPassword"];
             $pdoUtil = PDOUtil::createPDOUtil();
-            $sql = "INSERT INTO UserAccounts (username, userPassword) VALUES (?, ?)";
+            $c = "constant";
+            $sql = "";
 
             validateUsername($pdoUtil, $username);
             validatePassword($password, $confirmPassword);
 
+            //validate any other user data that is provided in USER_DATA_FIELDS
+            foreach (USER_DATA_FIELDS as $field=>$validationFunction) {
+                $validationFunction($_POST[$field]);
+            }//end foreach loop
+
+            $parameters = [];
+            $sql = getSQLInsertAllFields($parameters);
+
             //Insert data if no exception was thrown, and redirect to the login page.
             $password = password_hash($password, PASSWORD_DEFAULT);
-            $pdoUtil->query($sql, [$username, $password]);
+            array_unshift($parameters, $username, $password);
+            $pdoUtil->query($sql, $parameters);
             $status = "success";
-            $message = "login.php";
+            $message = LOGIN_PAGE_NAME;
         } else {
             throw new InvalidArgumentException("There was a problem Processing your request, please try again.");
         }//end else
@@ -42,6 +53,24 @@ function register() {
         echo json_encode(array($status=>$message));
     }//end try catch finally
 }//end function
+
+
+function getSQLInsertAllFields(&$parameters) {
+    $c = "constant";
+    $sql = "INSERT INTO {$c('USER_TABLE_NAME')} ({$c('USERNAME_FIELD')}, {$c('USER_PASSWORD_FIELD')}";
+    $sqlPlaceholders = "VALUES (?, ?";
+    $fields = array_keys(USER_DATA_FIELDS);
+
+    foreach ($fields as $field) {
+        $sql .= ", " . $field;
+        $sqlPlaceholders .= ", ?";
+        array_push($parameters, $_POST[$field]);
+    }//end foreach loop
+
+    $sqlPlaceholders .= ")";
+    $sql .= ") " . $sqlPlaceholders . ";";
+    return $sql;
+}//end function 
 
 
 if (isset($_POST["username"]) and isset($_POST["password"]) and isset($_POST["confirmPassword"])) {

@@ -1,7 +1,4 @@
 
-consider checking IP address for locking out user after to many attempts
-
-modify javascript so that it clears the password field on a failed attempt, but keeps the username regardless of weather it is correct or not.
 
 write regular expressions for username and password to validate the user input 
 

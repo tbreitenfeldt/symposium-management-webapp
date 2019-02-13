@@ -11,7 +11,7 @@
   <![endif]-->
 
   <script  src="//code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>
-  <script src="loginAJAX.js"></script>
+  <script src="loginAPI/js/loginAJAX.js"></script>
 </head>
 
 <body>
@@ -27,6 +27,10 @@
     <legend>Register Form</legend>
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" />
+    <label for="userEmail">Email:</label>
+    <input type="email" id="userEmail" name="userEmail" />
+    <label for="userPhone">Phone:</label>
+    <input type="phone" id="userPhone" name="userPhone" />
     <label for="password">Password:</label>
     <input type=password id="password" name="password" />
     <label for="confirmPassword">Confirm Password:</label>

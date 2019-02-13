@@ -1,8 +1,9 @@
 <?php
 session_start();
 
-require_once "databaseUtil/pdoUtil.php";
-require_once "usernameAndPassswordValidation.php";
+require_once "../databaseUtil/pdoUtil.php";
+require_once "dataValidation.php";
+require_once "config.php";
 
 
 function resetPassword() {
@@ -17,7 +18,8 @@ function resetPassword() {
             $newPassword = $_POST["newPassword"];
             $confirmNewPassword = $_POST["confirmNewPassword"];
             $pdoUtil = PDOUtil::createPDOUtil();
-            $sql = "UPDATE UserAccounts SET userPassword=? WHERE username=?";
+            $c = "constant";
+            $sql = "UPDATE {$c('USER_TABLE_NAME')} SET {$c('USER_PASSWORD_FIELD')}=? WHERE {$c('USERNAME_FIELD')}=?";
 
             if (verifyCurrentPassword($pdoUtil, $username, $currentPassword)) {
                 validatePassword($newPassword, $confirmNewPassword);
@@ -53,7 +55,8 @@ function verifyCurrentPassword($pdoUtil, $username, $currentPassword) {
         throw new InvalidArgumentException("Please enter your current password.");
     }//end if
 
-    $sql = "SELECT userPassword FROM UserAccounts WHERE username=?";
+    $c = "constant";
+    $sql = "SELECT {$c('USER_PASSWORD_FIELD')} FROM {$c('USER_TABLE_NAME')} WHERE {$c('USERNAME_FIELD')}=?";
     $results = $pdoUtil->query($sql, [$username]);
 
     if (sizeof($results) == 0) {

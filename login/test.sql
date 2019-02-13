@@ -34,7 +34,9 @@ CREATE TABLE `UserAccounts` (
   `userPassword` varchar(255) NOT NULL,
   `userCreatedAt` datetime DEFAULT CURRENT_TIMESTAMP,
   `userFirstFailedLogin` int(11),
-  `userFailedLoginCount` int(2) DEFAULT 0
+  `userFailedLoginCount` int(2) DEFAULT 0,
+  `userEmail` varchar(50) NULL
+  `userPhone` varchar(10) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

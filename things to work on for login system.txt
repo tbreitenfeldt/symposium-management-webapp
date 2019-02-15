@@ -1,7 +1,5 @@
 
 
-write regular expressions for username and password to validate the user input 
-
 do research and protect against cross site request forgery 
 note: I believe I need to generate a random token that is appended to the end of the url and stored as a session variable, then at the top of each secure page, I check if the url token and session token match 
 

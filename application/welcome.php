@@ -1,5 +1,5 @@
 <?php
-require_once "loginAPI/validateUser.php";
+require_once "loginAPI/authenticateUser.php";
 ?>
 
 
@@ -18,9 +18,9 @@ require_once "loginAPI/validateUser.php";
 
 <body>
 <header>
-  <h1>Welcome <?php echo htmlspecialchars($_SESSION["username"]); ?></h1>
-  <p>email: <?php echo htmlspecialchars($_SESSION["userEmail"]); ?><br>
-  phone: <?php echo htmlspecialchars($_SESSION["userPhone"]); ?></p>
+  <h1>Welcome <?php echo htmlspecialchars($_SESSION["user_name"]); ?></h1>
+  <p>email: <?php echo htmlspecialchars($_SESSION["user_email"]); ?><br>
+  phone: <?php echo htmlspecialchars($_SESSION["user_phone"]); ?></p>
 </header>
 
 <main>

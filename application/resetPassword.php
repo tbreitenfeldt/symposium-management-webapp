@@ -1,5 +1,5 @@
 <?php
-require_once "loginAPI/validateUser.php";
+require_once "loginAPI/authenticateUser.php";
 ?>
 
 
@@ -30,12 +30,12 @@ require_once "loginAPI/validateUser.php";
 
     <fieldset>
     <legend>Reset Password Form</legend>
-    <label for="currentPassword">Current Password:</label>
-    <input type="password" id="currentPassword" name="currentPassword" />
-    <label for="newPassword">New Password:</label>
-    <input type=password id="newPassword" name="newPassword" />
-    <label for="confirmNewPassword">Confirm New Password:</label>
-    <input type=password id="confirmNewPassword" name="confirmNewPassword" />
+    <label for="old_password">Current Password:</label>
+    <input type="password" id="old_password" name="old_password" />
+    <label for="user_password">New Password:</label>
+    <input type=password id="user_password" name="user_password" />
+    <label for="confirm_password">Confirm New Password:</label>
+    <input type=password id="confirm_password" name="confirm_password" />
     <input type="submit" id="registerButton" value="Reset Password" />
     <input type="button" onclick="window.location='welcome.php'" id="cancelButton" value="Cancel" />
     </fieldset>

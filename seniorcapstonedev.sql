@@ -16,7 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `seniorcapstonedev`
@@ -44,7 +44,7 @@ CREATE TABLE `conference` (
   `conference_desc` varchar(300) NOT NULL,
   `conference_contactemail` varchar(60) NOT NULL,
   `conference_contactphone` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,7 @@ CREATE TABLE `event` (
   `event_desc` varchar(300) NOT NULL,
   `event_wheelchair` tinyint(1) NOT NULL,
   `event_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -76,12 +76,15 @@ CREATE TABLE `event` (
 CREATE TABLE `user_accounts` (
   `user_id` int(11) NOT NULL,
   `user_name` varchar(30) NOT NULL,
-  `user_password` varchar(30) NOT NULL,
+  `user_password` varchar(255) NOT NULL,
   `user_email` varchar(60) NOT NULL,
   `user_phone` varchar(10) NOT NULL,
   `user_notifyByEmail` tinyint(1) NOT NULL,
-  `user_notifyByPhone` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+  `user_notifyByPhone` tinyint(1) NOT NULL,
+  `user_failed_login_count` int(2) DEFAULT 0,
+  `user_first_failed_login` int(11) DEFAULT 0,
+  `user_created_at` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -92,7 +95,7 @@ CREATE TABLE `user_accounts` (
 CREATE TABLE `user_conference` (
   `user_id` int(11) NOT NULL,
   `conference_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -103,7 +106,7 @@ CREATE TABLE `user_conference` (
 CREATE TABLE `user_schedule` (
   `user_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf16;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables

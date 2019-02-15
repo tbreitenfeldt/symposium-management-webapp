@@ -34,10 +34,10 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"]) {
 
     <fieldset>
     <legend>Login Form</legend>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" />
-    <label for="password">Password:</label>
-    <input type=password id="password" name="password" />
+    <label for="user_name">Username:</label>
+    <input type="text" id="user_name" name="user_name" />
+    <label for="user_password">Password:</label>
+    <input type=password id="user_password" name="user_password" />
     <input type="submit" id="registerButton" value="Login" />
     </fieldset>
 

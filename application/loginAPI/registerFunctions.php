@@ -2,7 +2,7 @@
 
 require_once "../databaseUtil/pdoUtil.php";
 require_once "dataValidation.php";
-require_once "config.php";
+require_once "includeConfig.php";
 
 
 function register() {
@@ -12,19 +12,25 @@ function register() {
 
     try {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
-            $username = trim($_POST["username"]);
-            $password = $_POST["password"];
-            $confirmPassword = $_POST["confirmPassword"];
+
+            $username = strtolower(trim($_POST[USERNAME_FIELD]));
+            $password = $_POST[USER_PASSWORD_FIELD];
+            $confirmPassword = $_POST[USER_CONFIRM_PASSWORD];
             $pdoUtil = PDOUtil::createPDOUtil();
             $c = "constant";
-            $sql = "";
+            $sql = "SELECT {$c('USER_ID_FIELD')} from {$c('USER_TABLE_NAME')} where {$c('USERNAME_FIELD')}=?";
+            $results = $pdoUtil->query($sql, [$username]);
 
-            validateUsername($pdoUtil, $username);
-            validatePassword($password, $confirmPassword);
+    if (sizeof($results) != 0)  {
+        throw new InvalidArgumentException("that username has already been chosen, please choose another username.");
+    }//end if
+
+            validateUsername($username);
+            validatePasswordConfirmation($password, $confirmPassword);
 
             //validate any other user data that is provided in USER_DATA_FIELDS
             foreach (USER_DATA_FIELDS as $field=>$validationFunction) {
-                $validationFunction($_POST[$field]);
+                $validationFunction($field);
             }//end foreach loop
 
             $parameters = [];
@@ -44,7 +50,8 @@ function register() {
         $message = $iae->getMessage();
     } catch(Exception $e) {
         $status = "error";
-        $message = "Unknown error: There was an error processing your request, please try again.";
+        //$message = "Unknown error: There was an error processing your request, please try again.";
+        $message = $e->getMessage();
     } finally {
         if ($pdoUtil != null) {
             $pdoUtil->close();
@@ -73,7 +80,7 @@ function getSQLInsertAllFields(&$parameters) {
 }//end function 
 
 
-if (isset($_POST["username"]) and isset($_POST["password"]) and isset($_POST["confirmPassword"])) {
+if (isset($_POST[USERNAME_FIELD]) and isset($_POST[USER_PASSWORD_FIELD]) and isset($_POST[USER_CONFIRM_PASSWORD])) {
     register();
 }//end if
 ?>

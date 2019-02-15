@@ -1,7 +1,8 @@
 <?php
 
 require_once "../databaseUtil/pdoUtil.php";
-require_once "config.php";
+require_once "dataValidation.php";
+require_once "includeConfig.php";
 
 
 function login() {
@@ -11,10 +12,11 @@ function login() {
 
     try {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
-            $username = strtolower(trim($_POST["username"]));
-            $password = $_POST["password"];
+            $username = strtolower(trim($_POST[USERNAME_FIELD]));
+            $password = $_POST[USER_PASSWORD_FIELD];
             $pdoUtil = PDOUtil::createPDOUtil();
 
+            validateUsername($username);
             loginUser($pdoUtil, $username, $password);
             $status = "success";
             $message = LOGGEDIN_LANDING_PAGE_NAME;
@@ -39,10 +41,7 @@ function login() {
 }//end function
 
 
-function loginUser($pdoUtil, $username, $password) {
-    if (empty($username)) {
-        throw new InvalidArgumentException("Please enter your username");
-    }//end if
+function loginUser(&$pdoUtil, $username, $password) {
     if (empty($password)) {
         throw new InvalidArgumentException("Please enter your password");
     }//end if
@@ -56,14 +55,14 @@ function loginUser($pdoUtil, $username, $password) {
         throw new InvalidArgumentException("Invalid username or password.");
     }//end if
 
-    $hashedPassword = $results[0]["userPassword"];
-    $userFailedLoginCount = $results[0]["userFailedLoginCount"];
-    $userFirstFailedLogin = $results[0]["userFirstFailedLogin"];
+    $hashedPassword = $results[0][USER_PASSWORD_FIELD];
+    $userFailedLoginCount = $results[0][FAILED_LOGIN_COUNT_FIELD];
+    $userFirstFailedLogin = $results[0][FIRST_FAILED_LOGIN_FIELD];
 
     if (($userFailedLoginCount >= LOGIN_ATTEMPT_LIMIT)
                 && ((time() - (int)$userFirstFailedLogin) < LOCKOUT_TIME)) {
         throw new InvalidArgumentException("You have been locked out. To many attempts have been made to login with this account, please try again in a bit.");
-    } else if ( !password_verify($password, $hashedPassword)) {
+    } else if ( !password_verify($password, $results[0]["user_password"])) {
         if (time() - $userFirstFailedLogin > LOCKOUT_TIME) {
             $userFirstFailedLogin = time();
             $userFailedLoginCount = 1;
@@ -72,7 +71,6 @@ function loginUser($pdoUtil, $username, $password) {
         } else {
             $userFailedLoginCount++;
             $sql = "UPDATE {$c('USER_TABLE_NAME')} SET {$c('FAILED_LOGIN_COUNT_FIELD')}=? WHERE {$c('USERNAME_FIELD')}=?";
-
             $pdoUtil->query($sql, [$userFailedLoginCount, $username]);
         }//end else 
 
@@ -84,8 +82,8 @@ function loginUser($pdoUtil, $username, $password) {
         $pdoUtil->query($sql, [$userFirstFailedLogin, $userFailedLoginCount, $username]);
         session_start();
         $_SESSION["loggedin"] = true;
-        $_SESSION["id"] = $results[0]["userID"];
-        $_SESSION["username"] = $results[0]["username"];
+        $_SESSION[USER_ID_FIELD] = $results[0][USER_ID_FIELD];
+        $_SESSION[USERNAME_FIELD] = $results[0][USERNAME_FIELD];
         $fields = array_keys(USER_DATA_FIELDS);
 
         foreach($fields as $field) {
@@ -110,7 +108,7 @@ function getSQLSelectForAllFields() {
 }//end function 
 
 
-if (isset($_POST["username"]) and isset($_POST["password"])) {
+if (isset($_POST[USERNAME_FIELD]) and isset($_POST[USER_PASSWORD_FIELD])) {
     login();
 }//end if
 ?>

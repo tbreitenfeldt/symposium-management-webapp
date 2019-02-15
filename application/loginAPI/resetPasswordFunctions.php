@@ -3,7 +3,7 @@ session_start();
 
 require_once "../databaseUtil/pdoUtil.php";
 require_once "dataValidation.php";
-require_once "config.php";
+require_once "includeConfig.php";
 
 
 function resetPassword() {
@@ -13,16 +13,16 @@ function resetPassword() {
 
     try {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
-            $username = $_SESSION["username"];
-            $currentPassword = $_POST["currentPassword"];
-            $newPassword = $_POST["newPassword"];
-            $confirmNewPassword = $_POST["confirmNewPassword"];
+            $username = $_SESSION[USERNAME_FIELD];
+            $currentPassword = $_POST[USER_OLD_PASSWORD];
+            $newPassword = $_POST[USER_PASSWORD_FIELD];
+            $confirmNewPassword = $_POST[USER_CONFIRM_PASSWORD];
             $pdoUtil = PDOUtil::createPDOUtil();
             $c = "constant";
             $sql = "UPDATE {$c('USER_TABLE_NAME')} SET {$c('USER_PASSWORD_FIELD')}=? WHERE {$c('USERNAME_FIELD')}=?";
 
             if (verifyCurrentPassword($pdoUtil, $username, $currentPassword)) {
-                validatePassword($newPassword, $confirmNewPassword);
+                validatePasswordConfirmation($newPassword, $confirmNewPassword);
 
                 $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
                 $pdoUtil->query($sql, [$newPassword, $username]);
@@ -65,7 +65,7 @@ function verifyCurrentPassword($pdoUtil, $username, $currentPassword) {
         throw new InvalidArgumentException("There was an error processing your username and password, please contact an administrator.");
     }//end if
 
-    $hashedPassword = $results[0]["userPassword"];
+    $hashedPassword = $results[0][USER_PASSWORD_FIELD];
 
     if (password_verify($currentPassword, $hashedPassword)) {
         return true;
@@ -75,7 +75,7 @@ function verifyCurrentPassword($pdoUtil, $username, $currentPassword) {
 }//end function 
 
 
-    if (isset($_POST["currentPassword"]) and isset($_POST["newPassword"]) and isset($_POST["confirmNewPassword"])) {
+    if (isset($_POST[USER_OLD_PASSWORD]) and isset($_POST[USER_PASSWORD_FIELD]) and isset($_POST[USER_CONFIRM_PASSWORD])) {
 resetPassword();
 }//end if
 ?>

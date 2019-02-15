@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 require_once "../databaseUtil/pdoUtil.php";
 require_once "dataValidation.php";
@@ -13,6 +12,8 @@ function resetPassword() {
 
     try {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
+            session_start();
+
             $username = $_SESSION[USERNAME_FIELD];
             $currentPassword = $_POST[USER_OLD_PASSWORD];
             $newPassword = $_POST[USER_PASSWORD_FIELD];
@@ -20,6 +21,8 @@ function resetPassword() {
             $pdoUtil = PDOUtil::createPDOUtil();
             $c = "constant";
             $sql = "UPDATE {$c('USER_TABLE_NAME')} SET {$c('USER_PASSWORD_FIELD')}=? WHERE {$c('USERNAME_FIELD')}=?";
+
+            session_write_close();
 
             if (verifyCurrentPassword($pdoUtil, $username, $currentPassword)) {
                 validatePasswordConfirmation($newPassword, $confirmNewPassword);

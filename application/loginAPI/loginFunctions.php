@@ -62,7 +62,7 @@ function loginUser(&$pdoUtil, $username, $password) {
     if (($userFailedLoginCount >= LOGIN_ATTEMPT_LIMIT)
                 && ((time() - (int)$userFirstFailedLogin) < LOCKOUT_TIME)) {
         throw new InvalidArgumentException("You have been locked out. To many attempts have been made to login with this account, please try again in a bit.");
-    } else if ( !password_verify($password, $results[0]["user_password"])) {
+    } else if ( !password_verify($password, $hashedPassword)) {
         if (time() - $userFirstFailedLogin > LOCKOUT_TIME) {
             $userFirstFailedLogin = time();
             $userFailedLoginCount = 1;
@@ -78,10 +78,11 @@ function loginUser(&$pdoUtil, $username, $password) {
     } else {
         $userFirstFailedLogin = 0;
         $userFailedLoginCount = 0;
-            $sql = "UPDATE {$c('USER_TABLE_NAME')} SET {$c('FIRST_FAILED_LOGIN_FIELD')}=?, {$c('FAILED_LOGIN_COUNT_FIELD')}=? WHERE {$c('USERNAME_FIELD')}=?";
+        $sql = "UPDATE {$c('USER_TABLE_NAME')} SET {$c('FIRST_FAILED_LOGIN_FIELD')}=?, {$c('FAILED_LOGIN_COUNT_FIELD')}=? WHERE {$c('USERNAME_FIELD')}=?";
         $pdoUtil->query($sql, [$userFirstFailedLogin, $userFailedLoginCount, $username]);
+
         session_start();
-        $_SESSION["loggedin"] = true;
+        $_SESSION[LOGGEDIN_TOKEN_NAME] = true;
         $_SESSION[USER_ID_FIELD] = $results[0][USER_ID_FIELD];
         $_SESSION[USERNAME_FIELD] = $results[0][USERNAME_FIELD];
         $fields = array_keys(USER_DATA_FIELDS);
@@ -89,6 +90,8 @@ function loginUser(&$pdoUtil, $username, $password) {
         foreach($fields as $field) {
             $_SESSION[$field] = $results[0][$field];
         }//end foreach loop
+
+        session_write_close();
     }//end else
 }//end function
 

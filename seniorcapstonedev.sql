@@ -89,6 +89,21 @@ CREATE TABLE `user_accounts` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin_accounts`
+--
+
+CREATE TABLE `admin_accounts` (
+  `admin_id` int(11) NOT NULL,
+  `admin_name` varchar(30) NOT NULL,
+  `admin_password` varchar(255) NOT NULL,
+  `admin_failed_login_count` int(2) DEFAULT 0,
+  `admin_first_failed_login` int(11) DEFAULT 0,
+  `admin_created_at` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_conference`
 --
 
@@ -131,6 +146,12 @@ ALTER TABLE `user_accounts`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `user_email` (`user_email`),
   ADD UNIQUE KEY `user_phone` (`user_phone`);
+
+--
+-- Indexes for table `admin_accounts`
+--
+ALTER TABLE `admin_accounts`
+  ADD PRIMARY KEY (`admin_id`);
 
 --
 -- Indexes for table `user_conference`

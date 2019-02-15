@@ -1,3 +1,10 @@
+<?PHP
+session_start();
+$_SESSION["user"] = "user";
+session_write_close();
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -11,7 +18,7 @@
   <![endif]-->
 
   <script  src="//code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>
-  <script src="loginAPI/js/loginAJAX.js"></script>
+  <script src="../loginAPI/js/loginAJAX.js"></script>
 </head>
 
 <body>
@@ -20,7 +27,7 @@
 </header>
 
 <main>
-  <form id="userLogonForm" method="POST" action="loginAPI/registerFunctions.php" type="json">
+  <form id="userLogonForm" method="POST" action="../loginAPI/registerFunctions.php" type="json">
     <div id="outputRegion" aria-live="polite" ></div>
 
     <fieldset>

@@ -1,5 +1,5 @@
 <?php
-require_once "loginAPI/authenticateUser.php";
+require_once "authenticateUser.php";
 ?>
 
 
@@ -16,7 +16,7 @@ require_once "loginAPI/authenticateUser.php";
   <![endif]-->
 
   <script  src="//code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>
-  <script src="loginAPI/js/loginAJAX.js"></script>
+  <script src="../loginAPI/js/loginAJAX.js"></script>
 </head>
 
 <body>
@@ -25,7 +25,7 @@ require_once "loginAPI/authenticateUser.php";
 </header>
 
 <main>
-  <form id="userLogonForm" method="POST" action="loginAPI/resetPasswordFunctions.php" type="json">
+  <form id="userLogonForm" method="POST" action="../loginAPI/resetPasswordFunctions.php" type="json">
     <div id="outputRegion" aria-live="polite" ></div>
 
     <fieldset>

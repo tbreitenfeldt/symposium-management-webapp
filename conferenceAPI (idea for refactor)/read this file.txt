@@ -1,0 +1,34 @@
+This is a suggestion I have for fixing the API vulnerabilities. I only flushed out the event table, but It would be easy to do for each table, and any joins that we may need.
+
+note: I inigrated your code with the PDOUtil class that I posted, sinse it looked like you were using a different solution for querying the database. It doesn't matter to me what we use, but we should be consistent, and only have one pdoUtil file and one creds file.
+
+
+The idea is that there is a folder for each set of joins that occur, starting with each individual table, so there is a folder for each table:
+event
+conference
+user_account
+user_conference
+user_schedule
+I omitted the admin accounts table, and I think we need to be careful with the information that we provide access to for the user accounts table. These two tables ar really where the security concerns lye.
+If we wanted to access more than one table at a time, we could create a folder called 
+conferencesAndEvents
+for joining the event and conference tables 
+So for all of the joins we will need, we can just create new folders for each of them. I just can't think of any other way of getting around the security issues we are having right now.
+
+Also, one other security measure we can use to help insure that the API is only ever used through these folders and files, and the get, post, put, and delete php files are not accessed directly, is to use the genFlag, give it a random value, and check that genFlag is set before ever performing any operations in get, post, put, or delete. 
+so that in each index php file, a token is set, and in the get, post, put, delete php files, the token is varified, this way if someone attempts to get at any of the request files directly, it will exit without performing any operations.
+this is not something that I implmented yet.
+
+I put an index.php file in the event folder, it will provide access to the get, post, delete, and put files for the event table. The user can still customize the query a bit, so that attributes and values can be defined, but no longer can the user define just any table they want to perform operations on. This will also allow for data validation, and allow us to restrict http method calls to spacific tables or joins.
+The fields to select by for the get request are  set as all of them (*), we can create sub folders for queries if we really feel like we need to cut down on the data we are returning, but I don't think this is going to matter much.
+For example, we can restrict http methods by choosing  to only create API calls for post and put for the user_account table, sinse we shouldn't need to delete accounts, at least for now, and we don't need to ever allow for getting data from the user_acount table sinse all of the user_account data is presented in the login system as session variables.
+
+You can easily test it by running the http get in your browser.
+Remember, all key value pairs are required, even if they are empty.
+example:
+http://localhost/conferenceAPI/api/event/?genFlag=flag&attrs=[]&values=[]
+
+I am using the json_decode() rather than casting to an rray, which seemed to cause some strange behavior on the arrays, which means you have to put in quotes around the strings if you have any in your url query, for example:
+http://localhost/conferenceAPI/api/event/?genFlag=flag&attrs=["event_id"]&values=[1]
+
+I had to modify a few things with your get, post, delete, and put files, and I moved your shorten function into a file called helperFunctions rather than index.php, all to fit this design.

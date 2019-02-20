@@ -25,7 +25,6 @@ class PDOUtil {
     private function __construct() {
         REQUIRE_once "creds.php";
 
-        $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=" . DB_CHARSET . ";";
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -33,7 +32,7 @@ class PDOUtil {
         ];
 
         try {
-            $this->connection = new PDO($dsn, DB_USERNAME, DB_PASSWORD, $options);
+            $this->connection = new PDO(DSN, DB_USERNAME, DB_PASSWORD, $options);
         } catch(\PDOException $e) {
             die(json_encode(array("error"=>$e->getMessage())));
         }//end try catch

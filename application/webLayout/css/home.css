@@ -1,0 +1,50 @@
+.navbar{
+    background-color: #a10022 !important;
+}
+
+body{
+    /*background-color:pink;*/
+    padding-top:60px;
+    background-image:url("https://sites.ewu.edu/dss/files/2018/10/scott-webb-282338-unsplash.jpg");
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #a10022;
+    text-align: center;
+    color:white;
+  }
+
+.container .content{
+    background-color:white;
+}
+
+.main-nav:hover .dropdown-menu {
+display: block;
+}
+
+.dropdown-menu{
+    background-color: #a10022;
+}
+
+.dropdown-item:hover{
+    background-color: #c10022;
+    color:white;
+}
+
+.btn{
+    color:white;
+}
+
+.btn:focus,.btn:active:focus,.btn.active:focus,
+.btn.focus,.btn:active.focus,.btn.active.focus {
+    outline: none;
+}
+
+.dropdown-item{
+    color:white;
+}

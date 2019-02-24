@@ -1,32 +1,20 @@
-<?php
-require_once "authenticateUser.php";
-?>
+<?php require_once "authenticateUser.php"; ?>
 
+<?php include('./header/administratorDashboardHeader.php'); ?>
 
-<!doctype html>
-<html lang="en">
+<div id="contentId">
 
-<head>
-  <meta charset="utf-8"/>
+  <header>
+    <h1>Administrator Dashboard<?php echo htmlspecialchars($_SESSION["user_name"]); ?></h1>
+  </header>
 
-  <title>Administrator Dashboard</title>
+  <main>
+  
+    <a href="resetPassword.php"><button>Reset Password</button></a>
+    <a href="logout.php"><button>Logout</button></a>
 
-  <!--[if lt IE 9]>
-    <script src="/js/html5shiv.js"></script>
-  <![endif]-->
-</head>
+  </main>
 
-<body>
-<header>
-  <h1>Administrator Dashboard<?php echo htmlspecialchars($_SESSION["user_name"]); ?></h1>
-</header>
+</div>
 
-<main>
-  <p>
-  <a href="resetPassword.php">Reset Password</a>
-  <a href="logout.php">Logout</a>
-  </p>
-</main>
-
-</body>
-</html>
+<?php include('./footer/administratorDashboardHeader.php'); ?>

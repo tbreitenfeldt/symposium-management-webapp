@@ -4,6 +4,5 @@ body {display:table-cell; text-align:center; vertical-align:middle;}
 #contentId{background-color:lightgrey; display: inline-block; padding-bottom: 2%;}
 h1{margin:2rem}
 #loginButton{width:70%}
-label {display: inline-block; width: 140px; text-align: right;}
 #fieldClass{orientation: center;}
 #inputDiv #submitDiv {orientation: center}

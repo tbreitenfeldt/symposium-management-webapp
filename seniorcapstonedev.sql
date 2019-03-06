@@ -30,13 +30,15 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `conference` (
   `conference_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL,
   `conference_name` varchar(60) NOT NULL,
   `conference_venue` varchar(100) NOT NULL,
   `conference_street` varchar(100) NOT NULL,
   `conference_city` varchar(100) NOT NULL,
+  `conference_state` varchar(100) NOT NULL,
   `conference_postalcode` varchar(10) NOT NULL,
   `conference_country` varchar(100) NOT NULL,
-  `conference_startdate` date NOT NULL,
+  `conference_startdate` date  NOT NULL,
   `conference_enddate` date NOT NULL,
   `conference_amenities` varchar(100) NOT NULL,
   `conference_wheelchair` tinyint(1) NOT NULL,
@@ -55,6 +57,7 @@ CREATE TABLE `conference` (
 CREATE TABLE `event` (
   `event_id` int(11) NOT NULL,
   `conference_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL,
   `event_name` varchar(60) NOT NULL,
   `event_starttime` time NOT NULL,
   `event_endtime` time NOT NULL,

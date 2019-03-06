@@ -18,14 +18,16 @@ require_once "authenticateUser.php";
 
 <body>
 <header>
-  <h1>Administrator Dashboard<?php echo htmlspecialchars($_SESSION["user_name"]); ?></h1>
+  <h1>Administrator Dashboard</h1>
 </header>
 
 <main>
-  <p>
-  <a href="resetPassword.php">Reset Password</a>
-  <a href="logout.php">Logout</a>
-  </p>
+  <ul>
+    <li><a href="logout.php">Logout</a></li>
+    <li><a href="resetPassword.php">Reset Password</a>
+    <li><a href="createConference.php">Create Conference</a></li>
+    <li><a href="changeConference.php">Change Conference</a></li>
+  </ul>
 </main>
 
 </body>

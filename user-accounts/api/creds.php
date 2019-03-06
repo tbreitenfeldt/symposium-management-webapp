@@ -1,6 +1,6 @@
 <?php
 	$host="localhost";
-	$db="user-accounts";
+	$db="seniorcapstonedev";
 	$charset="utf8mb4";
 	$user="root";
 	$pw="";

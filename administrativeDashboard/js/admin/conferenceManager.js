@@ -63,7 +63,7 @@ function getConferenceEditor(data) {
                 "<p>dates:<br>starts " + data[0]["conference_startdate"] + " and ends " + data[0]["conference_enddate"] + "</p>" +
                 "<p>Amenities:<br>" + data[0]["conference_amenities"] + "</p>" +
                 "<p>Fasility Description:<br>" + data[0]["conference_facilitydesc"] + "</p>" +
-                "<p>Conference Description:<br>" + data[0]["conference_desc"] + "</p>";
+                "<p>Conference Description:<br>" + data[0]["conference_desc"] + "</p>"
                 
 
         insertHeading2(conferenceName, "headingRegion1");

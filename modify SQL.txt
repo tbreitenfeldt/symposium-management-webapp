@@ -1,3 +1,1 @@
-make conference_name in the conference table unique
 enforce foregn keys in the sql by using the SqL foreign key sintax 
-add adminID to the conference table so that there is an association between admins and conferences that they have created

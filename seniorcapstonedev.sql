@@ -134,7 +134,8 @@ CREATE TABLE `user_schedule` (
 -- Indexes for table `conference`
 --
 ALTER TABLE `conference`
-  ADD PRIMARY KEY (`conference_id`);
+  ADD PRIMARY KEY (`conference_id`),
+  ADD UNIQUE KEY `conference_name` (`conference_name`);
 
 --
 -- Indexes for table `event`
@@ -189,6 +190,12 @@ ALTER TABLE `event`
 --
 ALTER TABLE `user_accounts`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user_accounts`
+--
+ALTER TABLE `admin_accounts`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -16,39 +16,40 @@ session_write_close();
 <html lang="en">
 
 <head>
-  <meta charset="utf-8"/>
-
-  <title>Administrator Login</title>
-
-  <!--[if lt IE 9]>
-    <script src="/js/html5shiv.js"></script>
-  <![endif]-->
-
-  <script  src="//code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>
-  <script src="../js/loginSystem/loginAJAX.js"></script>
+<title>Admin Login</title>
+<?php require_once "./header/loginHeader.php"; ?>
 </head>
 
 <body>
-<header>
-  <h1>Administrator Login</h1>
-</header>
+    <div id="contentId">
+      <header>
+        <h1>Administrator Login</h1>
+      </header>
 
-<main>
-  <form id="userLogonForm" method="POST" action="../loginAPI/loginFunctions.php" type="json">
-    <div id="outputRegion" aria-live="polite" ></div>
+      <main>
+        <form id="userLogonForm" method="POST" action="../loginAPI/loginFunctions.php" type="json" class="form-horizontal">
+          <div id="outputRegion" aria-live="polite" ></div>
 
-    <fieldset>
-    <legend>Login Form</legend>
-    <label for="admin_name">Username:</label>
-    <input type="text" id="admin_name" name="admin_name" />
-    <label for="admin_password">Password:</label>
-    <input type=password id="admin_password" name="admin_password" />
-    <input type="submit" id="loginButton" value="Login" />
-    </fieldset>
+          <fieldset>
+            <legend>Login Form</legend>
+            <div id="inputDiv">
+              <label for="admin_name">Username:</label>
+              <input type="text" id="admin_name" name="admin_name" placeholder="Username"/>
+              <br>
+              <label for="admin_password">Password:&nbsp;</label>
+              <input type=password id="admin_password" name="admin_password" placeholder="Password"/>
+            </div>
+            <br>
+            <div id="submitDiv">
+              <input type="submit" id="loginButton" value="Login"/>
+            </div>
+          </fieldset>
+          <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+        </form>
+      </main>
+    </div>
 
-    <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-  </form>
-</main>
+    <?php require_once "./footer/indexFooter.php"; ?>
 
-</body>
+<body>
 </html>

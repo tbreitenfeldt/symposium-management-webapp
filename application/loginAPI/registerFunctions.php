@@ -18,12 +18,12 @@ function register() {
             $confirmPassword = $_POST[USER_CONFIRM_PASSWORD];
             $pdoUtil = PDOUtil::createPDOUtil();
             $c = "constant";
-            $sql = "SELECT {$c('USER_ID_FIELD')} from {$c('USER_TABLE_NAME')} where {$c('USERNAME_FIELD')}=?";
+            $sql = "SELECT {$c('USER_ID_FIELD')} FROM {$c('USER_TABLE_NAME')} WHERE {$c('USERNAME_FIELD')}=?;";
             $results = $pdoUtil->query($sql, [$username]);
-
-    if (sizeof($results) != 0)  {
-        throw new InvalidArgumentException("that username has already been chosen, please choose another username.");
-    }//end if
+//die(var_dump($results) . "<br>" . $sql);
+            if (sizeof($results) != 0) {
+                throw new InvalidArgumentException("that username has already been chosen, please choose another username.");
+            }//end if
 
             validateUsername($username);
             validatePasswordConfirmation($password, $confirmPassword);
@@ -76,6 +76,7 @@ function getSQLInsertAllFields(&$parameters) {
 
     $sqlPlaceholders .= ")";
     $sql .= ") " . $sqlPlaceholders . ";";
+//die($sql);
     return $sql;
 }//end function 
 

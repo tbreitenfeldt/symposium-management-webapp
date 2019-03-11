@@ -168,7 +168,7 @@ function postRecord(tablename, attrs, values, callback, formatFlag){
 		attrs: attrs,
 		values: values,
 	};
-	$.post("api/index.php",map,callback);
+	$.post("../api/index.php",map,callback);
 }
 
 

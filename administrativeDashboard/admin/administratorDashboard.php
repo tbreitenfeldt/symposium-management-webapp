@@ -34,13 +34,13 @@
 </header>
 
 <main>
-  <div id="headingRegion1" aria-live="polite"></div>
-  <div id="controlsRegion1"></div>
-  <div id="mainContentRegion1"></div>
+  <div id="headingRegion1" class="contentRegions" aria-live="polite"></div>
+  <div id="controlsRegion1" class="contentRegions"></div>
+  <div id="mainContentRegion1" class="contentRegions"></div>
 
-  <div id="headingRegion2"></div>
-  <div id="controlsRegion2"></div>
-  <div id="mainContentRegion2"></div>
+  <div id="headingRegion2" class="contentRegions"></div>
+  <div id="controlsRegion2" class="contentRegions"></div>
+  <div id="mainContentRegion2" class="contentRegions"></div>
 
   <div id="conferenceFormRegion"></div>
   <div id="eventFormRegion"></div>

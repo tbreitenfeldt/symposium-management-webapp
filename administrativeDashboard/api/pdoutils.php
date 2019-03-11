@@ -17,7 +17,7 @@ function PDOQuery($sql, $vars, $dsn, $user, $pw) {
 		return $results;
 	} catch (Exception $e) {
 		error_log($e->getMessage());
-		exit('pdoutils error');		
+		exit($e->getMessage());		
 	}
 }
 ?>

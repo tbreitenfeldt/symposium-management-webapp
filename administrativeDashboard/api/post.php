@@ -14,6 +14,7 @@ if (isset($_POST["table_name"])){
 	}
 	$sql = substr($sql, 0, strlen($sql) -1);
 	$sql .= ");";
+//die($sql);
 	try {
 		$result = PDOQuery($sql, [], $dsn, $user, $pw);
 		http_response_code(201);

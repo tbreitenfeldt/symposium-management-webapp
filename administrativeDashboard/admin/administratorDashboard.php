@@ -7,15 +7,9 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8"/>
-
+  <?php require_once "header/header.php"; ?>
   <title>Administrator Dashboard</title>
 
-  <!--[if lt IE 9]>
-    <script src="/js/html5shiv.js"></script>
-  <![endif]-->
-
-  <script  src="//code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>
   <script src="../js/admin/generateHTML.js"></script>
   <script src="../js/admin/conferenceManager.js"></script>
   <script src="../js/conferenceAPI/databaseFunctions.js"></script>
@@ -42,9 +36,11 @@
   <div id="controlsRegion2" class="contentRegions"></div>
   <div id="mainContentRegion2" class="contentRegions"></div>
 
+  <!--These regions are populated with the conference form and event form respectively. The regions are initially hidden-->
   <div id="conferenceFormRegion"></div>
   <div id="eventFormRegion"></div>
 </main>
 
+<?php require_once "footer/footer.php"; ?>
 </body>
 </html>

@@ -124,6 +124,7 @@ CREATE TABLE `user_conference` (
 CREATE TABLE `user_schedule` (
   `user_id` int(11) NOT NULL,
   `event_id` int(11) NOT NULL
+  `conference_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

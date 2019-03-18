@@ -1,28 +1,46 @@
-<?php require_once "authenticateUser.php"; ?>
+<?php
+//require_once "authenticateUser.php";
+?>
 
 
 <!doctype html>
 <html lang="en">
 
 <head>
-<title>Administrative Dashboard</title>
-<?php require_once "./header/loginHeader.php"; ?>
+  <?php require_once "header/header.php"; ?>
+  <title>Administrator Dashboard</title>
+
+  <script src="../js/admin/generateHTML.js"></script>
+  <script src="../js/admin/conferenceManager.js"></script>
+  <script src="../js/conferenceAPI/databaseFunctions.js"></script>
 </head>
 
 <body>
-<div id="contentId">
-  <header>
-    <h1>Administrator Dashboard</h1>
-    <p>Welcome <?php echo htmlspecialchars($_SESSION["admin_name"]); ?></p>
-  </header>
+<header>
+  <h1>Administrator Dashboard</h1>
 
-  <main>
-    <a href="resetPassword.php"><button>Reset Password</button></a>
-    <a href="logout.php"><button>Logout</button></a>
-  </main>
+  <nav>
+    <ul>
+      <li><a href="logout.php">Logout</a></li>
+      <li><a href="resetPassword.php">Reset Password</a>
+    </ul>
+  </nav>
+</header>
 
-<?php require_once "./footer/indexFooter.php"; ?>
-</div>
+<main>
+  <div id="headingRegion1" class="contentRegions" aria-live="polite"></div>
+  <div id="controlsRegion1" class="contentRegions"></div>
+  <div id="mainContentRegion1" class="contentRegions"></div>
 
+  <div id="headingRegion2" class="contentRegions"></div>
+  <div id="controlsRegion2" class="contentRegions"></div>
+  <div id="mainContentRegion2" class="contentRegions"></div>
+
+  <!--These regions are populated with the conference form and event form respectively. The regions are initially hidden-->
+  <div id="conferenceFormRegion"></div>
+  <div id="eventFormRegion"></div>
+</main>
+
+<?php require_once "footer/footer.php"; ?>
 </body>
 </html>

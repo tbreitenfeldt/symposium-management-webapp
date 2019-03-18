@@ -25,7 +25,7 @@ array("user_email"=>"validateEmail", "user_phone"=>"validatePhone", "user_notify
 );
 
 define("LOGIN_PAGE_NAME", "login.php");
-define("LOGGEDIN_LANDING_PAGE_NAME", "welcome.php");
+define("LOGGEDIN_LANDING_PAGE_NAME", "index.php");
 
 define("LOGIN_ATTEMPT_LIMIT", 5);
 define("LOCKOUT_TIME", 180);

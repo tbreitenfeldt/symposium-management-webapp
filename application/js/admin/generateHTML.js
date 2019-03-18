@@ -5,48 +5,49 @@ function createForm(id) {
 }//end function
 
 
-function createTextbox(label, id, className, regex) {
+function createTextbox(label, id, className, dataName, regex) {
     let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
-    let htmlTextbox = '<input type="text" id="' + id + '" name="' + id + '" class="' + className + '" data-verify="' + regex + '" />';
+    let htmlTextbox = '<input type="text" id="' + id + '" name="' + id + '" class="' + className + '" data-verify="' + regex + '" data-name="' + dataName + '" />';
     return htmlLabel + '</br>' + htmlTextbox + '</br>';
 }//end function
 
 
-function createPhoneTextbox(label, id, className, regex) {
+function createPhoneTextbox(label, id, className, dataName, regex) {
     let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
-    let htmlTextbox = '<input type="phone" id="' + id + '" name="' + id + '" class="' + className + '" data-verify="' + regex + '" />';
+    let htmlTextbox = '<input type="phone" id="' + id + '" name="' + id + '" class="' + className + '" data-verify="' + regex + '" data-name="' + dataName + '" />';
     return htmlLabel + '</br>' + htmlTextbox + '</br>';
 }//end function
 
 
-function createEmailTextbox(label, id, className, regex) {
+function createEmailTextbox(label, id, className, dataName, regex) {
     let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
-    let htmlTextbox = '<input type="email" id="' + id + '" name="' + id + '" class="' + className + '" data-verify="' + regex + '" />';
+    let htmlTextbox = '<input type="email" id="' + id + '" name="' + id + '" class="' + className + '" data-verify="' + regex + '" data-name="' + dataName + '" />';
     return htmlLabel + '</br>' + htmlTextbox + '</br>';
 }//end function
 
 
-function createTextarea(label, id, className, regex) {
+function createTextarea(label, id, className, dataName, regex) {
     let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
-    let htmlTextarea = '<textarea id="' + id + '" name="' + id + '" class="' + className + '" data-verify="' + regex + '"></textarea>';
+    let htmlTextarea = '<textarea id="' + id + '" name="' + id + '" class="' + className + '" data-verify="' + regex + '" data-name="' + dataName + '"></textarea>';
     return htmlLabel + '</br>' + htmlTextarea + '</br>';
 }//end function
 
 
-function createRadioButtons(legendName, radioButtonInfo, name, className) {
+function createRadioButtons(legendName, radioButtonInfo, name, className, dataName) {
     let radioButtons = '<fieldset><legend>' + legendName + '</legend>';
     let isFirst = true;
 
     for (let radioButton of radioButtonInfo) {
         let id = radioButton[0];
         let label = radioButton[1];
-        let htmlRadioButton = '<input type="radio" id="' + id + '" name="' + name + '" value="' + label + '" class="' + className + '" ';
-        
+        let value = radioButton[2];
+        let htmlRadioButton = '<input type="radio" id="' + id + '" name="' + name + '" value="' + value + '" class="' + className + '" data-name="' + dataName + '"';
+
         if (isFirst) {
             htmlRadioButton += 'checked="checked" ';
             isFirst = false;
         }//end if
-        
+
         htmlRadioButton += '/>';
         let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
         radioButtons += htmlRadioButton + htmlLabel + '</br>';
@@ -57,16 +58,39 @@ function createRadioButtons(legendName, radioButtonInfo, name, className) {
 }//end function
 
 
-function createButton(label, type, id, className, functionHandler) {
-    let htmlButton = '<input type="' + type + '" id="' + id + '" name="' + name + '" class="' + className + '" value="' + label + '" ' +
-            'onclick="return ' + functionHandler + ';" />';
+function createButton(label, type, id, className) {
+    let htmlButton = '<input type="' + type + '" id="' + id + '" name="' + name + '" class="' + className + '" value="' + label + '" />';
     return htmlButton;
 }//end function
 
 
-function createListOfStates(label, id, className) {
+function insertHeading2(value, id) {
+    $("#" + id).html("<h2 tabindex='-1'>" + value + "</h2>");
+    $("h2").focus();
+}//end function
+
+
+function insertHeading3(value, id) {
+    $("#" + id).html("<h3>" + value + "</h3>");
+}//end function
+
+
+function createListBox(label, options, id, className, dataName) {
     let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
-    let htmlListbox = '<select id="' + id + '" class="' + className + '">' +
+    let htmlListbox = '<select id="' + id + '" class="' + className + '" data-name="' + dataName + '">' +
+            '<option value="" selected="selected" disabled="disabled" hidden="hidden">-- select an option --</option>';
+
+    for (let option of options) {
+        htmlListbox += '<option value="' + option + '">' + option + '</option>';
+    }//end for loop 
+
+    return htmlLabel + '</br>' + htmlListbox + '</br>';
+}//end function
+
+
+function createListOfStates(label, id, className, dataName) {
+    let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
+    let htmlListbox = '<select id="' + id + '" class="' + className + '" data-name="' + dataName + '">' +
             '<option value="" selected="selected" disabled="disabled" hidden="hidden">-- select an option --</option>' +
             '<option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option>' +
             '<option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option>' +
@@ -81,16 +105,16 @@ function createListOfStates(label, id, className) {
             '<option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option>' +
             '<option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option>' +
             '<option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option>' +
-            '<option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option>' +
+            '<option value="VA">Virginia</option><option value="WA" selected="selected">Washington</option><option value="WV">West Virginia</option>' +
             '<option value="WI">Wisconsin</option><option value="WY">Wyoming</option>' +
             '</select>';
     return htmlLabel + '</br>' + htmlListbox + '</br>';
 }//end function
 
 
-function createListOfCountries(label, id, className) {
+function createListOfCountries(label, id, className, dataName) {
     let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
-    let htmlListbox = '<select id="' + id + '" class ="' + className + '">' +
+    let htmlListbox = '<select id="' + id + '" class ="' + className + '" data-name="' + dataName + '">' +
             '<option value="AF">Afghanistan</option><option value="AX">Åland Islands</option><option value="AL">Albania</option>' +
             '<option value="DZ">Algeria</option><option value="AS">American Samoa</option><option value="AD">Andorra</option>' +
             '<option value="AO">Angola</option><option value="AI">Anguilla</option><option value="AQ">Antarctica</option>' +

@@ -4,8 +4,9 @@
 <html lang="en">
 
 <head>
-<title>Reset Password</title>
-<?php require_once "./header/loginHeader.php"; ?>
+  <title>Reset Password</title>
+  <?php require_once "./header/header.php"; ?>
+  <script src="../js/loginSystem/loginAJAX.js"></script>
 </head>
 
 <body>
@@ -46,7 +47,7 @@
 
 </div>
 
-<?php require_once "./footer/indexFooter.php"; ?>
+<?php require_once "./footer/footer.php"; ?>
 
 </body>
 </html>

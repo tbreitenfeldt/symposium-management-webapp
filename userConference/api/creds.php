@@ -1,8 +1,8 @@
 <?php
 	$host="localhost";
-	$db="disability";
+	$db="seniorcapstonedev";
 	$charset="utf8mb4";
-	$user="admin";
-	$pw="admin";
+	$user="root";
+	$pw="";
 	$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 ?>

@@ -9,8 +9,9 @@ session_write_close();
 <html lang="en">
 
 <head>
-<title>Admin Register</title>
-<?php require_once('./header/loginHeader.php'); ?>
+  <title>Admin Register</title>
+  <?php require_once('./header/header.php'); ?>
+  <script src="../js/loginSystem/loginAJAX.js"></script>
 </head>
 
 <body>
@@ -54,7 +55,7 @@ session_write_close();
       </main>
   </div>
 
-    <?php require_once "./footer/indexFooter.php"; ?>
+    <?php require_once "./footer/footer.php"; ?>
 
 </body>
 </html>

@@ -18,8 +18,14 @@ function login() {
 
             validateUsername($username);
             loginUser($pdoUtil, $username, $password);
+
+            //If the session variable pageToAccess is null, then the user is accessing the login page directly, which will redirect to the landing page on login
+            if ( !isset($_SESSION["pageToAccess"])) {
+                $_SESSION["pageToAccess"] = LOGGEDIN_LANDING_PAGE_NAME;
+            }//end if
+
             $status = "success";
-            $message = LOGGEDIN_LANDING_PAGE_NAME;
+            $message = $_SESSION["pageToAccess"];
         } else {
             throw new InvalidArgumentException("hello, There was a problem Processing your request, please try again.");
         }//end else

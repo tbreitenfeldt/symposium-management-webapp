@@ -25,7 +25,7 @@ array()
 );
 
 define("LOGIN_PAGE_NAME", "login.php");
-define("LOGGEDIN_LANDING_PAGE_NAME", "administratorDashboard.php");
+define("LOGGEDIN_LANDING_PAGE_NAME", "index.php");
 
 define("LOGIN_ATTEMPT_LIMIT", 5);
 define("LOCKOUT_TIME", 180);

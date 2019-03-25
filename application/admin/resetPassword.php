@@ -39,7 +39,7 @@
               </div>
               <div id="submitDiv">
                 <input type="submit" id="resetPasswordButton" value="Reset Password" />
-                <input type="button" onclick="window.location='administratorDashboard.php'" id="cancelButton" value="Cancel" />
+                <input type="button" onclick="window.location='<?php echo LOGGEDIN_LANDING_PAGE_NAME; ?>'" id="cancelButton" value="Cancel" />
               </div>
       </fieldset>
     </form>

@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}//end if
+
 
 if (isset($_SESSION["user"])) {
     if ($_SESSION["user"] == "user") {

@@ -1,10 +1,12 @@
 <?php
 session_start();
-
 $_SESSION["user"] = "admin";
 
-if (isset($_SESSION["admin_loggedin"]) && $_SESSION["admin_loggedin"]) {
-    header("location: administratorDashboard.php");
+    require_once "../loginAPI/includeConfig.php";
+
+
+if (isset($_SESSION[LOGGEDIN_TOKEN_NAME]) && $_SESSION[LOGGEDIN_TOKEN_NAME]) {
+    header("location: " . LOGGEDIN_LANDING_PAGE_NAME);
     exit;
 }//end if
 

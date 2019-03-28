@@ -11,6 +11,7 @@ function init() {
 
 function submitForm(event) {
     event.preventDefault();
+    $("#" + OUTPUT_REGION_ID).html("Please Wait...");
     let form = $("form");
 
     $.ajax({
@@ -31,12 +32,10 @@ function outputError(error) {
 
 
 function outputResult(data) {
-    $("#" + OUTPUT_REGION_ID).html("");
-
     if ("error" in data) {
         $("#" + OUTPUT_REGION_ID).html("<p>" + data.error + "</p>");
     } else if ("success" in data) {
-        window.location = data.success;
+            window.location = data.success;
     } else {
         $("#" + OUTPUT_REGION_ID).html("<p>There was a problem with your request, please try again.</p>");
     }//end else

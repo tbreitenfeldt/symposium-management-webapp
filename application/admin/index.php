@@ -1,14 +1,15 @@
-<?php
-require_once "authenticateUser.php";
-?>
+<?php require_once "authenticateUser.php"; ?>
 
 
 <!doctype html>
 <html lang="en">
 
 <head>
-  <?php require_once "header/header.php"; ?>
+  <?php require_once "../includes/header.php"; ?>
   <title>Administrator Dashboard</title>
+
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="./css/login.css">
 
   <script src="../js/admin/generateHTML.js"></script>
   <script src="../js/admin/conferenceManager.js"></script>
@@ -41,6 +42,6 @@ require_once "authenticateUser.php";
   <div id="eventFormRegion"></div>
 </main>
 
-<?php require_once "footer/footer.php"; ?>
+<?php require_once "../includes/footer.php"; ?>
 </body>
 </html>

@@ -1,11 +1,16 @@
 <?php require_once "authenticateUser.php"; ?>
 
+
 <!doctype html>
 <html lang="en">
 
 <head>
+  <?php require_once "../includes/header.php"; ?>
   <title>Reset Password</title>
-  <?php require_once "./header/header.php"; ?>
+
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="./css/login.css">
+
   <script src="../js/loginSystem/loginAJAX.js"></script>
 </head>
 
@@ -47,7 +52,7 @@
 
 </div>
 
-<?php require_once "./footer/footer.php"; ?>
+<?php require_once "../includes/footer.php"; ?>
 
 </body>
 </html>

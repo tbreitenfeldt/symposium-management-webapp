@@ -97,7 +97,7 @@ async function getRecord(valuesToSelect, tableNames, attrs, values, callback, ty
 		values: values,
 		genFlag: "flag"
 	};
-	await $.get("../api/index.php", map, callback, type);
+	await $.get("./api/index.php", map, callback, type);
 }
 
 //It seems that we are never reaching the callback function in getRecord. Look into it.

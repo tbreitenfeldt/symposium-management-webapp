@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 if (isset($_SESSION["user"])) {
     if ($_SESSION["user"] == "user") {
-        require_once "../user/config.php";
+        require_once "../config.php";
     } else if ($_SESSION["user"] == "admin") {
         require_once "../admin/config.php";
     } else {

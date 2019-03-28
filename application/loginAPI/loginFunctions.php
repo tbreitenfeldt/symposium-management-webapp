@@ -9,6 +9,7 @@ function login() {
     $pdoUtil = null;
     $status = "";
     $message = "";
+    $result = array();
 
     try {
         if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -42,7 +43,8 @@ function login() {
         }//end if
 
         sleep(1);
-        echo json_encode(array($status=>$message));
+        $result[$status] = $message;
+        echo json_encode($result);
     }//end try catch finally
 }//end function
 
@@ -85,6 +87,7 @@ function loginUser(&$pdoUtil, $username, $password) {
         $userFirstFailedLogin = 0;
         $userFailedLoginCount = 0;
         $sql = "UPDATE {$c('USER_TABLE_NAME')} SET {$c('FIRST_FAILED_LOGIN_FIELD')}=?, {$c('FAILED_LOGIN_COUNT_FIELD')}=? WHERE {$c('USERNAME_FIELD')}=?";
+
         $pdoUtil->query($sql, [$userFirstFailedLogin, $userFailedLoginCount, $username]);
 
         session_start();
@@ -120,4 +123,5 @@ function getSQLSelectForAllFields() {
 if (isset($_POST[USERNAME_FIELD]) and isset($_POST[USER_PASSWORD_FIELD])) {
     login();
 }//end if
+
 ?>

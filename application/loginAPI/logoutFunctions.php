@@ -1,7 +1,4 @@
 <?php
-require_once "includeConfig.php";
-
-
 
 function logout() {
     session_start();

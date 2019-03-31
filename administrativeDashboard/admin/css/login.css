@@ -1,8 +1,0 @@
-html, body {height:75%;}
-html {display:table; width:100%;}
-body {display:table-cell; text-align:center; vertical-align:middle;}
-#contentId{background-color:lightgrey; display: inline-block; padding-bottom: 2%;}
-h1{margin:2rem}
-#loginButton{width:70%}
-#fieldClass{orientation: center;}
-#inputDiv #submitDiv {orientation: center}

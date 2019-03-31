@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `seniorcapstonedev`
+-- Database: `conference_manager`
 --
 
 -- --------------------------------------------------------
@@ -123,7 +123,7 @@ CREATE TABLE `user_conference` (
 
 CREATE TABLE `user_schedule` (
   `user_id` int(11) NOT NULL,
-  `event_id` int(11) NOT NULL
+  `event_id` int(11) NOT NULL,
   `conference_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -149,8 +149,7 @@ ALTER TABLE `event`
 --
 ALTER TABLE `user_accounts`
   ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `user_email` (`user_email`),
-  ADD UNIQUE KEY `user_phone` (`user_phone`);
+  ADD UNIQUE KEY `user_email` (`user_email`);
 
 --
 -- Indexes for table `admin_accounts`
@@ -197,6 +196,27 @@ ALTER TABLE `user_accounts`
 --
 ALTER TABLE `admin_accounts`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+--
+-- foreign keys 
+--
+
+-- set table event foreign keys --
+ALTER TABLE `event`
+  ADD FOREIGN KEY (conference_id) REFERENCES conference(conference_id),
+  ADD FOREIGN KEY (admin_id) REFERENCES admin_accounts(admin_id);
+
+-- set table user_conference foreign keys --
+ALTER TABLE `user_conference`
+  ADD FOREIGN KEY (user_id) REFERENCES user_accounts(user_id),
+  ADD FOREIGN KEY (conference_id) REFERENCES conference(conference_id);
+
+-- set table user_schedule foreign keys --
+ALTER TABLE `user_schedule`
+  ADD FOREIGN KEY (user_id) REFERENCES user_accounts(user_id),
+  ADD FOREIGN KEY (event_id) REFERENCES event(event_id),
+  ADD FOREIGN KEY (conference_id) REFERENCES conference(conference_id);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

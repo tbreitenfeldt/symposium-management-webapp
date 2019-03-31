@@ -6,6 +6,9 @@ $(document).ready(init);
 
 
 function init() {
+    //set path to main directory for accessing conference API
+    changePathToMainDirectory("../");
+
     initializeConferenceForm();
     initializeEventForm();
     $("#conferenceFormRegion").hide();
@@ -280,10 +283,11 @@ function insertConferenceInformation() {
                 attrs.push(dataName);
         }//end if
     });
+
     $("#mainContentRegion1").html("values: " + values.length + "<br>" + JSON.stringify(values) + "<br>attrs: " + attrs.length + "<br>" + JSON.stringify(attrs) + "<br>");
     //postRecord("conference", attrs, values, createdConferenceSuccessfully, "true");
     let map = {table_name: "conference", attrs: attrs, values: values};
-    $.post("../proxies/insertConferenceProxy.php", map, createdConferenceSuccessfully);
+    $.post("../proxies/postProxy.php", map, createdConferenceSuccessfully);
 }//end function
 
 

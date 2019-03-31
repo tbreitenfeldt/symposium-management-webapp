@@ -1,3 +1,10 @@
+
+var pathToMainDirectory = "";
+
+function changePathToMainDirectory(path) {
+    pathToMainDirectory = path;
+}
+
 /*
 	generic call to GET a record from a table.
 	
@@ -97,11 +104,10 @@ async function getRecord(valuesToSelect, tableNames, attrs, values, callback, ty
 		values: values,
 		genFlag: "flag"
 	};
-	await $.get("../api/index.php", map, callback, type);
+	await $.get(pathToMainDirectory + "conferenceAPI/index.php", map, callback, type);
 }
 
 //It seems that we are never reaching the callback function in getRecord. Look into it.
-
 
 
 

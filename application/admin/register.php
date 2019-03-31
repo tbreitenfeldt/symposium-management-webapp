@@ -13,9 +13,9 @@ session_write_close();
   <title>Admin Register</title>
 
   <link rel="stylesheet" href="../css/home.css">
-  <link rel="stylesheet" href="./css/login.css">
+  <link rel="stylesheet" href="../css/login.css">
 
-  <script src="../js/loginSystem/loginAJAX.js"></script>
+  <script src="../js/loginSystemJs/loginAJAX.js"></script>
 </head>
 
 <body>
@@ -36,17 +36,17 @@ session_write_close();
               <p>Your username must start with a letter, <br/>and may contain only <br/>letters, numbers, dashes, and periods.</p>
               <div id="fieldClass">
                   <label for="admin_name" class="control-label">Username:</label>
-                  <input type="text" id="admin_name" name="admin_name"/>
+                  <input type="text" id="admin_name" name="admin_name" required="required" />
 
                   <br>
 
                   <label for="admin_password" class="control-label">Password:</label>
-                  <input type=password id="admin_password" name="admin_password"/>
+                  <input type=password id="admin_password" name="admin_password" required="required" />
 
                   <br>
 
                   <label for="confirm_password" class="control-label">Confirm Password:</label>
-                  <input type="password" id="confirm_password" name="confirm_password"/>
+                  <input type="password" id="confirm_password" name="confirm_password" required="required" />
               </div>
               <input type="submit" id="registerButton" value="Register" />
 

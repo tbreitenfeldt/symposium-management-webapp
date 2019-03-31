@@ -9,11 +9,11 @@
   <title>Administrator Dashboard</title>
 
   <link rel="stylesheet" href="../css/home.css">
-  <link rel="stylesheet" href="./css/login.css">
+  <link rel="stylesheet" href="../css/login.css">
 
-  <script src="../js/admin/generateHTML.js"></script>
-  <script src="../js/admin/conferenceManager.js"></script>
-  <script src="../js/conferenceAPI/databaseFunctions.js"></script>
+  <script src="../js/conferenceAPIJs/databaseFunctions.js"></script>
+  <script src="../js/adminJs/generateHTML.js"></script>
+  <script src="../js/adminJs/conferenceManager.js"></script>
 </head>
 
 <body>
@@ -22,6 +22,7 @@
 
   <nav>
     <ul>
+      <li><a href="index.php">Home</a></li>
       <li><a href="logout.php">Logout</a></li>
       <li><a href="resetPassword.php">Reset Password</a>
     </ul>

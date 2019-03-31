@@ -21,9 +21,9 @@ session_write_close();
   <title>Admin Login</title>
 
   <link rel="stylesheet" href="../css/home.css">
-  <link rel="stylesheet" href="./css/login.css">
+  <link rel="stylesheet" href="../css/login.css">
 
-  <script src="../js/loginSystem/loginAJAX.js"></script>
+  <script src="../js/loginSystemJs/loginAJAX.js"></script>
 </head>
 
 <body>

@@ -23,7 +23,7 @@ session_write_close();
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/login.css">
 
-  <script src="js/loginSystem/loginAJAX.js"></script>
+  <script src="js/loginSystemJs/loginAJAX.js"></script>
 </head>
 
 <body>

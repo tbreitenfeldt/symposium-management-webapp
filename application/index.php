@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/login.css">
 
-    <script src="js/conferenceAPI/databaseFunctions.js"></script>
-    <script src="js/user/mainSchedule.js"></script>
-    <script src="js/user/userSchedule.js"></script>
+    <script src="js/conferenceAPIJs/databaseFunctions.js"></script>
+    <script src="js/userJs/mainSchedule.js"></script>
+    <script src="js/userJs/userSchedule.js"></script>
 
     <style type="text/css">
         table {

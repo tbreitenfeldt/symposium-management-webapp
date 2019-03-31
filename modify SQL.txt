@@ -1,1 +1,0 @@
-enforce foregn keys in the sql by using the SqL foreign key sintax 

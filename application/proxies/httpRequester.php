@@ -4,7 +4,8 @@
  * https://stackoverflow.com/questions/5647461/how-do-i-send-a-post-request-with-php
 */
 
-define("DOMAIN", "http://pacificwesterndisabilitystudies.tk");
+//define("DOMAIN", "http://pacificwesterndisabilitystudies.tk");
+define("DOMAIN", "http://localhost/symposium-management-webapp/application");
 
 
 class HTTPRequester {

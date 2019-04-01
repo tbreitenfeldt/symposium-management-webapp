@@ -88,11 +88,9 @@ function resetForm(event) {
 
 
 function setupAjaxForConferenceNames() {
-    valuesToSelect = ["*"];
-    tableNames = ["conference"];
-    attrs = [];
-    values = [];
-    getRecord(valuesToSelect, tableNames, attrs, values, initializeConferenceChooser, "json", "false");
+    
+    let map = {"table_names": ["conference"], "values_to_select": ["*"], "attrs": [""], "values": [""], "genFlag": "flag"};
+    $.get("../proxies/getProxy.php", map, initializeConferenceChooser, "json").fail(function(error) {initializeConferenceChooser(null);} );
 }//end function
 
 
@@ -101,7 +99,8 @@ function initializeConferenceChooser(data) {
 
     let options = [];
     let htmlConferenceList  = "";
-    let editButton = "";
+    let editButton = createButton("Edit Conference", "button", "chooseConferenceSubmitButton", "applicationButtons");
+    let deleteButton = createButton("Delete Conference", "button", "deleteConferenceButton", "applicationButtons");
     let createConferenceButton = createButton("Create Conference", "button", "createConferenceButton", "applicationButtons");
     let formID = "chooseConference";
 
@@ -115,10 +114,10 @@ function initializeConferenceChooser(data) {
     }//end if
 
     htmlConferenceList = createListBox("Conference", options, "conferenceList", "conferenceControl");
-    editButton = createButton("Edit Conference", "button", "chooseConferenceSubmitButton", "applicationButtons");
 
-    $("#" + formID).html("<fieldset>" + htmlConferenceList + editButton + createConferenceButton + "</fieldset>");
+    $("#" + formID).html("<fieldset>" + htmlConferenceList + editButton + deleteButton + createConferenceButton + "</fieldset>");
     $("#chooseConferenceSubmitButton").click(getSelectedConference);
+    $("#deleteConferenceButton").click(ajaxSetupForDeleteConference);
     $("#createConferenceButton").click(setupConferenceFormForInserting);
 }//end function
 
@@ -179,9 +178,8 @@ function returnToConferenceChooser(event) {
 
 
 function setupAjaxForEventInformation(conferenceID) {
-    valuesToSelect = ["event_name as `Event Name`", "event_starttime as `Start Time`", "event_endtime as `End Time`", "event_room as `Room`", "event_floor as `Floor`",
-            "event_building as `Building Name`", "event_speakers as `Speakers`", "event_desc as `Event Description`", "event_wheelchair as `Wheelchair Accessible`",
-            "event_date as `Date`"];
+    valuesToSelect = ["event_name", "event_starttime", "event_endtime", "event_room", "event_floor", "event_building", "event_speakers", "event_desc",
+            "event_wheelchair", "event_date"];
     tableNames = ["event"];
     attrs = ["conference_id"];
     values = [conferenceID];
@@ -192,11 +190,12 @@ function setupAjaxForEventInformation(conferenceID) {
 function createEventEditor(data) {
     if (data != null) {
         let table = "";
-        let row = ""
+        let row = "";
+        let rowHeaders = ["Event Name", "Start Time", "End Time", "Room", "Floor", "Building Name", "Speakers", "Event Description", "Wheelchair Accessible", "Date"];
 
         //create table headings
-        for (let colum in data[0]) {
-            row += "<th>" + colum + "</th>";
+        for (let rowName of rowHeaders) {
+            row += "<th>" + rowName + "</th>";
         }//end for loop
 
             row += "<th>Edit/Delete events</th>";
@@ -241,7 +240,7 @@ function setupConferenceFormForInserting(event) {
     insertHeading2("Create Conference", "headingRegion1");
     $("#conferenceFormRegion").show();
     $("#inputConferenceSubmitButton").off();
-    $("#inputConferenceSubmitButton").click(insertConferenceInformation);
+    $("#inputConferenceSubmitButton").click(insertConference);
 }//end function
 
 
@@ -261,8 +260,23 @@ function setupConferenceFormForUpdating(event, data) {
 }//end function
 
 
-function insertConferenceInformation() {
+function insertConference() {
+    let conferenceName = $("#inputConferenceName").val();
     event.preventDefault ();
+    getRecord(["conference_id"], ["conference"], ["conference_name"], [conferenceName], checkIfConferenceNameExists, "json", "true");
+}//end function
+
+
+function checkIfConferenceNameExists(data) {
+    if (data == null) {
+        processConferenceInsertion();
+    } else {
+            alert("Plese choose a different  conference name, conference names must be unique.");
+    }//end else 
+}//end function
+
+
+function processConferenceInsertion() {
     let attrs = [];
     let values = [];
     let value = "";
@@ -284,8 +298,6 @@ function insertConferenceInformation() {
         }//end if
     });
 
-    $("#mainContentRegion1").html("values: " + values.length + "<br>" + JSON.stringify(values) + "<br>attrs: " + attrs.length + "<br>" + JSON.stringify(attrs) + "<br>");
-    //postRecord("conference", attrs, values, createdConferenceSuccessfully, "true");
     let map = {table_name: "conference", attrs: attrs, values: values};
     $.post("../proxies/postProxy.php", map, createdConferenceSuccessfully);
 }//end function
@@ -300,6 +312,31 @@ function createdConferenceSuccessfully(data) {
 
 function updateConferenceInformation(conferenceID) {
     //make ajax call to update conference table with record with given conferenceID with given form field data
+}//end function
+
+
+function ajaxSetupForDeleteConference(event) {
+    let conferenceName = $("#conferenceList").val();
+
+    if (conferenceName != null) {
+        let isConfirmDelete = confirm("Are you sure you would like to delete the conference " + conferenceName + " and all of its events?");
+
+        if (isConfirmDelete) {
+            getRecord(["conference_id"], ["conference"], ["conference_name"], [conferenceName], deleteConferenceAndEvents, "json", "true");
+        }//end if
+    }//end if
+}//end function
+
+
+function deleteConferenceAndEvents(data) {
+    if (data != null) {
+        let conferenceID = data[0]["conference_id"];
+        let deletionSuccessful = function(data) {alert("Deletion Successful."); setupAjaxForConferenceNames();}
+
+        delRecord("event", "conference_id", conferenceID,
+            function(data) {delRecord("conference", "conference_id", conferenceID, deletionSuccessful);}
+        );
+    }//end if
 }//end function
 
 

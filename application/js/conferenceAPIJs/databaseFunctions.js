@@ -128,7 +128,7 @@ function delRecord(tablename, idname, idvalue, callback){
 		id_name: idname,
 		id_value: idvalue
 	};
-	$.delete("api/index.php",map,callback);
+	$.delete(pathToMainDirectory + "conferenceAPI/index.php",map,callback);
 }
 
 /*
@@ -226,7 +226,7 @@ function putRecord(tablename, attrs, values, idname, idvalue, callback, formatFl
 		target_id_name: idname,
 		target_id_value: idvalue
 	};
-	$.put("api/index.php", map, callback, "json");
+	$.put(pathToMainDirectory + "conferenceAPI/index.php", map, callback, "json");
 }
 
 /*

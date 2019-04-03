@@ -28,26 +28,33 @@ session_write_close();
 
 <body>
 <header>
-  <h1>Login</h1>
+
 </header>
 
-<main>
+<main id="wrap">
   <form id="userLogonForm" method="POST" action="loginAPI/loginFunctions.php" type="json">
-    <div id="outputRegion" aria-live="polite" ></div>
-
     <fieldset>
-    <legend>Login Form</legend>
-    <label for="user_name">Username:</label>
-    <input type="text" id="user_name" name="user_name" />
-    <label for="user_password">Password:</label>
-    <input type=password id="user_password" name="user_password" />
-    <input type="submit" id="loginButton" value="Login" />
+      <legend>Login Form</legend>
+      <div class="inputData">
+        <label for="user_name">Username:</label>
+        <input type="text" id="user_name" name="user_name" placeholder="Username:"/>
+      </div>
+      <div class="inputData">
+        <label for="user_password">Password:</label>
+        <input type=password id="user_password" name="user_password" placeholder="Password"/>
+      </div>
+      <input type="submit" id="loginButton" value="Login" />
     </fieldset>
 
-    <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+    <p>Don't have an account? <br/><a href="register.php">Sign up now</a>.</p>
+
+    <div id="outputRegion" aria-live="polite" ></div>
+    <div id="push"></div>
   </form>
 </main>
 
   <?php require_once "includes/footer.php"; ?>
 </body>
 </html>
+
+<!-- 5Tkikc2y!!! -->

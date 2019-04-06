@@ -44,11 +44,15 @@ function initializeConferenceForm() {
     controls += createRadioButtons("Wheelchair Accessible",
             [["inputEventWheelChairYes", "Yes", "1"], ["inputEventWheelchairNo", "No", "0"]], "conferenceWheelchairAccessible", className, "conference_wheelchair");
     controls += createButton("Reset", "reset", "inputConferenceResetButton", "inputConferenceResetButton");
-    controls += createButton("Save Conference", "button", "inputConferenceSubmitButton", "inputConferenceSubmitButton");
+    controls += createButton("Save Conference", "submit", "inputConferenceSubmitButton", "inputConferenceSubmitButton");
+    controls += createButton("Cancel", "button", "inputConferenceCancelButton", "inputConferenceCancelButton");
 
     controls = "<fieldset>" + controls + "</fieldset>";
     $("#" + formID).html(controls);
     $("#inputConferenceResetButton").click(resetForm);
+    $("#inputConferenceCancelButton").click(
+        function(event) {returnToConferenceChooser(event, "Are you sure you would like to stop editing this conference?");}
+    );
 }//end function 
 
 
@@ -56,7 +60,7 @@ function initializeEventForm() {
     let formID = "eventForm";
     let form = createForm(formID);
     let controls = "";
-    let className = "eventControl";
+    let className = "eventControls";
 
     $("#eventFormRegion").html(form);
 
@@ -74,7 +78,8 @@ function initializeEventForm() {
     controls += createRadioButtons("Wheelchair Accessible",
             [["inputConferenceWheelChairYes", "Yes"], ["inputConferenceWheelchairNo", "No"]], "eventWheelchairAccessible", className, "event_wheelchair");
     controls += createButton("Reset", "reset", "inputEventResetButton", "inputEventResetButton");
-    controls += createButton("Save Event", "submit", "inputConferenceSubmitButton", "inputConferenceSubmitButton");
+    controls += createButton("Save Event", "submit", "inputEventSubmitButton", "inputEventSubmitButton");
+    controls += createButton("Cancel", "button", "inputEventCancelButton", "inputEventCancelButton");
 
     controls = "<fieldset>" + controls + "</fieldset>";
     $("#" + formID).html(controls);
@@ -99,7 +104,7 @@ function initializeConferenceChooser(data) {
 
     let options = [];
     let htmlConferenceList  = "";
-    let editButton = createButton("Edit Conference", "button", "chooseConferenceSubmitButton", "applicationButtons");
+    let editButton = createButton("Edit Conference", "submit", "chooseConferenceSubmitButton", "applicationButtons");
     let deleteButton = createButton("Delete Conference", "button", "deleteConferenceButton", "applicationButtons");
     let createConferenceButton = createButton("Create Conference", "button", "createConferenceButton", "applicationButtons");
     let formID = "chooseConference";
@@ -123,6 +128,8 @@ function initializeConferenceChooser(data) {
 
 
 function getSelectedConference(event) {
+    event.preventDefault ();
+
     let conferenceName = $("#conferenceList").val();
     setupAjaxForConferenceInformation(conferenceName);
 }//end function
@@ -160,9 +167,15 @@ function getConferenceEditor(data) {
         insertHeading3("Manage Events", "headingRegion2");
         $("#controlsRegion2").html("<p>" + createEventButton + "</p>");
 
-        $("#cancelButton").click(function(event) {returnToConferenceChooser(event, "Are you sure you would like to stop editing this conference?");});
+        $("#cancelButton").off();
+        $("#editConferenceInfoButton").off();
+        $("#createEventButton").off();
+        $("#inputEventCancelButton").off();
+
+        $("#cancelButton").click(function(event) {returnToConferenceChooser(event, "Are you sure you would like to stop viewing this conference?");});
         $("#editConferenceInfoButton").click(function(event) {setupConferenceFormForUpdating(event, data);});
-        $("#createEventButton").click(setupEventFormForInserting);
+        $("#createEventButton").click(function(event) {setupEventFormForInserting(event, conferenceID, conferenceName);} );
+        $("#inputEventCancelButton").click(function(event) {returnToSelectedConference(event, conferenceName, "Are you sure you would like to stop editing this event?");});
         setupAjaxForEventInformation(conferenceID);
     }//end if
 }//end function 
@@ -173,6 +186,15 @@ function returnToConferenceChooser(event, message) {
 
     if(isContinue) {
         setupAjaxForConferenceNames();
+    }//end if
+}//end function
+
+
+function returnToSelectedConference(event, conferenceName, message) {
+    let isContinue = confirm(message);
+
+    if(isContinue) {
+        setupAjaxForConferenceInformation(conferenceName);
     }//end if
 }//end function
 
@@ -228,11 +250,30 @@ function createEventEditor(data) {
         $("#mainContentRegion2").html(table);
         $(".editEventButtons").click(setupEventFormForUpdating);
         $(".deleteEventButtons").click(deleteConferenceEvent);
-        //under the table add a "add new event" button which will call setupEventFormForInserting
-        //generate form fields for editing an event, and a "Save Event" button 
-        //add html to the page, and hide the fields use for editing and creating an event
     }//end if
 }//end function 
+
+
+function collectFormData(controlsClassName, attrs, values) {
+    let dataName = "";
+    let value = ""
+
+    $("." + controlsClassName).each(function(index, element) {
+        if ($(element).attr("type") == "radio" && $(element).attr("data-name") != null) {
+            if (element.checked == true) {
+                dataName = $(element).attr("data-name")
+                value = "'" + $(element).val() + "'";
+                attrs.push(dataName);
+                values.push(value);
+            }//end if
+        } else if ($(element).attr("data-name") != null) {
+                dataName = $(element).attr("data-name");
+                value = "'" + String($(element).val()).trim() + "'";
+                attrs.push(dataName);
+                values.push(value);
+        }//end if
+    });
+}//end funtion
 
 
 function setupConferenceFormForInserting(event) {
@@ -269,9 +310,9 @@ function setupConferenceFormForUpdating(event, data) {
 }//end function
 
 
-function insertConference() {
-    let conferenceName = $("#inputConferenceName").val();
+function insertConference(event) {
     event.preventDefault ();
+    let conferenceName = $("#inputConferenceName").val();
     getRecord(["conference_id"], ["conference"], ["conference_name"], [conferenceName], checkIfConferenceNameExists, "json", "true");
 }//end function
 
@@ -289,25 +330,8 @@ function processConferenceInsertion() {
     let map = {};
     let attrs = [];
     let values = [];
-    let value = "";
-    let dataName = "";
 
-    $(".conferenceControls").each(function(index, element) {
-        if ($(element).attr("type") == "radio") {
-            if (element.checked == true) {
-                value = "'" + $(element).val() + "'";
-                dataName = $(element).attr("data-name")
-                values.push(value);
-                attrs.push(dataName);
-            }//end if
-        } else if ($(element).attr("data-name") != null) {
-                value = "'" + String($(element).val()).trim() + "'";
-                dataName = $(element).attr("data-name");
-                values.push(value);
-                attrs.push(dataName);
-        }//end if
-    });
-
+    collectFormData("conferenceControls", attrs, values);
     map = {table_name: "conference", attrs: attrs, values: values};
     $.post("../proxies/postProxy.php", map, createdConferenceSuccessfully);
 }//end function
@@ -317,26 +341,17 @@ function createdConferenceSuccessfully(data) {
     let conferenceName = $("#inputConferenceName").val();
     alert("Created Conference");
     setupAjaxForConferenceInformation(conferenceName);
-}//end function 
+}//end function
 
 
 function updateConferenceInformation(event, conferenceID) {
+    event.preventDefault ();
+
     let map = {};
     let attrs = [];
     let values = [];
 
-    $(".conferenceControls").each(function(index, element) {
-        if ($(element).attr("type") == "radio") {
-            if ( element.checked == true) {
-                attrs.push($(element).attr("data-name"));
-                values.push("'" + $(element).val() + "'");
-            }//end if
-        } else {
-            attrs.push($(element).attr("data-name"));
-            values.push("'" + String($(element).val()).trim() + "'");
-        }//end else
-    });   
-
+    collectFormData("conferenceControls", attrs, values);
     map = {table_name: "conference", attrs: attrs, values: values, target_id_name: "conference_id", target_id_value: conferenceID};
     $.put("../proxies/putProxy.php", map, updatedConferenceSuccessfully);
 }//end function
@@ -370,7 +385,18 @@ function deleteConferenceAndEvents(data) {
         delRecord("event", "conference_id", conferenceID,
             function(data) {delRecord("conference", "conference_id", conferenceID, deletionSuccessful);}
         );
-    }//end if
+    } else {
+        alert("There was a problem trying to delete this conference, please contact the database administrator.");
+    }//end else 
+}//end function
+
+
+function setupEventFormForInserting(event, conferenceID, conferenceName) {
+    clearAllRegions();
+    insertHeading2("Create Event", "headingRegion1");
+    $("#eventFormRegion").show();
+    $("#inputEventSubmitButton").off();
+    $("#inputEventSubmitButton").click(function(event) {insertConferenceEvent(event, conferenceID, conferenceName);} );
 }//end function
 
 
@@ -381,21 +407,57 @@ function setupEventFormForUpdating(event) {
 }//end function
 
 
-function setupEventFormForInserting(event) {
-    //show the event form fields and make sure the fields are empty
-    //clear the event handlers for the "save event" button and point the new event handler at insertConferenceEvent 
+function insertConferenceEvent(event, conferenceID, conferenceName) {
+    event.preventDefault ();
+    let eventName = $("#inputEventName").val();
+
+    getRecord(
+        ["event_id"], ["event"],
+        ["event_name", "conference_id"], [eventName, conferenceID],
+        function(data) {checkIfEventNameExistsInConference(data, conferenceID, conferenceName);},
+        "json", "true"
+    );
+}//end function
+
+
+function checkIfEventNameExistsInConference(data, conferenceID, conferenceName) {
+    if (data == null) {
+        processEventInsertion(conferenceID, conferenceName);
+    } else {
+            alert("Plese choose a different  event name, Event names must be unique for each conference.");
+    }//end else 
+}//end function
+
+
+function processEventInsertion(conferenceID, conferenceName) {
+    let map = {};
+    let attrs = [];
+    let values = [];
+
+    collectFormData("eventControls", attrs, values);
+    attrs.push("conference_id");
+    values.push(conferenceID);    
+    map = {table_name: "event", attrs: attrs, values: values};
+
+    $.post(
+        "../proxies/postProxy.php",
+        map,
+        function(data) {createdEventSuccessfully(data, conferenceName);}
+    );
+}//end function
+
+
+function createdEventSuccessfully(data, conferenceName) {
+    alert("Created event");
+    setupAjaxForConferenceInformation(conferenceName);
 }//end function
 
 
 function updateConferenceEvent(eventID) {
+    event.preventDefault ();
+
     //update event with form field data from the event form
     //update html table 
-}//end function
-
-
-function insertConferenceEvent(event) {
-    //make ajax call to insert event form field data into the database 
-    //add new data to the html table 
 }//end function
 
 

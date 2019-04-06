@@ -44,7 +44,7 @@ function initializeConferenceForm() {
     controls += createRadioButtons("Wheelchair Accessible",
             [["inputEventWheelChairYes", "Yes", "1"], ["inputEventWheelchairNo", "No", "0"]], "conferenceWheelchairAccessible", className, "conference_wheelchair");
     controls += createButton("Reset", "reset", "inputConferenceResetButton", "inputConferenceResetButton");
-    controls += createButton("Save Conference", "submit", "inputConferenceSubmitButton", "inputConferenceSubmitButton");
+    controls += createButton("Save Conference", "button", "inputConferenceSubmitButton", "inputConferenceSubmitButton");
 
     controls = "<fieldset>" + controls + "</fieldset>";
     $("#" + formID).html(controls);
@@ -160,7 +160,7 @@ function getConferenceEditor(data) {
         insertHeading3("Manage Events", "headingRegion2");
         $("#controlsRegion2").html("<p>" + createEventButton + "</p>");
 
-        $("#cancelButton").click(returnToConferenceChooser);
+        $("#cancelButton").click(function(event) {returnToConferenceChooser(event, "Are you sure you would like to stop editing this conference?");});
         $("#editConferenceInfoButton").click(function(event) {setupConferenceFormForUpdating(event, data);});
         $("#createEventButton").click(setupEventFormForInserting);
         setupAjaxForEventInformation(conferenceID);
@@ -168,10 +168,10 @@ function getConferenceEditor(data) {
 }//end function 
 
 
-function returnToConferenceChooser(event) {
-    let isCancel = confirm("Are you sure you would like to stop editing this conference?");
-    
-    if(isCancel) {
+function returnToConferenceChooser(event, message) {
+    let isContinue = confirm(message);
+
+    if(isContinue) {
         setupAjaxForConferenceNames();
     }//end if
 }//end function
@@ -245,18 +245,27 @@ function setupConferenceFormForInserting(event) {
 
 
 function setupConferenceFormForUpdating(event, data) {
+    let conferenceID = data[0]["conference_id"];
+
     clearAllRegions();
     insertHeading2("Update Conference", "headingRegion1");
 
     $(".conferenceControls").each(function(index, element) {
         let dataName = $(element).attr("data-name");
         let value = data[0][dataName];
-        $(element).val(value);
+
+        if ($(element).attr("type") == "radio") {
+            if ($(element).val() == value) {
+                $(element).prop("checked", true).trigger("click");
+            }//end if
+        } else {
+                $(element).val(value);
+            }//end else
     });
 
     $("#conferenceFormRegion").show();
     $("#inputConferenceSubmitButton").off();
-    $("#inputConferenceSubmitButton").click(updateConferenceInformation);
+    $("#inputConferenceSubmitButton").click(function(event) {updateConferenceInformation(event, conferenceID);} );
 }//end function
 
 
@@ -277,6 +286,7 @@ function checkIfConferenceNameExists(data) {
 
 
 function processConferenceInsertion() {
+    let map = {};
     let attrs = [];
     let values = [];
     let value = "";
@@ -298,7 +308,7 @@ function processConferenceInsertion() {
         }//end if
     });
 
-    let map = {table_name: "conference", attrs: attrs, values: values};
+    map = {table_name: "conference", attrs: attrs, values: values};
     $.post("../proxies/postProxy.php", map, createdConferenceSuccessfully);
 }//end function
 
@@ -310,8 +320,32 @@ function createdConferenceSuccessfully(data) {
 }//end function 
 
 
-function updateConferenceInformation(conferenceID) {
-    //make ajax call to update conference table with record with given conferenceID with given form field data
+function updateConferenceInformation(event, conferenceID) {
+    let map = {};
+    let attrs = [];
+    let values = [];
+
+    $(".conferenceControls").each(function(index, element) {
+        if ($(element).attr("type") == "radio") {
+            if ( element.checked == true) {
+                attrs.push($(element).attr("data-name"));
+                values.push("'" + $(element).val() + "'");
+            }//end if
+        } else {
+            attrs.push($(element).attr("data-name"));
+            values.push("'" + String($(element).val()).trim() + "'");
+        }//end else
+    });   
+
+    map = {table_name: "conference", attrs: attrs, values: values, target_id_name: "conference_id", target_id_value: conferenceID};
+    $.put("../proxies/putProxy.php", map, updatedConferenceSuccessfully);
+}//end function
+
+
+function updatedConferenceSuccessfully(data) {
+    let conferenceName = $("#inputConferenceName").val();
+    alert("Updated  Conference!");
+    setupAjaxForConferenceInformation(conferenceName);
 }//end function
 
 

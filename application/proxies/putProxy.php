@@ -11,6 +11,8 @@ function putToConferenceAPI() {
 
         if ($tableName == "conference") {
             addSessionVariableToData("admin_id");
+        } else if ($tableName == "event") {
+            addSessionVariableToData("admin_id");
         } else if($tableName == "user_schedule") {
             addSessionVariableToData("user_id");
         } else if ($tableName == "user_conference") {

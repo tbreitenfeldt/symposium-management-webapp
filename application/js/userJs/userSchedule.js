@@ -21,7 +21,7 @@ function gotUserConference(data)
     valuesToSelect = ["event_id"];
   	tableNames = ["user_schedule"];
     attrs = ["conference_id"];
-    values = [data[0].id];
+    values = [data[0].conference_id];
 
   	getRecord(valuesToSelect,tableNames,attrs,values,gotEventRef,"json","true");
 }
@@ -38,16 +38,13 @@ function gotEventRef(data)
             valuesToSelect = ["*"];
   	        tableNames = ["event"];
 	        attrs = ["event_id"];
-            values = [data[i].event_id]; 
+            values = [data]; 
             getRecord(valuesToSelect,tableNames,attrs,values,gotEvent,"json","true");
         }  
     }
     else
     {
-        var table = document.getElementById("UsersCon");
-        var row = "No Events Here"
-        table.append(row);
-        console.log("i don't have event");
+        $("<tr>No Events Here</tr>").appendTo("#UsersCon");
     }
 }
 
@@ -55,14 +52,8 @@ function gotEvent(eventData)
 {   
     // Put information from event into table, along with delete button
     
-    var table = document.getElementById("UsersCon");
-    var row = "";
-
-    row += "<tr><td>" + eventData.event_name + "</td><td>" + eventData.event_starttime 
-            + "</td><td>" + eventData.event_endtime 
-            + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick(eventObj[i].id)\"> X </button></td></tr>";
-
-    table.append(row);
+    var id = eventData[i].event_id;
+    $("<tr><td>" + eventData[i].event_name + "</td><td>" + eventData[i].event_starttime + "</td><td>" + eventData[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick(" + id + ")\"> X </button></td></tr>").appendTo("#UsersCon");
 }
 
 function onDeleteClick(data)

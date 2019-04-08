@@ -53,39 +53,32 @@ function gotMainConference(data)
 
 function gotEventData(data)
 {
-    var eventObj = {};
     console.log(data);
 
     if(data != null)
     {
-     for(i = 0; i < data.length; i++)
+      for( i = 0; i < data.length; i++)
       {
-          eventObj[i] = {
-            id: data[i].event_id,
-            name: data[i].event_name,
-            start: data[i].event_starttime,
-            end: data[i].event_endtime
-          }; 
+        var id = data[i].event_id;
+        $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button type=\"Button\" onclick=\"onAddClick(" + id + ")\"> + </button></td></tr>").appendTo("#Conference tbody");
       }
-
-      var table = document.getElementById("Conference");
-      var row = "";
-
-      for(i = 0; i < eventObj.length; i++)
-      {
-          row += "<tr><td>" + eventObj[i].name + "</td><td>" + eventObj[i].start 
-                  + "</td><td>" + eventObj[i].end + "</td><td><button class=\"addBtn\"onclick=\"onAddClick(eventObj[i].id)\"> + </button></td></tr>";
-      }
-
-      table.append(row);    
-    }   
+    }
 }
 
 function onAddClick(data)
 {
-    tableNames = ["user_schedule"];
-    attrs = ["user_id","event_id"];
-    values = [1,data];
+  var map = 
+    {
+      table_name: "user_schedule",
+      attrs: ["event_id","conference_id"],
+      values: [data,1001]
+    };
  
-    postRecord(tableNames,attrs,values, "json", "true");
+    $.post("proxies/postProxy.php",map,successPost);
+}
+
+function successPost(data)
+{
+  console.log(data);
+  startUserTable;
 }

@@ -26,15 +26,14 @@ function startMainTable()
 
 function gotMainConference(data)
 {
-  console.log(data[0].conference_id);
     var mainObj = {};
     for(i = 0; i<data.length;i++)
     {
         mainObj[i] = {
           id: data[i].conference_id,
           name: data[i].conference_name,
-          dayStart: new Date(data[i].conference_startdate),
-          dayEnd: new Date(data[i].conference_enddate)
+          dayStart: data[i].conference_startdate,
+          dayEnd: data[i].conference_enddate
         }; 
     }
 
@@ -56,26 +55,30 @@ function gotEventData(data)
 {
     var eventObj = {};
     console.log(data);
-    for(i = 0; i < data.length; i++)
+
+    if(data != null)
     {
-        eventObj[i] = {
-          id: data[i].event_id,
-          name: data[i].event_name,
-          start: data[i].event_starttime,
-          end: data[i].event_endtime
-        }; 
-    }
+     for(i = 0; i < data.length; i++)
+      {
+          eventObj[i] = {
+            id: data[i].event_id,
+            name: data[i].event_name,
+            start: data[i].event_starttime,
+            end: data[i].event_endtime
+          }; 
+      }
 
-    var table = document.getElementById("Conference");
-    var row = "";
+      var table = document.getElementById("Conference");
+      var row = "";
 
-    for(i = 0; i < eventObj.length; i++)
-    {
-         row += "<tr><td>" + eventObj[i].name + "</td><td>" + eventObj[i].start 
-                + "</td><td>" + eventObj[i].end + "</td><td><button class=\"addBtn\" onclick=\"onAddClick(eventObj[i].id)\"> + </button></td></tr>";
-    }
+      for(i = 0; i < eventObj.length; i++)
+      {
+          row += "<tr><td>" + eventObj[i].name + "</td><td>" + eventObj[i].start 
+                  + "</td><td>" + eventObj[i].end + "</td><td><button class=\"addBtn\"onclick=\"onAddClick(eventObj[i].id)\"> + </button></td></tr>";
+      }
 
-    table.append(row);    
+      table.append(row);    
+    }   
 }
 
 function onAddClick(data)

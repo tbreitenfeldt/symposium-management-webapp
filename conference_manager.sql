@@ -82,6 +82,7 @@ CREATE TABLE `user_accounts` (
   `user_password` varchar(255) NOT NULL,
   `user_email` varchar(60) NOT NULL,
   `user_phone` varchar(10) NOT NULL,
+  `user_phoneCarrier` varchar(50) NOT NULL,
   `user_notifyByEmail` tinyint(1) NOT NULL,
   `user_notifyByPhone` tinyint(1) NOT NULL,
   `user_failed_login_count` int(2) DEFAULT 0,
@@ -149,7 +150,8 @@ ALTER TABLE `event`
 --
 ALTER TABLE `user_accounts`
   ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `user_email` (`user_email`);
+  ADD UNIQUE KEY `user_email` (`user_email`),
+  ADD UNIQUE KEY `user_phone` (`user_email`);
 
 --
 -- Indexes for table `admin_accounts`
@@ -179,11 +181,17 @@ ALTER TABLE `user_schedule`
 ALTER TABLE `conference`
   MODIFY `conference_id` int(11) NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE `conference`
+  AUTO_INCREMENT=1001;
+
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
   MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `event`
+  AUTO_INCREMENT=321;
 
 --
 -- AUTO_INCREMENT for table `user_accounts`
@@ -191,11 +199,16 @@ ALTER TABLE `event`
 ALTER TABLE `user_accounts`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 
+ALTER TABLE `user_accounts`
+  AUTO_INCREMENT=1372;
 --
 -- AUTO_INCREMENT for table `user_accounts`
 --
 ALTER TABLE `admin_accounts`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `admin_accounts`
+  AUTO_INCREMENT=1108;
 COMMIT;
 
 --

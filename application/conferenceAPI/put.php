@@ -2,7 +2,6 @@
 parse_str(file_get_contents('php://input'), $_PUT);
 
 if (isset($_PUT["table_name"])) {
-
 	try {
 		$table = $_PUT["table_name"];
 		$target_name = $_PUT["target_id_name"];

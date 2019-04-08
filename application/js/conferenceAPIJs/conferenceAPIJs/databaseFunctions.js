@@ -109,7 +109,7 @@ async function getRecord(valuesToSelect, tableNames, attrs, values, callback, ty
 		values: values,
 		genFlag: "flag"
 	};
-	await $.get("api/index.php", map, callback, type);
+	await $.get("../../conferenceAPI/index.php", map, callback, type);
 }
 
 
@@ -137,7 +137,7 @@ function delRecord(tablename, idname, idvalue, callback){
 		id_name: idname,
 		id_value: idvalue
 	};
-	$.delete("api/index.php",map,callback);
+	$.delete("../../conferenceAPI/index.php",map,callback);
 }
 
 /*
@@ -190,7 +190,7 @@ function postRecord(tablename, attrs, values, callback, formatFlag){
 		attrs: attrs,
 		values: values,
 	};
-	$.post("api/index.php",map,callback);
+	$.post("../../conferenceAPI/index.php",map,callback);
 }
 
 
@@ -251,7 +251,7 @@ function putRecord(tablename, attrs, values, idname, idvalue, callback, formatFl
 		target_id_name: idname,
 		target_id_value: idvalue
 	};
-	$.put("api/index.php", map, callback, "json");
+	$.put("../../conferenceAPI/index.php", map, callback, "json");
 }
 
 /*

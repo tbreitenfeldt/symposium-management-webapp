@@ -534,3 +534,4 @@ function clearAllRegions() {
     $("#conferenceFormRegion").hide();
     $("#eventFormRegion").hide();
 }//end function
+

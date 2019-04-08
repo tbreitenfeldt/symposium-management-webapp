@@ -4,7 +4,9 @@ require_once "httpRequester.php";
 
 
 function deleteFromConferenceAPI() {
-    if ($_SERVER["REQUEST_METHOD"] == "DELETE" && isset($_POST["table_name"])) {
+    parse_str(file_get_contents('php://input'), $_DELETE);
+
+    if ($_SERVER["REQUEST_METHOD"] == "DELETE" && isset($_DELETE["table_name"])) {
         $tableName = $_POST["table_name"];
 
         if ($tableName == "conference") {
@@ -19,24 +21,15 @@ function deleteFromConferenceAPI() {
 
 
 function addSessionVariableToData($idName) {
+    parse_str(file_get_contents('php://input'), $_DELETE);
     session_start();
 
-    if (isset($_SESSION[$idName]) && isset($_POST["attrs"]) && isset($_POST["values"])) {
-        $attrs = $_POST["attrs"];
-        $values = $_POST["values"];
-        $data = null;
+    if (isset($_SESSION[$idName]) && isset($_DELETE["id_name"]) && isset($_DELETE["id_value"])) {
+        $_DELETE["id_name"] = $idName;
+        $_DELETE["id_value"] = $_SESSION[$idName];
+
         $url = DOMAIN . "/conferenceAPI/index.php";
-
-        array_push($attrs, $idName);
-        array_push($values, $_SESSION[$idName]);
-
-        $data = array(
-            "table_name" => $_POST["table_name"],
-            "attrs" => $attrs,
-            "values" => $values,
-        );
-
-        $response = HTTPRequester::HTTPDelete($url, $data);
+        $response = HTTPRequester::HTTPDelete($url, $_DELETE);
         echo $response;
     }//end if
 

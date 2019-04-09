@@ -1,22 +1,72 @@
 <?php
 parse_str(file_get_contents('php://input'), $_PUT);
-
 if (isset($_PUT["table_name"])) {
+
 	try {
 		$table = $_PUT["table_name"];
-		$target_name = $_PUT["target_id_name"];
-		$target_value = $_PUT["target_id_value"];
+		$tablecheck  = preg_replace("/[^a-zA-Z0-9]/", "", $table);
+		$target_name = (array) $_PUT["target_id_name"];
+		$target_value = (array) $_PUT["target_id_value"];
 		$attrs = (array) $_PUT["attrs"];
 		$values = (array) $_PUT["values"];
-
+		
+		//check which table is trying to be accessed
+		//check if the put call includes a user_id or admin_id in it's target_name array
+		//check if the user_id or admin_id entered in target_name, target_value, attrs or values is the same as the session ids.
+		//PUT requests must include a user_id or admin_id in it's call and it must match up to the current session variable.
+		if($tablecheck == "useraccounts" || $tablecheck ==  "adminaccounts") {
+		    exit("Access Restricted");
+		} else if ($tablecheck == "userschedule"){
+		    for($i = 0; $i < sizeof($attrs); $i++){
+		        $curattrs = preg_replace("/[^a-zA-Z0-9]/", "", $attrs[$i]);
+		        if($curattrs == "userid"){
+		            if($values[$i] != $uid) exit("Access Restricted (uid mismatch)");
+		        }
+		    }
+		    $access = 0;
+		    for($i = 0; $i < sizeof($target_name); $i++){
+		        $target_name_cleaned = preg_replace("/[^a-zA-Z0-9]/", "", $target_name[$i]);
+		        if($target_name_cleaned == "userid") {
+		            if($target_value[$i] != $uid) exit("Access Restricted (uid mismatch)");
+		            else $access = 1;
+		        }
+		    }
+		    if($access < 1) exit("Access Restricted");
+		} else {
+		    for($i = 0; $i < sizeof($attrs); $i++){
+		        $curattrs = preg_replace("/[^a-zA-Z0-9]/", "", $attrs[$i]);
+		        if($curattrs == "adminid"){
+		            if($values[$i] != $aid) exit("Access Restricted (aid mismatch)");
+		        }
+		    }
+		    $access = 0;
+		    for($i = 0; $i < sizeof($target_name); $i++){
+		        $target_name_cleaned = preg_replace("/[^a-zA-Z0-9]/", "", $target_name[$i]);
+		        if($target_name_cleaned == "adminid") {
+		            if($target_value[$i] != $uid) exit("Access Restricted (aid mismatch)");
+		            else $access = 1;
+		        }
+		    }
+		    if($access < 1) exit("Access Restricted");
+		}
+		
+		
 		$sql = "UPDATE $table SET ";
 		for($i = 0; $i < sizeof($attrs); $i++){
-			$sql .= $attrs[$i] . " = " . $values[$i] . ", ";
+			$sql .= $attrs[$i] . " = ?, ";
 		}
 		$sql = substr($sql, 0, strlen($sql) -2);
-		$sql .= " WHERE " . $target_name . " = " . $target_value . ";";
 		
-		$result = PDOQuery($sql,[],$dsn,$user,$pw);
+		$sql .= " WHERE ";
+		
+		for($i = 0; $i < sizeof($target_name); $i++){
+		    $sql .= $target_name[$i] . " = ? AND ";
+		}
+		$sql = shorten($sql, strlen(" AND "));
+		
+		$values = array_merge($values, $target_value);
+		
+		$result = $pdoUtil->query($sql,$values);
 		http_response_code(201);
 		echo json_encode("Update Succesful");
 	} catch (Exception $e) {

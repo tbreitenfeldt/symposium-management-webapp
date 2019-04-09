@@ -10,7 +10,8 @@ if(isset($_GET["genFlag"])){
 	} else {
 //die(json_encode($_GET));
 	   	$attrs = (array)$_GET["attrs"];
-	   //$values = (array)$_GET["values"]; 
+		$values = (array)$_GET["values"];
+
 	}
 
 	
@@ -21,7 +22,6 @@ if(isset($_GET["genFlag"])){
 	}
 	
 	if(!empty($_GET["values_to_select"])){
-//die("hello");
 		$selectValues = (array)$_GET["values_to_select"];
 		foreach($selectValues as $sv){
 			$sql .= $sv.",";
@@ -58,7 +58,6 @@ if(isset($_GET["genFlag"])){
 	try{
 
 	    if(empty($values)) $values = [];
-die($sql);
 		$result = $pdoUtil->query($sql, $values);
 
 		if($result){

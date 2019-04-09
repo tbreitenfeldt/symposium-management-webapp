@@ -117,7 +117,7 @@ async function getRecord(valuesToSelect, tableNames, attrs, values, callback, ty
 		values: values,
 		genFlag: "flag"
 	};
-	await $.get(pathToMainDirectory + "conferenceAPI/index.php", map, callback, type).fail(function(error) {document.write(error.responseText);});
+	await $.get(pathToMainDirectory + "conferenceAPI/index.php", map, callback, type);
 }
 
 

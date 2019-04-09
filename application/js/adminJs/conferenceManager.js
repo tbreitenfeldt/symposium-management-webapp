@@ -135,12 +135,12 @@ function getSelectedConference(event) {
 
 
 function setupAjaxForConferenceInformation(conferenceName) {
-    getRecord(["*"], ["conference"], ["conference_name"], [conferenceName], getConferenceEditor, "text", "true");
+    getRecord(["*"], ["conference"], ["conference_name"], [conferenceName], getConferenceEditor, "json");
 }//end function 
 
 
 function getConferenceEditor(data) {
-document.write("conferenceManager.js<br>" + JSON.stringify(data));
+//document.write("conferenceManager.js<br>" + JSON.stringify(data));
     if (data != null) {
         clearAllRegions();
 

@@ -149,9 +149,7 @@ ALTER TABLE `event`
 -- Indexes for table `user_accounts`
 --
 ALTER TABLE `user_accounts`
-  ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `user_email` (`user_email`),
-  ADD UNIQUE KEY `user_phone` (`user_email`);
+  ADD PRIMARY KEY (`user_id`);
 
 --
 -- Indexes for table `admin_accounts`

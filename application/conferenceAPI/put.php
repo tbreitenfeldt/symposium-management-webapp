@@ -24,7 +24,6 @@ if (isset($_PUT["table_name"])) {
 		        }
 		    }
 		    $access = 0;
-die("made it this far");
 
 		    for($i = 0; $i < sizeof($target_name); $i++){
 		        $target_name_cleaned = preg_replace("/[^a-zA-Z0-9]/", "", $target_name[$i]);
@@ -35,13 +34,16 @@ die("made it this far");
 		    }
 		    if($access < 1) exit("Access Restricted");
 		} else {
+		    $access = 0;
 		    for($i = 0; $i < sizeof($attrs); $i++){
 		        $curattrs = preg_replace("/[^a-zA-Z0-9]/", "", $attrs[$i]);
 		        if($curattrs == "adminid"){
 		            if($values[$i] != $aid) exit("Access Restricted (aid mismatch)");
+		            else $access = 1;
+
 		        }
 		    }
-		    $access = 0;
+
 		    for($i = 0; $i < sizeof($target_name); $i++){
 		        $target_name_cleaned = preg_replace("/[^a-zA-Z0-9]/", "", $target_name[$i]);
 		        if($target_name_cleaned == "adminid") {

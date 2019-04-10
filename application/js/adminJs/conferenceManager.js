@@ -362,13 +362,11 @@ function updateConferenceInformation(event, conferenceID) {
 
     collectFormData("conferenceControls", attrs, values);
     map = {table_name: "conference", attrs: attrs, values: values, target_id_name: ["conference_id"], target_id_value: [conferenceID]};
-    $.put("../proxies/putProxy.php", map, updatedConferenceSuccessfully).fail(function(e) {document.write("fail:<br>" + e.responseText);} );
+    $.put("../proxies/putProxy.php", map, updatedConferenceSuccessfully);
 }//end function
 
 
 function updatedConferenceSuccessfully(data) {
-document.write("success:<br>" + data);
-return;
     let conferenceName = $("#inputConferenceName").val();
     alert("Updated  Conference!");
     setupAjaxForConferenceInformation(conferenceName);

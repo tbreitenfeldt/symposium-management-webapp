@@ -1,4 +1,5 @@
 <?php
+
 if(isset($_GET["genFlag"])){
 	$sql = "SELECT ";
 	
@@ -8,10 +9,8 @@ if(isset($_GET["genFlag"])){
 	    $attrs = [];
 	    $values = [];
 	} else {
-//die(json_encode($_GET));
 	   	$attrs = (array)$_GET["attrs"];
 		$values = (array)$_GET["values"];
-
 	}
 
 	
@@ -55,6 +54,7 @@ if(isset($_GET["genFlag"])){
 	
 	$sql .= ";";
 	
+
 	try{
 
 	    if(empty($values)) $values = [];

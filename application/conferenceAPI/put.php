@@ -24,6 +24,8 @@ if (isset($_PUT["table_name"])) {
 		        }
 		    }
 		    $access = 0;
+die("made it this far");
+
 		    for($i = 0; $i < sizeof($target_name); $i++){
 		        $target_name_cleaned = preg_replace("/[^a-zA-Z0-9]/", "", $target_name[$i]);
 		        if($target_name_cleaned == "userid") {

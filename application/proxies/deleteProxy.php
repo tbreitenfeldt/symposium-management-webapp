@@ -25,15 +25,18 @@ function addSessionVariableToData($idName) {
     session_start();
 
     if (isset($_SESSION[$idName]) && isset($_DELETE["id_name"]) && isset($_DELETE["id_value"])) {
-        $_DELETE["id_name"] = $idName;
-        $_DELETE["id_value"] = $_SESSION[$idName];
+        array_push($_DELETE["id_name"], $idName);
+        array_push($_DELETE["id_value"], $_SESSION[$idName]);
+            session_write_close();
 
         $url = DOMAIN . "/conferenceAPI/index.php";
         $response = HTTPRequester::HTTPDelete($url, $_DELETE);
         echo $response;
     }//end if
 
-    session_write_close();
+    if (session_status() === PHP_SESSION_ACTIVE) {
+            session_write_close();
+    }//end if
 }//end function
 
 

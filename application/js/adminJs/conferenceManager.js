@@ -140,7 +140,6 @@ function setupAjaxForConferenceInformation(conferenceName) {
 
 
 function getConferenceEditor(data) {
-//document.write("conferenceManager.js<br>" + JSON.stringify(data));
     if (data != null) {
         clearAllRegions();
 
@@ -207,7 +206,7 @@ function setupAjaxForEventInformation(conferenceID, conferenceName) {
     let attrs = ["conference_id"];
     let values = [conferenceID];
     let eventEditorFunction = function(data) {createEventEditor(data, conferenceName);}
-    getRecord(valuesToSelect, tableNames, attrs, values, eventEditorFunction, "json", "false");
+    getRecord(valuesToSelect, tableNames, attrs, values, eventEditorFunction, "json");
 }//end function
 
 
@@ -267,13 +266,13 @@ function collectFormData(controlsClassName, attrs, values) {
         if ($(element).attr("type") == "radio" && $(element).attr("data-name") != null) {
             if (element.checked == true) {
                 dataName = $(element).attr("data-name")
-                value = "'" + $(element).val() + "'";
+                value = $(element).val();
                 attrs.push(dataName);
                 values.push(value);
             }//end if
         } else if ($(element).attr("data-name") != null) {
                 dataName = $(element).attr("data-name");
-                value = "'" + String($(element).val()).trim() + "'";
+                value = String($(element).val()).trim();
                 attrs.push(dataName);
                 values.push(value);
         }//end if
@@ -323,7 +322,7 @@ function setupConferenceFormForUpdating(event, data) {
 function insertConference(event) {
     event.preventDefault ();
     let conferenceName = $("#inputConferenceName").val();
-    getRecord(["conference_id"], ["conference"], ["conference_name"], [conferenceName], checkIfConferenceNameExists, "json", "true");
+    getRecord(["conference_id"], ["conference"], ["conference_name"], [conferenceName], checkIfConferenceNameExists, "json");
 }//end function
 
 
@@ -363,11 +362,13 @@ function updateConferenceInformation(event, conferenceID) {
 
     collectFormData("conferenceControls", attrs, values);
     map = {table_name: "conference", attrs: attrs, values: values, target_id_name: ["conference_id"], target_id_value: [conferenceID]};
-    $.put("../proxies/putProxy.php", map, updatedConferenceSuccessfully);
+    $.put("../proxies/putProxy.php", map, updatedConferenceSuccessfully).fail(function(e) {document.write("fail:<br>" + e.responseText);} );
 }//end function
 
 
 function updatedConferenceSuccessfully(data) {
+document.write("success:<br>" + data);
+return;
     let conferenceName = $("#inputConferenceName").val();
     alert("Updated  Conference!");
     setupAjaxForConferenceInformation(conferenceName);
@@ -381,7 +382,7 @@ function ajaxSetupForDeleteConference(event) {
         let isConfirmDelete = confirm("Are you sure you would like to delete the conference " + conferenceName + " and all of its events?");
 
         if (isConfirmDelete) {
-            getRecord(["conference_id"], ["conference"], ["conference_name"], [conferenceName], deleteConferenceAndEvents, "json", "true");
+            getRecord(["conference_id"], ["conference"], ["conference_name"], [conferenceName], deleteConferenceAndEvents, "json");
         }//end if
     }//end if
 }//end function
@@ -443,7 +444,7 @@ function insertConferenceEvent(event, conferenceID, conferenceName) {
         ["event_id"], ["event"],
         ["event_name", "conference_id"], [eventName, conferenceID],
         function(data) {checkIfEventNameExistsInConference(data, conferenceID, conferenceName);},
-        "json", "true"
+        "json"
     );
 }//end function
 

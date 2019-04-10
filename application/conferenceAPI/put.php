@@ -15,7 +15,7 @@ if (isset($_PUT["table_name"])) {
 		//check if the user_id or admin_id entered in target_name, target_value, attrs or values is the same as the session ids.
 		//PUT requests must include a user_id or admin_id in it's call and it must match up to the current session variable.
 		if($tablecheck == "useraccounts" || $tablecheck ==  "adminaccounts") {
-		    exit("Access Restricted");
+		    exit("Access Restricted - 1");
 		} else if ($tablecheck == "userschedule"){
 		    for($i = 0; $i < sizeof($attrs); $i++){
 		        $curattrs = preg_replace("/[^a-zA-Z0-9]/", "", $attrs[$i]);
@@ -33,15 +33,16 @@ die("made it this far");
 		            else $access = 1;
 		        }
 		    }
-		    if($access < 1) exit("Access Restricted");
+		    if($access < 1) exit("Access Restricted - 2");
 		} else {
+		    $access = 0;
 		    for($i = 0; $i < sizeof($attrs); $i++){
 		        $curattrs = preg_replace("/[^a-zA-Z0-9]/", "", $attrs[$i]);
 		        if($curattrs == "adminid"){
 		            if($values[$i] != $aid) exit("Access Restricted (aid mismatch)");
+		            else $access = 1;
 		        }
 		    }
-		    $access = 0;
 		    for($i = 0; $i < sizeof($target_name); $i++){
 		        $target_name_cleaned = preg_replace("/[^a-zA-Z0-9]/", "", $target_name[$i]);
 		        if($target_name_cleaned == "adminid") {
@@ -49,7 +50,7 @@ die("made it this far");
 		            else $access = 1;
 		        }
 		    }
-		    if($access < 1) exit("Access Restricted");
+		    if($access < 1) exit("Access Restricted - 3");
 		}
 		
 		

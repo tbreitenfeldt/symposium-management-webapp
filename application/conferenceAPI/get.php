@@ -16,7 +16,7 @@ if(isset($_GET["genFlag"])){
 	
 	foreach($tables as $tn){
 	    if($tn == "user_accounts" || $tn == "admin_accounts"){
-	        exit("Access Restricted");
+	        exit("Access Restricted - 1");
 	    }
 	}
 	

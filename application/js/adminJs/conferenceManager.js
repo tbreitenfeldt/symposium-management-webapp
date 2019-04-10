@@ -94,7 +94,7 @@ function resetForm(event) {
 
 function setupAjaxForConferenceNames() {
     let map = {"table_names": ["conference"], "values_to_select": ["*"], "attrs": [""], "values": [""], "genFlag": "flag"};
-    $.get("../proxies/getProxy.php", map, initializeConferenceChooser, "json").fail(function(error) {initializeConferenceChooser(null);} );
+    $.get("../proxies/getProxy.php", map, initializeConferenceChooser, "json");
 }//end function
 
 
@@ -135,11 +135,12 @@ function getSelectedConference(event) {
 
 
 function setupAjaxForConferenceInformation(conferenceName) {
-    getRecord(["*"], ["conference"], ["conference_name"], [conferenceName], getConferenceEditor, "json", "true");
+    getRecord(["*"], ["conference"], ["conference_name"], [conferenceName], getConferenceEditor, "json");
 }//end function 
 
 
 function getConferenceEditor(data) {
+//document.write("conferenceManager.js<br>" + JSON.stringify(data));
     if (data != null) {
         clearAllRegions();
 
@@ -361,7 +362,7 @@ function updateConferenceInformation(event, conferenceID) {
     let values = [];
 
     collectFormData("conferenceControls", attrs, values);
-    map = {table_name: "conference", attrs: attrs, values: values, target_id_name: "conference_id", target_id_value: conferenceID};
+    map = {table_name: "conference", attrs: attrs, values: values, target_id_name: ["conference_id"], target_id_value: [conferenceID]};
     $.put("../proxies/putProxy.php", map, updatedConferenceSuccessfully);
 }//end function
 
@@ -391,8 +392,8 @@ function deleteConferenceAndEvents(data) {
         let conferenceID = data[0]["conference_id"];
         let deletionSuccessful = function(data) {alert("Deletion Successful."); setupAjaxForConferenceNames();}
 
-        delRecord("event", "conference_id", conferenceID,
-            function(data) {delRecord("conference", "conference_id", conferenceID, deletionSuccessful);}
+        delRecord("event", ["conference_id"], [conferenceID],
+            function(data) {delRecord("conference", ["conference_id"], [conferenceID], deletionSuccessful);}
         );
     } else {
         alert("There was a problem trying to delete this conference, please contact the database administrator.");
@@ -488,7 +489,7 @@ function updateConferenceEvent(event, eventID, conferenceName) {
     let values = [];
 
     collectFormData("eventControls", attrs, values);
-    map = {table_name: "event", attrs: attrs, values: values, target_id_name: "event_id", target_id_value: eventID};
+    map = {table_name: "event", attrs: attrs, values: values, target_id_name: ["event_id"], target_id_value: [eventID]};
     $.put("../proxies/putProxy.php", map, function(data) {updatedEventSuccessfully(data, conferenceName);} );
 }//end function
 
@@ -503,7 +504,7 @@ function deleteConferenceEvent(event) {
     let isDelete = confirm("Are you sure you would like to delete this event?");
     
     if (isDelete) {
-        delRecord("event", "event_id", conferenceEventID, function(data) {deletedEventSuccessfully(data, event.target);} );
+        delRecord("event", ["event_id"], [conferenceEventID], function(data) {deletedEventSuccessfully(data, event.target);} );
     }//end if
 }//end function 
 
@@ -534,3 +535,4 @@ function clearAllRegions() {
     $("#conferenceFormRegion").hide();
     $("#eventFormRegion").hide();
 }//end function
+

@@ -40,22 +40,30 @@
     <header id="h1"></header>
     <div id="MainConference">
         <table id="Conference">
-            <tr>
-                <th>Name</th>
-                <th>Time Start</th>
-                <th>Time End</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Time Start</th>
+                    <th>Time End</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
         </table>
     </div>
 
     <header id="h2">My Schedule</header>
     <div id="UserConference">
         <table id="UsersCon">
-            <tr>
-                <th>Name</th>
-                <th>Time Start</th>
-                <th>Time End</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Time Start</th>
+                    <th>Time End</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
         </table>
     </div>
 

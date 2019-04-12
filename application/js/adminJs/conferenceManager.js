@@ -94,8 +94,15 @@ function resetForm(event) {
 
 function setupAjaxForConferenceNames() {
     let map = {"table_names": ["conference"], "values_to_select": ["*"], "attrs": [""], "values": [""], "genFlag": "flag"};
-    $.get("../proxies/getProxy.php", map, initializeConferenceChooser, "json");
+    $.get("../proxies/getProxy.php", map, initializeConferenceChooser, "json").fail(function(e) {document.write(e.responseText);} ).fail(catchEmptyValue);
 }//end function
+
+
+function catchEmptyValue(error) {
+    if (error.status == 204) {
+        initializeConferenceChooser([]);
+    }//end if
+}//end function 
 
 
 function initializeConferenceChooser(data) {
@@ -103,7 +110,7 @@ function initializeConferenceChooser(data) {
 
     let options = [];
     let htmlConferenceList  = "";
-    let editButton = createButton("Edit Conference", "submit", "chooseConferenceSubmitButton", "applicationButtons");
+    let editButton = createButton("View Conference", "submit", "chooseConferenceSubmitButton", "applicationButtons");
     let deleteButton = createButton("Delete Conference", "button", "deleteConferenceButton", "applicationButtons");
     let createConferenceButton = createButton("Create Conference", "button", "createConferenceButton", "applicationButtons");
     let formID = "chooseConference";
@@ -140,7 +147,7 @@ function setupAjaxForConferenceInformation(conferenceName) {
 
 
 function getConferenceEditor(data) {
-    if (data != null) {
+    if (data != null && data.length != 0) {
         clearAllRegions();
 
         let cancelButton = createButton("Cancel", "button", "cancelButton", "applicationButtons");
@@ -327,7 +334,7 @@ function insertConference(event) {
 
 
 function checkIfConferenceNameExists(data) {
-    if (data == null) {
+    if (data == null || data.length == 0) {
         processConferenceInsertion();
     } else {
             alert("Plese choose a different  conference name, conference names must be unique.");

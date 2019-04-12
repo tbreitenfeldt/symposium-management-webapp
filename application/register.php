@@ -74,8 +74,6 @@ session_write_close();
     <label for="confirm_password">* Confirm Password:</label>
     <input type="password" id="confirm_password" name="confirm_password" required="required" />
     <label for="user_conference">Choose your Conference</label>
-    <select id="user_conference" name="user_conference"></select>
-
 
     <input type="submit" id="registerButton" value="Register" />
     </fieldset>

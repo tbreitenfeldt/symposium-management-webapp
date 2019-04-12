@@ -6,6 +6,8 @@
 -- Generation Time: Feb 08, 2019 at 06:03 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
+-- delete all tables
+-- DROP TABLE `user_schedule`, `user_conference`, `messages`, `event`, `conference`, `user_accounts`, `admin_accounts`;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -87,6 +89,8 @@ CREATE TABLE `user_accounts` (
   `user_notifyByPhone` tinyint(1) NOT NULL,
   `user_failed_login_count` int(2) DEFAULT 0,
   `user_first_failed_login` int(11) DEFAULT 0,
+  `user_forgot_password_token` varchar(255) DEFAULT null,
+  `user_forgot_password_experation` int(11) DEFAULT 0,
   `user_created_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -103,6 +107,22 @@ CREATE TABLE `admin_accounts` (
   `admin_failed_login_count` int(2) DEFAULT 0,
   `admin_first_failed_login` int(11) DEFAULT 0,
   `admin_created_at` datetime DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `message_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL,
+  `conference_id` int(11) NOT NULL,
+  `message_recipients` varchar(255) NOT NULL,
+  `message_subject` int(2) DEFAULT 0,
+  `message_body` int(11) DEFAULT 0,
+  `message_created_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -149,7 +169,8 @@ ALTER TABLE `event`
 -- Indexes for table `user_accounts`
 --
 ALTER TABLE `user_accounts`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `user_name` (`user_name`);
 
 --
 -- Indexes for table `admin_accounts`
@@ -158,16 +179,22 @@ ALTER TABLE `admin_accounts`
   ADD PRIMARY KEY (`admin_id`);
 
 --
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`message_id`);
+
+--
 -- Indexes for table `user_conference`
 --
 ALTER TABLE `user_conference`
-  ADD KEY `keyvaluepair` (`user_id`,`conference_id`);
+    ADD PRIMARY KEY(`user_id`, `conference_id`);
 
 --
 -- Indexes for table `user_schedule`
 --
 ALTER TABLE `user_schedule`
-  ADD KEY `keyvaluepair` (`user_id`,`event_id`) USING BTREE;
+  ADD PRIMARY KEY(`user_id`, `conference_id`, `event_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -199,19 +226,38 @@ ALTER TABLE `user_accounts`
 
 ALTER TABLE `user_accounts`
   AUTO_INCREMENT=1372;
+
 --
--- AUTO_INCREMENT for table `user_accounts`
+-- AUTO_INCREMENT for table `admin_accounts`
 --
 ALTER TABLE `admin_accounts`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `admin_accounts`
   AUTO_INCREMENT=1108;
+
+--
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `messages`
+  AUTO_INCREMENT=3781;
 COMMIT;
 
 --
 -- foreign keys 
 --
+
+-- set table messages foreign keys --
+ALTER TABLE `messages`
+  ADD FOREIGN KEY (admin_id) REFERENCES admin_accounts(admin_id),
+  ADD FOREIGN KEY (conference_id) REFERENCES conference(conference_id);
+
+-- set table conference foreign keys --
+ALTER TABLE `conference`
+  ADD FOREIGN KEY (admin_id) REFERENCES admin_accounts(admin_id);
 
 -- set table event foreign keys --
 ALTER TABLE `event`

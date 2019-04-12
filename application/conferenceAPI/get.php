@@ -60,7 +60,7 @@ if(isset($_GET["genFlag"])){
 	    if(empty($values)) $values = [];
 		$result = $pdoUtil->query($sql, $values);
 
-		if($result){
+		if($result || $result == []){
 			http_response_code(200);
 			echo json_encode($result);
 		} else {

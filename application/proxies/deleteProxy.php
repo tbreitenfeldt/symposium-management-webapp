@@ -7,7 +7,7 @@ function deleteFromConferenceAPI() {
     parse_str(file_get_contents('php://input'), $_DELETE);
 
     if ($_SERVER["REQUEST_METHOD"] == "DELETE" && isset($_DELETE["table_name"])) {
-        $tableName = $_POST["table_name"];
+        $tableName = $_DELETE["table_name"];
 
         if ($tableName == "conference") {
             addSessionVariableToData("admin_id");

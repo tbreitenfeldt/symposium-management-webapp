@@ -11,9 +11,6 @@ async function init ()
   await startUserTable();
 }
 
-
-currentColumns = 1;
-
 function startMainTable()
 {
 	valuesToSelect = ["*"];
@@ -21,7 +18,7 @@ function startMainTable()
 	attrs = [];
 	values = [];
 
-	getRecord(valuesToSelect,tableNames,attrs,values,gotMainConference,"json","true")
+	getRecord(valuesToSelect,tableNames,attrs,values,gotMainConference,"json","false")
 }
 
 function gotMainConference(data)
@@ -48,7 +45,7 @@ function gotMainConference(data)
     
     console.log(mainObj[0].id);
 
-  	getRecord(valuesToSelect,tableNames,attrs,values,gotEventData,"json","true");
+  	getRecord(valuesToSelect,tableNames,attrs,values,gotEventData,"json","false");
 }
 
 function gotEventData(data)
@@ -80,5 +77,5 @@ function onAddClick(data)
 function successPost(data)
 {
   console.log(data);
-  startUserTable;
+  startUserTable();
 }

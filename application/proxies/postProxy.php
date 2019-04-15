@@ -21,18 +21,21 @@ function postToConferenceAPI() {
 
 
 function addSessionVariableToData($idName) {
-    session_start();
+        session_start();
 
     if (isset($_SESSION[$idName]) && isset($_POST["attrs"]) && isset($_POST["values"])) {
         array_push($_POST["attrs"], $idName);
         array_push($_POST["values"], $_SESSION[$idName]);
+        session_write_close();
 
         $url = DOMAIN . "/conferenceAPI/index.php";
         $response = HTTPRequester::HTTPPost($url, $_POST);
         echo $response;
     }//end if
 
-    session_write_close();
+    if (session_status() === PHP_SESSION_ACTIVE) {
+            session_write_close();
+    }//end if
 }//end function
 
 

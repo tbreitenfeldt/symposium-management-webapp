@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_POST["table_name"])){
 	$table = $_POST["table_name"];
 	$tablecheck  = preg_replace("/[^a-zA-Z0-9]/", "", $table);
@@ -6,7 +7,7 @@ if (isset($_POST["table_name"])){
 	$values = (array)$_POST["values"];
 
 	if($tablecheck == "useraccounts" || $tablecheck ==  "adminaccounts") {
-	    exit("Access Restricted");
+	    exit("Access Restricted - 1");
 	} else if ($tablecheck == "userschedule"){
 	    for($i = 0; $i < sizeof($attrs); $i++){
 	        $curattrs = preg_replace("/[^a-zA-Z0-9]/", "", $attrs[$i]);
@@ -18,14 +19,14 @@ if (isset($_POST["table_name"])){
 	    $access = 0;
 	    for($i = 0; $i < sizeof($attrs); $i++){
 	        $curattrs = preg_replace("/[^a-zA-Z0-9]/", "", $attrs[$i]);
-	        if($attrs[$i] == "adminid"){
+	        if($curattrs == "adminid"){
 	            if($values[$i] != $aid) exit("Access Restricted (aid mismatch)");
 	            if($values[$i] == $aid) {
 	                $access = 1;
 	            }
 	        }
 	    }
-	    if($access < 1) exit("Access Restricted Here");
+	    if($access < 1) exit("Access Restricted - 2");
 	}
 
 	$sql = "INSERT INTO ".$table." ("; 

@@ -1,4 +1,5 @@
 <?php
+
 if(isset($_GET["genFlag"])){
 	$sql = "SELECT ";
 	
@@ -8,16 +9,14 @@ if(isset($_GET["genFlag"])){
 	    $attrs = [];
 	    $values = [];
 	} else {
-//die(json_encode($_GET));
 	   	$attrs = (array)$_GET["attrs"];
 		$values = (array)$_GET["values"];
-
 	}
 
 	
 	foreach($tables as $tn){
 	    if($tn == "user_accounts" || $tn == "admin_accounts"){
-	        exit("Access Restricted");
+	        exit("Access Restricted - 1");
 	    }
 	}
 	
@@ -55,12 +54,13 @@ if(isset($_GET["genFlag"])){
 	
 	$sql .= ";";
 	
+
 	try{
 
 	    if(empty($values)) $values = [];
 		$result = $pdoUtil->query($sql, $values);
 
-		if($result){
+		if($result || $result == []){
 			http_response_code(200);
 			echo json_encode($result);
 		} else {

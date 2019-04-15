@@ -6,8 +6,8 @@ $uid = -1;
 $aid = -1;
 
 session_start();
-if(isset($_SESSION["user_id"])) $uid = $_SESSION["user_id"];
-else if (isset($_SESSION["admin_id"])) $aid = $_SESSION["admin_id"];
+if($_SESSION["user"] == "user" && isset($_SESSION["user_id"])) $uid = $_SESSION["user_id"];
+else if ($_SESSION["user"] == "admin" && isset($_SESSION["admin_id"])) $aid = $_SESSION["admin_id"];
 
 $pdoUtil = PDOUtil::createPDOUtil();
 $request = $_SERVER["REQUEST_METHOD"];

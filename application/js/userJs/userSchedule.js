@@ -1,7 +1,6 @@
 
 /*
 *   Currently only being used with random conference id = 1
-    and doesnt do all events -> change this
 */
 
 function startUserTable()
@@ -11,7 +10,7 @@ function startUserTable()
 	attrs = ["conference_id"];
 	values = ["1001"];
 
-	getRecord(valuesToSelect,tableNames,attrs,values,gotUserConference,"json","true")
+	getRecord(valuesToSelect,tableNames,attrs,values,gotUserConference,"json","false")
 }
 
 function gotUserConference(data)
@@ -23,7 +22,7 @@ function gotUserConference(data)
     attrs = ["conference_id"];
     values = [data[0].conference_id];
 
-  	getRecord(valuesToSelect,tableNames,attrs,values,gotEventRef,"json","true");
+  	getRecord(valuesToSelect,tableNames,attrs,values,gotEventRef,"json","false");
 }
 
 function gotEventRef(data)
@@ -39,12 +38,12 @@ function gotEventRef(data)
   	        tableNames = ["event"];
 	        attrs = ["event_id"];
             values = [data[i].event_id]; 
-            getRecord(valuesToSelect,tableNames,attrs,values,gotEvent,"json","true");
+            getRecord(valuesToSelect,tableNames,attrs,values,gotEvent,"json","false");
         }  
     }
     else
     {
-        $("<tr><td>No Events Here</td></tr>").appendTo("#UsersCon");
+        $("<tr><td>No Events Here</td></tr>").appendTo("#UsersCon tbody");
     }
 }
 
@@ -64,8 +63,8 @@ function onDeleteClick(data)
     var map =
     {
         table_name: "user_schedule",
-        attrs: ["event_id","conference_id"],
-        values: [data,1001]
+        id_name: ["event_id"],
+        id_value: [data]
     };
 
     $.delete("proxies/deleteProxy.php",map,successDel);
@@ -74,5 +73,23 @@ function onDeleteClick(data)
 function successDel(data)
 {
     console.log(data);
-    $("#UsersCon tbody").remove();
+    startUserTable();
 }
+
+jQuery.each( [ "put", "delete" ], function( i, method ) {
+    jQuery[ method ] = function( url, data, callback, type ) {
+      if ( jQuery.isFunction( data ) ) {
+        type = type || callback;
+        callback = data;
+        data = undefined;
+      }
+   
+      return jQuery.ajax({
+        url: url,
+        type: method,
+        dataType: type,
+        data: data,
+        success: callback
+      });
+    };
+  });

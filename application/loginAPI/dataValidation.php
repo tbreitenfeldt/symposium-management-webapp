@@ -38,7 +38,7 @@ function validatePasswordConfirmation($password, $confirmPassword) {
 
 
 function validateEmail($email) {
-}//end function }
+}//end function 
 
 
 function validatePhone($phone) {
@@ -61,5 +61,9 @@ function setCheckboxValue($field) {
     } else {
         $_POST[$field] = 0;
     }//end else
+}//end function
+
+
+function validatePhoneCarrier($carrier) {
 }//end function
 ?>

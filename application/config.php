@@ -3,6 +3,7 @@ define("USER_TABLE_NAME", "user_accounts");
 define("USER_ID_FIELD", "user_id");
 define("USERNAME_FIELD", "user_name");
 define("USER_PASSWORD_FIELD", "user_password");
+define("USER_EMAIL_FIELD", "user_email");
 define("FAILED_LOGIN_COUNT_FIELD", "user_failed_login_count");
 define("FIRST_FAILED_LOGIN_FIELD", "user_first_failed_login");
 
@@ -21,7 +22,7 @@ define("USER_OLD_PASSWORD", "old_password");
 //note: registerFunctions.php expects the incoming post data to have keys that match the name of the fields. So if collecting data from a html form,
 //give ids and names the same field name as the name in the database.
 define("USER_DATA_FIELDS",
-array("user_email"=>"validateEmail", "user_phone"=>"validatePhone", "user_notifyByEmail"=>"validateNotificationByEmail", "user_notifyByPhone"=>"validateNotificationByPhone")
+array("user_email"=>"validateEmail", "user_phone"=>"validatePhone", "user_phoneCarrier"=>"validatePhoneCarrier", "user_notifyByEmail"=>"validateNotificationByEmail", "user_notifyByPhone"=>"validateNotificationByPhone")
 );
 
 define("LOGIN_PAGE_NAME", "login.php");

@@ -5,7 +5,7 @@ var OUTPUT_REGION_ID = "outputRegion";
 
 
 function init() {
-    $("#userLogonForm").submit(submitForm);
+    $("form").submit(submitForm);
 }//end function
 
 
@@ -34,6 +34,8 @@ function outputError(error) {
 function outputResult(data) {
     if ("error" in data) {
         $("#" + OUTPUT_REGION_ID).html("<p>" + data.error + "</p>");
+    } else if ("successMessage" in data) {
+        $("#" + OUTPUT_REGION_ID).html("<p>" + data.successMessage + "</p>");
     } else if ("success" in data) {
             window.location = data.success;
     } else {

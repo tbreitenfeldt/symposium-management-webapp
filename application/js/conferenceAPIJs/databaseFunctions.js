@@ -198,7 +198,7 @@ function postRecord(tablename, attrs, values, callback, formatFlag){
 		attrs: attrs,
 		values: values,
 	};
-	$.post(pathToMainDirectory + "conferenceAPI/index.php",map,callback);
+	$.post(pathToMainDirectory + "conferenceAPI/index.php",map,callback).fail(function(error) {document.write(error.responseText);} );
 }
 
 

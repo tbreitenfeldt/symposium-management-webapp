@@ -33,8 +33,6 @@
             <li><a href="resetPassword.php">Reset Password</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
-
-        <h3 id="databaseNameHeader"></h3>
     </div>
     
     <header id="h1"></header>

@@ -25,13 +25,16 @@ function addSessionVariableToData($idName) {
 
         array_push($_GET["attrs"], $idName);
         array_push($_GET["values"], $_SESSION[$idName]);
-        $url = DOMAIN . "/conferenceAPI/index.php";
+        session_write_close();
 
-            $response = HTTPRequester::HTTPGet($url, $_GET);
-            echo $response;
+        $url = DOMAIN . "/conferenceAPI/index.php";
+        $response = HTTPRequester::HTTPGet($url, $_GET);
+        echo $response;
     }//end if
 
-    session_write_close();
+    if (session_status() === PHP_SESSION_ACTIVE) {
+            session_write_close();
+    }//end if
 }//end function
 
 

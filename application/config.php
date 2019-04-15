@@ -3,6 +3,7 @@ define("USER_TABLE_NAME", "user_accounts");
 define("USER_ID_FIELD", "user_id");
 define("USERNAME_FIELD", "user_name");
 define("USER_PASSWORD_FIELD", "user_password");
+define("USER_EMAIL_FIELD", "user_email");
 define("FAILED_LOGIN_COUNT_FIELD", "user_failed_login_count");
 define("FIRST_FAILED_LOGIN_FIELD", "user_first_failed_login");
 

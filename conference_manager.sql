@@ -104,8 +104,11 @@ CREATE TABLE `admin_accounts` (
   `admin_id` int(11) NOT NULL,
   `admin_name` varchar(30) NOT NULL,
   `admin_password` varchar(255) NOT NULL,
+  `admin_email` varchar(255) NOT NULL,
   `admin_failed_login_count` int(2) DEFAULT 0,
   `admin_first_failed_login` int(11) DEFAULT 0,
+  `admin_forgot_password_token` varchar(255) DEFAULT null,
+  `admin_forgot_password_experation` int(11) DEFAULT 0,
   `admin_created_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -170,13 +173,16 @@ ALTER TABLE `event`
 --
 ALTER TABLE `user_accounts`
   ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `user_name` (`user_name`);
+  ADD UNIQUE KEY `user_name` (`user_name`),
+  ADD UNIQUE KEY `user_email` (`user_email`);
 
 --
 -- Indexes for table `admin_accounts`
 --
 ALTER TABLE `admin_accounts`
-  ADD PRIMARY KEY (`admin_id`);
+  ADD PRIMARY KEY (`admin_id`),
+  ADD UNIQUE KEY `admin_name` (`admin_name`),
+  ADD UNIQUE KEY `admin_email` (`admin_email`);
 
 --
 -- Indexes for table `messages`

@@ -12,6 +12,7 @@ session_write_close();
   <?php require_once "includes/header.php"; ?>
   <title>Register</title>
 
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="css/home.css">
   <link rel="stylesheet" href="css/login.css">
 
@@ -83,5 +84,4 @@ session_write_close();
 </main>
 
 <?php require_once "includes/footer.php"; ?>
-</body>
 </html>

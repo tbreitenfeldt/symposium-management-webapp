@@ -27,34 +27,35 @@ session_write_close();
 </head>
 
 <body>
-    <div id="contentId">
-      <header>
-        <h1>Administrator Login</h1>
-      </header>
+      <header></header>
 
-      <main>
-        <form id="userLogonForm" method="POST" action="../loginAPI/loginFunctions.php" type="json" class="form-horizontal">
-          <div id="outputRegion" aria-live="polite" ></div>
-
-          <fieldset>
-            <legend>Login Form</legend>
-            <div id="inputDiv">
-              <label for="admin_name">Username:</label>
-              <input type="text" id="admin_name" name="admin_name" placeholder="Username"/>
+      <main class="wrapper">
+        <div class="content-inside">
+          <form id="userLogonForm" method="POST" action="../loginAPI/loginFunctions.php" type="json" class="form-horizontal">
+            <fieldset>
+              <legend>Administrator <br/> Login Form</legend>
+              <div id="inputDiv">
+                <label for="admin_name" class="col-sm-12 col-form-label">Username:</label>
+                <input type="text" id="admin_name" class="col-sm-12" name="admin_name" placeholder="Username"/>
+                <br>
+                <label for="admin_password" class="col-sm-12 col-form-label">Password:&nbsp;</label>
+                <input type=password id="admin_password" class="col-sm-12" name="admin_password" placeholder="Password"/>
+              </div>
               <br>
-              <label for="admin_password">Password:&nbsp;</label>
-              <input type=password id="admin_password" name="admin_password" placeholder="Password"/>
-            </div>
-            <br>
-            <div id="submitDiv">
-              <input type="hidden" name="<?= $token_id; ?>" value="<?= $token_value; ?>" />
-              <input type="submit" id="loginButton" value="Login"/>
-            </div>
-          </fieldset>
-          <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
-        </form>
+              <div id="submitDiv">
+                <input type="hidden" name="<?= $token_id; ?>" placeholder="<?= $token_value; ?>" />
+                <div class="col-md-4 center-block">
+                  <input type="submit" id="loginButton" class="btn btn-primary btn-lg btn-block" value="Login"/>
+                </div>
+              </div>
+            </fieldset>
+            <p id="signUp">Don't have an account? <br/> <a href="register.php">Sign up now</a>.</p>
+            <div id="outputRegion" aria-live="polite" ></div>
+          </form>
+        </div>
+        <div class="push"></div>
+
       </main>
-    </div>
 
     <?php require_once "../includes/footer.php"; ?>
 

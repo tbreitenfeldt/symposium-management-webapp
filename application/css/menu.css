@@ -1,0 +1,458 @@
+/*
+    DEMO STYLE
+*/
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+.list-unstyled, h3 {
+  text-align:center;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+#leftSidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    right: -250px;
+    height: 100vh;
+    z-index: 999;
+    background: crimson;
+    color: #fff;
+    transition: all 0.3s;
+    overflow-y: scroll;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+#leftSidebar.active {
+    right: 0;
+}
+
+#dismiss {
+    width: 100%;
+    text-align: center;
+    background: #17a2b8;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3ï¿¼    s;
+    transition: all 0.3s;
+}
+
+#dismiss:hover {
+    background: #fff;
+    color: red;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+}
+.overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+#leftSidebar .leftSidebar-header {
+    padding: 20px;
+    background: crimson;
+}
+
+#leftSidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px crimson;
+}
+
+#leftSidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#leftSidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#leftSidebar ul li a:hover {
+    color: #bb1133;
+    background: #fff;
+}
+
+#leftSidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #bb1133;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: crimson;
+    padding-right: 20px;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #fff;
+    color: red;
+}
+
+a.menu-button,
+a.menu-button:hover {
+  background: #fff;
+  color: red;
+}
+
+/* ---------------------------------------------------
+    RightsideBar
+----------------------------------------------------- */
+
+
+#rightSidebar {
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: -500px;
+  height: 100vh;
+  z-index: 999;
+  background: crimson;
+  color: #fff;
+  transition: all 0.3s;
+  overflow-y: scroll;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+#rightSidebar.active {
+  left: 0;
+}
+
+#rightDismiss {
+  width: 100%;
+  text-align: center;
+  background: #17a2b8;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+#rightDismiss:hover {
+  color: #fff !important;
+  background-color: red;
+  opacity:1;
+}
+
+.rightOverlay {
+  display: none;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 998;
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+.rightOverlay.active {
+  display: block;
+  opacity: 1;
+}
+
+#rightSidebar .rightSidebar-header {
+  padding: 20px;
+  background: crimson;
+}
+
+#rightSidebar ul.components {
+  border-bottom: 1px solid crimson;
+}
+
+#rightSidebar ul p {
+  color: white;
+  padding: 10px;
+}
+
+#rightSidebar ul li a {
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+}
+
+#rightSidebar ul li a:hover {
+  color: crimson;
+  background-color: white;
+}
+
+#rightSidebar ul li.active>a,
+a[aria-expanded="true"] {
+  color: #fff;
+  background:#bb1133;
+}
+
+#rightSidebar ul li.active>a:hover{
+  color: #bb1133;
+  background:#fff;
+}
+
+a[data-toggle="collapse"] {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+}
+
+ul ul a {
+  font-size: 0.9em !important;
+  padding-left: 30px !important;
+  background: crimson;
+}
+
+ul.CTAs {
+  padding: 20px;
+}
+
+ul.CTAs a {
+  text-align: center;
+  font-size: 0.9em !important;
+  display: block;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+a.download {
+  background: #17a2b8;
+  color: #fff;
+}
+
+a.menu-button{
+  background: #17a2b8 !important;
+  color: #fff !important;
+}
+a.menu-button:hover {
+  background: #fff !important;
+  color: crimson !important;
+}
+
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: 100%;
+    padding: 0px 20px 20px 20px;
+    margin-top: 0px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    right: 0;
+    padding-top: 170px;
+}
+
+/* ---------------------------------------------------
+    HEADER STYLE
+----------------------------------------------------- */
+
+#utilityBar{
+  width:100%;
+  position:fixed;
+}
+.navbar{
+  background: crimson!important;
+  margin-bottom:30px;
+}
+
+@media (max-width: 426px){
+  #rightSidebar{
+    height: 100%;
+    width:100%;
+    right:100%
+  }
+  #leftSidebar{
+    width: 100%;
+    height:100%;
+    left: 100%;  
+  }
+  #rightSidebar.active {
+    left: 0;
+    padding-left: 0px;
+  }
+  #leftSidebar.active {
+    left: 0;
+  }
+  ul{
+    margin-right: 20px;
+  }
+  #dismiss{
+    font-size:50px;
+  }
+ul.CTAs {
+    padding: 20px;
+    padding-left: 40px;
+}
+table{
+  width: 100%;
+  margin: 0px;
+}
+}
+
+button{
+  border:1px solid gray;
+  border-radius:7%;
+  font-size:0.875;
+  word-wrap: break-word;
+  width: 120px; /*only for IE8*/
+  max-width: 100%;
+}
+
+.col-lg-12{
+  text-align: center;
+  position: fixed;
+}
+
+.col-lg-12 .row{
+  display: inline-flex;
+}
+
+.mCSB_container{
+  height:100%;
+}
+
+body{
+background-image: url(https://sites.ewu.edu/dss/files/2018/10/scott-webb-282338-unsplash.jpg);
+}
+
+#innerContent{
+  background: white;
+  padding: 20px;
+}
+
+h2{
+  text-align:center;
+}
+
+.fa-arrow-right, .fa-arrow-left{
+  font-size: 52px;
+}
+
+.fl-page-footer-text{
+  text-align: center;
+}
+
+#symposium-title{
+  font-family: unset;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+#conference-table{
+  margin-bottom:20px;
+}
+
+#conference-table table, #schedule-table table{
+  margin: 0px auto;
+}
+#conference-table, #schedule-table{
+  text-align: center;
+}
+
+body {
+	font-family: Tahoma;
+}
+
+.list-unstyled{
+  margin-right: 0px;
+}
+
+li ul li{
+  padding-right: 20px;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+table {
+  border-collapse: collapse;
+}

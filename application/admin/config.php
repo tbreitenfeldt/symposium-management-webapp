@@ -21,7 +21,7 @@ define("USER_OLD_PASSWORD", "old_password");
 //note: registerFunctions.php expects the incoming post data to have keys that match the name of the fields. So if collecting data from a html form,
 //give ids and names the same field name as the name in the database.
 define("USER_DATA_FIELDS",
-array()
+array("admin_email"=>"validateEmail")
 );
 
 define("LOGIN_PAGE_NAME", "login.php");

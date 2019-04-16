@@ -40,6 +40,11 @@ session_write_close();
 
                   <br>
 
+                  <label for="admin_email" class="control-label">Email:</label>
+                  <input type="email" id="admin_email" name="admin_email" required="required" />
+
+                  <br>
+
                   <label for="admin_password" class="control-label">Password:</label>
                   <input type=password id="admin_password" name="admin_password" required="required" />
 

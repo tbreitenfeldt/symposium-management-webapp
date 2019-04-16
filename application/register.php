@@ -16,7 +16,7 @@ session_write_close();
   <link rel="stylesheet" href="css/login.css">
 
   <script src="js/conferenceAPIJs/databaseFunctions.js"></script>
-  <script src="js/userJs/conferenceRegistration.js"></script>
+  <script src="js/userJs/userAccountRegistration.js"></script>
   <script src="js/loginSystemJs/loginAJAX.js"></script>
 </head>
 

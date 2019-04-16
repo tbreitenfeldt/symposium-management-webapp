@@ -3,32 +3,38 @@
 *   Currently only being used with random conference id = 1
 */
 
-function startUserTable()
+/*
+function startUserTable(conferenceID)
 {
     valuesToSelect = ["*"];
 	tableNames = ["user_conference"];
 	attrs = ["conference_id"];
-	values = ["1001"];
+	values = [conferenceID];
 
 	getRecord(valuesToSelect,tableNames,attrs,values,gotUserConference,"json","false")
 }
+*/
 
-function gotUserConference(data)
+function startUserTable(conferenceID)
 {  
     // Now grab the events from the current schedule
 
     valuesToSelect = ["event_id"];
   	tableNames = ["user_schedule"];
     attrs = ["conference_id"];
-    values = [data[0].conference_id];
+    //values = [data[0].conference_id];
+    values = [conferenceID];
+    map = {"table_names": tableNames, "values_to_select": valuesToSelect, "attrs": attrs, "values": values, "genFlag": "flag"};
 
-  	getRecord(valuesToSelect,tableNames,attrs,values,gotEventRef,"json","false");
+    $.get("proxies/getProxy.php", map, gotEventRef, "json");
+  	//getRecord(valuesToSelect,tableNames,attrs,values,gotEventRef,"json","false");
 }
 
 function gotEventRef(data)
 {
     // IF schedule is empty, add something saying no events, 
     //if not empty find info on event and add to table
+
     console.log(data);
     if(data != null)
     {

@@ -9,7 +9,9 @@ function getFromConferenceAPI() {
 
         if ($tableName == "conference") {
             addSessionVariableToData("admin_id");
-        }//end if
+        } else if ($tableName == "user_conference") {
+            addSessionVariableToData("user_id");
+        }//end else if
     }//end if
 }//end function
 

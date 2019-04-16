@@ -8,7 +8,7 @@ if (isset($_POST["table_name"])){
 
 	if($tablecheck == "useraccounts" || $tablecheck ==  "adminaccounts") {
 	    exit("Access Restricted - 1");
-	} else if ($tablecheck == "userschedule"){
+	} else if ($tablecheck == "userschedule" || $tablecheck == "userconference"){
 	    for($i = 0; $i < sizeof($attrs); $i++){
 	        $curattrs = preg_replace("/[^a-zA-Z0-9]/", "", $attrs[$i]);
 	        if($curattrs == "userid"){

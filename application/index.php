@@ -35,8 +35,15 @@
         </ul>
     </div>
     
-    <header id="h1"></header>
+
+    <div id="conferenceChooser" style="display: none;">
+        <select id="conferenceChooserListbox"></select>
+        <input type="button" value="Register" id="conferenceRegisterButton" />
+    </div>
+
+	<div id="conferenceInformation" style="display: none;">
     <div id="MainConference">
+        <div id="conferenceNameHeader"></div>
         <table id="Conference">
             <thead>
                 <tr>
@@ -50,8 +57,8 @@
         </table>
     </div>
 
-    <header id="h2">My Schedule</header>
     <div id="UserConference">
+        <h2>My Schedule</h2>
         <table id="UsersCon">
             <thead>
                 <tr>
@@ -63,6 +70,7 @@
             <tbody>
             </tbody>
         </table>
+    </div>
     </div>
 
     <?php require_once "includes/footer.php"; ?>

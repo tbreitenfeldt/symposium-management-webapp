@@ -11,6 +11,8 @@ function getFromConferenceAPI() {
             addSessionVariableToData("admin_id");
         } else if ($tableName == "user_conference") {
             addSessionVariableToData("user_id");
+        }else if ($tableName == "user_schedule") {
+            addSessionVariableToData("user_id");
         }//end else if
     }//end if
 }//end function

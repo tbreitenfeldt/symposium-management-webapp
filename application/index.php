@@ -41,9 +41,8 @@
         <input type="button" value="Register" id="conferenceRegisterButton" />
     </div>
 
-	<div id="conferenceInformation" style="display: none;">
     <div id="MainConference">
-        <div id="conferenceNameHeader"></div>
+        <h2 id="conferenceNameHeader"></h2>
         <table id="Conference">
             <thead>
                 <tr>
@@ -67,7 +66,7 @@
                     <th>Time End</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="userConInfo">
             </tbody>
         </table>
     </div>

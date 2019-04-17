@@ -1,7 +1,3 @@
-/*
-* FROM USER ID, GET THE CONFERENCE ID, GET THE CONFERENCE INFORMATION
-*/
-
 $(document).ready(init);
 
 /*
@@ -66,15 +62,15 @@ function registerUserForConference(event)
 async function loadConference(conferenceID)
 {
 	await startMainTable(conferenceID);
-	await startUserTable();
+	await startUserTable(conferenceID);
 }
 
-function startMainTable()
+function startMainTable(id)
 {
 	valuesToSelect = ["*"];
 	tableNames = ["conference"];
-	attrs = [];
-	values = [];
+	attrs = ["conference_id"];
+	values = [id];
 
 	getRecord(valuesToSelect,tableNames,attrs,values,gotMainConference,"json","false")
 }
@@ -100,16 +96,12 @@ function gotMainConference(data)
   	tableNames = ["event"];
 	  attrs = ["conference_id"];
 	  values = [mainObj[0].id];
-    
-    console.log(mainObj[0].id);
 
   	getRecord(valuesToSelect,tableNames,attrs,values,gotEventData,"json","false");
 }
 
 function gotEventData(data)
 {
-    console.log(data);
-
     if(data != null)
     {
       var conferenceID = data[0].conference_id;
@@ -131,12 +123,10 @@ function onAddClick(eventID, conferenceID)
       values: [eventID,conferenceID]
     };
 
-    $.post("proxies/postProxy.php",map,successPost).fail(function(error) {document.write(error.responseText);});
+    $.post("proxies/postProxy.php",map,function(data) {successPost(conferenceID);}).fail(function(error) {document.write(error.responseText);});
 }
 
-function successPost(data)
+function successPost(conferenceID)
 {
-document.write(data);
-  console.log(data);
-  startUserTable();
+  startUserTable(conferenceID);
 }

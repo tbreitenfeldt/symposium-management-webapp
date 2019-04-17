@@ -1,9 +1,5 @@
 
 /*
-*   Currently only being used with random conference id = 1
-*/
-
-/*
 function startUserTable(conferenceID)
 {
     valuesToSelect = ["*"];
@@ -17,20 +13,18 @@ function startUserTable(conferenceID)
 
 function startUserTable(conferenceID)
 {  
-    // Now grab the events from the current schedule
+    let map = {
+      "table_names": ["user_schedule"],
+      "values_to_select": ["event_id"], 
+      "attrs": ["conference_id"], 
+      "values": [conferenceID],
+      "genFlag": "flag"};
 
-    valuesToSelect = ["event_id"];
-  	tableNames = ["user_schedule"];
-    attrs = ["conference_id"];
-    //values = [data[0].conference_id];
-    values = [conferenceID];
-    map = {"table_names": tableNames, "values_to_select": valuesToSelect, "attrs": attrs, "values": values, "genFlag": "flag"};
-
-    $.get("proxies/getProxy.php", map, gotEventRef, "json");
+    $.get("proxies/getProxy.php", map, function(data){gotEventRef(conferenceID, data);}, "json");
   	//getRecord(valuesToSelect,tableNames,attrs,values,gotEventRef,"json","false");
 }
 
-function gotEventRef(data)
+function gotEventRef(conferenceID, data)
 {
     // IF schedule is empty, add something saying no events, 
     //if not empty find info on event and add to table
@@ -42,9 +36,9 @@ function gotEventRef(data)
         {
             valuesToSelect = ["*"];
   	        tableNames = ["event"];
-	        attrs = ["event_id"];
+	          attrs = ["event_id"];
             values = [data[i].event_id]; 
-            getRecord(valuesToSelect,tableNames,attrs,values,gotEvent,"json","false");
+            getRecord(valuesToSelect,tableNames,attrs,values,function(data){gotEvent(conferenceID, data);},"json","false");
         }  
     }
     else
@@ -53,18 +47,18 @@ function gotEventRef(data)
     }
 }
 
-function gotEvent(data)
+function gotEvent(conferenceID, data)
 {   
     // Put information from event into table, along with delete button
     console.log(data);
     for(i = 0; i < data.length; i++)
     {
         var id = data[i].event_id;
-        $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick(" + id + ")\"> X </button></td></tr>").appendTo("#UsersCon tbody");
+        $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick(" + conferenceID + ","+ id + ")\"> X </button></td></tr>").appendTo("#UsersCon tbody");
     }
 }
 
-function onDeleteClick(data)
+function onDeleteClick(conferenceID, data)
 {
     var map =
     {
@@ -73,29 +67,16 @@ function onDeleteClick(data)
         id_value: [data]
     };
 
-    $.delete("proxies/deleteProxy.php",map,successDel);
+    $.delete("proxies/deleteProxy.php",map,function(data){console.log(data);successDel(conferenceID);});
 }
 
-function successDel(data)
+function successDel(conferenceID)
 {
-    console.log(data);
-    startUserTable();
+    clearTable();
+    startUserTable(conferenceID);
 }
 
-jQuery.each( [ "put", "delete" ], function( i, method ) {
-    jQuery[ method ] = function( url, data, callback, type ) {
-      if ( jQuery.isFunction( data ) ) {
-        type = type || callback;
-        callback = data;
-        data = undefined;
-      }
-   
-      return jQuery.ajax({
-        url: url,
-        type: method,
-        dataType: type,
-        data: data,
-        success: callback
-      });
-    };
-  });
+function clearTable()
+{
+  
+}

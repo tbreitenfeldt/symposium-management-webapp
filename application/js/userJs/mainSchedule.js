@@ -128,5 +128,5 @@ function onAddClick(eventID, conferenceID)
 
 function successPost(conferenceID)
 {
-  startUserTable(conferenceID);
+    startUserTable(conferenceID);
 }

@@ -1,4 +1,6 @@
 
+var myTable = new Array();
+
 function startUserTable(conferenceID)
 {  
     let map = {
@@ -16,14 +18,23 @@ function gotEvent(conferenceID, data)
     // Put information from event into table, along with delete button
     // IF schedule is empty, add something saying no events, 
     //if not empty find info on event and add to table
-    console.log(data);
 
+    console.log(data);
+    
     if(data != null)
     {
+        var table = document.getElementById("userConInfo");
+
         for(i = 0; i < data.length; i++)
         {
             var id = data[i].event_id;
-            $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick(this," + conferenceID + "," + id + ")\"> X </button></td></tr>").appendTo("#UsersCon tbody");
+            
+            if(!myTable.includes(id))
+		    {
+                myTable.push(id);
+                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick(this," + conferenceID + "," + id + ")\"> X </button></td></tr>").appendTo("#UsersCon tbody");
+           
+		    }
         } 
     }
     else
@@ -41,14 +52,15 @@ function onDeleteClick(event,conferenceID, eventID)
         id_value: [eventID]
     };
 
-    $.delete("proxies/deleteProxy.php",map,function(data){successDel(event);});
+    $.delete("proxies/deleteProxy.php",map,function(data){successDel(event,eventID);});
 }
 
-function successDel(event)
+function successDel(event, eventID)
 {
     let rowIndex = event.parentElement.parentElement.rowIndex -1;
     let table = document.getElementById("userConInfo");
     $(event.parentElement).children().off();
     table.deleteRow(rowIndex);
+    myTable.splice(eventID);
 }
 

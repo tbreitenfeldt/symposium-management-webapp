@@ -10,6 +10,7 @@ function startUserTable(conferenceID)
 	getRecord(valuesToSelect,tableNames,attrs,values,gotUserConference,"json","false")
 }
 */
+var myTable = new Array();
 
 function startUserTable(conferenceID)
 {  
@@ -50,10 +51,12 @@ function gotEventRef(conferenceID, data)
 function gotEvent(conferenceID, data)
 {   
     // Put information from event into table, along with delete button
+
     console.log(data);
     for(i = 0; i < data.length; i++)
     {
         var id = data[i].event_id;
+        myTable.push(id);
         $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick(" + conferenceID + ","+ id + ")\"> X </button></td></tr>").appendTo("#UsersCon tbody");
     }
 }
@@ -78,5 +81,10 @@ function successDel(conferenceID)
 
 function clearTable()
 {
-  
+    var parent = document.getElementById("userConInfo");
+
+    while(parent.firstChild)
+    {
+        parent.removeChild(parent.firstChild);
+    }
 }

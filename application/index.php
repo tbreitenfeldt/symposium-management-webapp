@@ -202,43 +202,42 @@
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
+    
 
-    <div id="content">
-        <div id="innerContent">
-            <div id="conference-table">
-              <header id="h1">Conference Schedule</header>
-                <div id="MainConference">
-                    <table id="Conference">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Time Start</th>
-                                <th>Time End</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+    <div id="conferenceChooser" style="display: none;">
+        <select id="conferenceChooserListbox"></select>
+        <input type="button" value="Register" id="conferenceRegisterButton" />
+    </div>
 
-            <div id="schedule-table">
-                <header id="h1">My Schedule</header>
-                <div id="UserConference">
-                    <table id="UsersCon">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Time Start</th>
-                                <th>Time End</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <div id="MainConference">
+        <h2 id="conferenceNameHeader"></h2>
+        <table id="Conference">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Time Start</th>
+                    <th>Time End</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="UserConference">
+        <h2>My Schedule</h2>
+        <table id="UsersCon">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Time Start</th>
+                    <th>Time End</th>
+                </tr>
+            </thead>
+            <tbody id="userConInfo">
+            </tbody>
+        </table>
+    </div>
     </div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->

@@ -21,8 +21,9 @@ session_write_close();
 </head>
 
 <body>
-
-  <header></header>
+  <header>
+    <h1>Register</h1>
+  </header>
 
   <main class="wrapper">
     <form id="userLogonForm" method="POST" action="../loginAPI/registerFunctions.php" type="json" class="form-horizontal">
@@ -36,6 +37,12 @@ session_write_close();
               <input type="text" class="form-control" id="admin_name" name="admin_name" required="required" placeholder="Name">
             </div>
           </div>
+
+          <label for="admin_email" class="control-label">Email:</label>
+          <input type="email" id="admin_email" name="admin_email" required="required" />
+
+
+
           <div class="form-group row">
             <label for="admin_password" class="col-sm-12 col-form-label">Password:</label>
             <div class="col-sm-12">
@@ -46,6 +53,7 @@ session_write_close();
               <label for="confirm_password" class="col-sm-12 col-form-label">Confirm Password:</label>
               <div class="col-sm-12">
                 <input type="password" class="form-control" id="confirm_password" name="confirm_password" required="required" placeholder="********">
+>>>>>>> 6fada676556c4c9f414eeadbfeeda16480424337
               </div>
             </div>
           </div>

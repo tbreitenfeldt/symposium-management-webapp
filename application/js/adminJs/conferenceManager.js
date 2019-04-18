@@ -94,7 +94,7 @@ function resetForm(event) {
 
 function setupAjaxForConferenceNames() {
     let map = {"table_names": ["conference"], "values_to_select": ["*"], "attrs": [""], "values": [""], "genFlag": "flag"};
-    $.get("../proxies/getProxy.php", map, initializeConferenceChooser, "json").fail(function(e) {document.write(e.responseText);} ).fail(catchEmptyValue);
+    $.get("../proxies/getProxy.php", map, initializeConferenceChooser, "json").fail(catchEmptyValue);
 }//end function
 
 
@@ -306,6 +306,7 @@ function populateFormData(controlsClassName, data) {
 function setupConferenceFormForInserting(event) {
     clearAllRegions();
     insertHeading2("Create Conference", "headingRegion1");
+    $("#confrenceForm").trigger("reset");
     $("#conferenceFormRegion").show();
     $("#inputConferenceSubmitButton").off();
     $("#inputConferenceSubmitButton").click(insertConference);
@@ -318,6 +319,7 @@ function setupConferenceFormForUpdating(event, data) {
 
     clearAllRegions();
     insertHeading2("Update Conference", "headingRegion1");
+    $("#conferenceForm").trigger("reset");
     populateFormData("conferenceControls", conference);
 
     $("#conferenceFormRegion").show();
@@ -410,6 +412,7 @@ function deleteConferenceAndEvents(data) {
 function setupEventFormForInserting(event, conferenceID, conferenceName) {
     clearAllRegions();
     insertHeading2("Create Event", "headingRegion1");
+    $("#eventForm").trigger("reset");
     $("#eventFormRegion").show();
     $("#inputEventSubmitButton").off();
     $("#inputEventSubmitButton").click(function(event) {insertConferenceEvent(event, conferenceID, conferenceName);} );
@@ -430,6 +433,7 @@ function setupEventFormForUpdating(event, conferenceEvents, conferenceName) {
     if (eventToEdit != null) {
         clearAllRegions();
         insertHeading2("Update Event", "headingRegion1");
+        $("#eventForm").trigger("reset");
         populateFormData("eventControls", eventToEdit);
 
         $("#eventFormRegion").show();
@@ -455,7 +459,7 @@ function insertConferenceEvent(event, conferenceID, conferenceName) {
 
 
 function checkIfEventNameExistsInConference(data, conferenceID, conferenceName) {
-    if (data == null) {
+    if (data == null || data.length == 0) {
         processEventInsertion(conferenceID, conferenceName);
     } else {
             alert("Plese choose a different  event name, Event names must be unique for each conference.");

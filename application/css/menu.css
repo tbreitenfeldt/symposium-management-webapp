@@ -1,11 +1,10 @@
-/*
-    DEMO STYLE
-*/
-
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
+    background-image: url(https://sites.ewu.edu/dss/files/2018/10/scott-webb-282338-unsplash.jpg);
+    font-family: Tahoma;
+    overflow-x:hidden;
 }
 
 p {
@@ -26,11 +25,11 @@ a:focus {
 
 .navbar {
     padding: 15px 10px;
-    background: #fff;
     border: none;
     border-radius: 0;
-    margin-bottom: 40px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    background: crimson!important;
+    margin-bottom:30px;
 }
 
 .navbar-btn {
@@ -64,7 +63,7 @@ a:focus {
     background: crimson;
     color: #fff;
     transition: all 0.3s;
-    overflow-y: scroll;
+    overflow-x: hidden !important;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
@@ -82,11 +81,6 @@ a:focus {
     -webkit-transition: all 0.3s;
     -o-transition: all 0.3ï¿¼    s;
     transition: all 0.3s;
-}
-
-#dismiss:hover {
-    background: #fff;
-    color: red;
 }
 
 .overlay {
@@ -150,9 +144,7 @@ a[data-toggle="collapse"] {
 
 ul ul a {
     font-size: 0.9em !important;
-    padding-left: 30px !important;
     background: crimson;
-    padding-right: 20px;
 }
 
 ul.CTAs {
@@ -252,6 +244,7 @@ a.menu-button:hover {
   padding: 10px;
   font-size: 1.1em;
   display: block;
+  font-size: 24px;
 }
 
 #rightSidebar ul li a:hover {
@@ -280,12 +273,6 @@ a[data-toggle="collapse"] {
   top: 50%;
   right: 20px;
   transform: translateY(-50%);
-}
-
-ul ul a {
-  font-size: 0.9em !important;
-  padding-left: 30px !important;
-  background: crimson;
 }
 
 ul.CTAs {
@@ -338,10 +325,6 @@ a.menu-button:hover {
   width:100%;
   position:fixed;
 }
-.navbar{
-  background: crimson!important;
-  margin-bottom:30px;
-}
 
 @media (max-width: 426px){
   #rightSidebar{
@@ -377,13 +360,41 @@ table{
 }
 }
 
-button{
-  border:1px solid gray;
-  border-radius:7%;
+
+/* ---------------------------------------------------
+    MISC
+----------------------------------------------------- */
+
+
+.close-menu{
+  background: #17a2b8;
+  color: #fff;
+  border-radius:0;
   font-size:0.875;
   word-wrap: break-word;
   width: 120px; /*only for IE8*/
   max-width: 100%;
+  width:100%;
+  border-width: 0px;
+}
+
+.close-menu:hover {
+  background: #fff;
+  color: red;
+}
+
+.layout-button{
+  background: #17a2b8;
+  border:none;
+  color: #fff;
+  margin-bottom:20px;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.layout-button:hover{
+  background:#fff;
+  color:red;
 }
 
 .col-lg-12{
@@ -397,10 +408,6 @@ button{
 
 .mCSB_container{
   height:100%;
-}
-
-body{
-background-image: url(https://sites.ewu.edu/dss/files/2018/10/scott-webb-282338-unsplash.jpg);
 }
 
 #innerContent{
@@ -437,16 +444,9 @@ h2{
   text-align: center;
 }
 
-body {
-	font-family: Tahoma;
-}
-
 .list-unstyled{
   margin-right: 0px;
-}
-
-li ul li{
-  padding-right: 20px;
+  font-size: 24px;
 }
 
 table, th, td {
@@ -455,4 +455,22 @@ table, th, td {
 
 table {
   border-collapse: collapse;
+}
+
+.dropdown-button{
+  padding: 10px;
+  padding: 10px;
+  font-size: 1.1em;
+  display: block;
+  color: white;
+  background: crimson;
+  border: none;
+  text-align: center;
+  width:100%;
+}
+
+.dropdown-button:hover{
+  background:white;
+  color:crimson;
+  transition: all 0.3s;
 }

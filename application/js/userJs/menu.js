@@ -1,45 +1,50 @@
 $(document).ready(function () {
+
+
+    //leftSideBar Methods
+
     $("#leftSidebar").mCustomScrollbar({
         theme: "minimal"
     });
 
     function removeLeftSideBar()
     {
-        $('#leftSidebar').removeClass('active');
+        var leftId = '#leftSidebar';
+        $(leftId).removeClass('active');
+        $(leftId)[0].setAttribute("hidden", true);
         $('.overlay').removeClass('active');
-        document.getElementById("content").style.paddingRight = "20px";    
+        document.getElementById("content").style.paddingRight = "20px";  
+        document.getElementById("leftSidebarCollapse").focus();
+        showUserMenu();  
     }
 
     $('#dismiss, .overlay').on('click',  removeLeftSideBar);
-
-    function togglePaddingRight()
-    {
-        if(document.getElementById("content").style.paddingRight == "20px")
-        {
-            document.getElementById("content").style.paddingRight = "260px";
-        }
-        else
-        {
-            document.getElementById("content").style.paddingRight = "20px";
-        }
-    }
 
     $('#leftSidebarCollapse').on('click', function () {
         if($('#leftSidebar').hasClass('active'))
         {
             removeLeftSideBar();
+            $('.overlay').removeClass('active');
             document.getElementById("content").style.paddingRight = "20px";
+            document.getElementById("leftSidebarCollapse").focus();
         }
+
         else
         {
-            removeRightSideBar();
-            $('#leftSidebar').toggleClass('active');
+            var leftId = '#leftSidebar';
+            $(leftId)[0].removeAttribute('hidden');
+            hideUserMenu();
+            $(leftId).toggleClass('active');
             document.getElementById("content").style.paddingRight = "260px";
             $('.overlay').toggleClass('active');
             $('.collapse.in').toggleClass('in');
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            document.getElementById("mCSB_1").focus();
         }
     });
+
+
+    //rightSideBar Methods
 
     $("#rightSidebar").mCustomScrollbar({
         theme: "minimal"
@@ -47,23 +52,33 @@ $(document).ready(function () {
 
     function removeRightSideBar()
     {
-        $('#rightSidebar').removeClass('active');
+
+        var rightId = '#rightSidebar';
+        $(rightId).removeClass('active');
+        $(rightId)[0].setAttribute("hidden", true);
         $('.overlay').removeClass('active');
         document.getElementById("content").style.paddingLeft = "20px";
+        document.getElementById("rightSidebarCollapse").focus();
+        showUserMenu();  
     }
 
-    $('#dismiss, .overlay').on('click', removeRightSideBar);
+    $('#rightDismiss, .overlay').on('click', removeRightSideBar);
 
     $('#rightSidebarCollapse').on('click', function () {
-        if($('#rightSidebar').hasClass('active'))
+        var rightId = '#rightSidebar';
+        if($(rightId).hasClass('active'))
         {
             removeRightSideBar();
             document.getElementById("content").style.paddingLeft = "20px";
+            document.getElementById("rightSidebarCollapse").focus();
+            showUserMenu();
         }
         else
         {
-            removeLeftSideBar();
-            $('#rightSidebar').toggleClass('active');
+            $(rightId)[0].removeAttribute('hidden');
+            hideUserMenu();
+            $(rightId).toggleClass('active');
+
             
             //https://stackoverflow.com/questions/16520186/how-to-detect-tablet-mobile-desktop-tv-using-javascript
             if (!isMobile())
@@ -73,11 +88,54 @@ $(document).ready(function () {
             $('.overlay').toggleClass('active');
             $('.collapse.in').toggleClass('in');
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            document.getElementById("mCSB_2").focus();
         }
     });
+
+    //Both Menu Functions
 
     function isMobile()
     {
         return navigator.userAgent.match("/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i");
     }
+
+    function hideUserMenu() //menu that is center of page with three buttons that call upon respective menus
+    {
+        var buttons = $("#user-menu").find("button");
+
+        for(var i = 0; i < buttons.length; i++)
+        {
+            element = buttons[i];
+            element.setAttribute("aria-hidden", true);
+            element.setAttribute("tabindex", -1);
+        }
+        //console.log("Turned off nav menu");
+    }
+
+    function showUserMenu()
+    {
+        var buttons = $("#user-menu").find("button");
+
+        for(var i = 0; i < buttons.length; i++)
+        {
+            element = buttons[i];
+            element.setAttribute("aria-hidden", false);
+            element.setAttribute("tabindex", 0);
+        }
+        //console.log("Turned on nav menu");
+    }
+
+    function isSideBarActive()
+    {
+        var rightId = '#rightSidebar', leftId = '#rightSidebar';
+        return $(rightId).hasClass('active') || $(leftId).hasClass('active');
+    }
+
+
+    //For Masking Autogenerated Divs
+
+    document.getElementById("mCSB_1").setAttribute("aria-label", "User Settings");
+    document.getElementById("mCSB_2").setAttribute("aria-label", "My Scheduler");
+
+
 });

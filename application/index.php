@@ -1,3 +1,17 @@
+<?php
+session_start();
+$_SESSION["user"] = "user";
+
+require_once "config.php";
+
+if (isset($_SESSION[LOGGEDIN_TOKEN_NAME]) && $_SESSION[LOGGEDIN_TOKEN_NAME]) {
+    header("location: " . LOGGEDIN_LANDING_PAGE_NAME);
+    exit;
+}//end if
+
+session_write_close();
+?>
+
 <!--NOTE Left and Right Menus are opposite of their variable names-->
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -29,24 +43,24 @@
         <div id= "user-menu" class="col-lg-12" aria-hidden="false">
             <div class="row">
                 <div class="col-xs-4">
-                    <button type="button" id="rightSidebarCollapse" class="btn btn-info" aria-label="" aria-hidden="false">
+                    <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false">
                         <span>Symposium<br/>Scheduler</span>
                         <br/>
-                        <i class="fa fa-calendar fa-6x"></i>
+                        <i class="fa fa-calendar fa-6x menu-item"></i>
                     </button>
                 </div>
                 <div class="col-xs-4">
-                    <button type="button" id="centerSidebarCollapse" class="btn btn-info" aria-label="" aria-hidden="false">
+                    <button type="button" id="centerSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false">
                         <span>Accesibility<br/>Settings</span>
                         <br/>
-                        <i class="fas fa-universal-access fa-6x"></i>
+                        <i class="fas fa-universal-access fa-6x menu-item"></i>
                     </button>
                 </div>
                 <div class="col-xs-4">
-                    <button type="button" id="leftSidebarCollapse" class="btn btn-info" aria-label="" aria-hidden="false">
+                    <button type="button" id="leftSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false">
                         <span>User<br/> Settings</span>
                         <br/>
-                        <i class="fa fa-user-circle fa-6x"></i>
+                        <i class="fa fa-user-circle fa-6x menu-item"></i>
                     </button>
                 </div>
             </div>
@@ -122,6 +136,65 @@
 
 
         <!-- END rightSideBar -->
+
+
+        <!-- centerSidebar  -->
+        <nav id="centerSidebar" hidden>
+            <div id="centerDismiss" >
+                <button href="" alt="close menu button" id="closeCenterMenu" class="close-menu" aria-label="Close User Settings"><i class="fas fa-arrow-right"></i> </button>
+            </div>
+
+
+            <div class="centerSidebar-header">
+                <h3>Accesibility Settings</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <button href="#potentialPageMenu25" data-toggle="collapse" class="dropdown-button" aria-label="Change Font Size">Font Size</button>
+                    <ul class="collapse list-unstyled" id="potentialPageMenu25">
+                        <li>
+                            <h3>Current Size: <span id="current-font-size">Default</span> </h3>
+                        </li>
+                        <li id="font-settings-li">
+                            <div class="row" style="display:inline-flex">
+                                <div class="col-xs-4">
+                                    <button  class="btn btn-primary btn-lg layout-button" id="decrease-font">-</button>
+                                </div>
+                                <div class="col-xs-4">
+                                    <button class="btn btn-primary btn-lg layout-button" id="reset-font">Reset Font</button>
+                                </div>
+                                <div class="col-xs-4">
+                                    <button  class="btn btn-primary btn-lg layout-button" id="increase-font">+</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <button href="#toggleDisplayDropDown" data-toggle="collapse" class="dropdown-button" aria-label="Change Display Color">Color Scheme</button>
+                    <ul class="collapse list-unstyled" id="toggleDisplayDropDown">
+                        <li><button id="color-scheme-default" class="btn btn-primary btn-lg layout-button button-fix">Default Color Scheme</button></li>
+                        <li><button id="color-scheme-b-o-w" class="btn btn-primary btn-lg layout-button button-fix">Gray Color Scheme</button></li>
+                        <li><button id="color-scheme-invert" class="btn btn-primary btn-lg layout-button button-fix">White on Black Scheme</button></li>
+                        <li><button class="btn btn-primary btn-lg layout-button button-fix">Black on White Scheme</button></li>
+                    </ul>
+                </li>
+            </ul>
+
+
+            <div class="container">
+                <div class="fl-page-footer-text fl-page-footer-text-2">
+                    <a class="logo" href="https://www.ewu.edu"><img src="https://sites.ewu.edu/dss/wp-content/themes/ewusites/images/footer-logo.png" alt="Eastern Washington University" aria-label="Eastern Washington Univerity"></a>
+                    <br/>
+                        509.359.6200
+                    <br/>
+                    <em>EWU expands opportunities for personal transformation through excellence in learning.</em>
+                </div>
+            </div>
+        </nav>
+        <!-- END centerSidebar  -->
+
 
 
         <!-- leftSidebar  -->

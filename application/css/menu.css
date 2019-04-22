@@ -616,6 +616,7 @@ table{
 #innerContent{
   background: white;
   padding: 20px;
+  height: -webkit-fill-available;
 }
 
 h2{
@@ -705,4 +706,3 @@ svg:not(:root).svg-inline--fa {
   width:auto;
   margin-left:0px;
 }
-

@@ -381,6 +381,18 @@ $(document).ready(function () {
     
     $('#color-scheme-b-o-w').on('click',  turnOnGrayStyle);
     $('#color-scheme-default').on('click',  turnOnColorDefault);
-    $('#color-scheme-invert').on('click',  invertColor);
+    $('#color-scheme-invert').on('click',  invertColor);   
+});
 
+
+$('#aboutCon').on("click", function()
+    {
+        $("#innerContent").empty();
+        $("#content").load("menuPhp/practice.php");
+    });
+
+$("#homeSubmenu2").on("click", function()
+{
+    $("#innerContent").empty();
+    $("#content").load("menuPhp/editSchedule.php");
 });

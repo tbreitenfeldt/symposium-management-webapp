@@ -11,8 +11,6 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
        
         <script src="js/conferenceAPIJs/databaseFunctions.js"></script>
-        <script src="js/userJs/mainSchedule.js"></script>
-        <script src="js/userJs/userSchedule.js"></script>
 
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -124,7 +122,7 @@
 
 
         <!-- END rightSideBar -->
- Z Zm                                                                                                                                                                                                                                                                                                                                                                                                 
+                                                                                                                                                                                                                                                                                                                                                                                                                        o0- 
 
         <!-- centerSidebar  -->
         <nav id="centerSidebar" hidden>
@@ -237,55 +235,3 @@
             </div>
         </nav>
         <!-- END leftSidebar  -->
-
-        <!-- content  -->
-        <div id="content">
-            <div id="innerContent">
-                <div id="conference-table">
-                <header id="conferenceNameHeader">Conference Schedule</header>
-                    <div id="MainConference">
-                        <table id="Conference">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Time Start</th>
-                                    <th>Time End</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div id="schedule-table" aria-hidden="false">
-                    <header id="h1" aria-hidden="false">My Schedule</header>
-                    <div id="UserConference" aria-hidden="false">
-                        <table id="UsersCon" aria-hidden="false">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Time Start</th>
-                                    <th>Time End</th>
-                                </tr>
-                            </thead>
-                            <tbody id="userConInfo">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END content  -->
-
-        <!-- jQuery Custom Scroller CDN -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-        <!-- Popper.JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-        <!-- Bootstrap JS -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-        
-
-        <script src="js/userJs/menu.js"></script>
-    </body>
-</html>

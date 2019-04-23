@@ -9,10 +9,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-       
-        <script src="js/conferenceAPIJs/databaseFunctions.js"></script>
-        <script src="js/userJs/mainSchedule.js"></script>
-        <script src="js/userJs/userSchedule.js"></script>
 
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -85,7 +81,7 @@
                     </ul>
                 </li>
                 <li>
-                <a href="#" aria-label="">About </a>
+                <a id="aboutCon" href="#" aria-label="">About </a>
                 </li>
                 <li>
                     <button href="#homeSubmenu3" data-toggle="collapse" class="dropdown-button" aria-label="Page Drop Down List">Pages</button>
@@ -187,10 +183,11 @@
 
         <!-- leftSidebar  -->
         <nav id="leftSidebar" hidden>
-            <div id="dismiss" >
+
+
+            <div id="dismiss">
                 <button href="" alt="close menu button" id="closeRightMenu" class="close-menu" aria-label="Close User Settings"><i class="fas fa-arrow-right"></i> </button>
             </div>
-
 
             <div class="leftSidebar-header">
                 <h3>User Settings</h3>
@@ -242,39 +239,7 @@
 
         <div id="content">
             <div id="innerContent">
-                <div id="conference-table">
-                <header id="conferenceNameHeader">Conference Schedule</header>
-                    <div id="MainConference">
-                        <table id="Conference">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Time Start</th>
-                                    <th>Time End</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div id="schedule-table" aria-hidden="true">
-                    <header id="h1" aria-hidden="true">My Schedule</header>
-                    <div id="UserConference" aria-hidden="true">
-                        <table id="UsersCon" aria-hidden="true">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Time Start</th>
-                                    <th>Time End</th>
-                                </tr>
-                            </thead>
-                            <tbody id="userConInfo">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <header><center> Welcome to our Conference!</center></header>
             </div>
         </div>
         <!-- END content  -->

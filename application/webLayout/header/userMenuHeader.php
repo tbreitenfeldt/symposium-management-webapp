@@ -57,8 +57,7 @@
         <!-- END Header -->
 
         <!-- rightSideBar -->
-
-        <nav id="rightSidebar" hidden aria-label="">
+        <nav id="rightSidebar" aria-label="">
             <div id="rightDismiss">
                 <button href="" alt="close menu button" id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="fas fa-arrow-left"></i> </button>
             </div>
@@ -122,7 +121,7 @@
 
 
         <!-- END rightSideBar -->
-                                                                                                                                                                                                                                                                                                                                                                                                                        o0- 
+                                                                                                                                                                                                                                                                                                                                                                                                                     
 
         <!-- centerSidebar  -->
         <nav id="centerSidebar" hidden>
@@ -140,7 +139,7 @@
                     <button href="#potentialPageMenu25" data-toggle="collapse" class="dropdown-button" aria-label="Change Font Size">Font Size</button>
                     <ul class="collapse list-unstyled" id="potentialPageMenu25">
                         <li>
-                            <h3 aria-live="polite"><span id="current-font-size">Default</span> </h3>
+                            <h3 aria-live="polite"><span id="current-font-size">Current Font Size: 1x</span> </h3>
                         </li>
                         <li id="font-settings-li">
                             <div class="row" style="display:inline-flex">
@@ -167,6 +166,9 @@
                     </ul>
                 </li>
             </ul>
+
+            <?$_SESSION['id'] = 12;?>
+
 
 
             <div class="container">
@@ -195,7 +197,7 @@
             </div>
 
             <ul class="list-unstyled components">
-                <h1 aria-label="">Welcome <?php echo htmlspecialchars($_SESSION["user_name"]); ?></h1>
+                <h1 aria-label="">Welcome <br><?php echo htmlspecialchars($_SESSION["user_name"]); ?></h1>
                 <li class="active">
                 <button href="#potentialPageMenu2" data-toggle="collapse" class="dropdown-button" aria-label="Neat Stuff...">Page</button>
                     <ul class="collapse list-unstyled" id="potentialPageMenu2">

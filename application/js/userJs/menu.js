@@ -111,7 +111,7 @@ function changeSize(element, style, multiplier){
 
 
 function setCurrentFontDisplay(){
-    var arr = new Array('-3x','-2x', 'Default', '2x', '3x', '4x');
+    var arr = new Array('-3x','-2x', '1x', '2x', '3x', '4x');
     //console.log($('#current-font-size')[0].innerHTML);
     $('#current-font-size')[0].innerHTML = "Current Font Size: " + arr[zoomedIn + 2];
 }
@@ -131,25 +131,21 @@ function removeGraystyle() {
     document.documentElement.style.removeProperty('-moz-filter', 'grayscale(100%)');
 }
 
-function invertColor(){
+function addInvertColor(){
     document.documentElement.style.setProperty('-webkit-filter', 'invert(.8)');
     document.documentElement.style.setProperty('filter', 'invert(.8)');
+    currentColorSetting = "Invert"
 }
 
-function toggleGraystyle() {
-    if(currentColorSetting == "Graystyle"){
-        removeGraystyle();
-    }
-    else{
-        addGraystyle();
-    }
-    //console.log(currentColorSetting);
+function removeInvertColor(){
+    document.documentElement.style.removeProperty('-webkit-filter', 'invert(.8)');
+    document.documentElement.style.removeProperty('filter', 'invert(.8)');
 }
-
 
 function turnOnGrayStyle(){
     if(currentColorSetting != "GrayStyle"){
-        toggleGraystyle();
+        removeCurrentColorSetting();
+        addGraystyle();
         currentColorSetting = "GrayStyle";
     }
     //console.log(currentColorSetting);
@@ -157,13 +153,29 @@ function turnOnGrayStyle(){
 
 function turnOnColorDefault(){
     if(currentColorSetting != "Default"){
-        removeGraystyle();
+        removeCurrentColorSetting();
         currentColorSetting = "Default";
     }
     //console.log(currentColorSetting);
 }
 
+function turnOnInverseStyle(){
+    if(currentColorSetting != "Inverse"){
+        removeCurrentColorSetting();
+        addInvertColor();
+        currentColorSetting = "Inverse";
+    }
+    //console.log(currentColorSetting);
+}
 
+function removeCurrentColorSetting(){
+    if(currentColorSetting == "Inverse"){
+        removeInvertColor();
+    }
+    else if(currentColorSetting == "GrayStyle"){
+        removeGraystyle();
+    }
+}
 
 
 
@@ -348,6 +360,7 @@ function main(){
         }
         else{
             $(rightId)[0].removeAttribute('hidden');
+            console.log($(rightId));
             hideUserMenu();
             $(rightId).toggleClass('active');
 
@@ -360,8 +373,10 @@ function main(){
             $('.collapse.in').toggleClass('in');
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
             console.log("IT WAS DONE")
-            $(".rightSidebar-header").focus();
+            console.log($(".rightSidebar-header")[0]);
         }
+        document.getElementById("rightSidebar").focus();
+
     });
 
 
@@ -375,9 +390,7 @@ function main(){
 
     $('#color-scheme-b-o-w').on('click',  turnOnGrayStyle);
     $('#color-scheme-default').on('click',  turnOnColorDefault);
-    $('#color-scheme-invert').on('click',  invertColor);
-
-
+    $('#color-scheme-invert').on('click',  turnOnInverseStyle);
 }
 
 $(document).ready(main())

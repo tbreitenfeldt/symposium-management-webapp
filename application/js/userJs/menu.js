@@ -414,3 +414,5 @@ $('#mySchedule').on("click", function()
         let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
 	  //  $.get("proxies/getProxy.php", map, showSchedule, "json");
     });
+
+main();

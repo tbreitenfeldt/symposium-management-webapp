@@ -1,8 +1,9 @@
 
-var myTable = new Array();
+var myTable;
 
 function startUserTable(conferenceID)
 {  
+    myTable = new Array();
     let map = {
       "table_names": ["user_schedule","event"],
       "values_to_select": ["*"], 

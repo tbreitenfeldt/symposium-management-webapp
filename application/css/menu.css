@@ -57,7 +57,7 @@ a:focus {
     SIDEBAR STYLE
 ----------------------------------------------------- */
 
-#leftSidebar {
+#leftSidebar, #rightSidebar, #centerSidebar {
     width: 250px;
     position: fixed;
     top: 0;
@@ -69,9 +69,12 @@ a:focus {
     transition: all 0.3s;
     overflow-x: hidden !important;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+    overflow-y: overlay;
 }
 
-#leftSidebar.active {
+#leftSidebar.active, 
+#rightSidebar.active,
+#centerSidebar.active {
     right: 0;
 }
 
@@ -103,33 +106,46 @@ a:focus {
     position: fixed;
 }
 
-#leftSidebar .leftSidebar-header {
+#leftSidebar .leftSidebar-header,
+#rightSidebar .rightSidebar-header,
+#centerSidebar .centerSidebar-header
+ {
     padding: 20px;
     background: crimson;
 }
 
-#leftSidebar ul.components {
+#leftSidebar ul.components,
+#rightSidebar ul.components,
+#centerSidebar .centerSidebar-header{
     padding: 20px 0;
     border-bottom: 1px crimson;
 }
 
-#leftSidebar ul p {
+#leftSidebar ul p,
+#rightSidebar ul p,
+#centerSidebar ul p{
     color: #fff;
     padding: 10px;
 }
 
-#leftSidebar ul li a {
+#leftSidebar ul li a,
+#rightSidebar ul li a,
+#centerSidebar ul li a{
     padding: 10px;
     font-size: 1.1em;
     display: block;
 }
 
-#leftSidebar ul li a:hover {
+#leftSidebar ul li a:hover,
+#rightSidebar ul li a:hover,
+#centerSidebar ul li a:hover{
     color: #bb1133;
     background: #fff;
 }
 
 #leftSidebar ul li.active>a,
+#rightSidebar ul li.active>a,
+#centerSidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: #fff;
     background: #bb1133;
@@ -177,260 +193,6 @@ a.menu-button:hover {
 
 
 /* ---------------------------------------------------
-    RightSIDEBAR STYLE
------------------------------------------------------ */
-
-#centerSidebar {
-  width: 250px;
-  position: fixed;
-  top: 0;
-  right: -250px;
-  height: 100vh;
-  z-index: 999;
-  background: crimson;
-  color: #fff;
-  transition: all 0.3s;
-  overflow-x: hidden !important;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
-}
-
-#centerSidebar.active {
-  right: 0;
-}
-
-#centerDismiss {
-  width: 100%;
-  text-align: center;
-  background: #17a2b8;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3ï¿¼    s;
-  transition: all 0.3s;
-}
-
-.centerOverlay {
-  display: none;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 998;
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
-}
-.centerOverlay.active {
-  display: block;
-  opacity: 1;
-}
-
-#centerSidebar .centerSidebar-header {
-  padding: 20px;
-  background: crimson;
-}
-
-#centerSidebar ul.components {
-  padding: 20px 0;
-  border-bottom: 1px crimson;
-}
-
-#centerSidebar ul p {
-  color: #fff;
-  padding: 10px;
-}
-
-#centerSidebar ul li a {
-  padding: 10px;
-  font-size: 1.1em;
-  display: block;
-}
-
-#centerSidebar ul li a:hover {
-  color: #bb1133;
-  background: #fff;
-}
-
-#centerSidebar ul li.active>a,
-a[aria-expanded="true"] {
-  color: #fff;
-  background: #bb1133;
-}
-
-a[data-toggle="collapse"] {
-  position: relative;
-}
-
-.dropdown-toggle::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-}
-
-ul ul a {
-  font-size: 0.9em !important;
-  background: crimson;
-}
-
-ul.CTAs {
-  padding: 20px;
-}
-
-ul.CTAs a {
-  text-align: center;
-  font-size: 0.9em !important;
-  display: block;
-  border-radius: 5px;
-  margin-bottom: 5px;
-}
-
-a.download {
-  background: #fff;
-  color: red;
-}
-
-a.menu-button,
-a.menu-button:hover {
-background: #fff;
-color: red;
-}
-
-/* ---------------------------------------------------
-    RightsideBar
------------------------------------------------------ */
-
-
-#rightSidebar {
-  width: 250px;
-  position: fixed;
-  top: 0;
-  left: -500px;
-  height: 100vh;
-  z-index: 999;
-  background: crimson;
-  color: #fff;
-  transition: all 0.3s;
-  overflow-y: auto;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
-}
-
-#rightSidebar.active {
-  left: 0;
-}
-
-#rightDismiss {
-  width: 100%;
-  text-align: center;
-  background: #17a2b8;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
-}
-
-#rightDismiss:hover {
-  color: #fff !important;
-  background-color: red;
-  opacity:1;
-}
-
-.rightOverlay {
-  display: none;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 998;
-  opacity: 0;
-  transition: all 0.5s ease-in-out;
-}
-.rightOverlay.active {
-  display: block;
-  opacity: 1;
-}
-
-#rightSidebar .rightSidebar-header {
-  padding: 20px;
-  background: crimson;
-}
-
-#rightSidebar ul.components {
-  border-bottom: 1px solid crimson;
-}
-
-#rightSidebar ul p {
-  color: white;
-  padding: 10px;
-}
-
-#rightSidebar ul li a {
-  padding: 10px;
-  font-size: 1.1em;
-  display: block;
-  font-size: 24px;
-}
-
-#rightSidebar ul li a:hover {
-  color: crimson;
-  background-color: white;
-}
-
-#rightSidebar ul li.active>a,
-a[aria-expanded="true"] {
-  color: #fff;
-  background:#bb1133;
-}
-
-#rightSidebar ul li.active>a:hover{
-  color: #bb1133;
-  background:#fff;
-}
-
-a[data-toggle="collapse"] {
-  position: relative;
-}
-
-.dropdown-toggle::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-}
-
-ul.CTAs {
-  padding: 20px;
-}
-
-ul.CTAs a {
-  text-align: center;
-  font-size: 0.9em !important;
-  display: block;
-  border-radius: 5px;
-  margin-bottom: 5px;
-}
-
-a.download {
-  background: #17a2b8;
-  color: #fff;
-}
-
-a.menu-button{
-  background: #17a2b8 !important;
-  color: #fff !important;
-}
-a.menu-button:hover {
-  background: #fff !important;
-  color: crimson !important;
-}
-
-
-
-/* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
 
@@ -472,30 +234,18 @@ a.menu-button:hover {
     padding-top: 170px;
 }
 
-  #rightSidebar{
+  #rightSidebar,
+  #leftSidebar,
+  #centerSidebar{
     height: 100%;
     width:100%;
     right:100%
   }
-  #leftSidebar{
-    width: 100%;
-    height:100%;
-    left: 100%;  
-  }
-  #centerSidebar{
-    width: 100%;
-    height:100%;
-    left: 100%;  
-  }
-  #rightSidebar.active {
-    left: 0;
-    padding-left: 0px;
-  }
-  #leftSidebar.active {
-    left: 0;
-  }
+
+  #rightSidebar.active,
+  #leftSidebar.active,
   #centerSidebar.active {
-    left: 0;
+    left:0;
   }
   ul{
     margin-right: 20px;
@@ -529,24 +279,20 @@ table{
     padding-top: 170px;
 }
 
-  #rightSidebar{
+  #rightSidebar, 
+  #leftSidebar,
+  #centerSidebar{
     height: 100%;
     width:100%;
     right:100%
   }
-  #leftSidebar{
-    width: 100%;
-    height:100%;
-    left: 100%;  
-  }
-  #rightSidebar.active {
-    left: 0;
-    padding-left: 0px;
-    width: 80%;
-  }
-  #leftSidebar.active {
+
+  #rightSidebar.active,
+  #leftSidebar.active,
+  #centerSidebar.active {
     left: 0;
   }
+
   ul{
     margin-right: 20px;
   }
@@ -705,4 +451,8 @@ svg:not(:root).svg-inline--fa {
 #font-settings-li button{
   width:auto;
   margin-left:0px;
+}
+
+.no-scroll{
+  overflow-y: hidden
 }

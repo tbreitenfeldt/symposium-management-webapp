@@ -1,15 +1,19 @@
 //leftSideBar Methods
 
-function removeLeftSideBar(){
-    var leftId = '#leftSidebar';
-    $(leftId).removeClass('active');
-    $(leftId)[0].setAttribute("hidden", true);
+function removeSideBar(barId, iconId){
+    $(barId).removeClass('active');
+    $(barId)[0].setAttribute("hidden", true);
     $('.overlay').removeClass('active');
+    toggleBodySidebar();
     document.getElementById("content").style.paddingRight = "20px";  
-    document.getElementById("leftSidebarCollapse").focus();
+    $(iconId).focus();
     $('.collapse').removeClass('show');
 
-    showUserMenu();  
+    showUserMenu(); 
+}
+
+function removeLeftSideBar(){
+    removeSideBar("#leftSidebar", "#leftSidebarCollapse");
 }
 
 
@@ -18,13 +22,7 @@ function removeLeftSideBar(){
 //centerSideBar Methods
 
 function removeCenterSideBar(){
-    var leftId = '#centerSidebar';
-    $(leftId).removeClass('active');
-    $(leftId)[0].setAttribute("hidden", true);
-    $('.overlay').removeClass('active');
-    document.getElementById("content").style.paddingRight = "20px";  
-    document.getElementById("centerSidebarCollapse").focus();
-    showUserMenu();  
+    removeSideBar("#centerSidebar", "#centerSidebarCollapse");
 }
 
 
@@ -33,14 +31,7 @@ function removeCenterSideBar(){
 //rightSideBar Methods
 
 function removeRightSideBar(){
-    var rightId = '#rightSidebar';
-    $(rightId).removeClass('active');
-    $(rightId)[0].setAttribute("hidden", true);
-    $('.overlay').removeClass('active');
-    document.getElementById("content").style.paddingLeft = "20px";
-    document.getElementById("rightSidebarCollapse").focus();
-    $('.collapse').removeClass('show');
-    showUserMenu();  
+    removeSideBar("#rightSidebar", "#rightSidebarCollapse");
 }
 
 
@@ -94,6 +85,10 @@ function resizeMainMenu(){//change button size same when default page opens
         var resizeMenu = arr.join(',');
         $(resizeMenu).css('width', highest);
     }
+}
+
+function toggleBodySidebar(){
+    $("body").toggleClass("no-scroll");
 }
 
 
@@ -300,7 +295,7 @@ function main(){
             else if($('#centerSidebar').hasClass('active')){
                 removeCenterSideBar();
                 $('.overlay').removeClass('active');
-                document.getElementById("content").style.paddingRight = "20px";
+                document.getElementById("content").style.paddingRight = "260px";
                 document.getElementById("centerSidebarCollapse").focus();
             }
         }
@@ -322,6 +317,7 @@ function main(){
             hideUserMenu();
             $(leftId).toggleClass('active');
             document.getElementById("content").style.paddingRight = "260px";
+            toggleBodySidebar();
             $('.overlay').toggleClass('active');
             $('.collapse.in').toggleClass('in');
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
@@ -343,6 +339,7 @@ function main(){
             hideUserMenu();
             $(leftId).toggleClass('active');
             document.getElementById("content").style.paddingRight = "260px";
+            toggleBodySidebar();
             $('.overlay').toggleClass('active');
             $('.collapse.in').toggleClass('in');
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
@@ -351,34 +348,47 @@ function main(){
     });
 
     $('#rightSidebarCollapse').on('click', function () {
-        var rightId = '#rightSidebar';
-        if($(rightId).hasClass('active')){
+        if($('#rightSidebar').hasClass('active')){
             removeRightSideBar();
-            document.getElementById("content").style.paddingLeft = "20px";
+            $('.overlay').removeClass('active');
+            document.getElementById("content").style.paddingRight = "20px";
             document.getElementById("rightSidebarCollapse").focus();
-            showUserMenu();
         }
-        else{
-            $(rightId)[0].removeAttribute('hidden');
-            console.log($(rightId));
-            hideUserMenu();
-            $(rightId).toggleClass('active');
 
-            
-            //https://stackoverflow.com/questions/16520186/how-to-detect-tablet-mobile-desktop-tv-using-javascript
-            if (!isMobile()){
-                document.getElementById("content").style.paddingLeft = "260px";
-            }
+        else{
+            var leftId = '#rightSidebar';
+            $(leftId)[0].removeAttribute('hidden');
+            hideUserMenu();
+            $(leftId).toggleClass('active');
+            document.getElementById("content").style.paddingRight = "260px";
+            toggleBodySidebar();
             $('.overlay').toggleClass('active');
             $('.collapse.in').toggleClass('in');
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-            console.log("IT WAS DONE")
-            console.log($(".rightSidebar-header")[0]);
+            document.getElementById("rightSidebar").focus();
         }
-        document.getElementById("rightSidebar").focus();
-
     });
 
+
+    //Edit mySchedule Button Click Event(s)
+
+    $('#aboutCon').on("click", function(){
+        $("#innerContent").empty();
+        $("#content").load("menuPhp/practice.php");
+    });
+
+    $("#editMySchedule").on("click", function(){
+        $("#innerContent").empty();
+        $("#content").load("menuPhp/editSchedule.php");
+        init();
+    });
+
+    $('#mySchedule').on("click", function(){
+        $("#innerContent").empty();
+        $("#content").load("menuPhp/showSchedule.php");
+        let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
+    //  $.get("proxies/getProxy.php", map, showSchedule, "json");
+    });
 
 
 
@@ -391,26 +401,29 @@ function main(){
     $('#color-scheme-b-o-w').on('click',  turnOnGrayStyle);
     $('#color-scheme-default').on('click',  turnOnColorDefault);
     $('#color-scheme-invert').on('click',  turnOnInverseStyle);
-}
 
 
-$('#aboutCon').on("click", function()
-    {
+    
+
+
+    //MyScheduler Click Event(s)
+    $('#aboutCon').on("click", function(){
         $("#innerContent").empty();
         $("#content").load("menuPhp/practice.php");
     });
 
-$("#editMySchedule").on("click", function()
-{
-    $("#innerContent").empty();
-    $("#content").load("menuPhp/editSchedule.php");
-    init();
-});
+    $("#editMySchedule").on("click", function(){
+        $("#innerContent").empty();
+        $("#content").load("menuPhp/editSchedule.php");
+        init();
+    });
 
-$('#mySchedule').on("click", function()
-    {
+    $('#mySchedule').on("click", function(){
         $("#innerContent").empty();
         $("#content").load("menuPhp/showSchedule.php");
         let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
-	  //  $.get("proxies/getProxy.php", map, showSchedule, "json");
+    //  $.get("proxies/getProxy.php", map, showSchedule, "json");
     });
+}
+
+main();

@@ -400,8 +400,17 @@ $('#aboutCon').on("click", function()
         $("#content").load("menuPhp/practice.php");
     });
 
-$("#homeSubmenu2").on("click", function()
+$("#editMySchedule").on("click", function()
 {
     $("#innerContent").empty();
     $("#content").load("menuPhp/editSchedule.php");
+    init();
 });
+
+$('#mySchedule').on("click", function()
+    {
+        $("#innerContent").empty();
+        $("#content").load("menuPhp/showSchedule.php");
+        let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
+	  //  $.get("proxies/getProxy.php", map, showSchedule, "json");
+    });

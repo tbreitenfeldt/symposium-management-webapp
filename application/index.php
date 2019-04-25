@@ -36,6 +36,7 @@
                         </table>
                     </div>
                 </div>
+                <header><center> Welcome to our Conference!</center></header>
             </div>
         </div>
         <!-- END content  -->

@@ -393,4 +393,15 @@ function main(){
     $('#color-scheme-invert').on('click',  turnOnInverseStyle);
 }
 
-$(document).ready(main())
+
+$('#aboutCon').on("click", function()
+    {
+        $("#innerContent").empty();
+        $("#content").load("menuPhp/practice.php");
+    });
+
+$("#homeSubmenu2").on("click", function()
+{
+    $("#innerContent").empty();
+    $("#content").load("menuPhp/editSchedule.php");
+});

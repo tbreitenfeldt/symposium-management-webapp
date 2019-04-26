@@ -17,6 +17,9 @@ function putToConferenceAPI() {
             addSessionVariableToData("user_id");
         } else if ($tableName == "user_conference") {
             addSessionVariableToData("user_id");
+        } else if ($tableName == "user_accounts") {
+            $_PUT["updateUserDataFlag"] = true;
+            addSessionVariableToData("user_id");
         }//end else if
     }//end if
 }//end function

@@ -47,6 +47,7 @@ session_write_close();
           <div class="form-check col-sm-10">
             <input type="submit" id="loginButton" value="Login" class="btn btn-primary btn-lg btn-block"/>
           </div>  
+          <a href="forgotPassword.php">Forgot Password</a>
         </fieldset>
 
         <p id="signUp">Don't have an account? <br/><a href="register.php">Sign up now</a>.</p>

@@ -14,8 +14,30 @@ if (isset($_PUT["table_name"])) {
 		//check if the put call includes a user_id or admin_id in it's target_name array
 		//check if the user_id or admin_id entered in target_name, target_value, attrs or values is the same as the session ids.
 		//PUT requests must include a user_id or admin_id in it's call and it must match up to the current session variable.
-		if($tablecheck == "useraccounts" || $tablecheck ==  "adminaccounts") {
-		    exit("Access Restricted - 1");
+		if($tablecheck == "useraccounts" || $tablecheck ==  "adminaccounts" ) {
+		    if(!(isset($_PUT["updateUserDataFlag"]))){
+		      exit("Access Restricted - 1");   
+		    }
+		    else {
+		        $access = 1;
+		        if($tablecheck == "useraccounts"){
+		            for($i = 0; $i < sizeof($attrs); $i++){
+		                $curattrs = preg_replace("/[^a-zA-Z0-9]/", "", $attrs[$i]);
+		                if(!($curattrs == "userid" || $curattrs == "username" || $curattrs == "userphone" || $curattrs == "useremail")){
+		                    $access = 0;
+		                }
+		            }
+		        }
+		        else if ($tablecheck == "adminaccounts"){
+		            for($i = 0; $i < sizeof($attrs); $i++){
+		                $curattrs = preg_replace("/[^a-zA-Z0-9]/", "", $attrs[$i]);
+		                if(!($curattrs == "adminid" || $curattrs == "adminname" || $curattrs == "adminemail")){
+		                    $access = 0;
+		                }
+		            }
+		        }
+		        if($access = 0) exit("Access Restricted - 11");
+		    }
 		} else if ($tablecheck == "userschedule"){
 		    for($i = 0; $i < sizeof($attrs); $i++){
 		        $curattrs = preg_replace("/[^a-zA-Z0-9]/", "", $attrs[$i]);

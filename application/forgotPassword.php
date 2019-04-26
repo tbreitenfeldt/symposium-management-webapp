@@ -21,11 +21,14 @@ session_write_close();
 <body>
 <main id="wrap">
   <form id="userForgotPasswordForm" method="POST" action="loginAPI/forgotPasswordFunctions.php" type="json">
+    <p>Note that the link  sent to your email will expire after a couple minutes, so please click on the link as soon as you recieve the email.<br>
+    If you did not recieve the email, please check your spam folder.</p>
+
     <fieldset>
       <legend>Forgot Password Form</legend>
       <div class="inputData">
         <label for="user_email">Email:</label>
-        <input type="email" id="user_email" name="user_email" placeholder="Email Address:"/>
+        <input type="email" id="user_email" name="user_email" placeholder="Email Address:" required="required" />
       </div>
       <input type="submit" id="forgotPasswordButton" value="Submit" />
     </fieldset>

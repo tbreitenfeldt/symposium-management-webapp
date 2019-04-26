@@ -32,4 +32,22 @@ define("LOGIN_ATTEMPT_LIMIT", 5);
 define("LOCKOUT_TIME", 180);
 
 define("LOGGEDIN_TOKEN_NAME", "user_loggedin");
+
+
+//forgot password token experation time
+//if a user requests a forgot password email, the token in the url will expire in x time, where x is this constant
+define("FORGOT_PASSWORD_TOKEN_EXPERATION_TIME", 360);
+
+//email settings
+define("EMAIL_SENDER_USERNAME", "timothybreitenfeldt@gmail.com");
+define("EMAIL_SENDER_PASSWORD", "seniorTeam4");
+define("EMAIL_SENDER_HOST", "smtp.gmail.com");
+define("EMAIL_SENDER_PORT", "465");
+
+define("EMAIL_SENDER_FROM", "timothybreitenfeldt@gmail.com");
+define("EMAIL_SENDER_NAME", "Disability Symposium Forgot Password");
+define("EMAIL_SENDER_REPLY_TO_EMAIL", "timothybreitenfeldt@gmail.com");
+define("EMAIL_SENDER_REPLY_TO_NAME", "No Reply");
+
+define("RESET_FORGOT_PASSWORD_URL", "http://www.pacificwesterndisabilitystudies.tk/resetForgotPassword.php");
 ?>

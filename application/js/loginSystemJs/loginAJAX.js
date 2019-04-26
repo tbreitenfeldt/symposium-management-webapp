@@ -34,6 +34,8 @@ function outputError(error) {
 function outputResult(data) {
     if ("error" in data) {
         $("#" + OUTPUT_REGION_ID).html("<p>" + data.error + "</p>");
+    } else if ("errorRedirection" in data) {
+            window.location = data.errorRedirection;
     } else if ("successMessage" in data) {
         $("#" + OUTPUT_REGION_ID).html("<p>" + data.successMessage + "</p>");
     } else if ("success" in data) {

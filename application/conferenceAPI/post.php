@@ -1,5 +1,4 @@
 <?php
-
 if (isset($_POST["table_name"])){
 	$table = $_POST["table_name"];
 	$tablecheck  = preg_replace("/[^a-zA-Z0-9]/", "", $table);
@@ -7,8 +6,8 @@ if (isset($_POST["table_name"])){
 	$values = (array)$_POST["values"];
 
 	if($tablecheck == "useraccounts" || $tablecheck ==  "adminaccounts") {
-	    exit("Access Restricted - 1");
-	} else if ($tablecheck == "userschedule" || $tablecheck == "userconference"){
+	    exit("Access Restricted");
+	} else if ($tablecheck == "userschedule"){
 	    for($i = 0; $i < sizeof($attrs); $i++){
 	        $curattrs = preg_replace("/[^a-zA-Z0-9]/", "", $attrs[$i]);
 	        if($curattrs == "userid"){
@@ -19,14 +18,14 @@ if (isset($_POST["table_name"])){
 	    $access = 0;
 	    for($i = 0; $i < sizeof($attrs); $i++){
 	        $curattrs = preg_replace("/[^a-zA-Z0-9]/", "", $attrs[$i]);
-	        if($curattrs == "adminid"){
-	            if($values[$i] != $aid) exit("Access Restricted (aid mismatch)");
-	            if($values[$i] == $aid) {
+	        if($attrs[$i] == "admin_id"){
+	            if($values[$i] != $_SESSION["admin_id"]) exit("Access Restricted (admin id mismatch)");
+	            if($values[$i] == $$_SESSION["admin_id"]) {
 	                $access = 1;
 	            }
 	        }
 	    }
-	    if($access < 1) exit("Access Restricted - 2");
+	    if($access < 1) exit("Access Restricted Here");
 	}
 
 	$sql = "INSERT INTO ".$table." ("; 

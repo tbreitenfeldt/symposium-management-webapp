@@ -2,10 +2,9 @@
 require_once "PHPMailer/PHPMailer.php";
 require_once "PHPMailer/SMTP.php";
 require_once "PHPMailer/Exception.php";
+
 require_once "../databaseUtil/pdoUtil.php";
 require_once "includeConfig.php";
-
-define("FORGOT_PASSWORD_TOKEN_EXPERATION_TIME", 360);
 
 
 function processForgotPasswordRequest() {
@@ -17,9 +16,8 @@ function processForgotPasswordRequest() {
         $pdoUtil = PDOUtil::createPDOUtil();
         $userInfo = checkIfUserExists($pdoUtil);
         $token = generateToken($pdoUtil, $userInfo["user_email"]);
-        $htmlLink = getResetPasswordLink($userInfo["user_email"], $token);
 
-        sendForgotPasswordEmail($userInfo["user_name"], $htmlLink);
+        sendForgotPasswordEmail($userInfo["user_name"], $userInfo["user_email"], $token);
 
         $status = "successMessage";
         $message = "Success! Please check your email for a link to reset your password.";
@@ -41,7 +39,7 @@ function processForgotPasswordRequest() {
 }//end function
 
 
-function checkIfUserExists($pdoUtil) {
+function checkIfUserExists(&$pdoUtil) {
     if ( !isset($_POST[USER_EMAIL_FIELD])) {
         throw new InvalidArgumentException("Please enter an email address.");
     }//end if
@@ -66,7 +64,7 @@ function checkIfUserExists($pdoUtil) {
 }//end function
 
 
-function generateToken($pdoUtil, $email) {
+function generateToken(&$pdoUtil, $email) {
     $token = md5(uniqid(rand(), true));
     $hashedToken = password_hash($token, PASSWORD_DEFAULT);
     $sql = "UPDATE user_accounts SET user_forgot_password_token=?, user_forgot_password_experation=? WHERE user_email=?;";
@@ -76,30 +74,42 @@ function generateToken($pdoUtil, $email) {
 }//end function
 
 
-function getResetPasswordLink($email, $token) {
-    return stripslashes('<a href="http://pacificwesterndisabilitystudies.tk/resetForgotPassword.php?token={$token}&email={$email}">Reset Password</a>');
-}//end function
-
-
-function sendForgotPasswordEmail($username, $link) {
+function sendForgotPasswordEmail($username, $userEmail, $token) {
     $mail = new PHPMailer\PHPMailer\PHPMailer();
-    $mail->CharSet =  "utf-8";
+    $mail->CharSet =  "text/html; charset=UTF-8;";
+    $mail->WordWrap = 80;
     $mail->IsSMTP();
     $mail->SMTPAuth = true;                  
-    $mail->Username = "timothybreitenfeldt@gmail.com";
-    $mail->Password = "seniorTeam4";
+    $mail->Username = EMAIL_SENDER_USERNAME;
+    $mail->Password = EMAIL_SENDER_PASSWORD;
     $mail->SMTPSecure = "ssl";  
-    $mail->Host = "smtp.gmail.com";
-    $mail->Port = "465";
-    $mail->From="timothybreitenfeldt@gmail.com";
-    $mail->Sender = "timothybreitenfeldt@gmail.com";
-    $mail->FromName="Disability Symposium Forgot Password";
-    $mail->AddReplyTo("timothybreitenfeldt@gmail.com", "No Reply");
-    $mail->AddAddress("timothyjb310@gmail.com", 'Timothy');
+    $mail->Host = EMAIL_SENDER_HOST;
+    $mail->Port = EMAIL_SENDER_PORT;
+    $mail->From = EMAIL_SENDER_FROM;
+    $mail->Sender = EMAIL_SENDER_FROM;
+    $mail->FromName = EMAIL_SENDER_NAME;
+    $mail->AddReplyTo(EMAIL_SENDER_REPLY_TO_EMAIL, EMAIL_SENDER_REPLY_TO_NAME);
+    $mail->AddAddress($userEmail, $username);
     $mail->Subject  =  "Reset Password";
     $mail->IsHTML(true);
-    $mail->Body    ="To reset your password for the username<br>{$username}<br>Click on the link below.<br><br>{$link}<br><br>" .
-            "This is an automated email, please do not respond.<br>";
+
+    $mail->Body    = 
+            "<!doctype html>" .
+            "<html>" .
+            "<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /></head>" .
+            "<body>" .
+            "<p>To reset your password for the username " . $username . ".<br><br>Click on the link below, or copy and paste the URL into your browser.<br><br>" .
+            "<a href=\"" . RESET_FORGOT_PASSWORD_URL. "?token=" . $token . "&email=" . $userEmail . "\">" .
+            htmlspecialchars(RESET_FORGOT_PASSWORD_URL . "?token=" . $token . "&email=" . $userEmail) .
+            "</a></p>" .
+            "<p>This is an automated email, please do not respond.</p>" .
+            "</body>" .
+            "</html>";
+
+    $mail->AltBody =
+            "To reset your password for the username " . $username . ".\n\nClick on the link below.\n\n" .
+            htmlspecialchars("www.pacificwesterndisabilitystudies.tk/resetForgotPassword.php?token=" . $token . "&email=" . $userEmail) .
+            "\n\nThis is an automated email, please do not respond.";
 
     if( !$mail->Send()) {
         throw new InvalidArgumentException("Mail Error - >" . $mail->ErrorInfo);

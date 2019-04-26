@@ -28,7 +28,7 @@ function login() {
             $status = "success";
             $message = $_SESSION["pageToAccess"];
         } else {
-            throw new InvalidArgumentException("hello, There was a problem Processing your request, please try again.");
+            throw new InvalidArgumentException("There was a problem Processing your request, please try again.");
         }//end else
     } catch(InvalidArgumentException $iae) {
         $status = "error";
@@ -59,7 +59,7 @@ function loginUser(&$pdoUtil, $username, $password) {
 
     $results = $pdoUtil->query($sql, [$username]);
 
-    if (sizeof($results) == 0) {
+    if (sizeof($results) != 1) {
         throw new InvalidArgumentException("Invalid username or password.");
     }//end if
 
@@ -120,8 +120,7 @@ function getSQLSelectForAllFields() {
 }//end function 
 
 
-if (isset($_POST[USERNAME_FIELD]) and isset($_POST[USER_PASSWORD_FIELD])) {
+if (isset($_POST[USERNAME_FIELD]) && isset($_POST[USER_PASSWORD_FIELD])) {
     login();
 }//end if
-
 ?>

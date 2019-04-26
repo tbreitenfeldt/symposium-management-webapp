@@ -20,7 +20,6 @@ function register() {
             $c = "constant";
             $sql = "SELECT {$c('USER_ID_FIELD')} FROM {$c('USER_TABLE_NAME')} WHERE {$c('USERNAME_FIELD')}=?;";
             $results = $pdoUtil->query($sql, [$username]);
-//die(var_dump($results) . "<br>" . $sql);
             if (sizeof($results) != 0) {
                 throw new InvalidArgumentException("that username has already been chosen, please choose another username.");
             }//end if

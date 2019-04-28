@@ -27,7 +27,7 @@ require_once "authenticateUser.php";
 </header>
 
 <main>
-  <form id="userSettingsForm">
+  <form id="userSettingsForm" method="put" method="put">
     <legend>Change User Information</legend>
     <label for="updateUsernameField">User Name</label>
     <input type="text" id="updateUsernameField" name="updateUsernameField" value="<?php ECHO $_SESSION["user_name"]; ?>" required="required" />

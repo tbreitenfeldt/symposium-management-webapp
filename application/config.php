@@ -1,4 +1,8 @@
 <?php
+
+//These constants  reflect the column names in your user table
+//These collumn names  will be used in SQL queries to read, write, and update usernames and  passwords
+//You have to include all of these columns or this system will not work correctly  
 define("USER_TABLE_NAME", "user_accounts");
 define("USER_ID_FIELD", "user_id");
 define("USERNAME_FIELD", "user_name");
@@ -6,6 +10,9 @@ define("USER_PASSWORD_FIELD", "user_password");
 define("USER_EMAIL_FIELD", "user_email");
 define("FAILED_LOGIN_COUNT_FIELD", "user_failed_login_count");
 define("FIRST_FAILED_LOGIN_FIELD", "user_first_failed_login");
+define("FORGOT_PASSWORD_TOKEN_FIELD", "user_forgot_password_token");
+define("FORGOT_PASSWORD_EXPERATION_FIELD", "user_forgot_password_experation");
+
 
 //The property for the name attribute  for the confirm password on the registration page 
 define("USER_CONFIRM_PASSWORD", "confirm_password");
@@ -33,7 +40,6 @@ define("LOCKOUT_TIME", 180);
 
 define("LOGGEDIN_TOKEN_NAME", "user_loggedin");
 
-
 //forgot password token experation time
 //if a user requests a forgot password email, the token in the url will expire in x time, where x is this constant
 define("FORGOT_PASSWORD_TOKEN_EXPERATION_TIME", 360);
@@ -50,4 +56,6 @@ define("EMAIL_SENDER_REPLY_TO_EMAIL", "timothybreitenfeldt@gmail.com");
 define("EMAIL_SENDER_REPLY_TO_NAME", "No Reply");
 
 define("RESET_FORGOT_PASSWORD_URL", "http://www.pacificwesterndisabilitystudies.tk/resetForgotPassword.php");
+
+
 ?>

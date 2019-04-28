@@ -15,9 +15,9 @@ function processForgotPasswordRequest() {
     try {
         $pdoUtil = PDOUtil::createPDOUtil();
         $userInfo = checkIfUserExists($pdoUtil);
-        $token = generateToken($pdoUtil, $userInfo["user_email"]);
+        $token = generateToken($pdoUtil, $userInfo[USER_EMAIL_FIELD]);
 
-        sendForgotPasswordEmail($userInfo["user_name"], $userInfo["user_email"], $token);
+        sendForgotPasswordEmail($userInfo[USERNAME_FIELD], $userInfo[USER_EMAIL_FIELD], $token);
 
         $status = "successMessage";
         $message = "Success! Please check your email for a link to reset your password.";
@@ -46,6 +46,8 @@ function checkIfUserExists(&$pdoUtil) {
 
     $email = trim($_POST[USER_EMAIL_FIELD]);
     $results = [];
+    $c = "constant";
+    $sql = "SELECT {$c('USERNAME_FIELD')}, {$c('USER_EMAIL_FIELD')} FROM {$c('USER_TABLE_NAME')} WHERE {$c('USER_EMAIL_FIELD')}=?";
 
     if (empty($_POST[USER_EMAIL_FIELD])) {
         throw new InvalidArgumentException("Please enter an email address.");
@@ -54,7 +56,7 @@ function checkIfUserExists(&$pdoUtil) {
         throw new InvalidArgumentException("Invalid email address.");
     }//end if
 
-    $results = $pdoUtil->query("SELECT user_name, user_email FROM user_accounts WHERE user_email=?", [$email]);
+    $results = $pdoUtil->query($sql, [$email]);
 
     if (sizeof($results) != 1) {
         throw new InvalidArgumentException("Invalid email address.");
@@ -67,8 +69,11 @@ function checkIfUserExists(&$pdoUtil) {
 function generateToken(&$pdoUtil, $email) {
     $token = md5(uniqid(rand(), true));
     $hashedToken = password_hash($token, PASSWORD_DEFAULT);
-    $sql = "UPDATE user_accounts SET user_forgot_password_token=?, user_forgot_password_experation=? WHERE user_email=?;";
     $experationTime = time() + FORGOT_PASSWORD_TOKEN_EXPERATION_TIME;
+    $c = "constant";
+    $sql = "UPDATE {$c('USER_TABLE_NAME')} SET {$c('FORGOT_PASSWORD_TOKEN_FIELD')}=?, {$c('FORGOT_PASSWORD_EXPERATION_FIELD')}=? " .
+            "WHERE {$c('USER_EMAIL_FIELD')}=?;";
+
     $pdoUtil->query($sql, [$hashedToken, $experationTime, $email]);
     return $token;
 }//end function
@@ -76,7 +81,7 @@ function generateToken(&$pdoUtil, $email) {
 
 function sendForgotPasswordEmail($username, $userEmail, $token) {
     $mail = new PHPMailer\PHPMailer\PHPMailer();
-    $mail->CharSet =  "text/html; charset=UTF-8;";
+    $mail->CharSet = "text/html; charset=UTF-8;";
     $mail->WordWrap = 80;
     $mail->IsSMTP();
     $mail->SMTPAuth = true;                  

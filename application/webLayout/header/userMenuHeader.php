@@ -9,8 +9,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-       
         <script src="js/conferenceAPIJs/databaseFunctions.js"></script>
+        <script src="js/userJs/mainSchedule.js"></script>
+        <script src="js/userJs/userSchedule.js"></script>
 
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -65,38 +66,17 @@
             <div aria-label="" class="rightSidebar-header">
                 <h3>My Scheduler</h3>
             </div>
+           
             <ul class="list-unstyled components" aria-label="Menu Items">
                 <p id="symposium-title" alt="Title">Pacific Northwest Disability Symposium 2019</p>
                 <li>
-                    <button href="#homeSubmenu2" data-toggle="collapse" class="dropdown-button" aria-label="Home Drop Down List"> Home</button>
-                    <ul class="collapse list-unstyled" id="homeSubmenu2">
-                        <li>
-                            <a href="#" aria-label="">Home 1</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="">Home 3</a>
-                        </li>
-                    </ul>
+                    <a id="mySchedule" href="#" aria-label="">My Schedule</a>
                 </li>
                 <li>
-                <a href="#" aria-label="">About </a>
+                    <a id="editMySchedule" href="#" aria-label="">Edit My Schedule</a>
                 </li>
                 <li>
-                    <button href="#homeSubmenu3" data-toggle="collapse" class="dropdown-button" aria-label="Page Drop Down List">Pages</button>
-                    <ul class="collapse list-unstyled" id="homeSubmenu3">
-                        <li>
-                            <a href="#" aria-label="">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="">Page 3</a>
-                        </li>
-                    </ul>
+                <a  id="aboutCon"href="#" aria-label="">About </a>
                 </li>
                 <li>
                     <a href="#" aria-label="Contact Info">Contact Information</a>
@@ -198,22 +178,8 @@
 
             <ul class="list-unstyled components">
                 <h1 aria-label="">Welcome <br><?php echo htmlspecialchars($_SESSION["user_name"]); ?></h1>
-                <li class="active">
-                <button href="#potentialPageMenu2" data-toggle="collapse" class="dropdown-button" aria-label="Neat Stuff...">Page</button>
-                    <ul class="collapse list-unstyled" id="potentialPageMenu2">
-                        <li>
-                            <a href="#" aria-label="">Potential Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="">Potential Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="">Potential Page 3</a>
-                        </li>
-                    </ul>
-                </li>
                 <li>
-                    <a href="#" aria-label="">About </a>
+                    <a href="#" aria-label="">User Information</a>
                 </li>
                 <li>
                     <a href="#" aria-label="Contact Info">Contact Information</a>

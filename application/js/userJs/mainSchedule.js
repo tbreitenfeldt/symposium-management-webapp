@@ -1,13 +1,3 @@
-//$(document).ready(init);
-
-/*
-async function init () 
-{
-  // Get the id and Name of the conference
-  await startMainTable();
-  await startUserTable();
-}
-*/
 
 function init ()
 {
@@ -62,7 +52,7 @@ function registerUserForConference(event)
 async function loadConference(conferenceID)
 {
 	await startMainTable(conferenceID);
-	await startUserTable(conferenceID);
+	await startUserTable(conferenceID,"");
 }
 
 function startMainTable(id)

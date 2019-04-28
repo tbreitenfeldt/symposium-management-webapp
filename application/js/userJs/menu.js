@@ -360,7 +360,7 @@ function main(){
         }
         else{
             $(rightId)[0].removeAttribute('hidden');
-            console.log($(rightId));
+            //console.log($(rightId));
             hideUserMenu();
             $(rightId).toggleClass('active');
 
@@ -372,8 +372,8 @@ function main(){
             $('.overlay').toggleClass('active');
             $('.collapse.in').toggleClass('in');
             $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-            console.log("IT WAS DONE")
-            console.log($(".rightSidebar-header")[0]);
+            //console.log("IT WAS DONE")
+            //console.log($(".rightSidebar-header")[0]);
         }
         document.getElementById("rightSidebar").focus();
 
@@ -412,7 +412,7 @@ $('#mySchedule').on("click", function()
         $("#innerContent").empty();
         $("#content").load("menuPhp/showSchedule.php");
         let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
-	  //  $.get("proxies/getProxy.php", map, showSchedule, "json");
+	    $.get("proxies/getProxy.php", map, function(data){console.log("gothere");startUserTable(data,"show");}, "json");
     });
 
 main();

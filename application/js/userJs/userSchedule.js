@@ -1,8 +1,12 @@
 
-var myTable = new Array();
-
+var myTable;
 function startUserTable(conferenceID, showSched)
 {  
+    if(showSched == 0)
+    {
+        myTable = new Array();
+    }
+    
     let map = {
       "table_names": ["user_schedule","event"],
       "values_to_select": ["*"], 
@@ -10,12 +14,11 @@ function startUserTable(conferenceID, showSched)
       "values": [conferenceID],
       "genFlag": "flag"};
 
-    $.get("proxies/getProxy.php", map, function(data)
+    $.get("proxies/getProxy.php",map,function(data)
     {
-        console.log(showSched);
-        if(showSched)
+        
+        if(showSched == 1)
         {
-            console.log(showSched);
             showSchedule(conferenceID, data);
         }
         else
@@ -32,7 +35,6 @@ function showSchedule(conferenceID, data)
     // IF schedule is empty, add something saying no events, 
     //if not empty find info on event and add to table
 
-    console.log(data);
     if(data != null)
     {
         for(i = 0; i < data.length; i++)

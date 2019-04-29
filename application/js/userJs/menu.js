@@ -413,7 +413,7 @@ $('#mySchedule').on("click", function()
         $("#innerContent").empty();
         $("#content").load("menuPhp/showSchedule.php");
         let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
-	    $.get("proxies/getProxy.php", map, function(data){console.log(data);startUserTable(data, true);}, "json");
+	    $.get("proxies/getProxy.php", map,function(data){startUserTable(data[0].conference_id, true);}, "json");
     });
 
 $("#websiteLink").on("click", function()

@@ -86,7 +86,7 @@
                 </li>
             </ul>
 
-        <button type="button" href="#" class="btn btn-primary btn-lg layout-button" aria-label="Download Articles From Symposium">View Articles</button>
+        <button id="websiteLink" type="button" href="#" class="btn btn-primary btn-lg layout-button" aria-label="Download Articles From Symposium">View Articles</button>
 
         <div class="container" style="outline:0">
             <div class="fl-page-footer-text fl-page-footer-text-2" aria-label="Eastern Washington University">

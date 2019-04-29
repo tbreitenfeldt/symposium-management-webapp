@@ -120,3 +120,25 @@ function successPost(conferenceID)
 {
     startUserTable(conferenceID);
 }
+
+function getConferenceInformation()
+{
+		let map = {"table_names": ["user_conference","conference"], "values_to_select": ["*"], "attrs": [""], "values": [""], "genFlag": "flag"};
+		$.get("proxies/getProxy.php",map,showConferenceDetails, "json");
+}
+
+function showConferenceDetails(data)
+{
+	
+	let conference = 
+		{
+			name: data.conference_name,
+			startDate: data.conference_startdate,
+			endDate: data.conference_enddate,
+			detail: data.conference_facilitydesc,
+			email: data.conference_contactemail,
+			phone: data.conference_contactphone
+		};
+
+		$("#description").innerHTML = conference.detail;
+}

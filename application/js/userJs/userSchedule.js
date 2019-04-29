@@ -1,8 +1,8 @@
 
 var myTable = new Array();
 
-function startUserTable(conferenceID, functionality)
-{
+function startUserTable(conferenceID, showSched)
+{  
     let map = {
       "table_names": ["user_schedule","event"],
       "values_to_select": ["*"], 
@@ -11,57 +11,52 @@ function startUserTable(conferenceID, functionality)
       "genFlag": "flag"};
 
     $.get("proxies/getProxy.php", map, function(data)
+    {
+        console.log(showSched);
+        if(showSched)
         {
-            if(functionality == "show")
-            {
-                gotShowEvent(conferenceID, data);
-                console.log("got here");
-            }
-            else 
-            {
-                console.log("why here");
-                gotEditEvent(conferenceID, data);
-            }
-        }, "json");
+            console.log(showSched);
+            showSchedule(conferenceID, data);
+        }
+        else
+        {
+            gotEvent(conferenceID, data);
+        }
+       
+    }, "json");
 }
 
-function gotShowEvent(conferenceID, data)
-{
-    console.log("got Here");
-    myTable = new Array();
-
-    if(data != null)
-    {
-        var table = document.getElementById("scheduleInfo");
-
-        for(i = 0; i < data.length; i++)
-        {
-            var id = data[i].event_id;
-            
-            if(!myTable.includes(id))
-		    {
-                myTable.push(id);
-                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td></tr>").appendTo("#mySchedule tbody");
-           
-		    }
-        } 
-    }
-    else
-    {
-        $("<tr><td>No Events Here</td></tr>").appendTo("#mySchedule tbody");
-    }
-}
-
-function gotEditEvent(conferenceID, data)
+function showSchedule(conferenceID, data)
 {   
     // Put information from event into table, along with delete button
     // IF schedule is empty, add something saying no events, 
     //if not empty find info on event and add to table
 
+    console.log(data);
+    if(data != null)
+    {
+        for(i = 0; i < data.length; i++)
+        {
+            var id = data[i].event_id;
+
+                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td></tr>").appendTo("#schedInfo");
+        }
+    }
+    else
+    {
+        $("<tr><td>No Events Here</td></tr>").appendTo("#schedInfo");
+    }
+}
+
+function gotEvent(conferenceID, data)
+{   
+    // Put information from event into table, along with delete button
+    // IF schedule is empty, add something saying no events, 
+    //if not empty find info on event and add to table
 
     if(data != null)
     {
-        var table = document.getElementById("userConInfo");
+        var table = $("#userConInfo");
 
         for(i = 0; i < data.length; i++)
         {
@@ -70,18 +65,17 @@ function gotEditEvent(conferenceID, data)
             if(!myTable.includes(id))
 		    {
                 myTable.push(id);
-                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick(this," + id + ")\"> Delete Event </button></td></tr>").appendTo("#UsersCon tbody");
-           
+                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick(this," + conferenceID + "," + id + ")\"> X </button></td></tr>").appendTo("#UsersCon tbody");
 		    }
-        } 
+        }
     }
     else
     {
-        $("<tr><td>No Events Here</td></tr>").appendTo("#UsersCon tbody");
+        $("<tr><td>No Events Here</td></tr>").appendTo("#userConInfo");
     }
 }
 
-function onDeleteClick(event,eventID)
+function onDeleteClick(event,conferenceID, eventID)
 {
     var map =
     {
@@ -100,5 +94,11 @@ function successDel(event, eventID)
     $(event.parentElement).children().off();
     table.deleteRow(rowIndex);
     myTable.splice(eventID);
+
+    if(myTable.length == 0)
+    {
+        $("<tr><td>No Events Here</td></tr>").appendTo("#userConInfo");
+    }
 }
+
 

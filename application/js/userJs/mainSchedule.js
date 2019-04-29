@@ -52,7 +52,7 @@ function registerUserForConference(event)
 async function loadConference(conferenceID)
 {
 	await startMainTable(conferenceID);
-	await startUserTable(conferenceID,"");
+	await startUserTable(conferenceID,false);
 }
 
 function startMainTable(id)
@@ -129,16 +129,17 @@ function getConferenceInformation()
 
 function showConferenceDetails(data)
 {
-	
 	let conference = 
 		{
-			name: data.conference_name,
-			startDate: data.conference_startdate,
-			endDate: data.conference_enddate,
-			detail: data.conference_facilitydesc,
-			email: data.conference_contactemail,
-			phone: data.conference_contactphone
+			name: data[0].conference_name,
+			startDate: data[0].conference_startdate,
+			endDate: data[0].conference_enddate,
+			detail: data[0].conference_facilitydesc,
+			email: data[0].conference_contactemail,
+			phone: data[0].conference_contactphone
 		};
 
-		$("#description").innerHTML = conference.detail;
+		$("#description").html(conference.startDate + " to " + conference.endDate +"<br>" + conference.detail);
+		$("#location").html(conference.name);
+		$("#contact").html("&nbsp&nbsp&nbsp&nbspEmail: " + conference.email + "<br>&nbsp&nbsp&nbsp&nbspPhone: " + conference.phone + "");
 }

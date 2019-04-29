@@ -397,7 +397,7 @@ function main(){
 $('#aboutCon').on("click", function()
     {
         $("#innerContent").empty();
-        $("#content").load("menuPhp/practice.php");
+        $("#content").load("menuPhp/aboutConference.php");
         getConferenceInformation();
     });
 
@@ -413,7 +413,7 @@ $('#mySchedule').on("click", function()
         $("#innerContent").empty();
         $("#content").load("menuPhp/showSchedule.php");
         let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
-	    $.get("proxies/getProxy.php", map, function(data){console.log("gothere");startUserTable(data,"show");}, "json");
+	    $.get("proxies/getProxy.php", map, function(data){console.log(data);startUserTable(data, true);}, "json");
     });
 
 $("#websiteLink").on("click", function()

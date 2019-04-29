@@ -6,9 +6,9 @@
             <center><p id="description"></p></center>
 
             <header> Location: </header>
-            <p id="location"></p>
+            <p id="location" ></p>
             
             <header> Contact us: </header>
-            <p id="contact"></p>
+            <p id="contact" ></p>
         </div>
     </div>

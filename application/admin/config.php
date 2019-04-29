@@ -1,10 +1,17 @@
 <?php
+
+//These constants  reflect the column names in your user table
+//These collumn names  will be used in SQL queries to read, write, and update usernames and  passwords
+//You have to include all of these columns or this system will not work correctly 
 define("USER_TABLE_NAME", "admin_accounts");
 define("USER_ID_FIELD", "admin_id");
 define("USERNAME_FIELD", "admin_name");
 define("USER_PASSWORD_FIELD", "admin_password");
+define("USER_EMAIL_FIELD", "admin_email");
 define("FAILED_LOGIN_COUNT_FIELD", "admin_failed_login_count");
 define("FIRST_FAILED_LOGIN_FIELD", "admin_first_failed_login");
+define("FORGOT_PASSWORD_TOKEN_FIELD", "admin_forgot_password_token");
+define("FORGOT_PASSWORD_EXPERATION_FIELD", "admin_forgot_password_experation");
 
 //The property for the name attribute  for the confirm password on the registration page 
 define("USER_CONFIRM_PASSWORD", "confirm_password");
@@ -31,4 +38,22 @@ define("LOGIN_ATTEMPT_LIMIT", 5);
 define("LOCKOUT_TIME", 180);
 
 define("LOGGEDIN_TOKEN_NAME", "admin_loggedin");
+
+//forgot password token experation time
+//if a user requests a forgot password email, the token in the url will expire in x time, where x is this constant
+define("FORGOT_PASSWORD_TOKEN_EXPERATION_TIME", 360);
+
+//email settings
+define("EMAIL_SENDER_USERNAME", "timothybreitenfeldt@gmail.com");
+define("EMAIL_SENDER_PASSWORD", "seniorTeam4");
+define("EMAIL_SENDER_HOST", "smtp.gmail.com");
+define("EMAIL_SENDER_PORT", "465");
+
+define("EMAIL_SENDER_FROM", "timothybreitenfeldt@gmail.com");
+define("EMAIL_SENDER_NAME", "Disability Symposium Forgot Password");
+define("EMAIL_SENDER_REPLY_TO_EMAIL", "timothybreitenfeldt@gmail.com");
+define("EMAIL_SENDER_REPLY_TO_NAME", "No Reply");
+
+define("RESET_FORGOT_PASSWORD_URL", "http://www.pacificwesterndisabilitystudies.tk/admin/resetForgotPassword.php");
+
 ?>

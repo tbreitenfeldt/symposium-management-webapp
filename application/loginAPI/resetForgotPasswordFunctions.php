@@ -59,33 +59,35 @@ function validateUser(&$pdoUtil, $email, $token) {
     $tokenExperationTime = 0;
     $username = "";
     $c = "constant";
-    $sql = "SELECT user_name, user_forgot_password_token, user_forgot_password_experation FROM user_accounts WHERE user_email=?;";
+    $sql = "SELECT {$c('USERNAME_FIELD')}, {$c('FORGOT_PASSWORD_TOKEN_FIELD')}, {$c('FORGOT_PASSWORD_EXPERATION_FIELD')} " .
+            "FROM {$c('USER_TABLE_NAME')} WHERE {$c('USER_EMAIL_FIELD')}=?;";
     $results = $pdoUtil->query($sql, [$email]);
 
     if ($results == null || sizeof($results) != 1) {
         throw new InvalidArgumentException("Invalid email or token, please return to the forgot password page to get a new link.");
     }//end if
 
-    $hashedToken = $results[0]["user_forgot_password_token"];
+    $hashedToken = $results[0][FORGOT_PASSWORD_TOKEN_FIELD];
 
     if ( !password_verify($token, $hashedToken)) {
         throw new InvalidArgumentException("Invalid email or token, please return to the forgot password page to resend a new link.");
     }//end if
 
-    $tokenExperationTime = (int)$results[0]["user_forgot_password_experation"];
+    $tokenExperationTime = (int)$results[0][FORGOT_PASSWORD_EXPERATION_FIELD];
 
     if (time() >= $tokenExperationTime) {
         throw new InvalidArgumentException("Token has expired, please return to the forgot password page to resend a new link.");
     }//end if
 
-    $username = $results[0]["user_name"];
+    $username = $results[0][USERNAME_FIELD];
     return $username;
 }//end function
 
 
 function updatePassword(&$pdoUtil, $username, $newPassword, $confirmNewPassword) {
     $c = "constant";
-    $sql = "UPDATE {$c('USER_TABLE_NAME')} SET {$c('USER_PASSWORD_FIELD')}=?, user_forgot_password_token=?, user_forgot_password_experation=? WHERE {$c('USERNAME_FIELD')}=?";
+    $sql = "UPDATE {$c('USER_TABLE_NAME')} SET {$c('USER_PASSWORD_FIELD')}=?, " .
+            "{$c('FORGOT_PASSWORD_TOKEN_FIELD')}=?, {$c('FORGOT_PASSWORD_EXPERATION_FIELD')}=? WHERE {$c('USERNAME_FIELD')}=?";
 
     validatePasswordConfirmation($newPassword, $confirmNewPassword);
 
@@ -96,7 +98,7 @@ function updatePassword(&$pdoUtil, $username, $newPassword, $confirmNewPassword)
 
 function sendSuccessEmail($username, $userEmail) {
     $mail = new PHPMailer\PHPMailer\PHPMailer();
-    $mail->CharSet =  "utf-8";
+    $mail->CharSet =  "text/html; charset=UTF-8;";
     $mail->IsSMTP();
     $mail->SMTPAuth = true;                  
     $mail->Username = EMAIL_SENDER_USERNAME;
@@ -111,8 +113,19 @@ function sendSuccessEmail($username, $userEmail) {
     $mail->AddAddress($userEmail, $username);
     $mail->Subject  =  "Password Reset Successful";
     $mail->IsHTML(true);
-    $mail->Body    ="The password for the pacific western disability studies account with the username:<br>{$username}<br>has been reset, if you did not reset your " .
-            "password, please contact an administrator.<br><br>This is an automated message, please do not respond.<br>";
+    $mail->Body    =
+            "<!doctype html>" .
+            "<html>" .
+            "<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /></head>" .
+            "<body>" .
+            "<p>The password for the pacific western disability studies account with the username: {$username} has been reset,<br><br>if you did not reset your " .
+            "password, please contact an administrator.<br><br>This is an automated message, please do not respond.</p>" .
+            "</body>" .
+            "</html>";
+
+    $mail->AltBody =
+            "The password for the pacific western disability studies account with the username: {$username} has been reset,\n\nif you did not reset your " .
+            "password, your account may be comprimised. you should change your password right away.\n\nThis is an automated message, please do not respond.";
 
     if( !$mail->Send()) {
         throw new InvalidArgumentException("Mail Error - >" . $mail->ErrorInfo);

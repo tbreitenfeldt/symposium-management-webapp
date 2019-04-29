@@ -409,7 +409,8 @@ function main(){
     //MyScheduler Click Event(s)
     $('#aboutCon').on("click", function(){
         $("#innerContent").empty();
-        $("#content").load("menuPhp/practice.php");
+        $("#content").load("menuPhp/aboutConference.php");
+        getConferenceInformation();
     });
 
     $("#editMySchedule").on("click", function(){
@@ -422,8 +423,13 @@ function main(){
         $("#innerContent").empty();
         $("#content").load("menuPhp/showSchedule.php");
         let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
-    //  $.get("proxies/getProxy.php", map, showSchedule, "json");
+	    $.get("proxies/getProxy.php", map,function(data){startUserTable(data[0].conference_id, 1);}, "json");
     });
 }
+
+$("#websiteLink").on("click", function()
+{
+    window.open("https://sites.ewu.edu/pwdss/");
+});
 
 main();

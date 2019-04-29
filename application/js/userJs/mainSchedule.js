@@ -1,13 +1,3 @@
-//$(document).ready(init);
-
-/*
-async function init () 
-{
-  // Get the id and Name of the conference
-  await startMainTable();
-  await startUserTable();
-}
-*/
 
 function init ()
 {
@@ -62,7 +52,7 @@ function registerUserForConference(event)
 async function loadConference(conferenceID)
 {
 	await startMainTable(conferenceID);
-	await startUserTable(conferenceID);
+	await startUserTable(conferenceID,0);
 }
 
 function startMainTable(id)
@@ -128,5 +118,28 @@ function onAddClick(eventID, conferenceID)
 
 function successPost(conferenceID)
 {
-    startUserTable(conferenceID);
+    startUserTable(conferenceID,-1);
+}
+
+function getConferenceInformation()
+{
+		let map = {"table_names": ["user_conference","conference"], "values_to_select": ["*"], "attrs": [""], "values": [""], "genFlag": "flag"};
+		$.get("proxies/getProxy.php",map,showConferenceDetails, "json");
+}
+
+function showConferenceDetails(data)
+{
+	let conference = 
+		{
+			name: data[0].conference_name,
+			startDate: data[0].conference_startdate,
+			endDate: data[0].conference_enddate,
+			detail: data[0].conference_facilitydesc,
+			email: data[0].conference_contactemail,
+			phone: data[0].conference_contactphone
+		};
+
+		$("#description").html(conference.startDate + " to " + conference.endDate +"<br>" + conference.detail);
+		$("#location").html(conference.name);
+		$("#contact").html("&nbsp&nbsp&nbsp&nbspEmail: " + conference.email + "<br>&nbsp&nbsp&nbsp&nbspPhone: " + conference.phone + "");
 }

@@ -52,7 +52,7 @@ function registerUserForConference(event)
 async function loadConference(conferenceID)
 {
 	await startMainTable(conferenceID);
-	await startUserTable(conferenceID,false);
+	await startUserTable(conferenceID,0);
 }
 
 function startMainTable(id)
@@ -118,7 +118,7 @@ function onAddClick(eventID, conferenceID)
 
 function successPost(conferenceID)
 {
-    startUserTable(conferenceID);
+    startUserTable(conferenceID,-1);
 }
 
 function getConferenceInformation()

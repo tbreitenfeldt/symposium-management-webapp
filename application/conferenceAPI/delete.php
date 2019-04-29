@@ -37,7 +37,7 @@ if (isset($_DELETE["id_name"]) && isset($_DELETE["id_value"]) && isset($_DELETE[
 		$result = $pdoUtil->query($sql, $id_value);
 			
 		http_response_code(200);
-		echo "Delete Succesful";
+		echo "success";
 	} catch (Exception $e) {
 		error_log($e->getMessage());
 		exit('Error processing');

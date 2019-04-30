@@ -3,7 +3,9 @@
 <!--NOTE Left and Right Menus are opposite of their variable names-->
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
     <head>
+        <!-- Meta Tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,10 +18,20 @@
 
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        
         <!-- Our Custom CSS -->
         <link rel="stylesheet" href="css/menu.css">
-        <!-- Font Awesome JS -->
 
+        <!--AJAX JS-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!--Our custom JS-->
+        <script src="js/conferenceAPIJs/databaseFunctions.js"></script>
+        <script src="js/userJs/userSchedule.js"></script>
+        <script src="js/userJs/mainSchedule.js"></script>
+        <script src="js/userJs/userAccountRegistration.js"></script>
+
+        <!-- Font Awesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     </head>
@@ -55,9 +67,6 @@
         </div>
         <!-- END user-menu -->
 
-        <!-- Header -->
-        <!-- END Header -->
-
         <!-- rightSideBar -->
         <nav id="rightSidebar" aria-label="My Scheduler" hidden>
             <div id="rightDismiss">
@@ -70,41 +79,59 @@
             <ul class="list-unstyled components" aria-label="Menu Items">
                 <p id="symposium-title" alt="Title">Pacific Northwest Disability Symposium 2019</p>
                 <li>
+                    <a  aria-label="" id="">Home</a>
+                </li>
+                <li>
                     <button href="#my-scheduler-options" data-toggle="collapse" class="dropdown-button" aria-label="My Scheduler Features Drop Down List">My Scheduler Features</button>
                     <ul class="collapse list-unstyled" id="my-scheduler-options">
                         <li>
-                            <a id="mySchedule" href="#" aria-label="">My Schedule</a>
+                            <a aria-label="View Schedule" id="mySchedule">View MySchedule</a>
                         </li>
                         <li>
-                            <a id="editMySchedule" href="#" aria-label="">Edit My Schedule</a>
+                            <a  aria-label="Edit Schedule" id="editMySchedule">Edit MySchedule</a>
+                        </li>
+                        <li>
+                            <a  aria-label="">Page 3</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="aboutCon" aria-label="About Conference" id="aboutCon">About Conference</a>
+                    <a  aria-label="About Conference" id="aboutCon">About Conference</a>
                 </li>
                 <li>
-                    <a href="#" aria-label="Contact Info">Contact Information</a>
+                    <button href="#homeSubmenu3" data-toggle="collapse" class="dropdown-button" aria-label="Page Drop Down List">Pages</button>
+                    <ul class="collapse list-unstyled" id="homeSubmenu3">
+                        <li>
+                            <a href="" aria-label="View Schedule" id="mySchedule">View MySchedule</a>
+                        </li>
+                        <li>
+                            <a href="" aria-label="Edit Schedule" id="editMySchedule">Edit MySchedule</a>
+                        </li>
+                        <li>
+                            <a href="" aria-label="">Page 3</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="#" aria-label="">Assistance</a>
+                    <a  aria-label="Contact Info">Contact Information</a>
+                </li>
+                <li>
+                    <a  aria-label="">Assistance</a>
                 </li>
             </ul>
 
-            <button id="websiteLink" type="button" href="#" class="btn btn-primary btn-lg layout-button" aria-label="Download Articles From Symposium">View Articles</button>
+        <button type="button"  class="btn btn-primary btn-lg layout-button" aria-label="Download Articles From Symposium">View Articles</button>
 
-            <div class="container" style="outline:0">
-                <div class="fl-page-footer-text fl-page-footer-text-2" aria-label="Eastern Washington University">
-                    <a class="logo" href="https://www.ewu.edu"><img src="https://sites.ewu.edu/dss/wp-content/themes/ewusites/images/footer-logo.png" alt="Eastern Washington University"></a>
-                    <br/>
-                        509.359.6200
-                    <br/>
-                    <em>EWU expands opportunities for personal transformation through excellence in learning.</em>
-                </div>
+        <div class="container" style="outline:0">
+            <div class="fl-page-footer-text fl-page-footer-text-2" aria-label="Eastern Washington University">
+                <a class="logo" href="https://www.ewu.edu"><img src="https://sites.ewu.edu/dss/wp-content/themes/ewusites/images/footer-logo.png" alt="Eastern Washington University"></a>
+                <br/>
+                    509.359.6200
+                <br/>
+                <em>EWU expands opportunities for personal transformation through excellence in learning.</em>
             </div>
+        </div>
         </nav>
-
-
         <!-- END rightSideBar -->
                                                                                                                                                                                                                                                                                                                                                                                                                      
 
@@ -179,14 +206,28 @@
 
             <ul class="list-unstyled components">
                 <h1 aria-label="">Welcome <br><?php echo htmlspecialchars($_SESSION["user_name"]); ?></h1>
-                <li>
-                    <a href="#" aria-label="">User Information </a>
+                <li class="active">
+                <button href="#potentialPageMenu2" data-toggle="collapse" class="dropdown-button" aria-label="Neat Stuff...">Page</button>
+                    <ul class="collapse list-unstyled" id="potentialPageMenu2">
+                        <li>
+                            <a  aria-label="">Potential Page 1</a>
+                        </li>
+                        <li>
+                            <a  aria-label="">Potential Page 2</a>
+                        </li>
+                        <li>
+                            <a  aria-label="">Potential Page 3</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="#" aria-label="Contact Info">Contact Information</a>
+                    <a  aria-label="">About </a>
                 </li>
                 <li>
-                    <a href="#" aria-label="">Assistance</a>
+                    <a  aria-label="Contact Info">Contact Information</a>
+                </li>
+                <li>
+                    <a  aria-label="">Assistance</a>
                 </li>
             </ul>
 
@@ -219,8 +260,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
         <!-- Bootstrap JS -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-        
-
+        <!-- Our Custom JS -->
         <script src="js/userJs/menu.js"></script>
     </body>
 </html>

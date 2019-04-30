@@ -1,4 +1,4 @@
-//leftSideBar Methods
+
 
 function removeSideBar(barId, iconId){
     $(barId).removeClass('active');
@@ -16,29 +16,12 @@ function removeSideBar(barId, iconId){
     showUserMenu(); 
 }
 
-function removeLeftSideBar(){
-    removeSideBar("#leftSidebar", "#leftSidebarCollapse");
-}
-
-
-
 
 //centerSideBar Methods
 
 function removeCenterSideBar(){
     removeSideBar("#centerSidebar", "#centerSidebarCollapse");
 }
-
-
-
-
-//rightSideBar Methods
-
-function removeRightSideBar(){
-    removeSideBar("#rightSidebar", "#rightSidebarCollapse");
-}
-
-
 
 
 
@@ -77,74 +60,48 @@ function isMobile(){
     return navigator.userAgent.match("/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i");
 }
 
-function isSideBarActive(){
-    var rightId = '#rightSidebar', leftId = '#rightSidebar';
-    return $(rightId).hasClass('active') || $(leftId).hasClass('active');
-}
-
-function resizeMainMenu(){//change button size same when default page opens
-    if(isMobile){
-        var highest = $("#centerSidebarCollapse").css('width');
-        var arr = new Array('#leftSidebarCollapse', '#rightSidebarCollapse');
-        var resizeMenu = arr.join(',');
-        $(resizeMenu).css('width', highest);
-    }
-}
-
 function toggleBodySidebar(){
     $("body").toggleClass("no-scroll");
 }
 
 function switchArrowDirection(){
     var width = $(window).width();
+    console.log(width);
     //var height = $(window).height();
     if(width <= "425"){
         $(".arrow-button").attr('data-icon', 'arrow-left');
+        //document.getElementsByClassName("arrow-button")[0].classList.toggle('.fa-arrow-left');
+        //document.getElementsByClassName("arrow-button")[0].classList.toggle('.fa-arrow-left');
     }
     else{
         $(".arrow-button").attr('data-icon', 'arrow-right');
+        //document.getElementsByClassName("arrow-button")[1].classList.toggle('.fa-arrow-right');
+        //document.getElementsByClassName("arrow-button")[2].classList.toggle('.fa-arrow-right');
     }
 }
 
 function closeMenus(){
-    if($('#rightSidebar').hasClass('active')){
-        removeRightSideBar();
-        document.getElementById("content").style.paddingLeft = "20px";
-        document.getElementById("rightSidebarCollapse").focus();
-        showUserMenu();
-    }
-    else if($('#leftSidebar').hasClass('active')){
+    if($('#leftSidebar').hasClass('active')){
         removeLeftSideBar();
         $('.overlay').removeClass('active');
         document.getElementById("content").style.paddingRight = "20px";
         document.getElementById("leftSidebarCollapse").focus();
     }
-    else if($('#centerSidebar').hasClass('active')){
-        removeCenterSideBar();
-        $('.overlay').removeClass('active');
-        document.getElementById("content").style.paddingRight = "260px";
-        document.getElementById("centerSidebarCollapse").focus();
-    }
 }
-
 
 
 
 
 //Accesibility Methods
 
-function changeSize(element, style, multiplier){
-    var originalFontSize = $(element).css(style);
-    var originalFontNumber = parseFloat(originalFontSize);
-    var newFontSize = originalFontNumber*multiplier;
-    $(element).css(style, newFontSize);
+function changeSize(element, style, size){
+    $(element).css(style, size);
 }
 
 
 function setCurrentFontDisplay(){
-    var arr = new Array('-3x','-2x', '1x', '2x', '3x', '4x');
     //console.log($('#current-font-size')[0].innerHTML);
-    $('#current-font-size')[0].innerHTML = "Current Font Size: " + arr[zoomedIn + 2];
+    $('#current-font-size')[0].innerHTML = "Current Font Size: " + arr[zoomedIn];
 }
 
 function addGraystyle(){
@@ -230,7 +187,11 @@ var originalMarginTop = $(contentId).css(stylePaddingTop);
 var originalHeaderSize = "1rem";
 var originalTableHeadSize = originalHeaderSize;
 
-var maxZoomedIn = 3;
+var arr = new Array('1x', '2x', '3x');
+var arr2 = new Array('initial', 'x-large', 'xx-large')
+var arr3 = new Array('13px', '19px', '26px')
+
+var maxZoomedIn = 2;
 var minZoomedIn = 0;
 var defaultIn = 0;
 
@@ -242,25 +203,13 @@ if(isMobile()){
 var zoomedIn = defaultIn;
 
 
-resizeMainMenu();
 var colorSetting = new Array("Default", "Graystyle","Black on White","White on Black");
 var currentColorSetting = colorSetting[0];
-
-
-
-
-
-
 
 
 //MAIN FUNCTION
 
 function main(){
-
-    //LEFT SIDE MENU
-
-
-    $('#leftDismiss, .overlay').on('click',  removeLeftSideBar);
 
     //CENTER MENU
     $("#reset-font").click(function(){
@@ -268,49 +217,35 @@ function main(){
         $(contentId).css(stylePaddingTop, originalMarginTop);
         $(header).css(fontSizeStyle, originalHeaderSize);
         $(tableHead).css(fontSizeStyle, originalTableHeadSize);
-
+        changeSize("#content-inside", fontSizeStyle, arr2[defaultIn]);   
+        changeSize("form input:checkbox", "width", arr3[defaultIn]);
+        changeSize("form input:checkbox", "height", arr3[zoomedIn])
         zoomedIn = 0;
-        resizeMainMenu();
         setCurrentFontDisplay();
     });
     
     //increases font size when clicked
     $("#increase-font").click(function(){
-        var increaseMultiplier = 1.2;
         if(zoomedIn < maxZoomedIn){
-            changeSize(buttonText, fontSizeStyle, increaseMultiplier);
-            changeSize(menuButtonClass, fontSizeStyle, increaseMultiplier);
-            changeSize(header, fontSizeStyle, 2);
-            changeSize(tableHead, fontSizeStyle, 2);
-            changeSize(contentId, stylePaddingTop, increaseMultiplier);
             zoomedIn++;
+            console.log(zoomedIn)
+            changeSize("#content-inside", fontSizeStyle, arr2[zoomedIn]);   
+            changeSize("form input:checkbox", "width", arr3[zoomedIn]);
+            changeSize("form input:checkbox", "height", arr3[zoomedIn])
+            setCurrentFontDisplay();
         }
-        resizeMainMenu();
-        setCurrentFontDisplay();
     });
     
     //decrease font size when clicked
     $("#decrease-font").click(function(){
-        var decreaseMultiplier = 0.8;
         if(zoomedIn > minZoomedIn){
-            changeSize(buttonText, fontSizeStyle, decreaseMultiplier);
-            changeSize(menuButtonClass, fontSizeStyle, decreaseMultiplier);
-            if(zoomedIn > defaultIn){
-                changeSize(header, fontSizeStyle, 0.5);
-                changeSize(tableHead, fontSizeStyle, 0.5);
-            }
-            changeSize(contentId, stylePaddingTop, decreaseMultiplier);
             zoomedIn--;
+            changeSize("#content-inside", fontSizeStyle, arr2[zoomedIn]);
+            setCurrentFontDisplay();
         }
-        resizeMainMenu();
-        setCurrentFontDisplay();
     });
 
     $('#centerDismiss, .overlay').on('click',  removeCenterSideBar);
-
-    //RIGHT SIDE 
-
-    $('#rightDismiss, .overlay').on('click', removeRightSideBar);
 
     //ALL MENU(S)
     $(document).keyup(function(e) {
@@ -319,36 +254,8 @@ function main(){
         }
     });
 
-    window.addEventListener("resize", onresize);
-
-    $(window).resize(function(){
-        switchArrowDirection();
-        resizeMainMenu();
-    });
-
     //ICON MENU
 
-    $('#leftSidebarCollapse').on('click', function () {
-        if($('#leftSidebar').hasClass('active')){
-            removeLeftSideBar();
-            $('.overlay').removeClass('active');
-            document.getElementById("content").style.paddingRight = "20px";
-            document.getElementById("leftSidebarCollapse").focus();
-        }
-
-        else{
-            var leftId = '#leftSidebar';
-            $(leftId)[0].removeAttribute('hidden');
-            hideUserMenu();
-            $(leftId).toggleClass('active');
-            document.getElementById("content").style.paddingRight = "260px";
-            toggleBodySidebar();
-            $('.overlay').toggleClass('active');
-            $('.collapse.in').toggleClass('in');
-            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-            document.getElementById("leftSidebar").focus();
-        }
-    });
 
     $('#centerSidebarCollapse').on('click', function () {
         if($('#centerSidebar').hasClass('active')){
@@ -372,31 +279,29 @@ function main(){
         }
     });
 
-    $('#rightSidebarCollapse').on('click', function () {
-        if($('#rightSidebar').hasClass('active')){
-            removeRightSideBar();
-            $('.overlay').removeClass('active');
-            document.getElementById("content").style.paddingRight = "20px";
-            document.getElementById("rightSidebarCollapse").focus();
-        }
+    //Edit mySchedule Button Click Event(s)
 
-        else{
-            var leftId = '#rightSidebar';
-            $(leftId)[0].removeAttribute('hidden');
-            hideUserMenu();
-            $(leftId).toggleClass('active');
-            document.getElementById("content").style.paddingRight = "260px";
-            toggleBodySidebar();
-            $('.overlay').toggleClass('active');
-            $('.collapse.in').toggleClass('in');
-            $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-            document.getElementById("rightSidebar").focus();
-        }
+    $('#aboutCon').on("click", function(){
+        $("#innerContent").empty();
+        $("#content").load("menuPhp/practice.php");
     });
 
+    $("#editMySchedule").on("click", function(){
+        $("#innerContent").empty();
+        $("#content").load("menuPhp/editSchedule.php");
+        init();
+    });
+
+    $('#mySchedule').on("click", function(){
+        $("#innerContent").empty();
+        $("#content").load("menuPhp/showSchedule.php");
+        let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
+    //  $.get("proxies/getProxy.php", map, showSchedule, "json");
+    });
+
+
+
     //For Masking Autogenerated Divs
-    document.getElementById("leftSidebar").setAttribute("aria-label", "User Settings");
-    document.getElementById("rightSidebar").setAttribute("aria-label", "My Scheduler");
     document.getElementById("centerSidebar").setAttribute("aria-label", "My Scheduler");
 
 
@@ -405,33 +310,36 @@ function main(){
     $('#color-scheme-invert').on('click',  turnOnInverseStyle);
 
 
+    
+
+
     //MyScheduler Click Event(s)
     $('#aboutCon').on("click", function(){
-        closeMenus();
         $("#innerContent").empty();
-        $("#content").load("menuPhp/aboutConference.php");
-        getConferenceInformation();
+        $("#content").load("menuPhp/practice.php");
     });
 
     $("#editMySchedule").on("click", function(){
-        closeMenus();
         $("#innerContent").empty();
         $("#content").load("menuPhp/editSchedule.php");
         init();
     });
 
     $('#mySchedule').on("click", function(){
-        closeMenus();
         $("#innerContent").empty();
         $("#content").load("menuPhp/showSchedule.php");
         let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
-	    $.get("proxies/getProxy.php", map,function(data){startUserTable(data[0].conference_id, 1);}, "json");
+    //  $.get("proxies/getProxy.php", map, showSchedule, "json");
     });
 
-    $("#websiteLink").on("click", function()
-    {
-        window.open("https://sites.ewu.edu/pwdss/");
-    });
+     window.addEventListener("resize", onresize);
+
+     $(window).resize(switchArrowDirection);
 }
 
-main();
+
+$(document).ready(function(){
+    main();
+    switchArrowDirection();
+    console.log("FSFS");
+});

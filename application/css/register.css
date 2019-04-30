@@ -1,0 +1,18 @@
+.check-box-large{
+    width:40px;
+    height:40px;
+}
+
+input{
+    margin-bottom:.5rem;
+}
+
+#check-box-settings{
+    display: inline;
+}
+
+@media (max-width: 450px){
+    #confirm_password {
+        width: 80%;
+    }
+}

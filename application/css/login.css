@@ -1,111 +1,158 @@
-body {
-    display:table-cell; text-align:center; vertical-align:middle;
+@media (min-width:451px){
+    body {
+        display:table-cell; text-align:center; vertical-align:middle;
+    }
+
+    .center-block{
+        max-width: 100%;
+    }
+
+    #contentId{
+        background-color:lightgrey; display: inline-block; padding-bottom: 2%;
+    }
+
+    h1{
+        margin:2rem;
+    }
+
+    #fieldClass{
+        orientation: center;
+    }
+
+    fieldset{
+        border:none;
+    }
+
+    .footer{
+        position: relative;
+    }
+
+    .form-check{
+        width: 100%;
+        max-width: 100%;
+        padding-right: 1.25rem;
+    }
+
+    .form-group .row{
+        width: 100%
+    }
+
+    html {
+        display:table; width:100%;
+        height: 100%;
+    }
+
+    .inputData label{
+        padding-top:20px;
+    }
+
+    #loginButton{
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .notification-option{
+        float:left;
+    }
+
+    #logonForm{
+        width:460px;
+        margin-bottom:75px;
+    }
+
+    #inputs .row{
+        float:right;
+    }
+
+    p{
+        text-align: center;
+    }
+
+
+
+    .w3-check{
+        float:right;
+    }
+
+    #userLogonForm{
+        width: 460px;
+        height: 50%;
+        background: #fffe;
+        color: #000;
+        top: 50%;
+        left: 50%;
+        margin:auto;
+        margin-bottom:70px;
+        box-sizing: border-box;
+        padding:30px 50px 10px 50px;
+        text-align: center;
+    }
+    
 }
 
-.center-block{
-    max-width: 100%;
+@media (max-width: 450px){
+    body{
+        overflow-y: hidden;
+
+    }
+
+    #userLogonForm{
+        height: 50%;
+        width:auto;
+        background: #fffe;
+        color: #000;
+        top: 50%;
+        left:auto;
+        margin:none;
+        margin-bottom:70px;
+        box-sizing: border-box;
+        padding:30px 0px 0px 0px;
+        text-align: center;        
+    }
+
+    #loginButton{
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    #user_password, #user_name, #user_email{
+        width:80%;
+    }
+
+    #centerSidebar {
+        height: 100%;
+        width: 100%;
+    }
 }
 
-#contentId{
-    background-color:lightgrey; display: inline-block; padding-bottom: 2%;
+@media (max-width: 320px){ 
+    #centerSidebar {
+        height: 100%;
+        width: 100%;
+    }
+
+    #loginButton{
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
 }
 
-h1{
-    margin:2rem;
+a{
+    all:unset;
+    color:#007bff;
+    color: none;
+    text-decoration: unset;
+    transition: unset;
+
 }
 
-#fieldClass{
-    orientation: center;
+a:hover, a:focus {
+    color: inherit;
+    text-decoration: underline;
+    transition: unset;
+    color: blue;
 }
 
-fieldset{
-    border:none;
-}
-
-.footer{
-    position: relative;
-}
-
-.form-check{
-    width: 100%;
-    max-width: 100%;
-    padding-right: 1.25rem;
-}
-
-.form-group .row{
-    width: 100%
-}
-
-html {
-    display:table; width:100%;
-    height: 100%;
-}
-
-.inputData label{
-    padding-top:20px;
-}
-
-#loginButton{
-    margin-top: 20px;
-    margin-bottom: 10px;
-    max-width: ;
-}
-
-.notification-option{
-    float:left;
-}
-
-#logonForm{
-    width:460px;
-    margin-bottom:75px;
-}
-
-#inputs .row{
-    float:right;
-}
-
-p{
-    text-align: center;
-}
-
-#userLogonForm{
-    width: 320px;
-    max-width: 80%;
-    width: 460px;
-    height: 50%;
-    background: #fffe;
-    color: #000;
-    top: 50%;
-    left: 50%;
-    margin:auto;
-    margin-bottom:70px;
-    box-sizing: border-box;
-    padding:30px 50px 10px 50px;
-}
-
-.w3-check{
-    float:right;
-}
-
-
-
-
-
-
-
-/*Needed for footer*/
-html, body {
-    height: 100%;
-    margin: 0;
-  }
-.wrapper {
-min-height: 100%;
-
-/* Equal to height of footer */
-/* But also accounting for potential margin-bottom of last child */
-margin-bottom: -146px;
-}
-.footer,
-.push {
-height: 146px;
+#signUp{
+    color:black;
 }

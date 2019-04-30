@@ -59,7 +59,7 @@
         <!-- rightSideBar -->
         <nav id="rightSidebar" aria-label="">
             <div id="rightDismiss">
-                <button href="" alt="close menu button" id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="fas fa-arrow-left"></i> </button>
+                <button href="" alt="close menu button" id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
             <div aria-label="" class="rightSidebar-header">
@@ -68,38 +68,18 @@
             <ul class="list-unstyled components" aria-label="Menu Items">
                 <p id="symposium-title" alt="Title">Pacific Northwest Disability Symposium 2019</p>
                 <li>
-                    <a href="#" aria-label="" id="">Home</a>
-                </li>
-                <li>
                     <button href="#my-scheduler-options" data-toggle="collapse" class="dropdown-button" aria-label="My Scheduler Features Drop Down List">My Scheduler Features</button>
                     <ul class="collapse list-unstyled" id="my-scheduler-options">
                         <li>
-                            <a href="#" aria-label="">Home 1</a>
+                            <a id="mySchedule" href="#" aria-label="">My Schedule</a>
                         </li>
                         <li>
-                            <a href="#" aria-label="">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="">Home 3</a>
+                            <a id="editMySchedule" href="#" aria-label="">Edit My Schedule</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#" aria-label="About Conference" id="aboutCon">About Conference</a>
-                </li>
-                <li>
-                    <button href="#homeSubmenu3" data-toggle="collapse" class="dropdown-button" aria-label="Page Drop Down List">Pages</button>
-                    <ul class="collapse list-unstyled" id="homeSubmenu3">
-                        <li>
-                            <a href="#" aria-label="">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="">Page 3</a>
-                        </li>
-                    </ul>
+                    <a href="aboutCon" aria-label="About Conference" id="aboutCon">About Conference</a>
                 </li>
                 <li>
                     <a href="#" aria-label="Contact Info">Contact Information</a>
@@ -109,17 +89,17 @@
                 </li>
             </ul>
 
-        <button type="button" href="#" class="btn btn-primary btn-lg layout-button" aria-label="Download Articles From Symposium">View Articles</button>
+            <button id="websiteLink" type="button" href="#" class="btn btn-primary btn-lg layout-button" aria-label="Download Articles From Symposium">View Articles</button>
 
-        <div class="container" style="outline:0">
-            <div class="fl-page-footer-text fl-page-footer-text-2" aria-label="Eastern Washington University">
-                <a class="logo" href="https://www.ewu.edu"><img src="https://sites.ewu.edu/dss/wp-content/themes/ewusites/images/footer-logo.png" alt="Eastern Washington University"></a>
-                <br/>
-                    509.359.6200
-                <br/>
-                <em>EWU expands opportunities for personal transformation through excellence in learning.</em>
+            <div class="container" style="outline:0">
+                <div class="fl-page-footer-text fl-page-footer-text-2" aria-label="Eastern Washington University">
+                    <a class="logo" href="https://www.ewu.edu"><img src="https://sites.ewu.edu/dss/wp-content/themes/ewusites/images/footer-logo.png" alt="Eastern Washington University"></a>
+                    <br/>
+                        509.359.6200
+                    <br/>
+                    <em>EWU expands opportunities for personal transformation through excellence in learning.</em>
+                </div>
             </div>
-        </div>
         </nav>
 
 
@@ -129,7 +109,7 @@
         <!-- centerSidebar  -->
         <nav id="centerSidebar" hidden>
             <div id="centerDismiss" >
-                <button href="" alt="close menu button" id="closeCenterMenu" class="close-menu" aria-label="Close User Settings"><i class="fas fa-arrow-right"></i> </button>
+                <button href="" alt="close menu button" id="closeCenterMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
 
@@ -170,10 +150,6 @@
                 </li>
             </ul>
 
-            <?$_SESSION['id'] = 12;?>
-
-
-
             <div class="container">
                 <div class="fl-page-footer-text fl-page-footer-text-2">
                     <a class="logo" href="https://www.ewu.edu"><img src="https://sites.ewu.edu/dss/wp-content/themes/ewusites/images/footer-logo.png" alt="Eastern Washington University" aria-label="Eastern Washington Univerity"></a>
@@ -190,8 +166,8 @@
 
         <!-- leftSidebar  -->
         <nav id="leftSidebar" hidden>
-            <div id="dismiss" >
-                <button href="" alt="close menu button" id="closeRightMenu" class="close-menu" aria-label="Close User Settings"><i class="fas fa-arrow-right"></i> </button>
+            <div id="leftDismiss" >
+                <button href="" alt="close menu button" id="closeRightMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
 
@@ -201,22 +177,8 @@
 
             <ul class="list-unstyled components">
                 <h1 aria-label="">Welcome <br><?php echo htmlspecialchars($_SESSION["user_name"]); ?></h1>
-                <li class="active">
-                <button href="#potentialPageMenu2" data-toggle="collapse" class="dropdown-button" aria-label="Neat Stuff...">Page</button>
-                    <ul class="collapse list-unstyled" id="potentialPageMenu2">
-                        <li>
-                            <a href="#" aria-label="">Potential Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="">Potential Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="">Potential Page 3</a>
-                        </li>
-                    </ul>
-                </li>
                 <li>
-                    <a href="#" aria-label="">About </a>
+                    <a href="#" aria-label="">User Information </a>
                 </li>
                 <li>
                     <a href="#" aria-label="Contact Info">Contact Information</a>

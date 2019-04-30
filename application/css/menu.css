@@ -1,9 +1,19 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
-button.dropdown-button:not(.collapsed){
+button.dropdown-button:not(.collapsed)[aria-expanded="true"]{
   background:white;
   color:red;
 }
+
+html{
+  background-color:white;
+}
+
+ul ul a{
+    background:rgb(188, 20, 63);
+    }
+    
+
 body {
     font-family: 'Poppins', sans-serif;
     font-family: Tahoma;
@@ -16,7 +26,7 @@ p {
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
-    color: #999;
+    color: #101010;
 }
 
 a,
@@ -26,6 +36,7 @@ a:focus {
     text-decoration: none;
     transition: all 0.3s;
 }
+
 
 .navbar {
     padding: 15px 10px;
@@ -139,7 +150,7 @@ a:focus {
 #leftSidebar ul li a:hover,
 #rightSidebar ul li a:hover,
 #centerSidebar ul li a:hover{
-    color: #bb1133;
+    color: crimson;
     background: #fff;
 }
 
@@ -165,7 +176,7 @@ a[data-toggle="collapse"] {
 
 ul ul a {
     font-size: 0.9em !important;
-    background: crimson;
+    background: rgb(188, 20, 63);
 }
 
 ul.CTAs {
@@ -250,7 +261,7 @@ a.menu-button:hover {
   ul{
     margin-right: 20px;
   }
-  #dismiss{
+  #centerDismiss, #leftDismiss, #rightDismiss{
     font-size:50px;
   }
 ul.CTAs {
@@ -413,7 +424,7 @@ table {
   font-size: 1.1em;
   display: block;
   color: white;
-  background: crimson;
+  background: rgb(188, 20, 63);
   border: none;
   text-align: center;
   width:100%;

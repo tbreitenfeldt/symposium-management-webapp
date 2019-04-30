@@ -8,6 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+        <title>User Control Panel</title>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
        
         <script src="js/conferenceAPIJs/databaseFunctions.js"></script>
@@ -26,24 +28,24 @@
         <div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
 
         <!-- user-menu -->
-        <div id= "user-menu" class="col-lg-12" aria-hidden="false">
+        <div id="user-menu" class="col-lg-12" role="navigation" aria-hidden="false" aria-label="user menu">
             <div class="row">
                 <div class="col-xs-4">
-                    <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false">
+                    <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
                         <span>Symposium<br/>Scheduler</span>
                         <br/>
                         <i class="fa fa-calendar fa-6x menu-item"></i>
                     </button>
                 </div>
                 <div class="col-xs-4">
-                    <button type="button" id="centerSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false">
+                    <button type="button" id="centerSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
                         <span>Accesibility<br/>Settings</span>
                         <br/>
                         <i class="fas fa-universal-access fa-6x menu-item"></i>
                     </button>
                 </div>
                 <div class="col-xs-4">
-                    <button type="button" id="leftSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false">
+                    <button type="button" id="leftSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
                         <span>User<br/> Settings</span>
                         <br/>
                         <i class="fa fa-user-circle fa-6x menu-item"></i>
@@ -57,13 +59,13 @@
         <!-- END Header -->
 
         <!-- rightSideBar -->
-        <nav id="rightSidebar" aria-label="">
+        <nav id="rightSidebar" aria-label="My Scheduler" hidden>
             <div id="rightDismiss">
                 <button href="" alt="close menu button" id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
             <div aria-label="" class="rightSidebar-header">
-                <h3>My Scheduler</h3>
+                <h3 id="mySchedulerHeading" tabindex="0">My Scheduler</h3>
             </div>
             <ul class="list-unstyled components" aria-label="Menu Items">
                 <p id="symposium-title" alt="Title">Pacific Northwest Disability Symposium 2019</p>
@@ -107,14 +109,14 @@
                                                                                                                                                                                                                                                                                                                                                                                                                      
 
         <!-- centerSidebar  -->
-        <nav id="centerSidebar" hidden>
+        <nav id="centerSidebar" aria-label="Accesibility Settings" hidden>
             <div id="centerDismiss" >
-                <button href="" alt="close menu button" id="closeCenterMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button href="" id="closeCenterMenu" class="close-menu" aria-label="Close Accesibility Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
 
             <div class="centerSidebar-header">
-                <h3>Accesibility Settings</h3>
+                <h3 tabindex="0" id="accessibilitySettingsHeading">Accesibility Settings</h3>
             </div>
 
             <ul class="list-unstyled components">
@@ -165,14 +167,14 @@
 
 
         <!-- leftSidebar  -->
-        <nav id="leftSidebar" hidden>
+        <nav id="leftSidebar" aria-label="User Settings" hidden>
             <div id="leftDismiss" >
                 <button href="" alt="close menu button" id="closeRightMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
 
             <div class="leftSidebar-header">
-                <h3>User Settings</h3>
+                <h3 tabindex="0" id="userSettingsHeading">User Settings</h3>
             </div>
 
             <ul class="list-unstyled components">

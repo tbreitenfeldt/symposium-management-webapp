@@ -16,14 +16,13 @@ function removeSideBar(barId, iconId){
             $(this).addClass("collapsed");
         }
     });
-    showUserMenu(); 
+    showContentPage(); 
     $(barId + 'Collapse').attr('aria-expanded', 'false');
 }
 
 function openSidebar(sidebarType, headingId, screenreaderMessage){
     var sidebarId = '#' + sidebarType + 'Sidebar';
     $(sidebarId)[0].removeAttribute('hidden');
-    hideUserMenu();
     $(sidebarId).toggleClass('active');
     if(!isMobileScreenWidth()){
         $("#content").css("paddingRight", "260px");
@@ -35,6 +34,7 @@ function openSidebar(sidebarType, headingId, screenreaderMessage){
     notifyScreenreader(screenreaderMessage);
     $(sidebarId + 'Collapse').attr('aria-expanded', 'true');
     $(headingId).focus();  
+    hideContentPage()
 }
 
 function closeLeftSideBar(){
@@ -57,12 +57,16 @@ function closeRightSideBar(screenreaderMessage){
 
 //Icon Menu Methods
 
-function hideUserMenu(){ //menu that is center of page with three buttons that call upon respective menus
+function hideContentPage(){
     $("#user-menu").attr("aria-hidden", "true");
+    $("#footer").attr("aria-hidden", "true");
+    $("#content").attr("aria-hidden", "true");
 }
 
-function showUserMenu(){
+function showContentPage(){
     $("#user-menu").attr("aria-hidden", "false");
+    $("#footer").attr("aria-hidden", "false");
+    $("#content").attr("aria-hidden", "false");
 }
 
 
@@ -257,22 +261,8 @@ function main(){
         }
     });
 
-    //close LEFT SIDE MENU
-    $('#leftDismiss, .overlay').on('click',  function(event) {
-        closeLeftSideBar('collapsed user settings');
-    });
-
-    //close center MENU
-    $('#centerDismiss, .overlay').on('click', function(event) {
-        $('#centerSidebarCollapse').attr('aria-expanded', 'false');
-        closeCenterSideBar(event);
-    });
-
     //close RIGHT SIDE menu
-    $('#rightDismiss, .overlay').on('click', function(event) {
-        $('#rightSidebarCollapse').attr('aria-expanded', 'false');
-        closeRightSideBar(event);
-    });
+    $('#leftDismiss, #centerDismiss, #rightDismiss, .overlay').on('click', closeMenus);
 
     //ALL MENU(S)
     $(document).keyup(function(e) {

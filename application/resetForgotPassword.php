@@ -1,3 +1,7 @@
+<?php
+session_start();
+$_SESSION["user"] = "user";
+session_write_close();
 
 
 <!doctype html>

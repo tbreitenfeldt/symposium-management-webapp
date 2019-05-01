@@ -81,11 +81,11 @@ function switchArrowDirection(){
 }
 
 function closeMenus(){
-    if($('#leftSidebar').hasClass('active')){
-        removeLeftSideBar();
+    if($('#centerSidebar').hasClass('active')){
+        removeCenterSideBar();
         $('.overlay').removeClass('active');
         document.getElementById("content").style.paddingRight = "20px";
-        document.getElementById("leftSidebarCollapse").focus();
+        document.getElementById("centerSidebarCollapse").focus();
     }
 }
 
@@ -250,6 +250,7 @@ function main(){
     //ALL MENU(S)
     $(document).keyup(function(e) {
         if(e.key == "Escape"){
+            console.log("Ecape");
             closeMenus();
         }
     });

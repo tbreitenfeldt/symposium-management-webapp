@@ -88,29 +88,12 @@
                             <a aria-label="View Schedule" id="mySchedule">View MySchedule</a>
                         </li>
                         <li>
-                            <a  aria-label="Edit Schedule" id="editMySchedule">Edit MySchedule</a>
-                        </li>
-                        <li>
-                            <a  aria-label="">Page 3</a>
+                            <a aria-label="Edit Schedule" id="editMySchedule">Edit MySchedule</a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a  aria-label="About Conference" id="aboutCon">About Conference</a>
-                </li>
-                <li>
-                    <button href="#homeSubmenu3" data-toggle="collapse" class="dropdown-button" aria-label="Page Drop Down List">Pages</button>
-                    <ul class="collapse list-unstyled" id="homeSubmenu3">
-                        <li>
-                            <a href="" aria-label="View Schedule" id="mySchedule">View MySchedule</a>
-                        </li>
-                        <li>
-                            <a href="" aria-label="Edit Schedule" id="editMySchedule">Edit MySchedule</a>
-                        </li>
-                        <li>
-                            <a href="" aria-label="">Page 3</a>
-                        </li>
-                    </ul>
                 </li>
                 <li>
                     <a  aria-label="Contact Info">Contact Information</a>
@@ -121,16 +104,6 @@
             </ul>
 
         <button type="button"  class="btn btn-primary btn-lg layout-button" aria-label="Download Articles From Symposium">View Articles</button>
-
-        <div class="container" style="outline:0">
-            <div class="fl-page-footer-text fl-page-footer-text-2" aria-label="Eastern Washington University">
-                <a class="logo" href="https://www.ewu.edu"><img src="https://sites.ewu.edu/dss/wp-content/themes/ewusites/images/footer-logo.png" alt="Eastern Washington University"></a>
-                <br/>
-                    509.359.6200
-                <br/>
-                <em>EWU expands opportunities for personal transformation through excellence in learning.</em>
-            </div>
-        </div>
         </nav>
         <!-- END rightSideBar -->
                                                                                                                                                                                                                                                                                                                                                                                                                      
@@ -178,16 +151,6 @@
                     </ul>
                 </li>
             </ul>
-
-            <div class="container">
-                <div class="fl-page-footer-text fl-page-footer-text-2">
-                    <a class="logo" href="https://www.ewu.edu"><img src="https://sites.ewu.edu/dss/wp-content/themes/ewusites/images/footer-logo.png" alt="Eastern Washington University" aria-label="Eastern Washington Univerity"></a>
-                    <br/>
-                        509.359.6200
-                    <br/>
-                    <em>EWU expands opportunities for personal transformation through excellence in learning.</em>
-                </div>
-            </div>
         </nav>
         <!-- END centerSidebar  -->
 
@@ -234,25 +197,18 @@
             <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='logout.php'">Logout</button>
             <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='resetPassword.php'">Reset Password</button>
 
-            <div class="container">
-                <div class="fl-page-footer-text fl-page-footer-text-2">
-                    <a class="logo" href="https://www.ewu.edu"><img src="https://sites.ewu.edu/dss/wp-content/themes/ewusites/images/footer-logo.png" alt="Eastern Washington University" aria-label="Eastern Washington Univerity"></a>
-                    <br/>
-                        509.359.6200
-                    <br/>
-                    <em>EWU expands opportunities for personal transformation through excellence in learning.</em>
-                </div>
-            </div>
         </nav>
         <!-- END leftSidebar  -->
         
         <!-- content  -->
         <div id="content">
             <div id="innerContent">
-                <h1><center> Welcome to our Conference!</center></h1>
+                <h1> Welcome to our Conference! </h1>
             </div>
         </div>
         <!-- END content  -->
+
+        <?php include "./includes/footer.php"; ?>
 
         <!-- jQuery Custom Scroller CDN -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>

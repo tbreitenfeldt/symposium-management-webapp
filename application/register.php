@@ -91,7 +91,7 @@ session_write_close();
               <option value="t-mobile">t-mobile</option>
               <option value="u.s. cellular">u.s. cellular</option>
               <option value="at&t">at&t</option>
-              <option value="virgin mobile">at&t</option>
+              <option value="virgin mobile">virgin mobile</option>
               <option value="tracfone">tracfone</option>
               <option value="ting">ting</option>
               <option value="boost mobil">boost mobil</option>

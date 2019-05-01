@@ -5,7 +5,10 @@ function removeSideBar(barId, iconId){
     $(barId)[0].setAttribute("hidden", true);
     $('.overlay').removeClass('active');
     toggleBodySidebar();
-    document.getElementById("content").style.paddingRight = "20px";  
+    if(!isMobileScreenWidth()){
+        $("#content",).css("paddingRight", "20px");
+        $("#footer").css("paddingRight", "20px");
+    }
     $(iconId).focus();
     $('.collapse').removeClass('show');
     $(".dropdown-button").each(function(){
@@ -16,77 +19,55 @@ function removeSideBar(barId, iconId){
     showUserMenu(); 
 }
 
-function removeLeftSideBar(){
+function openSidebar(sidebarType, headingId){
+    var sidebarId = '#' + sidebarType + 'Sidebar';
+    $(sidebarId)[0].removeAttribute('hidden');
+    hideUserMenu();
+    $(sidebarId).toggleClass('active');
+    if(!isMobileScreenWidth()){
+        $("#content").css("paddingRight", "260px");
+        $("#footer").css("paddingRight", "260px");
+    }
+    toggleBodySidebar();
+    $('.overlay').toggleClass('active');
+    $('.collapse.in').toggleClass('in');
+    $(sidebarId + 'Collapse').attr('aria-expanded', 'true');
+    $(headingId).focus();  
+}
+
+function closeLeftSideBar(){
     removeSideBar("#leftSidebar", "#leftSidebarCollapse");
 }
 
 
-
-
 //centerSideBar Methods
 
-function removeCenterSideBar(){
+function closeCenterSideBar(){
     removeSideBar("#centerSidebar", "#centerSidebarCollapse");
 }
 
 
-
-
 //rightSideBar Methods
-
-function removeRightSideBar(){
+function closeRightSideBar(){
     removeSideBar("#rightSidebar", "#rightSidebarCollapse");
 }
-
-
-
 
 
 //Icon Menu Methods
 
 function hideUserMenu(){ //menu that is center of page with three buttons that call upon respective menus
     $("#user-menu").attr("aria-hidden", "true");
-
-    /*
-    var buttons = $("#user-menu").find("button");
-
-    for(var i = 0; i < buttons.length; i++){
-        element = buttons[i];
-        element.setAttribute("aria-hidden", true);
-        element.setAttribute("tabindex", -1);
-    }
-    //console.log("Turned off nav menu");
-    */
 }
 
 function showUserMenu(){
     $("#user-menu").attr("aria-hidden", "false");
-
-    /*
-    var buttons = $("#user-menu").find("button");
-
-    for(var i = 0; i < buttons.length; i++){
-        element = buttons[i];
-        element.setAttribute("aria-hidden", false);
-        element.setAttribute("tabindex", 0);
-    }
-    //console.log("Turned on nav menu");
-*/
 }
-
-
-
 
 
 //All Toggle Menu Functions
 
 function isMobile(){
     return navigator.userAgent.match("/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i");
-}
-
-function isSideBarActive(){
-    var rightId = '#rightSidebar', leftId = '#rightSidebar';
-    return $(rightId).hasClass('active') || $(leftId).hasClass('active');
 }
 
 function resizeMainMenu(){//change button size same when default page opens
@@ -102,11 +83,19 @@ function toggleBodySidebar(){
     $("body").toggleClass("no-scroll");
 }
 
+function getPageWidth(){
+    return $(window).width();
+}
+
+function isMobileScreenWidth(){
+    return getPageWidth() <= "425";
+}
+
 function switchArrowDirection(){
-    var width = $(window).width();
-    //var height = $(window).height();
-    if(width <= "425"){
+    if(isMobileScreenWidth()){
         $(".arrow-button").attr('data-icon', 'arrow-left');
+        $("#content",).css("paddingRight", "20px");
+        $("#footer").css("paddingRight", "20px");
     }
     else{
         $(".arrow-button").attr('data-icon', 'arrow-right');
@@ -115,28 +104,15 @@ function switchArrowDirection(){
 
 function closeMenus(){
     if($('#rightSidebar').hasClass('active')){
-        removeRightSideBar();
-        document.getElementById("content").style.paddingLeft = "20px";
-        document.getElementById("rightSidebarCollapse").focus();
-        showUserMenu();
+        closeRightSideBar();
     }
     else if($('#leftSidebar').hasClass('active')){
-        removeLeftSideBar();
-        $('.overlay').removeClass('active');
-        document.getElementById("content").style.paddingRight = "20px";
-        document.getElementById("leftSidebarCollapse").focus();
+        closeLeftSideBar();
     }
     else if($('#centerSidebar').hasClass('active')){
-        removeCenterSideBar();
-        $('.overlay').removeClass('active');
-        document.getElementById("content").style.paddingRight = "260px";
-        document.getElementById("centerSidebarCollapse").focus();
+        closeCenterSideBar();
     }
 }
-
-
-
-
 
 //Accesibility Methods
 
@@ -149,73 +125,50 @@ function changeSize(element, style, multiplier){
 
 
 function setCurrentFontDisplay(){
-    var arr = new Array('-3x','-2x', '1x', '2x', '3x', '4x');
-    //console.log($('#current-font-size')[0].innerHTML);
-    $('#current-font-size')[0].innerHTML = "Current Font Size: " + arr[zoomedIn + 2];
+    $('#current-font-size')[0].innerHTML = "Current Font Size: " + arr[zoomedIn];
 }
 
-function addGraystyle(){
-    document.documentElement.style.setProperty('-moz-filter', 'grayscale(100%)');
-    document.documentElement.style.setProperty('-webkit-filter', 'grayscale(100%)');
-    document.documentElement.style.setProperty('filter', 'gray');
-    document.documentElement.style.setProperty('-moz-filter', 'grayscale(100%)');
-    currentColorSetting = "Graystyle";
+function toggleGraystyle(){
+    $(document.documentElement).toggleClass("gray-style-filter");
 }
 
-function removeGraystyle() {
-    document.documentElement.style.removeProperty('-moz-filter', 'grayscale(100%)');
-    document.documentElement.style.removeProperty('-webkit-filter', 'grayscale(100%)');
-    document.documentElement.style.removeProperty('filter', 'gray');
-    document.documentElement.style.removeProperty('-moz-filter', 'grayscale(100%)');
-}
-
-function addInvertColor(){
-    document.documentElement.style.setProperty('-webkit-filter', 'invert(.8)');
-    document.documentElement.style.setProperty('filter', 'invert(.8)');
-    currentColorSetting = "Invert"
-}
-
-function removeInvertColor(){
-    document.documentElement.style.removeProperty('-webkit-filter', 'invert(.8)');
-    document.documentElement.style.removeProperty('filter', 'invert(.8)');
+function toggleInvertColor(){
+    $(document.documentElement).toggleClass("inverse-style-filter");
 }
 
 function turnOnGrayStyle(){
     if(currentColorSetting != "GrayStyle"){
         removeCurrentColorSetting();
-        addGraystyle();
+        toggleGraystyle();
         currentColorSetting = "GrayStyle";
     }
-    //console.log(currentColorSetting);
 }
 
 function turnOnColorDefault(){
     if(currentColorSetting != "Default"){
+        console.log("Turn off " + currentColorSetting);
         removeCurrentColorSetting();
         currentColorSetting = "Default";
+        console.log("Turn on " + currentColorSetting);
     }
-    //console.log(currentColorSetting);
 }
 
 function turnOnInverseStyle(){
     if(currentColorSetting != "Inverse"){
         removeCurrentColorSetting();
-        addInvertColor();
+        toggleInvertColor();
         currentColorSetting = "Inverse";
     }
-    //console.log(currentColorSetting);
 }
 
 function removeCurrentColorSetting(){
     if(currentColorSetting == "Inverse"){
-        removeInvertColor();
+        toggleInvertColor();
     }
     else if(currentColorSetting == "GrayStyle"){
-        removeGraystyle();
+        toggleGraystyle();
     }
 }
-
-
 
 
 //Global Variables for functionality
@@ -237,7 +190,11 @@ var originalMarginTop = $(contentId).css(stylePaddingTop);
 var originalHeaderSize = "1rem";
 var originalTableHeadSize = originalHeaderSize;
 
-var maxZoomedIn = 3;
+var arr = new Array('1x', '2x', '3x');
+var arr2 = new Array('initial', 'x-large', 'xx-large');
+var arr3 = new Array('13px', '19px', '26px');
+
+var maxZoomedIn = 2;
 var minZoomedIn = 0;
 var defaultIn = 0;
 
@@ -250,14 +207,8 @@ var zoomedIn = defaultIn;
 
 
 resizeMainMenu();
-var colorSetting = new Array("Default", "Graystyle","Black on White","White on Black");
+var colorSetting = new Array("Default", "Graystyle","Black on White");
 var currentColorSetting = colorSetting[0];
-
-
-
-
-
-
 
 
 //MAIN FUNCTION
@@ -269,60 +220,49 @@ function main(){
         $(contentId).css(stylePaddingTop, originalMarginTop);
         $(header).css(fontSizeStyle, originalHeaderSize);
         $(tableHead).css(fontSizeStyle, originalTableHeadSize);
-
+        changeSize("#innerContent", fontSizeStyle, arr3[defaultIn]);   
+        changeSize("form input:checkbox", "width", arr3[defaultIn]);
+        changeSize("form input:checkbox", "height", arr3[zoomedIn])
         zoomedIn = 0;
-        resizeMainMenu();
         setCurrentFontDisplay();
     });
 
     //increases font size when clicked
     $("#increase-font").click(function(){
-        var increaseMultiplier = 1.2;
         if(zoomedIn < maxZoomedIn){
-            changeSize(buttonText, fontSizeStyle, increaseMultiplier);
-            changeSize(menuButtonClass, fontSizeStyle, increaseMultiplier);
-            changeSize(header, fontSizeStyle, 2);
-            changeSize(tableHead, fontSizeStyle, 2);
-            changeSize(contentId, stylePaddingTop, increaseMultiplier);
             zoomedIn++;
+            changeSize("innerContent", fontSizeStyle, arr2[zoomedIn]);  
+            resizeMainMenu(); 
+            setCurrentFontDisplay();
         }
-        resizeMainMenu();
-        setCurrentFontDisplay();
     });
 
     //decrease font size when clicked
     $("#decrease-font").click(function(){
-        var decreaseMultiplier = 0.8;
         if(zoomedIn > minZoomedIn){
-            changeSize(buttonText, fontSizeStyle, decreaseMultiplier);
-            changeSize(menuButtonClass, fontSizeStyle, decreaseMultiplier);
-            if(zoomedIn > defaultIn){
-                changeSize(header, fontSizeStyle, 0.5);
-                changeSize(tableHead, fontSizeStyle, 0.5);
-            }
-            changeSize(contentId, stylePaddingTop, decreaseMultiplier);
             zoomedIn--;
+            changeSize("#innerContent", fontSizeStyle, arr2[zoomedIn]);
+            resizeMainMenu();
+            setCurrentFontDisplay();
         }
-        resizeMainMenu();
-        setCurrentFontDisplay();
     });
 
     //close LEFT SIDE MENU
     $('#leftDismiss, .overlay').on('click',  function(event) {
         $('#leftSidebarCollapse').attr('aria-expanded', 'false');
-        removeLeftSideBar(event);
+        closeLeftSideBar(event);
     });
 
     //close center MENU
     $('#centerDismiss, .overlay').on('click', function(event) {
         $('#centerSidebarCollapse').attr('aria-expanded', 'false');
-        removeCenterSideBar(event);
+        closeCenterSideBar(event);
     });
 
     //close RIGHT SIDE menu
     $('#rightDismiss, .overlay').on('click', function(event) {
         $('#rightSidebarCollapse').attr('aria-expanded', 'false');
-        removeRightSideBar(event);
+        closeRightSideBar(event);
     });
 
     //ALL MENU(S)
@@ -341,69 +281,16 @@ function main(){
 
     //ICON MENU
 
-    $('#leftSidebarCollapse').on('click', function () {
-        if($('#leftSidebar').hasClass('active')){
-            removeLeftSideBar();
-            $('.overlay').removeClass('active');
-            document.getElementById("content").style.paddingRight = "20px";
-            document.getElementById("leftSidebarCollapse").focus();
-        }
-
-        else{
-            var leftId = '#leftSidebar';
-            $(leftId)[0].removeAttribute('hidden');
-            hideUserMenu();
-            $(leftId).toggleClass('active');
-            document.getElementById("content").style.paddingRight = "260px";
-            toggleBodySidebar();
-            $('.overlay').toggleClass('active');
-            $('.collapse.in').toggleClass('in');
-            $('#leftSidebarCollapse').attr('aria-expanded', 'true');
-            document.getElementById("userSettingsHeading").focus();        }
+    $('#leftSidebarCollapse').on('click', function(){
+        openSidebar('left', '#userSettingsHeading');
     });
 
     $('#centerSidebarCollapse').on('click', function () {
-        if($('#centerSidebar').hasClass('active')){
-            removeCenterSideBar();
-            $('.overlay').removeClass('active');
-            document.getElementById("content").style.paddingRight = "20px";
-            document.getElementById("centerSidebarCollapse").focus();
-        }
-
-        else{
-            var leftId = '#centerSidebar';
-            $(leftId)[0].removeAttribute('hidden');
-            hideUserMenu();
-            $(leftId).toggleClass('active');
-            document.getElementById("content").style.paddingRight = "260px";
-            toggleBodySidebar();
-            $('.overlay').toggleClass('active');
-            $('.collapse.in').toggleClass('in');
-            $('#centerSidebarCollapse').attr('aria-expanded', 'true');
-            document.getElementById("accessibilitySettingsHeading").focus();
-        }
+        openSidebar('center', '#accessibilitySettingsHeading');
     });
 
     $('#rightSidebarCollapse').on('click', function () {
-        if($('#rightSidebar').hasClass('active')){
-            removeRightSideBar();
-            $('.overlay').removeClass('active');
-            document.getElementById("content").style.paddingRight = "20px";
-            document.getElementById("rightSidebarCollapse").focus();
-        }
-
-        else{
-            var leftId = '#rightSidebar';
-            $(leftId)[0].removeAttribute('hidden');
-            hideUserMenu();
-            $(leftId).toggleClass('active');
-            document.getElementById("content").style.paddingRight = "260px";
-            toggleBodySidebar();
-            $('.overlay').toggleClass('active');
-            $('.collapse.in').toggleClass('in');
-            $('#rightSidebarCollapse').attr('aria-expanded', 'true');
-            document.getElementById("mySchedulerHeading").focus();
-        }
+        openSidebar('right', '#mySchedulerHeading');
     });
 
     $('#color-scheme-b-o-w').on('click',  turnOnGrayStyle);
@@ -431,13 +318,20 @@ function main(){
         $("#innerContent").empty();
         $("#content").load("menuPhp/showSchedule.php");
         let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
-	    $.get("proxies/getProxy.php", map,function(data){startUserTable(data[0].conference_id, 1);}, "json");
+	    //$.get("proxies/getProxy.php", map,function(data){startUserTable(data[0].conference_id, 1);}, "json");
     });
 
     $("#websiteLink").on("click", function()
     {
         window.open("https://sites.ewu.edu/pwdss/");
     });
+
+    window.addEventListener("resize", onresize);
+
+    $(window).resize(function(){
+        switchArrowDirection();
+        resizeMainMenu();
+    });
 }
 
-main();
+$(document).ready(main);

@@ -467,3 +467,28 @@ svg:not(:root).svg-inline--fa {
 .no-scroll{
   overflow-y: hidden
 }
+
+#innerContent{
+  text-align: center;
+}
+
+/* Footer */
+#footer{
+  outline:0; 
+  background-color:crimson; 
+  color:white; 
+  padding:10px; 
+  max-width:none;
+}
+
+.gray-style-filter{
+  -moz-filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  filter : 'gray';
+  -moz-filter: grayscale(100%);
+}
+
+.inverse-style-filter{
+  -webkit-filter : invert(.8);
+  filter : invert(.8);
+}

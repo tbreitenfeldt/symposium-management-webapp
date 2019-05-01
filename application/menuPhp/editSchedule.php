@@ -1,12 +1,4 @@
 <?php ?>
-
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-
-    <script src="js/conferenceAPIJs/databaseFunctions.js"></script>
-    <script src="js/userJs/mainSchedule.js"></script>
-    <script src="js/userJs/userSchedule.js"></script>
-
     <div id="innerContent">
         <div id="conference-table">
             <header id="conferenceNameHeader">Conference Schedule</header>
@@ -42,5 +34,3 @@
                 </div>
         </div>
     </div>
-
-</html>

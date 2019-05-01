@@ -1,4 +1,6 @@
 
+$(document).ready(beginMainSchedule);
+
 function beginMainSchedule()
 {
 	$("#conferenceRegisterButton").click(registerUserForConference);
@@ -8,20 +10,17 @@ function beginMainSchedule()
 function getUserConference()
 {
 	let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
-	$.get("proxies/getProxy.php", map, determineIfUserIsRegistered, "json");
+	$.get("proxies/getProxy.php", map, determineIfUserIsRegistered, "json").fail(function(e) {determineIfUserIsRegistered(null);});
 }
 
 function determineIfUserIsRegistered(data)
 {
-	console.log(data);
 	if (data == null || data.length == 0) {
-		$("#conferenceChooser").show();
+		$("#conferenceChooser").removeAttr("hidden");
 		$("#rightSidebarCollapse").attr("disabled", "true");
 		getConferenceData();
 	} else if (data.length == 1) {
-		$("#rightSidebarCollapse").attr("disabled", "true");
-		$("#conferenceInformation").show();
-		loadConference(data[0]["conference_id"]);
+		$("#rightSidebarCollapse").attr("data-conferenceId", data[0]["conference_id"]);
 	} else {
 		document.write("There is an error trying to process your request, please contact an administrator.");
 	}
@@ -34,6 +33,7 @@ function getConferenceData()
 
 function populateConferenceListbox(data)
 {
+alert("hello world");
 	if (data != null && data.length != 0) {
 		for (let conference of data) {
 			let option = "<option value=\"" + conference["conference_id"] + "\">" + conference["conference_name"] + "</option>";
@@ -46,14 +46,21 @@ function registerUserForConference(event)
 {
 	let conferenceID = $("#conferenceChooserListbox").val();
 	let map = {table_name: "user_conference", attrs: ["conference_id"], values: [conferenceID]};
+
+	$("#rightSidebarCollapse").attr("data-conferenceId", conferenceID);
+	$("#rightSidebarCollapse").removeAttr("disabled");
 	$("#conferenceChooserListbox").empty();
-	$("#conferenceChooser").hide();
-	$("#conferenceInformation").show();
-	$.post("proxies/postProxy.php", map, function(data) {loadConference(conferenceID);} );
+	$("#conferenceChooser").attr("hidden", "true");
+	$.post("proxies/postProxy.php", map, function(data) {document.write(data);}); //notifyScreenreader("Registered for Conference");} );
 }
 
-async function loadConference(conferenceID)
+async function loadConference()
 {
+	if ( !$("#rightSidebarCollapse").attr("data-conferenceId") || $("#rightSidebarCollapse").attr("data-conferenceId") == "") {
+		return;
+	}
+
+	let conferenceID = $("#rightSidebarCollapse").attr("data-conferenceId");
 	await startMainTable(conferenceID);
 	await startUserTable(conferenceID,0);
 }

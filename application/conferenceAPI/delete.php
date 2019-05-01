@@ -9,8 +9,8 @@ if (isset($_DELETE["id_name"]) && isset($_DELETE["id_value"]) && isset($_DELETE[
 		$sql = "DELETE FROM $table WHERE ";
 		
 		if($tablecheck == "useraccounts" || $tablecheck == "adminaccounts"){
-		    exit("Access Restricted");
-		} else if ($tablecheck == "userschedule"){
+		    exit("Access Restricted - 1");
+		} else if ($tablecheck == "userschedule" || $tablecheck == "userconference"){
 		    for($i = 0; $i < sizeof($id_name); $i++){
 		        $curname = preg_replace("/[^a-zA-Z0-9]/", "", $id_name[$i]);
 		        if($curname == "userid"){
@@ -37,7 +37,7 @@ if (isset($_DELETE["id_name"]) && isset($_DELETE["id_value"]) && isset($_DELETE[
 		$result = $pdoUtil->query($sql, $id_value);
 			
 		http_response_code(200);
-		echo "success";
+		echo "Delete Succesful";
 	} catch (Exception $e) {
 		error_log($e->getMessage());
 		exit('Error processing');

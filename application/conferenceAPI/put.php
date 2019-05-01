@@ -38,7 +38,7 @@ if (isset($_PUT["table_name"])) {
 		        }
 		        if($access = 0) exit("Access Restricted - 11");
 		    }
-		} else if ($tablecheck == "userschedule"){
+		} else if ($tablecheck == "userschedule" || $tablecheck == "userconference"){
 		    for($i = 0; $i < sizeof($attrs); $i++){
 		        $curattrs = preg_replace("/[^a-zA-Z0-9]/", "", $attrs[$i]);
 		        if($curattrs == "userid"){
@@ -92,7 +92,7 @@ if (isset($_PUT["table_name"])) {
 		
 		$result = $pdoUtil->query($sql,$values);
 		http_response_code(201);
-		echo json_encode("success");
+		echo json_encode("Update Succesful");
 	} catch (Exception $e) {
 		error_log($e->getMessage());
 		exit('Error processing');

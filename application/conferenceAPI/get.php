@@ -1,7 +1,7 @@
 <?php
+include "./chromephp-master/ChromePhp.php";
 if(isset($_GET["genFlag"])){
 	$sql = "SELECT ";
-	
 	$tables = (array)$_GET["table_names"];
 	
 	if(empty($_GET["attrs"]) && empty($_GET["values"])){
@@ -9,13 +9,13 @@ if(isset($_GET["genFlag"])){
 	    $values = [];
 	} else {
 	   	$attrs = (array)$_GET["attrs"];
-	   $values = (array)$_GET["values"]; 
+		$values = (array)$_GET["values"];
 	}
 
 	
 	foreach($tables as $tn){
 	    if($tn == "user_accounts" || $tn == "admin_accounts"){
-	        exit("Access Restricted");
+	        exit("Access Restricted - 1");
 	    }
 	}
 	
@@ -50,15 +50,27 @@ if(isset($_GET["genFlag"])){
 		}
 		$sql = shorten($sql, strlen($and));
 	}
-	
+
+	if(!empty($_GET["orderBy"])){
+	    $orderby = (array)$_GET["orderBy"];
+	    $sql .= " ORDER BY ";
+	    foreach($orderby as $o){
+            $sql .= $o . ", ";
+        }
+	    $sql = shorten($sql, strlen(", "));
+
+    }
+
+
 	$sql .= ";";
-	
+	ChromePHP::log($sql);
+
 	try{
 
 	    if(empty($values)) $values = [];
 		$result = $pdoUtil->query($sql, $values);
 
-		if($result){
+		if($result || $result == []){
 			http_response_code(200);
 			echo json_encode($result);
 		} else {

@@ -43,7 +43,7 @@
         <div id="user-menu" class="col-lg-12" role="navigation" aria-hidden="false" aria-label="user menu">
             <div class="row">
                 <div class="col-xs-4">
-                    <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
+                    <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false" data-conferenceId="">
                         <span>Symposium<br/>Scheduler</span>
                         <br/>
                         <i class="fa fa-calendar fa-6x menu-item"></i>
@@ -205,7 +205,7 @@
             <div id="innerContent">
                 <h1> Welcome to our Conference! </h1>
 
-                <div id="conferenceChooser" hidden>
+                <div id="conferenceChooser" role="main" aria-label="Choose Conference" hidden="true">
                     <select id="conferenceChooserListbox"></select>
                     <input type="button" id ="conferenceRegisterButton" value="Register for Conference" />
                 </div>

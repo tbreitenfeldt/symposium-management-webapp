@@ -66,6 +66,7 @@ async function loadConference()
 
 function startMainTable(id)
 {
+	console.log(id);
 	valuesToSelect = ["*"];
 	tableNames = ["conference"];
 	attrs = ["conference_id"];
@@ -146,10 +147,15 @@ function showConferenceDetails(data)
 			endDate: data[0].conference_enddate,
 			detail: data[0].conference_facilitydesc,
 			email: data[0].conference_contactemail,
-			phone: data[0].conference_contactphone
+			phone: data[0].conference_contactphone,
+			address: data[0].conference_address,
+			city: data[0].conference_city,
+			state: data[0].conference_state,
+			zip: data[0].conference_zip
 		};
 
+		$("#header").html(conference.name + " Information");
 		$("#description").html(conference.startDate + " to " + conference.endDate +"<br>" + conference.detail);
-		$("#location").html(conference.name);
+		$("#location").html(/*conference.address + " " + */conference.city + " " + conference.state /*+ " " + conference.zip*/);
 		$("#contact").html("&nbsp&nbsp&nbsp&nbspEmail: " + conference.email + "<br>&nbsp&nbsp&nbsp&nbspPhone: " + conference.phone + "");
 }

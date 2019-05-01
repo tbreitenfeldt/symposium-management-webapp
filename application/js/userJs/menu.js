@@ -309,7 +309,7 @@ function main(){
         closeMenus();
         $("#innerContent").empty();
         $("#content").load("menuPhp/editSchedule.php");
-        init();
+        loadConference();
     });
 
     $('#mySchedule').on("click", function(){

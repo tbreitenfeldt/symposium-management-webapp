@@ -23,7 +23,6 @@ function removeSideBar(barId, iconId){
 function openSidebar(sidebarType, headingId, screenreaderMessage){
     var sidebarId = '#' + sidebarType + 'Sidebar';
     $(sidebarId)[0].removeAttribute('hidden');
-    hideUserMenu();
     $(sidebarId).toggleClass('active');
     if(!isMobileScreenWidth()){
         $("#content").css("paddingRight", "260px");
@@ -35,6 +34,8 @@ function openSidebar(sidebarType, headingId, screenreaderMessage){
     notifyScreenreader(screenreaderMessage);
     $(sidebarId + 'Collapse').attr('aria-expanded', 'true');
     $(headingId).focus();  
+    console.log("should hide everything");
+    hideContentPage()
 }
 
 function closeLeftSideBar(){
@@ -57,12 +58,16 @@ function closeRightSideBar(screenreaderMessage){
 
 //Icon Menu Methods
 
-function hideUserMenu(){ //menu that is center of page with three buttons that call upon respective menus
+function hideContentPage(){
     $("#user-menu").attr("aria-hidden", "true");
+    $("#footer").attr("aria-hidden", "true");
+    $("#content").attr("aria-hidden", "true");
 }
 
-function showUserMenu(){
+function showContentPage(){
     $("#user-menu").attr("aria-hidden", "false");
+    $("#footer").attr("aria-hidden", "false");
+    $("#content").attr("aria-hidden", "false");
 }
 
 

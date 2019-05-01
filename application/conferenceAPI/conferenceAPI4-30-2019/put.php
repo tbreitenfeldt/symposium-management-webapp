@@ -38,7 +38,7 @@ if (isset($_PUT["table_name"])) {
 		        }
 		        if($access = 0) exit("Access Restricted - 11");
 		    }
-		} else if ($tablecheck == "userschedule"){
+		} else if ($tablecheck == "userschedule" || $tablecheck == "userconference"){
 		    for($i = 0; $i < sizeof($attrs); $i++){
 		        $curattrs = preg_replace("/[^a-zA-Z0-9]/", "", $attrs[$i]);
 		        if($curattrs == "userid"){

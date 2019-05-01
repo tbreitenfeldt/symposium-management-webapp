@@ -10,7 +10,7 @@ if (isset($_DELETE["id_name"]) && isset($_DELETE["id_value"]) && isset($_DELETE[
 		
 		if($tablecheck == "useraccounts" || $tablecheck == "adminaccounts"){
 		    exit("Access Restricted - 1");
-		} else if ($tablecheck == "userschedule"){
+		} else if ($tablecheck == "userschedule" || $tablecheck == "userconference"){
 		    for($i = 0; $i < sizeof($id_name); $i++){
 		        $curname = preg_replace("/[^a-zA-Z0-9]/", "", $id_name[$i]);
 		        if($curname == "userid"){

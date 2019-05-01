@@ -17,9 +17,10 @@ function removeSideBar(barId, iconId){
         }
     });
     showUserMenu(); 
+    $(barId + 'Collapse').attr('aria-expanded', 'false');
 }
 
-function openSidebar(sidebarType, headingId){
+function openSidebar(sidebarType, headingId, screenreaderMessage){
     var sidebarId = '#' + sidebarType + 'Sidebar';
     $(sidebarId)[0].removeAttribute('hidden');
     hideUserMenu();
@@ -31,6 +32,7 @@ function openSidebar(sidebarType, headingId){
     toggleBodySidebar();
     $('.overlay').toggleClass('active');
     $('.collapse.in').toggleClass('in');
+    notifyScreenreader(screenreaderMessage);
     $(sidebarId + 'Collapse').attr('aria-expanded', 'true');
     $(headingId).focus();  
 }
@@ -42,14 +44,14 @@ function closeLeftSideBar(){
 
 //centerSideBar Methods
 
-function closeCenterSideBar(){
-    removeSideBar("#centerSidebar", "#centerSidebarCollapse");
+function closeCenterSideBar(screenreaderMessage){
+    removeSideBar("#centerSidebar", "#centerSidebarCollapse", screenreaderMessage);
 }
 
 
 //rightSideBar Methods
-function closeRightSideBar(){
-    removeSideBar("#rightSidebar", "#rightSidebarCollapse");
+function closeRightSideBar(screenreaderMessage){
+    removeSideBar("#rightSidebar", "#rightSidebarCollapse", screenreaderMessage);
 }
 
 
@@ -170,6 +172,14 @@ function removeCurrentColorSetting(){
     }
 }
 
+function notifyScreenreader(message) {
+    if ($("#screenreaderUINotification").length) {
+        $("#screenreaderUINotification").text(message);
+        setTimeout(function() {$("#screenreaderUINotification").text("");}, 5000);
+    } else {
+    alert("missing div region with ID of screenreaderUINotification, either remove this function  call, or add a div with that ID.");
+    }
+}
 
 //Global Variables for functionality
 
@@ -249,8 +259,7 @@ function main(){
 
     //close LEFT SIDE MENU
     $('#leftDismiss, .overlay').on('click',  function(event) {
-        $('#leftSidebarCollapse').attr('aria-expanded', 'false');
-        closeLeftSideBar(event);
+        closeLeftSideBar('collapsed user settings');
     });
 
     //close center MENU
@@ -282,7 +291,7 @@ function main(){
     //ICON MENU
 
     $('#leftSidebarCollapse').on('click', function(){
-        openSidebar('left', '#userSettingsHeading');
+        openSidebar('left', '#userSettingsHeading', 'expanded user settings');
     });
 
     $('#centerSidebarCollapse').on('click', function () {

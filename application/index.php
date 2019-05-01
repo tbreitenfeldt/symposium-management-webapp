@@ -70,7 +70,7 @@
         <!-- rightSideBar -->
         <nav id="rightSidebar" aria-label="My Scheduler" hidden>
             <div id="rightDismiss">
-                <button href="" alt="close menu button" id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button href="" id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
             <div aria-label="" class="rightSidebar-header">
@@ -159,7 +159,7 @@
         <!-- leftSidebar  -->
         <nav id="leftSidebar" aria-label="User Settings" hidden>
             <div id="leftDismiss" >
-                <button href="" alt="close menu button" id="closeRightMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button href="" id="closeRightMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
 
@@ -204,11 +204,19 @@
         <div id="content">
             <div id="innerContent">
                 <h1> Welcome to our Conference! </h1>
+
+                <div id="conferenceChooser" hidden>
+                    <select id="conferenceChooserListbox"></select>
+                    <input type="button" id ="conferenceRegisterButton" value="Register for Conference" />
+                </div>
             </div>
         </div>
         <!-- END content  -->
 
         <?php include "./includes/footer.php"; ?>
+
+        <!--Message for only screenreaders. read when region is shown, shouldn't be visually visible.-->
+        <div id="screenreaderUINotification" class="screenreader-text" aria-live="assertive"></div>
 
         <!-- jQuery Custom Scroller CDN -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>

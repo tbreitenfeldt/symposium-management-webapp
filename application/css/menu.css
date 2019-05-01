@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+﻿@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 button.dropdown-button:not(.collapsed)[aria-expanded="true"]{
   background:white;
@@ -492,3 +492,15 @@ svg:not(:root).svg-inline--fa {
   -webkit-filter : invert(.8);
   filter : invert(.8);
 }
+
+/*Hides text visually, but allows screenreaders to read it.*/
+    .screenreader-text {
+      border: 0; 
+      clip: rect(0 0 0 0); 
+      height: 1px; 
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }

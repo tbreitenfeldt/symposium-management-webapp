@@ -1,5 +1,5 @@
 
-function init ()
+function init()
 {
 	$("#conferenceRegisterButton").click(registerUserForConference);
 	getUserConference();
@@ -15,8 +15,10 @@ function determineIfUserIsRegistered(data)
 {
 	if (data == null || data.length == 0) {
 		$("#conferenceChooser").show();
+		$("#rightSidebarCollapse").attr("disabled", "true");
 		getConferenceData();
 	} else if (data.length == 1) {
+		$("#rightSidebarCollapse").attr("disabled", "true");
 		$("#conferenceInformation").show();
 		loadConference(data[0]["conference_id"]);
 	} else {

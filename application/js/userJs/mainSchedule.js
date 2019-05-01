@@ -1,5 +1,5 @@
 
-function init()
+function beginMainSchedule()
 {
 	$("#conferenceRegisterButton").click(registerUserForConference);
 	getUserConference();
@@ -13,6 +13,7 @@ function getUserConference()
 
 function determineIfUserIsRegistered(data)
 {
+	console.log(data);
 	if (data == null || data.length == 0) {
 		$("#conferenceChooser").show();
 		$("#rightSidebarCollapse").attr("disabled", "true");
@@ -125,6 +126,7 @@ function successPost(conferenceID)
 
 function getConferenceInformation()
 {
+	console.log("here");
 		let map = {"table_names": ["user_conference","conference"], "values_to_select": ["*"], "attrs": [""], "values": [""], "genFlag": "flag"};
 		$.get("proxies/getProxy.php",map,showConferenceDetails, "json");
 }

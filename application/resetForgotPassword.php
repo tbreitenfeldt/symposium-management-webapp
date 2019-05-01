@@ -1,5 +1,7 @@
 <?php
+session_start();
 $_SESSION["user"] = "user";
+session_write_close();
 
 if ($_SERVER["REQUEST_METHOD"] != "GET" || !isset($_GET["token"]) || !isset($_GET["email"])) {
     header("location: error.php");

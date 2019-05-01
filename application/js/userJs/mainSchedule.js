@@ -33,7 +33,6 @@ function getConferenceData()
 
 function populateConferenceListbox(data)
 {
-alert("hello world");
 	if (data != null && data.length != 0) {
 		for (let conference of data) {
 			let option = "<option value=\"" + conference["conference_id"] + "\">" + conference["conference_name"] + "</option>";
@@ -51,7 +50,7 @@ function registerUserForConference(event)
 	$("#rightSidebarCollapse").removeAttr("disabled");
 	$("#conferenceChooserListbox").empty();
 	$("#conferenceChooser").attr("hidden", "true");
-	$.post("proxies/postProxy.php", map, function(data) {document.write(data);}); //notifyScreenreader("Registered for Conference");} );
+	$.post("proxies/postProxy.php", map, function(data) {notifyScreenreader("Registered for Conference");} );
 }
 
 async function loadConference()

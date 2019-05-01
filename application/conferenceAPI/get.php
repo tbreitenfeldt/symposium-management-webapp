@@ -1,5 +1,5 @@
 <?php
-include "./chromephp-master/ChromePhp.php";
+//include "./chromephp-master/ChromePhp.php";
 if(isset($_GET["genFlag"])){
 	$sql = "SELECT ";
 	$tables = (array)$_GET["table_names"];
@@ -63,7 +63,7 @@ if(isset($_GET["genFlag"])){
 
 
 	$sql .= ";";
-	ChromePHP::log($sql);
+	//ChromePHP::log($sql);
 
 	try{
 

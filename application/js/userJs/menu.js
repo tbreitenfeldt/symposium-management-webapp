@@ -9,7 +9,6 @@ function removeSideBar(barId, iconId){
         $("#content",).css("paddingRight", "20px");
         $("#footer").css("paddingRight", "20px");
     }
-    $(iconId).focus();
     $('.collapse').removeClass('show');
     $(".dropdown-button").each(function(){
         if(!$(this).hasClass("collapsed")){
@@ -18,6 +17,7 @@ function removeSideBar(barId, iconId){
     });
     showContentPage(); 
     $(barId + 'Collapse').attr('aria-expanded', 'false');
+    $(iconId).focus();
 }
 
 function openSidebar(sidebarType, headingId, screenreaderMessage){
@@ -33,8 +33,8 @@ function openSidebar(sidebarType, headingId, screenreaderMessage){
     $('.collapse.in').toggleClass('in');
     notifyScreenreader(screenreaderMessage);
     $(sidebarId + 'Collapse').attr('aria-expanded', 'true');
-    $(headingId).focus();  
     hideContentPage()
+    $(headingId).focus();
 }
 
 function closeLeftSideBar(){
@@ -122,11 +122,8 @@ function closeMenus(){
 
 //Accesibility Methods
 
-function changeSize(element, style, multiplier){
-    var originalFontSize = $(element).css(style);
-    var originalFontNumber = parseFloat(originalFontSize);
-    var newFontSize = originalFontNumber*multiplier;
-    $(element).css(style, newFontSize);
+function changeSize(element, style, size){
+    $(element).css(style, size);
 }
 
 
@@ -144,6 +141,7 @@ function toggleInvertColor(){
 
 function turnOnGrayStyle(){
     if(currentColorSetting != "GrayStyle"){
+        toggleAriaButtonPress('#color-scheme-b-o-w');
         removeCurrentColorSetting();
         toggleGraystyle();
         currentColorSetting = "GrayStyle";
@@ -156,6 +154,7 @@ function turnOnColorDefault(){
         removeCurrentColorSetting();
         currentColorSetting = "Default";
         console.log("Turn on " + currentColorSetting);
+        toggleAriaButtonPress('#color-scheme-default');
     }
 }
 
@@ -164,15 +163,18 @@ function turnOnInverseStyle(){
         removeCurrentColorSetting();
         toggleInvertColor();
         currentColorSetting = "Inverse";
+        toggleAriaButtonPress('#color-scheme-inverse');
     }
 }
 
 function removeCurrentColorSetting(){
     if(currentColorSetting == "Inverse"){
         toggleInvertColor();
+        toggleAriaButtonPress('#color-scheme-inverse');
     }
     else if(currentColorSetting == "GrayStyle"){
         toggleGraystyle();
+        toggleAriaButtonPress('#color-scheme-b-o-w');
     }
 }
 
@@ -183,6 +185,20 @@ function notifyScreenreader(message) {
     } else {
     alert("missing div region with ID of screenreaderUINotification, either remove this function  call, or add a div with that ID.");
     }
+}
+
+function toggleAriaButtonPress(elementId) {
+    var element = $(elementId);
+    // Check to see if the button is pressed
+    var pressed = $(element).attr("aria-pressed") === "true";
+    // Change aria-pressed to the opposite state
+    element.attr("aria-pressed", !pressed);
+  }
+
+function changeFontScreen(){
+    changeSize("#my-body", fontSizeStyle, arr2[zoomedIn]);  
+    changeSize(".checkbox", "width", arr3[zoomedIn]);
+    changeSize(".checkbox", "height", arr3[zoomedIn]);
 }
 
 //Global Variables for functionality
@@ -206,7 +222,7 @@ var originalTableHeadSize = originalHeaderSize;
 
 var arr = new Array('1x', '2x', '3x');
 var arr2 = new Array('initial', 'x-large', 'xx-large');
-var arr3 = new Array('13px', '19px', '26px');
+var arr3 = new Array('13px', '20px', '50px');
 
 var maxZoomedIn = 2;
 var minZoomedIn = 0;
@@ -230,35 +246,33 @@ var currentColorSetting = colorSetting[0];
 function main(){
 
     $("#reset-font").click(function(){
-        $(menuButtonClass).css(fontSizeStyle, "");
-        $(contentId).css(stylePaddingTop, originalMarginTop);
-        $(header).css(fontSizeStyle, originalHeaderSize);
-        $(tableHead).css(fontSizeStyle, originalTableHeadSize);
-        changeSize("#innerContent", fontSizeStyle, arr3[defaultIn]);   
-        changeSize("form input:checkbox", "width", arr3[defaultIn]);
-        changeSize("form input:checkbox", "height", arr3[zoomedIn])
+        changeFontScreen();
         zoomedIn = 0;
         setCurrentFontDisplay();
+        toggleAriaButtonPress("#reset-font");
     });
 
     //increases font size when clicked
     $("#increase-font").click(function(){
         if(zoomedIn < maxZoomedIn){
             zoomedIn++;
-            changeSize("innerContent", fontSizeStyle, arr2[zoomedIn]);  
+            console.log("increase");
+            changeFontScreen();
             resizeMainMenu(); 
             setCurrentFontDisplay();
         }
+        toggleAriaButtonPress("#increase-font");
     });
 
     //decrease font size when clicked
     $("#decrease-font").click(function(){
         if(zoomedIn > minZoomedIn){
             zoomedIn--;
-            changeSize("#innerContent", fontSizeStyle, arr2[zoomedIn]);
+            changeFontScreen();
             resizeMainMenu();
             setCurrentFontDisplay();
         }
+        toggleAriaButtonPress("#decrease-font");
     });
 
     //close RIGHT SIDE menu
@@ -303,13 +317,16 @@ function main(){
         $("#innerContent").empty();
         $("#content").load("menuPhp/aboutConference.php");
         getConferenceInformation();
+        $("#innerContent").focus();
+        console.log("Please why you not working?")
     });
 
     $("#editMySchedule").on("click", function(){
         closeMenus();
         $("#innerContent").empty();
         $("#content").load("menuPhp/editSchedule.php");
-        loadConference();
+        init();
+        $("#innerContent").focus();
     });
 
     $('#mySchedule').on("click", function(){
@@ -318,6 +335,8 @@ function main(){
         $("#content").load("menuPhp/showSchedule.php");
         let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
         $.get("proxies/getProxy.php", map,function(data){startUserTable(data[0].conference_id, 1);}, "json");
+        console.log($("#innerContent"));
+        $("#innerContent").focus();
     });
 
     $("#websiteLink").on("click", function()

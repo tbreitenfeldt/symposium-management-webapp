@@ -40,6 +40,7 @@ session_write_close();
         <script src="js/userJs/mainSchedule.js"></script>
         <script src="js/userJs/userAccountRegistration.js"></script>
         <script src="js/loginSystemJs/loginAJAX.js"></script>
+        <script src="js/userJs/menu.js"></script>
 
         <!-- Font Awesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -49,8 +50,6 @@ session_write_close();
     <body id="my-body">
         <div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
 
-        <?php include "./includes/accesibilityMenuOnly.php";?>
-        
         <!-- content  -->
         <div id="content">
           <div id="content-inside">
@@ -63,7 +62,7 @@ session_write_close();
                   <div>
                     <input class="col-sm-12" type="text" id="user_name" name="user_name" placeholder="Username:"/>
                   </div>
-                  <br>
+                  <br aria-hidden="true">
                   <div class="form-group row">
                     <label for="user_password" class="col-sm-12 col-form-label">Password:</label>
                   </div>
@@ -75,21 +74,14 @@ session_write_close();
                   </div>  
                   <a href="forgotPassword.php">Forgot Password?</a>
                 </fieldset>
-                <p id="signUp">Don't have an account? <br><a href="register.php">Sign up now</a>.</p>
+                <p id="signUp">Don't have an account? <br aria-hidden="true"><a href="register.php">Sign up now</a>.</p>
 
                 <div id="outputRegion" aria-live="polite" ></div>
             </form>
           </div>
         </div>
         <!-- END content  -->
-
-        <!-- jQuery Custom Scroller CDN -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-        <!-- Popper.JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-        <!-- Bootstrap JS -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-        <!-- Our Custom JS -->
-        <script src="js/userJs/accessMenu.js"></script>
+        <?php include "./includes/accesibilityMenuOnly.php";?>
+        <?php include "./includes/footer.php"; ?>
     </body>
 </html>

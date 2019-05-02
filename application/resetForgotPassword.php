@@ -2,7 +2,7 @@
 session_start();
 $_SESSION["user"] = "user";
 session_write_close();
-
+?>
 
 <!doctype html>
 <html lang="en">
@@ -28,6 +28,7 @@ session_write_close();
 
     <!--Our custom JS-->
     <script src="js/loginSystemJs/loginAJAX.js"></script>
+    <script src="js/userJs/menu.js"></script>
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -35,10 +36,9 @@ session_write_close();
 
   </head>
 
-  <body>
+  <body id="my-body">
     <div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
 
-    <?php include "./includes/accesibilityMenuOnly.php";?>
     <div id="content">
       <div id="content-inside">
           <form id="userLogonForm" method="POST"
@@ -63,13 +63,7 @@ session_write_close();
       </div>
     </div>
 
-        <!-- jQuery Custom Scroller CDN -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-        <!-- Popper.JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-        <!-- Bootstrap JS -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-        <!-- Our Custom JS -->
-        <script src="js/userJs/accessMenu.js"></script>
+    <?php include "./includes/accesibilityMenuOnly.php";?>
+    <?php include "./includes/footer.php";?>
   </body>
 </html>

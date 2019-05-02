@@ -36,6 +36,7 @@ session_write_close();
     <script src="js/userJs/mainSchedule.js"></script>
     <script src="js/conferenceAPIJs/databaseFunctions.js"></script>
     <script src="js/userJs/userAccountRegistration.js"></script>
+    <script src="js/userJs/menu.js"></script>
     
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -44,8 +45,6 @@ session_write_close();
 
   <body id="my-body">
     <div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
-
-    <?php include "./includes/accesibilityMenuOnly.php";?>
 
     <!-- content  -->
       <div id="content">
@@ -67,11 +66,11 @@ session_write_close();
           <fieldset>
             <legend>Conference Event Notification Settings</legend>
             <div id="check-box-settings">
-              <label for="user_notifyByEmail">Notify by email:</label>
-              <input type="checkbox" id="user_notifyByEmail" name="user_notifyByEmail" value="true" checked="checked" />
+              <label for="user_notifyByEmail">Notify by email address:</label>
+              <input type="checkbox" id="user_notifyByEmail" class="checkbox" name="user_notifyByEmail" value="true" checked="checked" />
               <br>
               <label for="user_notifyByPhone">Notify by text message:</label>
-              <input type="checkbox" id="user_notifyByPhone" name="user_notifyByPhone" value="true" />
+              <input type="checkbox" id="user_notifyByPhone" class="checkbox" name="user_notifyByPhone" value="true" />
             </div>
           </fieldset>
 
@@ -119,13 +118,7 @@ session_write_close();
     </div>
     <!-- END content  -->
 
-    <!-- jQuery Custom Scroller CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-    <!-- Popper.JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <!-- Our Custom JS -->
-    <script src="js/userJs/accessMenu.js"></script>
+    <?php include "./includes/accesibilityMenuOnly.php";?>
+    <?php include "./includes/footer.php";?>
   </body>
 </html>

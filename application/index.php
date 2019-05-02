@@ -84,7 +84,7 @@
         <!-- rightSideBar -->
         <nav id="rightSidebar" aria-label="My Scheduler" hidden>
             <div id="rightDismiss">
-                <button href="" id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button  id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
             <div aria-label="" class="rightSidebar-header">
@@ -93,27 +93,27 @@
             <ul class="list-unstyled components" aria-label="Menu Items">
                 <p id="symposium-title" alt="Title">Pacific Northwest Disability Symposium 2019</p>
                 <li>
-                    <a  aria-label="" id="">Home</a>
+                    <a role="button" aria-label="" id="">Home</a>
                 </li>
                 <li>
                     <button href="#my-scheduler-options" data-toggle="collapse" class="dropdown-button" aria-label="My Scheduler Features Drop Down List">My Scheduler Features</button>
                     <ul class="collapse list-unstyled" id="my-scheduler-options">
                         <li>
-                            <a aria-label="View Schedule" id="mySchedule">View MySchedule</a>
+                            <a role="button"aria-label="View Schedule" id="mySchedule">View MySchedule</a>
                         </li>
                         <li>
-                            <a aria-label="Edit Schedule" id="editMySchedule">Edit MySchedule</a>
+                            <a role="button"aria-label="Edit Schedule" id="editMySchedule">Edit MySchedule</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a  aria-label="About Conference" id="aboutCon">About Conference</a>
+                    <a role="button" aria-label="About Conference" id="aboutCon">About Conference</a>
                 </li>
                 <li>
-                    <a  aria-label="Contact Info">Contact Information</a>
+                    <a role="button" aria-label="Contact Info">Contact Information</a>
                 </li>
                 <li>
-                    <a  aria-label="">Assistance</a>
+                    <a role="button" aria-label="">Assistance</a>
                 </li>
             </ul>
 
@@ -125,7 +125,7 @@
         <!-- centerSidebar  -->
         <nav id="centerSidebar" aria-label="Accesibility Settings" hidden>
             <div id="centerDismiss" >
-                <button href="" id="closeCenterMenu" class="close-menu" aria-label="Close Accesibility Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button  id="closeCenterMenu" class="close-menu" aria-label="Close Accesibility Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
 
@@ -143,13 +143,13 @@
                         <li id="font-settings-li">
                             <div class="row" style="display:inline-flex">
                                 <div class="col-xs-4">
-                                    <button  class="btn btn-primary btn-lg layout-button" id="decrease-font" aria-label="Decrease Font Size">-</button>
+                                    <button  class="btn btn-primary btn-lg layout-button" id="decrease-font" aria-label="Decrease Font Size" aria-pressed="true">-</button>
                                 </div>
                                 <div class="col-xs-4">
-                                    <button class="btn btn-primary btn-lg layout-button" id="reset-font" aria-pressed="false" aria-label="Reset Font Size">Reset Font</button>
+                                    <button class="btn btn-primary btn-lg layout-button" id="reset-font" aria-label="Reset Font Size">Reset Font</button>
                                 </div>
                                 <div class="col-xs-4">
-                                    <button  class="btn btn-primary btn-lg layout-button" id="increase-font" aria-label="Increase Font Size">+</button>
+                                    <button  class="btn btn-primary btn-lg layout-button" id="increase-font" aria-label="Increase Font Size" aria-pressed="true">+</button>
                                 </div>
                             </div>
                         </li>
@@ -159,13 +159,13 @@
                     <button href="#toggleDisplayDropDown" data-toggle="collapse" class="dropdown-button" aria-label="Change Display Color">Color Scheme</button>
                     <ul class="collapse list-unstyled" id="toggleDisplayDropDown" >
                         <li>
-                            <button id="color-scheme-default" class="btn btn-primary btn-lg layout-button button-fix" aria-pressed="false" aria-label="Change To Default Color Scheme">Default Color Scheme</button>
+                            <button id="color-scheme-default" class="btn btn-primary btn-lg layout-button button-fix" aria-live="polite" aria-pressed="true" aria-label="Change To Default Color Scheme">Default Color Scheme</button>
                         </li>
                         <li>
-                            <button id="color-scheme-b-o-w" class="btn btn-primary btn-lg layout-button button-fix" aria-pressed="false" aria-label="Change To Gray Color Scheme">Gray Color Scheme</button>
+                            <button id="color-scheme-b-o-w" class="btn btn-primary btn-lg layout-button button-fix" aria-live="polite" aria-pressed="true" aria-label="Change To Gray Color Scheme">Gray Color Scheme</button>
                         </li>
                         <li>
-                            <button id="color-scheme-invert" class="btn btn-primary btn-lg layout-button button-fix" aria-pressed="false" aria-label="Change To Inverse Color Scheme">Inverse Color Scheme</button>
+                            <button id="color-scheme-invert" class="btn btn-primary btn-lg layout-button button-fix" aria-live="polite" aria-pressed="true" aria-label="Change To Inverse Color Scheme">Inverse Color Scheme</button>
                         </li>
                     </ul>
                 </li>
@@ -178,7 +178,7 @@
         <!-- leftSidebar  -->
         <nav id="leftSidebar" aria-label="User Settings" hidden>
             <div id="leftDismiss" >
-                <button href="" id="closeRightMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button  id="closeRightMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
 
@@ -192,24 +192,24 @@
                 <button href="#potentialPageMenu2" data-toggle="collapse" class="dropdown-button" aria-label="Page aria demo">Page</button>
                     <ul class="collapse list-unstyled" id="potentialPageMenu2">
                         <li>
-                            <a  aria-label="">Potential Page 1</a>
+                            <a role="button"role="button" aria-label="">Potential Page 1</a>
                         </li>
                         <li>
-                            <a  aria-label="">Potential Page 2</a>
+                            <a role="button"role="button" aria-label="">Potential Page 2</a>
                         </li>
                         <li>
-                            <a  aria-label="">Potential Page 3</a>
+                            <a role="button"role="button" aria-label="">Potential Page 3</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a role="button"  aria-label="">About </a>
+                    <a role="button"role="button"role="button"  aria-label="">About </a>
                 </li>
                 <li>
-                    <a  aria-label="Contact Info">Contact Information</a>
+                    <a role="button"role="button" aria-label="Contact Info">Contact Information</a>
                 </li>
                 <li>
-                    <a  aria-label="">Assistance</a>
+                    <a role="button"role="button" aria-label="">Assistance</a>
                 </li>
             </ul>
 

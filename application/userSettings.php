@@ -29,14 +29,14 @@ require_once "authenticateUser.php";
 
 <main>
   <form id="userSettingsForm" method="put" method="put">
-    <legend>Change User Information</legend>
+    <h2>Change User Information</h2>
     <label for="user_name">User Name</label>
     <input type="text" id="user_name" class="userSettings" name="user_name" data-value="<?php ECHO $_SESSION["user_name"]; ?>" required="required" />
     <label for="user_email">User Email</label>
     <input type="email" id="user_email" class="userSettings" name="user_email" data-value="<?php ECHO $_SESSION["user_email"]; ?>" required="required" />
 
     <fieldset>
-    <legend>Conference Event Notification Settings</legend>
+    <h2>Conference Event Notification Settings</h2>
     <input type="checkbox" id="user_notifyByEmail" class="userSettings" name="user_notifyByEmail" data-value="<?php echo $_SESSION['user_notifyByEmail']; ?>" />
     <label for="user_notifyByEmail">Notify me by email:</label>
     <input type="checkbox" id="user_notifyByPhone" class="userSettings" name="user_notifyByPhone" data-value="<?php echo $_SESSION['user_notifyByPhone']; ?>" />

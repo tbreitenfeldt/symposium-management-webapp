@@ -29,7 +29,6 @@
                   <div id="dropIt" class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Speakers</a>
                     <a class="dropdown-item" href="#">Rooms</a>
-                    <!--<div class="dropdown-divider"></div>-->
                     <a class="dropdown-item" href="#">Misc</a>
                   </div>
             </li>

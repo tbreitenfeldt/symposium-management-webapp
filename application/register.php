@@ -53,7 +53,7 @@ session_write_close();
           <div id="outputRegion" aria-live="polite" ></div>
 
           <fieldset>
-            <legend>Register Form</legend>
+            <h2>Register Form</h2>
             <p>Your username must start with a letter, and may contain only letters, numbers, dashes, and periods.</p>
             <label for="user_name">* Username:</label>
             <br aria-hidden="true">
@@ -64,7 +64,7 @@ session_write_close();
             <input type="email" id="user_email" name="user_email" required="required" />
           </fieldset>
           <fieldset>
-            <legend>Conference Event Notification Settings</legend>
+            <h2>Conference Event Notification Settings</h2>
             <div id="check-box-settings">
               <label for="user_notifyByEmail">Notify by email address:</label>
               <input type="checkbox" id="user_notifyByEmail" class="checkbox" name="user_notifyByEmail" value="true" checked="checked" />

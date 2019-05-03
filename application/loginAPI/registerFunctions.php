@@ -26,10 +26,11 @@ function register() {
 
             validateUsername($username);
             validatePasswordConfirmation($password, $confirmPassword);
+            
 
             //validate any other user data that is provided in USER_DATA_FIELDS
             foreach (USER_DATA_FIELDS as $field=>$validationFunction) {
-                $validationFunction($field);
+                $validationFunction($_POST[$field]);
             }//end foreach loop
 
             $parameters = [];

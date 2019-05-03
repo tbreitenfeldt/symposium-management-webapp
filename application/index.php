@@ -40,19 +40,6 @@
     <body id="my-body">
         <div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
 
-        <!-- content  -->
-        <div id="content" tabindex="0">
-            <div id="innerContent" tabindex="0">
-                <h1> Welcome to our Conference! </h1>
-
-                <div id="conferenceChooser" hidden>
-                    <select id="conferenceChooserListbox"></select>
-                    <input type="button" id ="conferenceRegisterButton" value="Register for Conference" />
-                </div>
-            </div>
-        </div>
-        <!-- END content  -->
-
         <!-- user-menu -->
         <div id="user-menu" class="col-lg-12" role="navigation" aria-hidden="false" aria-label="user menu">
             <div class="row">
@@ -84,11 +71,11 @@
         <!-- rightSideBar -->
         <nav id="rightSidebar" aria-label="My Scheduler" hidden>
             <div id="rightDismiss">
-                <button  id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
             <div aria-label="" class="rightSidebar-header">
-                <h3 id="mySchedulerHeading" tabindex="0">My Scheduler</h3>
+                <h3 id="mySchedulerHeading" >My Scheduler</h3>
             </div>
             <ul class="list-unstyled components" aria-label="Menu Items">
                 <p id="symposium-title" alt="Title">Pacific Northwest Disability Symposium 2019</p>
@@ -125,12 +112,12 @@
         <!-- centerSidebar  -->
         <nav id="centerSidebar" aria-label="Accesibility Settings" hidden>
             <div id="centerDismiss" >
-                <button  id="closeCenterMenu" class="close-menu" aria-label="Close Accesibility Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button id="closeCenterMenu" class="close-menu" aria-label="Close Accesibility Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
 
             <div class="centerSidebar-header">
-                <h3 tabindex="0" id="accessibilitySettingsHeading">Accesibility Settings</h3>
+                <h3  id="accessibilitySettingsHeading">Accesibility Settings</h3>
             </div>
 
             <ul class="list-unstyled components">
@@ -178,12 +165,12 @@
         <!-- leftSidebar  -->
         <nav id="leftSidebar" aria-label="User Settings" hidden>
             <div id="leftDismiss" >
-                <button  id="closeRightMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button id="closeRightMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
 
             <div class="leftSidebar-header">
-                <h3 tabindex="0" id="userSettingsHeading">User Settings</h3>
+                <h3  id="userSettingsHeading">User Settings</h3>
             </div>
 
             <ul class="list-unstyled components">
@@ -218,6 +205,19 @@
 
         </nav>
         <!-- END leftSidebar  -->
+
+        <!-- content  -->
+        <div id="content" >
+            <div id="innerContent" >
+                <h1> Welcome to our Conference! </h1>
+
+                <div id="conferenceChooser" hidden>
+                    <select id="conferenceChooserListbox"></select>
+                    <input type="button" id ="conferenceRegisterButton" value="Register for Conference" />
+                </div>
+            </div>
+        </div>
+        <!-- END content  -->
 
         <?php include "./includes/footer.php"; ?>
     </body>

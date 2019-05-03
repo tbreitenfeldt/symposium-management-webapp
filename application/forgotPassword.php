@@ -54,7 +54,7 @@ session_write_close();
                 <fieldset>
                     <div class="inputData">
                     <label for="user_email"><h3>Email:</h3></label>
-                    <br>
+                    <br aria-hidden="true">
                     <input type="email" id="user_email" name="user_email" placeholder="Email Address:" required="required" />
                     </div>
                     <input type="submit" id="forgotPasswordButton" value="Submit" />

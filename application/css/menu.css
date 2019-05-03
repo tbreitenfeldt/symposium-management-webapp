@@ -1,4 +1,4 @@
-﻿@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 button.dropdown-button:not(.collapsed)[aria-expanded="true"]{
   background:white;
@@ -97,7 +97,7 @@ a:focus {
     right: 10px;
     cursor: pointer;
     -webkit-transition: all 0.3s;
-    -o-transition: all 0.3ï¿¼    s;
+    -o-transition: all 0.3￼    s;
     transition: all 0.3s;
 }
 
@@ -374,6 +374,7 @@ table{
   background: white;
   padding: 20px;
   height: -webkit-fill-available;
+  overflow: auto;
 }
 
 h2{

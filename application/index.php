@@ -39,13 +39,12 @@
     <body>
         <div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
 
-
         <!-- content  -->
         <div id="content" tabindex="-1">
             <div id="innerContent" tabindex="-1">
                 <div id="conferenceChooser" hidden>
             <h2>Conference Registration</h2>    
-                    <label for="conferenceChooser">Select a conference to register for</label
+                    <label for="conferenceChooser">Select a conference to register for</label>
                     <select id="conferenceChooserListbox"></select>
                     <input type="button" id ="conferenceRegisterButton" value="Register for Conference" />
                 </div>

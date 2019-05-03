@@ -325,7 +325,7 @@ function main(){
         closeMenus();
         $("#innerContent").empty();
         $("#content").load("menuPhp/editSchedule.php");
-        init();
+        loadConference();
         $("#innerContent").focus();
     });
 

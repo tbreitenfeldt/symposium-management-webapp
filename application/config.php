@@ -28,6 +28,10 @@ define("USER_OLD_PASSWORD", "old_password");
 //and validateEmail and validatePhone are names of functions found in dataValidation.php.
 //note: registerFunctions.php expects the incoming post data to have keys that match the name of the fields. So if collecting data from a html form,
 //give ids and names the same field name as the name in the database.
+define("USER_PHONE_CARRIERS", 
+        array("verizon", "metro pcs", "nextel", "sprint", "t-mobile", "u.s. cellular", "at&t", "virgin mobile", "tracfone", "ting", "boost mobil")
+        );
+
 define("USER_DATA_FIELDS",
 array("user_email"=>"validateEmail", "user_phone"=>"validatePhone", "user_phoneCarrier"=>"validatePhoneCarrier", "user_notifyByEmail"=>"validateNotificationByEmail", "user_notifyByPhone"=>"validateNotificationByPhone")
 );

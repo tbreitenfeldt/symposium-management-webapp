@@ -77,23 +77,23 @@ session_write_close();
           <fieldset id="phoneRegion" style="display: none;">
             <label for="user_phone">Phone:</label>
             <input type="phone" id="user_phone" name="user_phone" />
-            <p>Plese choose your carrier from the list. This is necessary to send you text notifications. We support only a small number of carriers,
+            <p>Please choose your carrier from the list. This is necessary to send you text notifications. We support only a small number of carriers,
             so we appoligize for any inconvenience.</ br><br></p>
             <label for="user_phoneCarrier">Carrier:</label>
             <p>
             <select id="user_phoneCarrier" name="user_phoneCarrier">
               <option value="" selected="selected"></option>
-              <option value="verizon">verizon</option>
+              <option value="at&t">at&t</option>
+              <option value="boost mobil">boost mobil</option>
               <option value="metro pcs">metro pcs</option>
               <option value="nextel">nextel</option>
               <option value="sprint">sprint</option>
-              <option value="t-mobile">t-mobile</option>
-              <option value="u.s. cellular">u.s. cellular</option>
-              <option value="at&t">at&t</option>
-              <option value="virgin mobile">virgin mobile</option>
-              <option value="tracfone">tracfone</option>
               <option value="ting">ting</option>
-              <option value="boost mobil">boost mobil</option>
+              <option value="t-mobile">t-mobile</option>
+              <option value="tracfone">tracfone</option>
+              <option value="u.s. cellular">u.s. cellular</option>
+              <option value="virgin mobile">virgin mobile</option>
+              <option value="verizon">verizon</option>
             </select></p>
             <!--Message for only screenreaders. read when region is shown, shouldn't be visually visible.-->
             <div id="screenreaderPhoneRegionMessage" class="screenreader-text" role="alert">Phone Information expanded below</div>

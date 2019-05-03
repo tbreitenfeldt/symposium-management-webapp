@@ -21,6 +21,7 @@ function removeSideBar(barId, iconId){
 }
 
 function openSidebar(sidebarType, headingId, screenreaderMessage){
+    //notifyScreenreader(screenreaderMessage);
     var sidebarId = '#' + sidebarType + 'Sidebar';
     $(sidebarId)[0].removeAttribute('hidden');
     $(sidebarId).toggleClass('active');
@@ -31,10 +32,9 @@ function openSidebar(sidebarType, headingId, screenreaderMessage){
     toggleBodySidebar();
     $('.overlay').toggleClass('active');
     $('.collapse.in').toggleClass('in');
-    notifyScreenreader(screenreaderMessage);
     $(sidebarId + 'Collapse').attr('aria-expanded', 'true');
-    hideContentPage()
-    $(headingId).focus();
+    hideContentPage();
+    //$(headingId).focus();
 }
 
 function closeLeftSideBar(){
@@ -44,14 +44,14 @@ function closeLeftSideBar(){
 
 //centerSideBar Methods
 
-function closeCenterSideBar(screenreaderMessage){
-    removeSideBar("#centerSidebar", "#centerSidebarCollapse", screenreaderMessage);
+function closeCenterSideBar(){
+    removeSideBar("#centerSidebar", "#centerSidebarCollapse");
 }
 
 
 //rightSideBar Methods
-function closeRightSideBar(screenreaderMessage){
-    removeSideBar("#rightSidebar", "#rightSidebarCollapse", screenreaderMessage);
+function closeRightSideBar(){
+    removeSideBar("#rightSidebar", "#rightSidebarCollapse");
 }
 
 
@@ -275,7 +275,7 @@ function main(){
         toggleAriaButtonPress("#decrease-font");
     });
 
-    //close RIGHT SIDE menu
+    //close sidebars 
     $('#leftDismiss, #centerDismiss, #rightDismiss, .overlay').on('click', closeMenus);
 
     //ALL MENU(S)
@@ -295,15 +295,15 @@ function main(){
     //ICON MENU
 
     $('#leftSidebarCollapse').on('click', function(){
-        openSidebar('left', '#userSettingsHeading', 'expanded user settings');
+        openSidebar('left', '#userSettingsHeading', 'user settings');
     });
 
     $('#centerSidebarCollapse').on('click', function () {
-        openSidebar('center', '#accessibilitySettingsHeading');
+        openSidebar('center', '#accessibilitySettingsHeading', 'accessibility settings');
     });
 
     $('#rightSidebarCollapse').on('click', function () {
-        openSidebar('right', '#mySchedulerHeading');
+        openSidebar('right', '#mySchedulerHeading', '');
     });
 
     $('#color-scheme-b-o-w').on('click',  turnOnGrayStyle);

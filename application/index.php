@@ -40,12 +40,13 @@
     <body id="my-body">
         <div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
 
+
         <!-- content  -->
         <div id="content" tabindex="0">
             <div id="innerContent" tabindex="0">
-                <h1> Welcome to our Conference! </h1>
-
                 <div id="conferenceChooser" hidden>
+            <h2>Conference Registration</h2>    
+                    <label for="conferenceChooser">Select a conference to register for</label
                     <select id="conferenceChooserListbox"></select>
                     <input type="button" id ="conferenceRegisterButton" value="Register for Conference" />
                 </div>
@@ -55,6 +56,10 @@
 
         <!-- user-menu -->
         <div id="user-menu" class="col-lg-12" role="navigation" aria-hidden="false" aria-label="user menu">
+                <h1> Welcome <?php echo $_SESSION["user_name"]; ?>!</h1>
+
+
+
             <div class="row">
                 <div class="col-xs-4">
                     <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
@@ -178,7 +183,7 @@
         <!-- leftSidebar  -->
         <nav id="leftSidebar" aria-label="User Settings" hidden>
             <div id="leftDismiss" >
-                <button  id="closeRightMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button  id="closeRightMenu" class="close-menu" aria-expanded="true" aria-label="User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
 

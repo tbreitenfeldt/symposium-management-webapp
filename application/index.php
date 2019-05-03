@@ -30,20 +30,19 @@
         <script src="js/userJs/userSchedule.js"></script>
         <script src="js/userJs/mainSchedule.js"></script>
         <script src="js/userJs/userAccountRegistration.js"></script>
-        <script src="js/userJs/menu.js"></script>
 
         <!-- Font Awesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     </head>
 
-    <body id="my-body">
+    <body>
         <div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
 
 
         <!-- content  -->
-        <div id="content" tabindex="0">
-            <div id="innerContent" tabindex="0">
+        <div id="content" tabindex="-1">
+            <div id="innerContent" tabindex="-1">
                 <div id="conferenceChooser" hidden>
             <h2>Conference Registration</h2>    
                     <label for="conferenceChooser">Select a conference to register for</label
@@ -62,23 +61,23 @@
 
             <div class="row">
                 <div class="col-xs-4">
-                    <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
-                        <span>Symposium<br aria-hidden="true">Scheduler</span>
-                        <br aria-hidden="true">
+                    <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false" data-conferenceId="">
+                        <span>Symposium<br/>Scheduler</span>
+                        <br/>
                         <i class="fa fa-calendar fa-6x menu-item"></i>
                     </button>
                 </div>
                 <div class="col-xs-4">
                     <button type="button" id="centerSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
-                        <span>Accesibility<br aria-hidden="true">Settings</span>
-                        <br aria-hidden="true">
+                        <span>Accesibility<br/>Settings</span>
+                        <br/>
                         <i class="fas fa-universal-access fa-6x menu-item"></i>
                     </button>
                 </div>
                 <div class="col-xs-4">
                     <button type="button" id="leftSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
-                        <span>User<br aria-hidden="true"> Settings</span>
-                        <br aria-hidden="true">
+                        <span>User<br/> Settings</span>
+                        <br/>
                         <i class="fa fa-user-circle fa-6x menu-item"></i>
                     </button>
                 </div>
@@ -89,7 +88,7 @@
         <!-- rightSideBar -->
         <nav id="rightSidebar" aria-label="My Scheduler" hidden>
             <div id="rightDismiss">
-                <button  id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button href="" id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
             <div aria-label="" class="rightSidebar-header">
@@ -98,31 +97,25 @@
             <ul class="list-unstyled components" aria-label="Menu Items">
                 <p id="symposium-title" alt="Title">Pacific Northwest Disability Symposium 2019</p>
                 <li>
-                    <a role="button" aria-label="" id="">Home</a>
+                    <a  aria-label="" id="">Home</a>
                 </li>
                 <li>
                     <button href="#my-scheduler-options" data-toggle="collapse" class="dropdown-button" aria-label="My Scheduler Features Drop Down List">My Scheduler Features</button>
                     <ul class="collapse list-unstyled" id="my-scheduler-options">
                         <li>
-                            <a role="button"aria-label="View Schedule" id="mySchedule">View MySchedule</a>
+                            <a aria-label="View Schedule" id="mySchedule">View My Schedule</a>
                         </li>
                         <li>
-                            <a role="button"aria-label="Edit Schedule" id="editMySchedule">Edit MySchedule</a>
+                            <a aria-label="Edit Schedule" id="editMySchedule">Edit My Schedule</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a role="button" aria-label="About Conference" id="aboutCon">About Conference</a>
-                </li>
-                <li>
-                    <a role="button" aria-label="Contact Info">Contact Information</a>
-                </li>
-                <li>
-                    <a role="button" aria-label="">Assistance</a>
+                    <a  aria-label="Conference Schedule" id="aboutCon">Conference Schedule</a>
                 </li>
             </ul>
 
-        <button type="button"  class="btn btn-primary btn-lg layout-button" aria-label="Download Articles From Symposium">View Articles</button>
+        <button id="websiteLink" type="button"  class="btn btn-primary btn-lg layout-button" aria-label="View Website">View Website</button>
         </nav>
         <!-- END rightSideBar -->
                                                                                                                                                                                                                                                                                                                                                                                                                      
@@ -130,7 +123,7 @@
         <!-- centerSidebar  -->
         <nav id="centerSidebar" aria-label="Accesibility Settings" hidden>
             <div id="centerDismiss" >
-                <button  id="closeCenterMenu" class="close-menu" aria-label="Close Accesibility Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button href="" id="closeCenterMenu" class="close-menu" aria-label="Close Accesibility Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
 
@@ -140,21 +133,21 @@
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <button href="#potentialPageMenu25" data-toggle="collapse" class="dropdown-button" aria-label="Change Font Size" aria-live="polite">Font Size</button>
+                    <button href="#potentialPageMenu25" data-toggle="collapse" class="dropdown-button" aria-label="Change Font Size">Font Size</button>
                     <ul class="collapse list-unstyled" id="potentialPageMenu25">
                         <li>
-                            <h3 aria-live="polite" id="current-font-size">Current Font Size: 1x </h3>
+                            <h3 aria-live="polite"><span id="current-font-size">Current Font Size: 1x</span> </h3>
                         </li>
                         <li id="font-settings-li">
                             <div class="row" style="display:inline-flex">
                                 <div class="col-xs-4">
-                                    <button  class="btn btn-primary btn-lg layout-button" id="decrease-font" aria-label="Decrease Font Size" aria-pressed="true">-</button>
+                                    <button  class="btn btn-primary btn-lg layout-button" id="decrease-font" aria-label="Decrease Font Size">-</button>
                                 </div>
                                 <div class="col-xs-4">
                                     <button class="btn btn-primary btn-lg layout-button" id="reset-font" aria-label="Reset Font Size">Reset Font</button>
                                 </div>
                                 <div class="col-xs-4">
-                                    <button  class="btn btn-primary btn-lg layout-button" id="increase-font" aria-label="Increase Font Size" aria-pressed="true">+</button>
+                                    <button  class="btn btn-primary btn-lg layout-button" id="increase-font" aria-label="Increase Font Size">+</button>
                                 </div>
                             </div>
                         </li>
@@ -162,16 +155,11 @@
                 </li>
                 <li class="active">
                     <button href="#toggleDisplayDropDown" data-toggle="collapse" class="dropdown-button" aria-label="Change Display Color">Color Scheme</button>
-                    <ul class="collapse list-unstyled" id="toggleDisplayDropDown" >
-                        <li>
-                            <button id="color-scheme-default" class="btn btn-primary btn-lg layout-button button-fix" aria-live="polite" aria-pressed="true" aria-label="Change To Default Color Scheme">Default Color Scheme</button>
-                        </li>
-                        <li>
-                            <button id="color-scheme-b-o-w" class="btn btn-primary btn-lg layout-button button-fix" aria-live="polite" aria-pressed="true" aria-label="Change To Gray Color Scheme">Gray Color Scheme</button>
-                        </li>
-                        <li>
-                            <button id="color-scheme-invert" class="btn btn-primary btn-lg layout-button button-fix" aria-live="polite" aria-pressed="true" aria-label="Change To Inverse Color Scheme">Inverse Color Scheme</button>
-                        </li>
+                    <ul class="collapse list-unstyled" id="toggleDisplayDropDown">
+                        <li><button id="color-scheme-default" class="btn btn-primary btn-lg layout-button button-fix" aria-label="Change To Default Color Scheme">Default Color Scheme</button></li>
+                        <li><button id="color-scheme-b-o-w" class="btn btn-primary btn-lg layout-button button-fix" aria-label="Change To Gray Color Scheme">Gray Color Scheme</button></li>
+                        <li><button id="color-scheme-invert" class="btn btn-primary btn-lg layout-button button-fix" aria-label="Change To Inverse Color Scheme">Inverse Color Scheme</button></li>
+                        <!--<li><button class="btn btn-primary btn-lg layout-button button-fix" aria-label="Change Display Color">Black on White Scheme</button></li>-->
                     </ul>
                 </li>
             </ul>
@@ -183,7 +171,11 @@
         <!-- leftSidebar  -->
         <nav id="leftSidebar" aria-label="User Settings" hidden>
             <div id="leftDismiss" >
+<<<<<<< HEAD
                 <button  id="closeRightMenu" class="close-menu" aria-expanded="true" aria-label="User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
+=======
+                <button href="" id="closeRightMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
+>>>>>>> a3448db099fe2d805e66ee9432b2f07193638e45
             </div>
 
 
@@ -192,29 +184,9 @@
             </div>
 
             <ul class="list-unstyled components">
-                <h1 aria-label="Welcome User">Welcome <br aria-hidden="true"><?php echo htmlspecialchars($_SESSION["user_name"]); ?></h1>
-                <li class="active">
-                <button href="#potentialPageMenu2" data-toggle="collapse" class="dropdown-button" aria-label="Page aria demo">Page</button>
-                    <ul class="collapse list-unstyled" id="potentialPageMenu2">
-                        <li>
-                            <a role="button"role="button" aria-label="">Potential Page 1</a>
-                        </li>
-                        <li>
-                            <a role="button"role="button" aria-label="">Potential Page 2</a>
-                        </li>
-                        <li>
-                            <a role="button"role="button" aria-label="">Potential Page 3</a>
-                        </li>
-                    </ul>
-                </li>
+                <h1 aria-label="">Welcome <br><?php echo htmlspecialchars($_SESSION["user_name"]); ?></h1>
                 <li>
-                    <a role="button"role="button"role="button"  aria-label="">About </a>
-                </li>
-                <li>
-                    <a role="button"role="button" aria-label="Contact Info">Contact Information</a>
-                </li>
-                <li>
-                    <a role="button"role="button" aria-label="">Assistance</a>
+                    <a  aria-label="">Settings</a>
                 </li>
             </ul>
 
@@ -223,7 +195,32 @@
 
         </nav>
         <!-- END leftSidebar  -->
+        
+        <!-- content  -->
+        <div id="content">
+            <div id="innerContent">
+                <h1> Welcome to our Conference! </h1>
+
+                <div id="conferenceChooser" role="main" aria-label="Choose Conference" hidden="true">
+                    <select id="conferenceChooserListbox"></select>
+                    <input type="button" id ="conferenceRegisterButton" value="Register for Conference" />
+                </div>
+            </div>
+        </div>
+        <!-- END content  -->
 
         <?php include "./includes/footer.php"; ?>
+
+        <!--Message for only screenreaders. read when region is shown, shouldn't be visually visible.-->
+        <div id="screenreaderUINotification" class="screenreader-text" aria-live="assertive"></div>
+
+        <!-- jQuery Custom Scroller CDN -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+        <!-- Popper.JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        <!-- Our Custom JS -->
+        <script src="js/userJs/menu.js"></script>
     </body>
 </html>

@@ -47,16 +47,16 @@ session_write_close();
             <div id="outputRegion" aria-live="polite" ></div>
 
             <fieldset>
-              <legend>Reset Forgot Password Form</legend>
-              <br>
+              <h2>Reset Forgot Password Form</h2>
+              <br aria-hidden="true">
               <label for="user_password">New Password:</label>
-              <br>
+              <br aria-hidden="true">
               <input type=password id="user_password" name="user_password" required="required" />
-              <br><br>
+              <br aria-hidden="true"><br aria-hidden="true">
               <label for="confirm_password">Confirm New Password:</label>
-              <br>
+              <br aria-hidden="true">
               <input type=password id="confirm_password" name="confirm_password" required="required" />
-              <br><br>
+              <br aria-hidden="true"><br aria-hidden="true">
               <input type="submit" id="resetForgotPasswordButton" value="Reset Password" />
             </fieldset>
           </form>

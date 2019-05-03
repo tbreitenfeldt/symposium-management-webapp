@@ -39,6 +39,7 @@
     <body>
         <div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
 
+
         <!-- content  -->
         <div id="content" tabindex="-1">
             <div id="innerContent" tabindex="-1">
@@ -170,11 +171,7 @@
         <!-- leftSidebar  -->
         <nav id="leftSidebar" aria-label="User Settings" hidden>
             <div id="leftDismiss" >
-<<<<<<< HEAD
                 <button  id="closeRightMenu" class="close-menu" aria-expanded="true" aria-label="User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
-=======
-                <button href="" id="closeRightMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
->>>>>>> a3448db099fe2d805e66ee9432b2f07193638e45
             </div>
 
 

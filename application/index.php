@@ -41,7 +41,7 @@
 
         <!-- user-menu -->
         <div id="user-menu" class="col-lg-12" role="navigation" aria-hidden="false" aria-label="user menu">
-            <h1 id="welcome-user"> Welcome <?php echo $_SESSION["user_name"]; ?>!</h1>
+            <h3 id="welcome-user"> Welcome <?php echo $_SESSION["user_name"]; ?>!</h3>
 
 
 

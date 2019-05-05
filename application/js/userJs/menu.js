@@ -73,7 +73,7 @@ function showContentPage(){
 //All Toggle Menu Functions
 
 function isMobile(){
-    return navigator.userAgent.match("/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i");
+    return getPageWidth <= 425;
 }
 
 function resizeMainMenu(){//change button size same when default page opens
@@ -128,6 +128,9 @@ function changeSize(element, style, size){
 
 
 function setCurrentFontDisplay(){
+    if(zoomedIn == ""){
+        zoomedIn = 0;
+    }
     $('#current-font-size')[0].innerHTML = "Current Font Size: " + arr[zoomedIn];
 }
 
@@ -140,26 +143,28 @@ function toggleInvertColor(){
 }
 
 function turnOnGrayStyle(){
-    if(currentColorSetting != "GrayStyle"){
-        toggleAriaButtonPress('#color-scheme-b-o-w');
+    if(currentColorSetting != "GrayStyle")
+    {
         removeCurrentColorSetting();
         toggleGraystyle();
         currentColorSetting = "GrayStyle";
+        toggleAriaButtonPress('#color-scheme-b-o-w');
     }
 }
 
 function turnOnColorDefault(){
-    if(currentColorSetting != "Default"){
-        console.log("Turn off " + currentColorSetting);
+    if(currentColorSetting != "Default")
+    {
         removeCurrentColorSetting();
         currentColorSetting = "Default";
-        console.log("Turn on " + currentColorSetting);
+        console.log("Default overcame");
         toggleAriaButtonPress('#color-scheme-default');
     }
 }
 
 function turnOnInverseStyle(){
-    if(currentColorSetting != "Inverse"){
+    if(currentColorSetting != "Inverse")
+    {
         removeCurrentColorSetting();
         toggleInvertColor();
         currentColorSetting = "Inverse";
@@ -182,8 +187,9 @@ function notifyScreenreader(message) {
     if ($("#screenreaderUINotification").length) {
         $("#screenreaderUINotification").text(message);
         setTimeout(function() {$("#screenreaderUINotification").text("");}, 5000);
-    } else {
-    alert("missing div region with ID of screenreaderUINotification, either remove this function  call, or add a div with that ID.");
+    } 
+    else {
+        alert("missing div region with ID of screenreaderUINotification, either remove this function  call, or add a div with that ID.");
     }
 }
 
@@ -237,17 +243,69 @@ var zoomedIn = defaultIn;
 
 
 resizeMainMenu();
-var colorSetting = new Array("Default", "Graystyle","Black on White");
+var colorSetting = new Array("Default", "Graystyle","Inverse");
 var currentColorSetting = colorSetting[0];
 
+function setCookie(cname, cvalue) {
+    var expires = "expires=";
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+  
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function onloadCook(){
+    if(getCookie("zoomedIn") != undefined){
+        zoomedIn = getCookie("zoomedIn");
+        currentColorSetting = getCookie("currentColorSetting");
+
+        if(currentColorSetting == "GrayStyle"){
+            toggleGraystyle();
+        }
+        else if(currentColorSetting == "Inverse"){
+            toggleInvertColor();
+        }
+    }
+    else{
+        setCookie("currentColorSetting","Default");
+        setCookie("zoomedIn","0");
+    }
+}
+
+function onFontChange(){
+    changeFontScreen();
+    resizeMainMenu(); 
+    setCurrentFontDisplay();
+}
 
 //MAIN FUNCTION
-
+onloadCook();
 function main(){
+    onFontChange();
+    $(window).on("beforeunload", function(evt) {
+        setCookie("currentColorSetting",currentColorSetting);
+        setCookie("zoomedIn",zoomedIn);
+        // Google Chrome requires returnValue to be set
+        evt.returnValue = '';
+        return null;
+    });
+    
 
     $("#reset-font").click(function(){
-        changeFontScreen();
         zoomedIn = 0;
+        changeFontScreen();
         setCurrentFontDisplay();
         toggleAriaButtonPress("#reset-font");
     });
@@ -256,10 +314,7 @@ function main(){
     $("#increase-font").click(function(){
         if(zoomedIn < maxZoomedIn){
             zoomedIn++;
-            console.log("increase");
-            changeFontScreen();
-            resizeMainMenu(); 
-            setCurrentFontDisplay();
+            onFontChange();
         }
         toggleAriaButtonPress("#increase-font");
     });
@@ -268,9 +323,7 @@ function main(){
     $("#decrease-font").click(function(){
         if(zoomedIn > minZoomedIn){
             zoomedIn--;
-            changeFontScreen();
-            resizeMainMenu();
-            setCurrentFontDisplay();
+            onFontChange();
         }
         toggleAriaButtonPress("#decrease-font");
     });
@@ -318,7 +371,6 @@ function main(){
         $("#content").load("menuPhp/aboutConference.php");
         getConferenceInformation();
         $("#innerContent").focus();
-        console.log("Please why you not working?")
     });
 
     $("#editMySchedule").on("click", function(){
@@ -335,7 +387,6 @@ function main(){
         $("#content").load("menuPhp/showSchedule.php");
         let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
         $.get("proxies/getProxy.php", map,function(data){startUserTable(data[0].conference_id, 1);}, "json");
-        console.log($("#innerContent"));
         $("#innerContent").focus();
     });
 

@@ -77,7 +77,7 @@
     #userLogonForm{
         width: 460px;
         height: 50%;
-        background: #fffe;
+        background: rgba(255,255,255,0.9);
         color: #000;
         top: 50%;
         left: 50%;

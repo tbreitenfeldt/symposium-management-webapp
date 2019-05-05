@@ -36,7 +36,7 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     </head>
 
-    <body>
+    <body id="my-body">
         <div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
 
         <!-- user-menu -->

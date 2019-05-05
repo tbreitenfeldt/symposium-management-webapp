@@ -204,7 +204,7 @@ a.menu-button:hover {
 
 #user-menu{
   top: 0px;
-  width: fit-content;
+  width: auto;
   position: fixed;
   left: 50%;
   transform: translate(-50%);

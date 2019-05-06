@@ -3,7 +3,6 @@ $(document).ready(beginMainSchedule);
 
 function beginMainSchedule()
 {
-	$("#conferenceRegisterButton").click(registerUserForConference);
 	getUserConference();
 }
 
@@ -16,14 +15,26 @@ function getUserConference()
 function determineIfUserIsRegistered(data)
 {
 	if (data == null || data.length == 0) {
+		$("#conferenceRegisterButton").click(function(event) {registerUserForConference(event, "insert");} );
 		$("#conferenceChooser").removeAttr("hidden");
 		$("#rightSidebarCollapse").attr("disabled", "true");
+		$("#registerForDifferentConferenceButton").attr("disabled", "true");
 		getConferenceData();
 	} else if (data.length == 1) {
 		$("#rightSidebarCollapse").attr("data-conferenceId", data[0]["conference_id"]);
+		$("#conferenceRegisterButton").click(function(event) {registerUserForConference(event, "put");} );
 	} else {
 		document.write("There is an error trying to process your request, please contact an administrator.");
 	}
+}
+
+function updateConferenceRegistration(event)
+{
+	closeLeftSideBar();  //close user settings
+	$("#conferenceChooser").removeAttr("hidden") 
+	$("#rightSidebarCollapse").attr("disabled", "true");
+	$("#registerForDifferentConferenceButton").attr("disabled", "true");
+	getConferenceData();
 }
 
 function getConferenceData()
@@ -41,16 +52,27 @@ function populateConferenceListbox(data)
 	}
 }
 
-function registerUserForConference(event)
+function registerUserForConference(event, method)
 {
 	let conferenceID = $("#conferenceChooserListbox").val();
-	let map = {table_name: "user_conference", attrs: ["conference_id"], values: [conferenceID]};
+	let map = {};
 
 	$("#rightSidebarCollapse").attr("data-conferenceId", conferenceID);
 	$("#rightSidebarCollapse").removeAttr("disabled");
+	$("#registerForDifferentConferenceButton").removeAttr("disabled");
 	$("#conferenceChooserListbox").empty();
 	$("#conferenceChooser").attr("hidden", "true");
-	$.post("proxies/postProxy.php", map, function(data) {notifyScreenreader("Registered for Conference");} );
+	$("#welcome-user").focus();
+
+	if (method == "post") {
+		$("#conferenceRegisterButton").off();
+		$("#conferenceRegisterButton").click(function(event) {registerUserForConference(event, "put");} );
+		map = {table_name: "user_conference", attrs: ["conference_id"], values: [conferenceID]};
+		$.post("proxies/postProxy.php", map, function(data) {notifyScreenreader("Successfully Registered for Conference!");} );
+	} else if (method == "put") {
+		map = {table_name: "user_conference", attrs: ["conference_id"], values: [conferenceID], target_id_name: [""], target_id_value: [""]};
+		$.put("proxies/putProxy.php", map, function(data) {notifyScreenreader("Successfully Registered for Conference!");} );
+	}
 }
 
 async function loadConference()

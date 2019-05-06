@@ -41,7 +41,7 @@
 
         <!-- user-menu -->
         <div id="user-menu" class="col-lg-12" role="navigation" aria-hidden="false" aria-label="user menu">
-            <h1 id="welcome-user"> Welcome <?php echo $_SESSION["user_name"]; ?>!</h1>
+            <h1 id="welcome-user">Welcome <?php echo $_SESSION["user_name"]; ?>!</h1>
 
             <div class="row" role="list">
                 <div class="col-xs-4" role="listitem">
@@ -171,10 +171,13 @@
                     <a href="" role="button">Profile Settings</a>
                 </li>
                 <li>
-                    <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='logout.php'">Logout</button>
+                    <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='resetPassword.php'">Reset Password</button>
                 </li>
                 <li>
-                    <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='resetPassword.php'">Reset Password</button>
+                    <button  id="registerForDifferentConferenceButton" class="btn btn-primary btn-lg layout-button" onclick="">Register for a different conference</button>
+                </li>
+                <li>
+                    <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='logout.php'">Logout</button>
                 </li>
             </ul>
 
@@ -184,8 +187,8 @@
         <!-- content  -->
         <div id="content" tabindex="-1">
             <div id="innerContent" tabindex="-1">
-                <div id="conferenceChooser" hidden>
-                    <h2>Conference Registration</h2>    
+                <div id="conferenceChooser" role="main" hidden="true">
+                    <h2 id="conferenceRegistrationHeading" tabindex="-1">Conference Registration</h2>    
                     <label for="conferenceChooser">Select a conference to register for</label>
                     <select id="conferenceChooserListbox"></select>
                     <input type="button" id ="conferenceRegisterButton" value="Register for Conference" />

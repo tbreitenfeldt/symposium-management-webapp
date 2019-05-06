@@ -340,6 +340,11 @@ function main(){
         $("#innerContent").focus();
     });
 
+    $("#registerForDifferentConferenceButton").on("click", function(event) {
+        updateConferenceRegistration(event);
+        $("#conferenceRegistrationHeading").focus();
+    });
+
     $("#websiteLink").on("click", function()
     {
         window.open("https://sites.ewu.edu/pwdss/");

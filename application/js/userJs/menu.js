@@ -16,12 +16,11 @@ function removeSideBar(barId, iconId){
         }
     });
     showContentPage(); 
-    $(barId + 'Collapse').attr('aria-expanded', 'false');
     $(iconId).focus();
 }
 
-function openSidebar(sidebarType, headingId, screenreaderMessage){
-    //notifyScreenreader(screenreaderMessage);
+function openSidebar(sidebarType, headingId){
+    notifyScreenreader('dialog, press escape to cancel');
     var sidebarId = '#' + sidebarType + 'Sidebar';
     $(sidebarId)[0].removeAttribute('hidden');
     $(sidebarId).toggleClass('active');
@@ -32,12 +31,12 @@ function openSidebar(sidebarType, headingId, screenreaderMessage){
     toggleBodySidebar();
     $('.overlay').toggleClass('active');
     $('.collapse.in').toggleClass('in');
-    $(sidebarId + 'Collapse').attr('aria-expanded', 'true');
     hideContentPage();
-    //$(headingId).focus();
+    $(headingId).focus();
 }
 
 function closeLeftSideBar(){
+    notifyScreenreader("closed user settings");
     removeSideBar("#leftSidebar", "#leftSidebarCollapse");
 }
 
@@ -45,12 +44,14 @@ function closeLeftSideBar(){
 //centerSideBar Methods
 
 function closeCenterSideBar(){
+    notifyScreenreader("closed accessibility settings");
     removeSideBar("#centerSidebar", "#centerSidebarCollapse");
 }
 
 
 //rightSideBar Methods
 function closeRightSideBar(){
+    notifyScreenreader("closed my scheduler");
     removeSideBar("#rightSidebar", "#rightSidebarCollapse");
 }
 
@@ -295,15 +296,15 @@ function main(){
     //ICON MENU
 
     $('#leftSidebarCollapse').on('click', function(){
-        openSidebar('left', '#userSettingsHeading', 'user settings');
+        openSidebar('left', '#userSettingsHeading');
     });
 
     $('#centerSidebarCollapse').on('click', function () {
-        openSidebar('center', '#accessibilitySettingsHeading', 'accessibility settings');
+        openSidebar('center', '#accessibilitySettingsHeading');
     });
 
     $('#rightSidebarCollapse').on('click', function () {
-        openSidebar('right', '#mySchedulerHeading', '');
+        openSidebar('right', '#mySchedulerHeading');
     });
 
     $('#color-scheme-b-o-w').on('click',  turnOnGrayStyle);

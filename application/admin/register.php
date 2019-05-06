@@ -9,7 +9,7 @@ session_write_close();
 <html lang="en">
 
 <head>
-  <?php require_once "../includes/header.php"; ?>
+  <?php require_once "../includes/adminHeader.php"; ?>
   <title>Admin Register</title>
 
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">

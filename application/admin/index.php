@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-  <?php require_once "../includes/header.php"; ?>
+  <?php require_once "../includes/adminHeader.php"; ?>
   <title>Administrator Dashboard</title>
 
   <link rel="stylesheet" href="../css/home.css">

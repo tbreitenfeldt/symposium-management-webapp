@@ -70,7 +70,7 @@ session_write_close();
               <input type="checkbox" id="user_notifyByEmail" class="checkbox" name="user_notifyByEmail" value="true" checked="checked" />
               <br aria-hidden="true">
               <label for="user_notifyByPhone">Notify by text message:</label>
-              <input type="checkbox" id="user_notifyByPhone" class="checkbox" name="user_notifyByPhone" value="true" />
+              <input type="checkbox" id="user_notifyByPhone" class="checkbox" name="user_notifyByPhone" value="true" onchange="togglePhoneRegion" />
             </div>
           </fieldset>
 

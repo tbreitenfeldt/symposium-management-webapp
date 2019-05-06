@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] != "GET" || !isset($_GET["token"]) || !isset($_GE
 <html lang="en">
 
 <head>
-  <?php require_once "../includes/header.php"; ?>
+  <?php require_once "../includes/adminHeader.php"; ?>
   <title>Reset Forgot Password</title>
 
   <link rel="stylesheet" href="../css/home.css">

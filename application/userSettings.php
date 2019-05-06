@@ -1,35 +1,11 @@
-<?php
-require_once "authenticateUser.php";
-?>
+<?php session_start(); ?>
 
+<div id="userSettingsRegion" role="main">
+  <h2 id="userSettingsHeading" tabindex="-1">Profile Settings</h2>
 
-<!doctype html>
-<html lang="en">
+  <form id="userSettingsForm" method="put" onSubmit="return updateUserData(event)">
+    <div id="outputRegion" aria-live="polite" ></div>
 
-<head>
-  <meta charset="utf-8"/>
-
-  <title>User Settings</title>
-
-  <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-
-  <script  src="//code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>
-
-  <script src="js/conferenceAPIJs/databaseFunctions.js"></script>
-  <script src="js/userJs/userSettings.js"></script>
-  <script src="js/userJs/userAccountRegistration.js"></script>
-</head>
-
-<body>
-<header>
-  <h1>User Settings</h1>
-</header>
-
-<main>
-  <form id="userSettingsForm" method="put" method="put">
-    <h2>Change User Information</h2>
     <label for="user_name">User Name</label>
     <input type="text" id="user_name" class="userSettings" name="user_name" data-value="<?php ECHO $_SESSION["user_name"]; ?>" required="required" />
     <label for="user_email">User Email</label>
@@ -39,7 +15,7 @@ require_once "authenticateUser.php";
     <h2>Conference Event Notification Settings</h2>
     <input type="checkbox" id="user_notifyByEmail" class="userSettings" name="user_notifyByEmail" data-value="<?php echo $_SESSION['user_notifyByEmail']; ?>" />
     <label for="user_notifyByEmail">Notify me by email:</label>
-    <input type="checkbox" id="user_notifyByPhone" class="userSettings" name="user_notifyByPhone" data-value="<?php echo $_SESSION['user_notifyByPhone']; ?>" />
+    <input type="checkbox" id="user_notifyByPhone" class="userSettings" name="user_notifyByPhone" data-value="<?php echo $_SESSION['user_notifyByPhone']; ?>" onchange="togglePhoneRegion" />
     <label for="user_notifyByPhone">Notify me by text message</label>
     </fieldset>
 
@@ -69,7 +45,4 @@ require_once "authenticateUser.php";
 
     <input type="submit" id="updateUserDataButton" value="Change" />
   </form>
-</main>
-
-</body>
-</html>
+</div>

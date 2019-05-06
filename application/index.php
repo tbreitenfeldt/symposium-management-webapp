@@ -12,10 +12,6 @@
 
         <title>User Control Panel</title>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-       
-        <script src="js/conferenceAPIJs/databaseFunctions.js"></script>
-
         <!-- Bootstrap CSS CDN -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         
@@ -30,6 +26,7 @@
         <script src="js/userJs/userSchedule.js"></script>
         <script src="js/userJs/mainSchedule.js"></script>
         <script src="js/userJs/userAccountRegistration.js"></script>
+        <script src="js/userJs/userSettings.js"></script>
 
         <!-- Font Awesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -80,27 +77,27 @@
             </div>
             <ul class="list-unstyled components" aria-label="Menu Items">
                 <li>
-                    <a id="" role="button">Home</a>
+                    <a id="returnHome" href="javascript: document.location.reload();" role="button">Home</a>
                 </li>
                 <li>
-                    <button href="#my-scheduler-options" data-toggle="collapse" class="dropdown-button" aria-label="My Scheduler Features Drop Down List">
+                    <button href="#my-scheduler-options" data-toggle="collapse" class="dropdown-button">
                         My Scheduler Features
                     </button>
                     <ul class="collapse list-unstyled" id="my-scheduler-options">
                         <li>
-                            <a aria-label="View Schedule" id="mySchedule">View My Schedule</a>
+                            <a id="mySchedule" role="button">View My Schedule</a>
                         </li>
                         <li>
-                            <a aria-label="Edit Schedule" id="editMySchedule">Edit My Schedule</a>
+                            <a id="editMySchedule" role="button">Edit My Schedule</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a  id="aboutCon" role="button">Conference Schedule</a>
+                    <a  id="aboutCon" role="button">About Conference</a>
                 </li>
             </ul>
 
-            <button id="websiteLink" type="button"  class="btn btn-primary btn-lg layout-button" aria-label="View Website">View Website</button>
+            <button id="websiteLink" type="button"  class="btn btn-primary btn-lg layout-button" role="link">View Website</button>
         </div>
         <!-- END rightSideBar -->
 
@@ -168,7 +165,7 @@
 
             <ul class="list-unstyled components">
                 <li>
-                    <a href="" role="button">Profile Settings</a>
+                    <button class="btn btn-primary btn-lg layout-button" id="changeUserSettingsButton">Profile Settings</button>
                 </li>
                 <li>
                     <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='resetPassword.php'">Reset Password</button>

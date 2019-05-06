@@ -182,7 +182,7 @@ function removeCurrentColorSetting(){
 function notifyScreenreader(message) {
     if ($("#screenreaderUINotification").length) {
         $("#screenreaderUINotification").text(message);
-        setTimeout(function() {$("#screenreaderUINotification").text("");}, 5000);
+        setTimeout(function() {$("#screenreaderUINotification").text("");}, 3000);
     } else {
     alert("missing div region with ID of screenreaderUINotification, either remove this function  call, or add a div with that ID.");
     }
@@ -324,6 +324,7 @@ function main(){
 
     $("#editMySchedule").on("click", function(){
         closeMenus();
+        $("title").text("Edit Personal Schedule");
         $("#innerContent").empty();
         $("#content").load("menuPhp/editSchedule.php");
         loadConference();
@@ -332,6 +333,7 @@ function main(){
 
     $('#mySchedule').on("click", function(){
         closeMenus();
+        $("title").text("My Scheduler");
         $("#innerContent").empty();
         $("#content").load("menuPhp/showSchedule.php");
         let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
@@ -341,8 +343,16 @@ function main(){
     });
 
     $("#registerForDifferentConferenceButton").on("click", function(event) {
+        closeMenus();
         updateConferenceRegistration(event);
         $("#conferenceRegistrationHeading").focus();
+    });
+
+    $("#changeUserSettingsButton").on("click", function(event) {
+        closeMenus();
+        $("title").text("Profile Settings");
+        $("#content").load("userSettings.php", populateCurrentUserSettings);
+        $("#userSettingsHeading").focus();
     });
 
     $("#websiteLink").on("click", function()

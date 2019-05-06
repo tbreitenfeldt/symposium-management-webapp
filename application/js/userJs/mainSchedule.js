@@ -30,8 +30,8 @@ function determineIfUserIsRegistered(data)
 
 function updateConferenceRegistration(event)
 {
-	closeLeftSideBar();  //close user settings
-	$("#conferenceChooser").removeAttr("hidden") 
+	$("title").text("Conference Registration");
+	$("#conferenceChooser").removeAttr("hidden");
 	$("#rightSidebarCollapse").attr("disabled", "true");
 	$("#registerForDifferentConferenceButton").attr("disabled", "true");
 	getConferenceData();
@@ -63,6 +63,7 @@ function registerUserForConference(event, method)
 	$("#conferenceChooserListbox").empty();
 	$("#conferenceChooser").attr("hidden", "true");
 	$("#welcome-user").focus();
+	$("title").text("User Control Panel");
 
 	if (method == "post") {
 		$("#conferenceRegisterButton").off();

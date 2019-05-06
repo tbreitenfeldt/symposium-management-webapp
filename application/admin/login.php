@@ -17,7 +17,7 @@ session_write_close();
 <html lang="en">
 
 <head>
-  <?php require_once "../includes/header.php"; ?>
+  <?php require_once "../includes/adminHeader.php"; ?>
   <title>Admin Login</title>
 
   <link rel="stylesheet" href="../css/home.css">

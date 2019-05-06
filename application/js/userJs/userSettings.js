@@ -1,13 +1,4 @@
 
-$(document).ready(init);
-
-
-function init() {
-    populateCurrentUserSettings();
-    $("#userSettingsForm").submit(updateUserData);
-}
-
-
 function populateCurrentUserSettings() {
     $(".userSettings").each(function(index, element) {
         if ($(element).attr("data-value") != null) {
@@ -50,6 +41,7 @@ function collectUserSettings(attrs, values) {
 
 function updateUserData(event) {
     event.preventDefault();
+
     let attrs = [];
     let values = [];
     let map = {};

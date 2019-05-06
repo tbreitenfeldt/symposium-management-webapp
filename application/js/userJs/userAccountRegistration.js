@@ -1,12 +1,4 @@
 
-$(document).ready(init);
-
-
-function init() {
-    $("#user_notifyByPhone").change(togglePhoneRegion);
-}//end function
-
-
 function togglePhoneRegion(event) {
     if (this.checked) {
         $("#user_phone").attr("required", "true");

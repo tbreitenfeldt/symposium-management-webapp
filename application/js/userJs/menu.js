@@ -10,11 +10,8 @@ function removeSideBar(barId, iconId){
         $("#footer").css("paddingRight", "20px");
     }
     $('.collapse').removeClass('show');
-    $(".dropdown-button").each(function(){
-        if(!$(this).hasClass("collapsed")){
-            $(this).addClass("collapsed");
-        }
-    });
+    $(".dropdown-button").attr("aria-expanded", false);
+    
     showContentPage(); 
     $(barId + 'Collapse').attr('aria-expanded', 'false');
     $(iconId).focus();

@@ -17,7 +17,7 @@ session_write_close();
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
     <head>
-        <title>Login</title>
+        <title>Login for Conference Management System</title>
 
         <!-- Meta Tags -->
         <meta charset="utf-8">
@@ -55,19 +55,19 @@ session_write_close();
           <div id="content-inside">
             <form id="userLogonForm" method="POST" action="loginAPI/loginFunctions.php" type="json">
                 <fieldset>
-                  <h2>Login for Conference Management System</h2>
+                  <header>Login Form for Conference Management System</header>
                   <div class="form-group row">
                     <label for="user_name" class="col-sm-12 col-form-label">Username:</label>
                   </div>
                   <div>
-                    <input class="col-sm-12" type="text" id="user_name" name="user_name" placeholder="Username:"/>
+                    <input class="col-sm-12" type="text" id="user_name" name="user_name"/>
                   </div>
                   <br aria-hidden="true">
                   <div class="form-group row">
                     <label for="user_password" class="col-sm-12 col-form-label">Password:</label>
                   </div>
                   <div >
-                      <input class="col-sm-12" type=password id="user_password" name="user_password" placeholder="Password"/>
+                      <input class="col-sm-12" type=password id="user_password" name="user_password"/>
                   </div>
                   <div class="form-check col-sm-10">
                     <input type="submit" id="loginButton" value="Login" class="btn btn-primary btn-lg btn-block"/>

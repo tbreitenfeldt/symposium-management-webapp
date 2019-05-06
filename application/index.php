@@ -46,25 +46,32 @@
 
 
             <div class="row">
-                <div class="col-xs-4">
+                <div class="col-xs-3">
                     <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false" data-conferenceId="">
-                        <span>Symposium<br/>Scheduler</span>
-                        <br/>
+                        <span>Symposium<br aria-hidden="true">Scheduler</span>
+                        <br aria-hidden="true">
                         <i class="fa fa-calendar fa-6x menu-item"></i>
                     </button>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-3">
                     <button type="button" id="centerSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
-                        <span>Accesibility<br/>Settings</span>
-                        <br/>
+                        <span>Accesibility<br aria-hidden="true">Settings</span>
+                        <br aria-hidden="true">
                         <i class="fas fa-universal-access fa-6x menu-item"></i>
                     </button>
                 </div>
-                <div class="col-xs-4">
+                <div class="col-xs-3">
                     <button type="button" id="leftSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
-                        <span>User<br/> Settings</span>
-                        <br/>
+                        <span>User<br aria-hidden="true"> Settings</span>
+                        <br aria-hidden="true">
                         <i class="fa fa-user-circle fa-6x menu-item"></i>
+                    </button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" id="homeButton" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
+                        <span aria-label="Home Button">Go To<br aria-hidden="true"> Home</span>
+                        <br aria-hidden="true">
+                        <i class="fas fa-home fa-6x menu-item"></i>
                     </button>
                 </div>
             </div>

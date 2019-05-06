@@ -57,18 +57,15 @@ function gotEvent(conferenceID, data)
 
     if(data != null)
     {
-        var table = $("#userConInfo");
-
         for(i = 0; i < data.length; i++)
         {
             var id = data[i].event_id;
-            
             if(!myTable.includes(id))
 		    {
                 myTable.push(id);
                 name = String(data[i].event_name);
                 var message = String("Removed from mySchedule: Event - " + name);
-                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick1(this," + id + "," + "\'" + message + "\'" + ")\"><i class=\"fas fa-times-circle fa-w-16 fa-3x\"></i></button></td></tr>").appendTo("#UsersCon tbody");
+                $("<tr><td>" + data[i].event_name + "</td><td aria-label=\"" + name + "wil start at\">" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick1(this," + id + "," + "\'" + message + "\'" + ")\"><i class=\"fas fa-times-circle fa-w-16 fa-3x\"></i></button></td></tr>").appendTo("#UsersCon tbody");
             }
         }
     }

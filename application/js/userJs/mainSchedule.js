@@ -108,11 +108,10 @@ function gotEventData(data)
       for( i = 0; i < data.length; i++)
       {
 				var eventID = data[i].event_id;
-				var name = data[i].event_name;
-				
-				var message = String("Added to mySchedule: Event - " + name);
+				var name = String(data[i].event_name);
+				var message = String("Added " + name + " to my schedule");
         $("<tr><td class=\"eventName\">" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button type=\"Button\" " +
-						"onclick=\"onAddClick(" + eventID + "," + conferenceID + "," + "\'" + message + "\'" + ")\"> <i class=\"fas fa-plus-circle fa-w-16 fa-3x\"></i> </button></td></tr>").appendTo("#Conference tbody");
+						"onclick=\"onAddClick(" + eventID + "," + conferenceID + "," +  "\'" + message +  "\'"  + ")\"> <i class=\"fas fa-plus-circle fa-w-16 fa-3x\"></i> </button></td></tr>").appendTo("#Conference tbody");
       }
     }
 }

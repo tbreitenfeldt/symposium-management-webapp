@@ -236,13 +236,9 @@ a.menu-button:hover {
   position:fixed;
 }
 
-.col-xs-4 button span{
-  font-size: 32px;
-}
-
 @media (max-width: 426px){
   .col-xs-4 button span{
-    font-size: 20px;
+    font-size: 13px;
   }
 
   #content {
@@ -544,5 +540,6 @@ svg:not(:root).svg-inline--fa {
   }
 
    header{
+    font-size: 32px;
     font-weight: bold;
   }

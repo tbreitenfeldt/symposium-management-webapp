@@ -1,10 +1,10 @@
 <?php ?>
 
 <div id="innerContent">
-    <div id="schedule-table" aria-hidden="true">
-            <header id="h1" aria-hidden="true">My Schedule</header>
-                <div id="UserConference" aria-hidden="true">
-                    <table id="mySchedule" aria-hidden="true">
+    <div id="schedule-table" aria-hidden="false">
+            <header id="h1" aria-hidden="false">My Schedule</header>
+                <div id="UserConference" aria-hidden="false">
+                    <table id="mySchedule" aria-hidden="false">
                         <thead>
                             <tr>
                                 <th>Name</th>

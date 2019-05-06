@@ -29,36 +29,36 @@ session_write_close();
     <form id="userLogonForm" method="POST" action="../loginAPI/registerFunctions.php" type="json" class="form-horizontal">
       <fieldset>
         <legend>Administrator<br/>Registration Form</legend>
-        <p>Your username must start with a letter, <br/>and may contain only <br/>letters, numbers, dashes, and periods.</p>
+        <p id="usernameDescription">Your username must be between 3 and 30 characters, <br>start with a letter,<br/>and may contain only <br/>letters, numbers, dashes, and periods.</p>
         <div id="fieldClass">
           <div class="form-group row">
             <label for="admin_name" class="col-sm-12 col-form-label">Username:</label>
             <div class="col-sm-12">
-              <input type="text" class="form-control" id="admin_name" name="admin_name" required="required" placeholder="Name">
+              <input type="text" class="form-control" id="admin_name" name="admin_name" aria-labeledby="usernameDescription" required="required">
             </div>
           </div>
 
           <label for="admin_email" class="control-label">Email:</label>
           <input type="email" id="admin_email" name="admin_email" required="required" />
 
-
+          <P id="passwordDescription">Your password must be at least 6 characters long</p>
 
           <div class="form-group row">
             <label for="admin_password" class="col-sm-12 col-form-label">Password:</label>
             <div class="col-sm-12">
-              <input type="password" class="form-control" id="admin_password" name="admin_password" required="required" placeholder="********">
+              <input type="password" class="form-control" id="admin_password" name="admin_password" aria-labeledby="passwordDescription" required="required">
             </div>
           </div>
           <div class="form-group row">
               <label for="confirm_password" class="col-sm-12 col-form-label">Confirm Password:</label>
               <div class="col-sm-12">
-                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required="required" placeholder="********">
->>>>>>> 6fada676556c4c9f414eeadbfeeda16480424337
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required="required">
               </div>
             </div>
           </div>
           <div class="form-group row justify-content-center">
             <div class="form-check col-sm-10">
+              <input type="reset" id="resetButton" value="Reset" />
               <input type="submit" id="registerButton" value="Register" class="btn btn-primary btn-lg btn-block"/>
             </div>
           </div>    

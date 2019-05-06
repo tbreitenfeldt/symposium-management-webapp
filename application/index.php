@@ -43,25 +43,23 @@
         <div id="user-menu" class="col-lg-12" role="navigation" aria-hidden="false" aria-label="user menu">
             <h1 id="welcome-user"> Welcome <?php echo $_SESSION["user_name"]; ?>!</h1>
 
-
-
-            <div class="row">
-                <div class="col-xs-4">
-                    <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false" data-conferenceId="">
+            <div class="row" role="list">
+                <div class="col-xs-4" role="listitem">
+                    <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-hidden="false" data-conferenceId="">
                         <span>Symposium<br/>Scheduler</span>
                         <br/>
                         <i class="fa fa-calendar fa-6x menu-item"></i>
                     </button>
                 </div>
-                <div class="col-xs-4">
-                    <button type="button" id="centerSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
+                <div class="col-xs-4" role="listitem">
+                    <button type="button" id="centerSidebarCollapse" class="btn btn-info btn-block" aria-hidden="false">
                         <span>Accesibility<br/>Settings</span>
                         <br/>
                         <i class="fas fa-universal-access fa-6x menu-item"></i>
                     </button>
                 </div>
-                <div class="col-xs-4">
-                    <button type="button" id="leftSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
+                <div class="col-xs-4" role="listitem">
+                    <button type="button" id="leftSidebarCollapse" class="btn btn-info btn-block" aria-hidden="false">
                         <span>User<br/> Settings</span>
                         <br/>
                         <i class="fa fa-user-circle fa-6x menu-item"></i>
@@ -72,21 +70,22 @@
         <!-- END user-menu -->
 
         <!-- rightSideBar -->
-        <nav id="rightSidebar" aria-label="My Scheduler" hidden>
+        <div id="rightSidebar" hidden>
             <div id="rightDismiss">
                 <button href="" id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
             <div aria-label="" class="rightSidebar-header">
-                <h3 id="mySchedulerHeading" tabindex="0">My Scheduler</h3>
+                <h3 id="mySchedulerHeading" tabindex="-1">My Scheduler</h3>
             </div>
             <ul class="list-unstyled components" aria-label="Menu Items">
-                <p id="symposium-title" alt="Title">Pacific Northwest Disability Symposium 2019</p>
                 <li>
-                    <a  aria-label="" id="">Home</a>
+                    <a id="" role="button">Home</a>
                 </li>
                 <li>
-                    <button href="#my-scheduler-options" data-toggle="collapse" class="dropdown-button" aria-label="My Scheduler Features Drop Down List">My Scheduler Features</button>
+                    <button href="#my-scheduler-options" data-toggle="collapse" class="dropdown-button" aria-label="My Scheduler Features Drop Down List">
+                        My Scheduler Features
+                    </button>
                     <ul class="collapse list-unstyled" id="my-scheduler-options">
                         <li>
                             <a aria-label="View Schedule" id="mySchedule">View My Schedule</a>
@@ -97,24 +96,23 @@
                     </ul>
                 </li>
                 <li>
-                    <a  aria-label="Conference Schedule" id="aboutCon">Conference Schedule</a>
+                    <a  id="aboutCon" role="button">Conference Schedule</a>
                 </li>
             </ul>
 
-        <button id="websiteLink" type="button"  class="btn btn-primary btn-lg layout-button" aria-label="View Website">View Website</button>
-        </nav>
+            <button id="websiteLink" type="button"  class="btn btn-primary btn-lg layout-button" aria-label="View Website">View Website</button>
+        </div>
         <!-- END rightSideBar -->
-                                                                                                                                                                                                                                                                                                                                                                                                                     
+
 
         <!-- centerSidebar  -->
-        <nav id="centerSidebar" aria-label="Accesibility Settings" hidden>
+        <div id="centerSidebar" hidden>
             <div id="centerDismiss" >
                 <button href="" id="closeCenterMenu" class="close-menu" aria-label="Close Accesibility Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
-
             <div class="centerSidebar-header">
-                <h3 tabindex="0" id="accessibilitySettingsHeading">Accesibility Settings</h3>
+                <h3 tabindex="-1" id="accessibilitySettingsHeading">Accesibility Settings</h3>
             </div>
 
             <ul class="list-unstyled components">
@@ -142,40 +140,45 @@
                 <li class="active">
                     <button href="#toggleDisplayDropDown" data-toggle="collapse" class="dropdown-button" aria-label="Change Display Color">Color Scheme</button>
                     <ul class="collapse list-unstyled" id="toggleDisplayDropDown">
-                        <li><button id="color-scheme-default" class="btn btn-primary btn-lg layout-button button-fix" aria-label="Change To Default Color Scheme">Default Color Scheme</button></li>
-                        <li><button id="color-scheme-b-o-w" class="btn btn-primary btn-lg layout-button button-fix" aria-label="Change To Gray Color Scheme">Gray Color Scheme</button></li>
-                        <li><button id="color-scheme-invert" class="btn btn-primary btn-lg layout-button button-fix" aria-label="Change To Inverse Color Scheme">Inverse Color Scheme</button></li>
+                        <li><button id="color-scheme-default" class="btn btn-primary btn-lg layout-button button-fix" aria-label="Change To Default Color Scheme">
+                            Default Color Scheme
+                        </button></li>
+                        <li><button id="color-scheme-b-o-w" class="btn btn-primary btn-lg layout-button button-fix" aria-label="Change To Gray Color Scheme">
+                            Gray Color Scheme
+                        </button></li>
+                        <li><button id="color-scheme-invert" class="btn btn-primary btn-lg layout-button button-fix" aria-label="Change To Inverse Color Scheme">
+                            Inverse Color Scheme
+                        </button></li>
                         <!--<li><button class="btn btn-primary btn-lg layout-button button-fix" aria-label="Change Display Color">Black on White Scheme</button></li>-->
                     </ul>
                 </li>
             </ul>
-        </nav>
+        </div>
         <!-- END centerSidebar  -->
 
-
-
         <!-- leftSidebar  -->
-        <nav id="leftSidebar" aria-label="User Settings" hidden>
+        <div id="leftSidebar" hidden>
             <div id="leftDismiss" >
-                <button  id="closeRightMenu" class="close-menu" aria-expanded="true" aria-label="User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button  id="closeLeftMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
             </div>
 
-
             <div class="leftSidebar-header">
-                <h3 tabindex="0" id="userSettingsHeading">User Settings</h3>
+                <h3 tabindex="-1" id="userSettingsHeading">User Settings</h3>
             </div>
 
             <ul class="list-unstyled components">
-                <h1 aria-label="">Welcome <br aria-hidden="true"><?php echo htmlspecialchars($_SESSION["user_name"]); ?></h1>
                 <li>
-                    <a  aria-label="">Settings</a>
+                    <a href="" role="button">Profile Settings</a>
+                </li>
+                <li>
+                    <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='logout.php'">Logout</button>
+                </li>
+                <li>
+                    <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='resetPassword.php'">Reset Password</button>
                 </li>
             </ul>
 
-            <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='logout.php'">Logout</button>
-            <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='resetPassword.php'">Reset Password</button>
-
-        </nav>
+        </div>
         <!-- END leftSidebar  -->
 
         <!-- content  -->
@@ -194,7 +197,7 @@
         <?php include "./includes/footer.php"; ?>
 
         <!--Message for only screenreaders. read when region is shown, shouldn't be visually visible.-->
-        <div id="screenreaderUINotification" class="screenreader-text" aria-live="assertive"></div>
+        <div id="screenreaderUINotification" class="screenreader-text" aria-live="polite"></div>
 
         <!-- jQuery Custom Scroller CDN -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>

@@ -1,5 +1,6 @@
 
 var myTable;
+
 function startUserTable(conferenceID, showSched)
 {  
     if(showSched == 0)
@@ -20,6 +21,7 @@ function startUserTable(conferenceID, showSched)
         if(showSched == 1)
         {
             showSchedule(conferenceID, data);
+            console.log("getting")
         }
         else
         {
@@ -39,9 +41,16 @@ function showSchedule(conferenceID, data)
     {
         for(i = 0; i < data.length; i++)
         {
-            var id = data[i].event_id;
+            var event = 
+            {
+                info: String(data[i].event_desc),
+                speakers: String(data[i].event_speakers),
+                room: String(data[i].event_building + " " + data[i].event_floor + " " + data[i].event_room)
+            };
+        
 
-                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td></tr>").appendTo("#schedInfo");
+            $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button onclick=\"showEventInfo(" + i +")\" class=\"dropbtn\">Open/Close</button></td></tr>"
+            + "<tr><td colspan=4><span id=\"dropdown" + i +"\"style=\"display:none\">Information: " + event.info + "<br>Speakers: " + event.speakers + "<br>Building, Floor, Room: " + event.room + "</span></td></tr>").appendTo("#schedInfo");
         }
     }
     else
@@ -67,7 +76,7 @@ function gotEvent(conferenceID, data)
             if(!myTable.includes(id))
 		    {
                 myTable.push(id);
-                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick(this," + conferenceID + "," + id + ")\"> X </button></td></tr>").appendTo("#UsersCon tbody");
+                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button aria-label=\"Delete Event from my Schedule\"class=\"delBtn\" onclick=\"onDeleteClick(this," + conferenceID + "," + id + ")\"> X </button></td></tr>").appendTo("#UsersCon tbody");
 		    }
         }
     }
@@ -103,4 +112,7 @@ function successDel(event, eventID)
     }
 }
 
-
+function showEventInfo(count)
+{
+    $("#dropdown"+count).toggle("fast");
+}

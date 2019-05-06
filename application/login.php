@@ -55,7 +55,7 @@ session_write_close();
           <div id="content-inside">
             <form id="userLogonForm" method="POST" action="loginAPI/loginFunctions.php" type="json">
                 <fieldset>
-                  <h2>Login Form</h2>
+                  <h2>Login for Conference Management System</h2>
                   <div class="form-group row">
                     <label for="user_name" class="col-sm-12 col-form-label">Username:</label>
                   </div>

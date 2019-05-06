@@ -298,9 +298,12 @@ function main(){
         setCookie("currentColorSetting",currentColorSetting);
         setCookie("zoomedIn",zoomedIn);
         // Google Chrome requires returnValue to be set
-        evt.returnValue = '';
-        return null;
+        evt.returnValue = 'fafafa';
+        return "fafaf";
     });
+
+    
+
     
 
     $("#reset-font").click(function(){

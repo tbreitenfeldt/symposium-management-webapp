@@ -33,33 +33,41 @@
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     </head>
 
-    <body>
+    <body id="my-body">
         <div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
 
         <!-- user-menu -->
         <div id="user-menu" class="col-lg-12" role="navigation" aria-hidden="false" aria-label="user menu">
-            <h1 id="welcome-user">Welcome <?php echo $_SESSION["user_name"]; ?>!</h1>
 
-            <div class="row" role="list">
-                <div class="col-xs-4" role="listitem">
-                    <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-hidden="false" data-conferenceId="">
-                        <span>Symposium<br/>Scheduler</span>
-                        <br/>
+            <h3 id="welcome-user"> Welcome <?php echo $_SESSION["user_name"]; ?>!</h3>
+
+            <div class="row">
+                <div class="col-xs-3">
+                    <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false" data-conferenceId="">
+                        <span>Symposium<br aria-hidden="true">Scheduler</span>
+                        <br aria-hidden="true">
                         <i class="fa fa-calendar fa-6x menu-item"></i>
                     </button>
                 </div>
-                <div class="col-xs-4" role="listitem">
-                    <button type="button" id="centerSidebarCollapse" class="btn btn-info btn-block" aria-hidden="false">
-                        <span>Accesibility<br/>Settings</span>
-                        <br/>
+                <div class="col-xs-3">
+                    <button type="button" id="centerSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
+                        <span>Accesibility<br aria-hidden="true">Settings</span>
+                        <br aria-hidden="true">
                         <i class="fas fa-universal-access fa-6x menu-item"></i>
                     </button>
                 </div>
-                <div class="col-xs-4" role="listitem">
-                    <button type="button" id="leftSidebarCollapse" class="btn btn-info btn-block" aria-hidden="false">
-                        <span>User<br/> Settings</span>
-                        <br/>
+                <div class="col-xs-3">
+                    <button type="button" id="leftSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
+                        <span>User<br aria-hidden="true"> Settings</span>
+                        <br aria-hidden="true">
                         <i class="fa fa-user-circle fa-6x menu-item"></i>
+                    </button>
+                </div>
+                <div class="col-xs-3">
+                    <button type="button" id="homeButton" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
+                        <span aria-label="Home Button">Go To<br aria-hidden="true"> Home</span>
+                        <br aria-hidden="true">
+                        <i class="fas fa-home fa-6x menu-item"></i>
                     </button>
                 </div>
             </div>

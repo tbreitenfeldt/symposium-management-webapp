@@ -130,14 +130,16 @@ function gotEventData(data)
       var conferenceID = data[0].conference_id;
       for( i = 0; i < data.length; i++)
       {
-        var eventID = data[i].event_id;
-        $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button type=\"Button\" " +
-            "onclick=\"onAddClick(" + eventID + "," + conferenceID + ")\"> + </button></td></tr>").appendTo("#Conference tbody");
+				var eventID = data[i].event_id;
+				var name = String(data[i].event_name);
+				var message = String("Added " + name + " to my schedule");
+        $("<tr><td class=\"eventName\">" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button type=\"Button\" " +
+						"onclick=\"onAddClick(" + eventID + "," + conferenceID + "," +  "\'" + message +  "\'"  + ")\"> <i class=\"fas fa-plus-circle fa-w-16 fa-3x\"></i> </button></td></tr>").appendTo("#Conference tbody");
       }
     }
 }
 
-function onAddClick(eventID, conferenceID)
+function onAddClick(eventID, conferenceID, message)
 {
   var map = 
     {
@@ -147,6 +149,8 @@ function onAddClick(eventID, conferenceID)
     };
 
     $.post("proxies/postProxy.php",map,function(data) {successPost(conferenceID);}).fail(function(error) {document.write(error.responseText);});
+
+    notifyScreenreader(message);
 }
 
 function successPost(conferenceID)

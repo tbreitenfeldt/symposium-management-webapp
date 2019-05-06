@@ -9,7 +9,7 @@ session_write_close();
 <html lang="en">
 
   <head>
-    <title>Register</title>
+    <title>Register for Conference Management System</title>
 
     <!-- Meta Tags -->
     <meta charset="utf-8">
@@ -53,8 +53,13 @@ session_write_close();
           <div id="outputRegion" aria-live="polite" ></div>
 
           <fieldset>
+<<<<<<< HEAD
             <h2>Register Form</h2>
             <p id="usernameDescription">Your username must be between 3 and 30 characters, start with a letter, and may contain only letters, numbers, dashes, and periods.</p>
+=======
+            <header>Register Form for Conference Management System</header>
+            <p>Your username must start with a letter, and may contain only letters, numbers, dashes, and periods.</p>
+>>>>>>> chesterBranch
             <label for="user_name">* Username:</label>
             <br aria-hidden="true">
             <input type="text" id="user_name" name="user_name" aria-labeledby="usernameDescription" required="required" />

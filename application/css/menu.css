@@ -535,3 +535,10 @@ svg:not(:root).svg-inline--fa {
       position: absolute;
       width: 1px;
     }
+
+  .fa-plus-circle{
+      color:green;
+  }
+  .fa-times-circle{
+      color:red;
+  }

@@ -1,7 +1,6 @@
 <?php ?>
 
 <div id="innerContent">
-    <center>
     <div id="schedule-table" aria-hidden="true">
             <h1 id="h1" aria-hidden="true">My Schedule</h1>
                 <div id="UserConference" aria-hidden="true">
@@ -18,5 +17,4 @@
                     </table>
                 </div>
     </div>
-    </center>
 </div>

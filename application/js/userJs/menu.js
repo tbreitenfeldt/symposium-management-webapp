@@ -404,6 +404,7 @@ function main(){
         switchArrowDirection();
         resizeMainMenu();
     });
+    
 }
 
 $(document).ready(main);

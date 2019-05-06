@@ -40,8 +40,7 @@ function showSchedule(conferenceID, data)
         for(i = 0; i < data.length; i++)
         {
             var id = data[i].event_id;
-
-                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td></tr>").appendTo("#schedInfo");
+            $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td></tr>").appendTo("#schedInfo");
         }
     }
     else
@@ -67,8 +66,10 @@ function gotEvent(conferenceID, data)
             if(!myTable.includes(id))
 		    {
                 myTable.push(id);
-                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick(this," + conferenceID + "," + id + ")\"> X </button></td></tr>").appendTo("#UsersCon tbody");
-		    }
+                name = String(data[i].event_name);
+                var message = String("Removed from mySchedule: Event - " + name);
+                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick1(this," + id + "," + "\'" + message + "\'" + ")\"><i class=\"fas fa-times-circle fa-w-16 fa-3x\"></i></button></td></tr>").appendTo("#UsersCon tbody");
+            }
         }
     }
     else
@@ -77,7 +78,7 @@ function gotEvent(conferenceID, data)
     }
 }
 
-function onDeleteClick(event,conferenceID, eventID)
+function onDeleteClick1(event, eventID, message)
 {
     var map =
     {
@@ -87,6 +88,8 @@ function onDeleteClick(event,conferenceID, eventID)
     };
 
     $.delete("proxies/deleteProxy.php",map,function(data){successDel(event,eventID);});
+
+    notifyScreenreader(message);
 }
 
 function successDel(event, eventID)
@@ -102,5 +105,3 @@ function successDel(event, eventID)
         $("<tr><td>No Events Here</td></tr>").appendTo("#userConInfo");
     }
 }
-
-

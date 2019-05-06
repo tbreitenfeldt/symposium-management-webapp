@@ -542,3 +542,7 @@ svg:not(:root).svg-inline--fa {
   .fa-times-circle{
       color:red;
   }
+
+   header{
+    font-weight: bold;
+  }

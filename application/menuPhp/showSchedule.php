@@ -2,7 +2,7 @@
 
 <div id="innerContent">
     <div id="schedule-table" aria-hidden="true">
-            <h1 id="h1" aria-hidden="true">My Schedule</h1>
+            <header id="h1" aria-hidden="true">My Schedule</header>
                 <div id="UserConference" aria-hidden="true">
                     <table id="mySchedule" aria-hidden="true">
                         <thead>

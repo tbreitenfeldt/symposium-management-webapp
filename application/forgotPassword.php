@@ -45,7 +45,7 @@ session_write_close();
         <!-- content  -->
         <div id="content">
             <div id="content-inside">
-                <form id="userLogonForm" method="POST" action="loginAPI/forgotPasswordFunctions.php" type="json">
+                <form id="userLogonForm" method="POST" action="loginAPI/forgotPasswordFunctions.php" type="json" onSubmit="return submitForm(event)">
                 <legend>Forgot Password Form</legend>
 
                 <p>Note that the link  sent to your email will expire after a couple minutes, so please click on the link as soon as you recieve the email.</p>

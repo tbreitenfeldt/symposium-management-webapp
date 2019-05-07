@@ -31,7 +31,7 @@ session_write_close();
 
       <main class="wrapper">
         <div class="content-inside">
-          <form id="userLogonForm" method="POST" action="../loginAPI/loginFunctions.php" type="json" class="form-horizontal">
+          <form id="userLogonForm" method="POST" action="../loginAPI/loginFunctions.php" type="json" class="form-horizontal" onSubmit="return submitForm(event)">
             <fieldset>
               <legend>Administrator <br/> Login Form</legend>
               <div id="inputDiv">

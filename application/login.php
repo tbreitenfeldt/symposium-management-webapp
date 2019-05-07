@@ -53,7 +53,7 @@ session_write_close();
         <!-- content  -->
         <div id="content">
           <div id="content-inside">
-            <form id="userLogonForm" method="POST" action="loginAPI/loginFunctions.php" type="json">
+            <form id="userLogonForm" method="POST" action="loginAPI/loginFunctions.php" type="json" onSubmit="return submitForm(event)">
                 <fieldset>
                   <h2>Login Form</h2>
                   <div class="form-group row">

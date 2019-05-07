@@ -33,6 +33,8 @@ function register() {
                 $validationFunction($_POST[$field]);
             }//end foreach loop
 
+            checkIfEmailExists($pdoUtil, $_POST[USER_EMAIL_FIELD]);
+
             $parameters = [];
             $sql = getSQLInsertAllFields($parameters);
 
@@ -62,6 +64,17 @@ function register() {
 }//end function
 
 
+function checkIfEmailExists(&$pdoUtil, $email) {
+    $c = "constant";
+    $sql = "SELECT {$c('USER_ID_FIELD')} FROM {$c('USER_TABLE_NAME')} WHERE {$c('USER_EMAIL_FIELD')}=?;";
+    $result = $pdoUtil->query($sql, [$email]);
+
+    if ($result != null && sizeof($result) >= 1) {
+        throw new InvalidArgumentException("That email address has already been used, please provide a different email address.");
+    }//end if
+}//end function
+
+
 function getSQLInsertAllFields(&$parameters) {
     $c = "constant";
     $sql = "INSERT INTO {$c('USER_TABLE_NAME')} ({$c('USERNAME_FIELD')}, {$c('USER_PASSWORD_FIELD')}";
@@ -76,7 +89,6 @@ function getSQLInsertAllFields(&$parameters) {
 
     $sqlPlaceholders .= ")";
     $sql .= ") " . $sqlPlaceholders . ";";
-//die($sql);
     return $sql;
 }//end function 
 

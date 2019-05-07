@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] != "GET" || !isset($_GET["token"]) || !isset($_GE
 <main>
   <form id="userLogonForm" method="POST"
       action="../loginAPI/resetForgotPasswordFunctions.php?token=<?php echo htmlspecialchars($_GET['token']); ?>&email=<?php echo htmlspecialchars($_GET['email']); ?>"
-        type="json">
+        type="json" onSubmit="return submitForm(event)">
     <div id="outputRegion" aria-live="polite" ></div>
 
     <fieldset>

@@ -67,7 +67,7 @@ function gotEvent(conferenceID, data)
             if(!myTable.includes(id))
 		    {
                 myTable.push(id);
-                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick(this," + conferenceID + "," + id + ")\"> X </button></td></tr>").appendTo("#UsersCon tbody");
+                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick(this," + conferenceID + "," + id + ")\" aria-label=\"Delete from my Schedule\"> X </button></td></tr>").appendTo("#UsersCon tbody");
 		    }
         }
     }

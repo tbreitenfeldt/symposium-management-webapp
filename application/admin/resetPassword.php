@@ -22,7 +22,7 @@
   </header>
 
   <main>
-    <form id="userLogonForm" method="POST" action="../loginAPI/resetPasswordFunctions.php" type="json">
+    <form id="userLogonForm" method="POST" action="../loginAPI/resetPasswordFunctions.php" type="json" onSubmit="return submitForm(event)">
       <div id="outputRegion" aria-live="polite" ></div>
 
       <fieldset>

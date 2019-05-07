@@ -20,7 +20,7 @@ session_write_close();
 
 <body>
 <main id="wrap">
-  <form id="userForgotPasswordForm" method="POST" action="../loginAPI/forgotPasswordFunctions.php" type="json">
+  <form id="userForgotPasswordForm" method="POST" action="../loginAPI/forgotPasswordFunctions.php" type="json" onSubmit="return submitForm(event)">
     <p>Note that the link  sent to your email will expire after a couple minutes, so please click on the link as soon as you recieve the email.<br>
     If you did not recieve the email, please check your spam folder.</p>
 

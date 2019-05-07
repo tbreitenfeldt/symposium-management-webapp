@@ -15,7 +15,7 @@ function getUserConference()
 function determineIfUserIsRegistered(data)
 {
 	if (data == null || data.length == 0) {
-		$("#conferenceRegisterButton").click(function(event) {registerUserForConference(event, "insert");} );
+		$("#conferenceRegisterButton").click(function(event) {registerUserForConference(event, "post");} );
 		$("#conferenceChooser").removeAttr("hidden");
 		$("#rightSidebarCollapse").attr("disabled", "true");
 		$("#registerForDifferentConferenceButton").attr("disabled", "true");
@@ -132,7 +132,7 @@ function gotEventData(data)
       {
         var eventID = data[i].event_id;
         $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button type=\"Button\" " +
-            "onclick=\"onAddClick(" + eventID + "," + conferenceID + ")\"> + </button></td></tr>").appendTo("#Conference tbody");
+            "onclick=\"onAddClick(" + eventID + "," + conferenceID + ")\" aria-label=\"Add to my Schedule\"> + </button></td></tr>").appendTo("#Conference tbody");
       }
     }
 }

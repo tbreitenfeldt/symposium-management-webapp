@@ -1,7 +1,7 @@
 <?php ?>
     <div id="innerContent">
         <div id="conference-table">
-            <header id="conferenceNameHeader">Conference Schedule</header>
+            <h2 id="conferenceNameHeader">Conference Schedule</h2>
                     <div id="MainConference">
                         <table id="Conference">
                             <thead>
@@ -17,10 +17,10 @@
                     </div>
                 </div>
 
-        <div id="schedule-table" aria-hidden="true">
-            <header id="h1" aria-hidden="true">My Schedule</header>
-                <div id="UserConference" aria-hidden="true">
-                    <table id="UsersCon" aria-hidden="true">
+        <div id="schedule-table">
+            <h3>My Schedule</h3>
+                <div id="UserConference">
+                    <table id="UsersCon">
                         <thead>
                             <tr>
                                 <th>Name</th>

@@ -26,7 +26,7 @@ session_write_close();
   </header>
 
   <main class="wrapper">
-    <form id="userLogonForm" method="POST" action="../loginAPI/registerFunctions.php" type="json" class="form-horizontal">
+    <form id="userLogonForm" method="POST" action="../loginAPI/registerFunctions.php" type="json" class="form-horizontal" onSubmit="return submitForm(event)">
       <fieldset>
         <legend>Administrator<br/>Registration Form</legend>
         <p id="usernameDescription">Your username must be between 3 and 30 characters, <br>start with a letter,<br/>and may contain only <br/>letters, numbers, dashes, and periods.</p>

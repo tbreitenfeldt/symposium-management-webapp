@@ -2,10 +2,10 @@
 
 <div id="innerContent">
     <center>
-    <div id="schedule-table" aria-hidden="true">
-            <h1 id="h1" aria-hidden="true">My Schedule</h1>
-                <div id="UserConference" aria-hidden="true">
-                    <table id="mySchedule" aria-hidden="true">
+    <div id="schedule-table">
+            <h2>My Schedule</h2>
+                <div id="UserConference">
+                    <table id="mySchedule">
                         <thead>
                             <tr>
                                 <th>Name</th>

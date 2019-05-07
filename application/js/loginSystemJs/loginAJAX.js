@@ -1,18 +1,11 @@
 
-$(document).ready(init);
-
 var OUTPUT_REGION_ID = "outputRegion";
-
-
-function init() {
-    $("form").submit(submitForm);
-}//end function
 
 
 function submitForm(event) {
     event.preventDefault();
     $("#" + OUTPUT_REGION_ID).html("Please Wait...");
-    let form = $("form");
+    let form = $(event.target);
 
     $.ajax({
         type: form.attr("method"),

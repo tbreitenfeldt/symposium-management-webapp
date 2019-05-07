@@ -49,7 +49,7 @@ session_write_close();
     <!-- content  -->
       <div id="content">
         <div id="content-inside">        
-          <form id="userLogonForm" method="POST" action="loginAPI/registerFunctions.php" type="json">
+          <form id="userLogonForm" method="POST" action="loginAPI/registerFunctions.php" type="json" onSubmit="return submitForm(event)">
           <div id="outputRegion" aria-live="polite" ></div>
 
           <fieldset>

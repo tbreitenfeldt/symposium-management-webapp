@@ -394,6 +394,8 @@ function main(){
 
     $("#registerForDifferentConferenceButton").on("click", function(event) {
         closeMenus();
+        $("title").text("Register for Conference");
+        $("#innerContent").empty();
         updateConferenceRegistration(event);
         $("#conferenceRegistrationHeading").focus();
     });
@@ -401,12 +403,20 @@ function main(){
     $("#changeUserSettingsButton").on("click", function(event) {
         closeMenus();
         $("title").text("Profile Settings");
+        $("#innerContent").empty();
         $("#content").load("userSettings.php", populateCurrentUserSettings);
         $("#userSettingsHeading").focus();
     });
 
-    $("#websiteLink").on("click", function()
-    {
+    $("#resetPasswordButton").on("click", function(event) {
+        closeMenus();
+        $("title").text("Reset Password");
+        $("#innerContent").empty();
+        $("#content").load("resetPassword.php");
+        $("#resetPasswordHeading").focus();
+    });
+
+    $("#websiteLink").on("click", function() {
         window.open("https://sites.ewu.edu/pwdss/");
     });
 

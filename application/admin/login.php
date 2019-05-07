@@ -27,13 +27,13 @@ session_write_close();
 </head>
 
 <body>
-      <header></header>
 
-      <main class="wrapper">
+      <head>              <h1>Administrator <br aria-hidden="true"> Login Form</h1></head>
+
+      <main class="wrapper" aria-label="administrative login Form">
         <div class="content-inside">
-          <form id="userLogonForm" method="POST" action="../loginAPI/loginFunctions.php" type="json" class="form-horizontal">
+          <form id="userLogonForm" method="POST" action="../loginAPI/loginFunctions.php" type="json" class="form-horizontal" onSubmit="return submitForm(event)">
             <fieldset>
-              <legend>Administrator <br/> Login Form</legend>
               <div id="inputDiv">
                 <label for="admin_name" class="col-sm-12 col-form-label">Username:</label>
                 <input type="text" id="admin_name" class="col-sm-12" name="admin_name" placeholder="Username"/>

@@ -27,6 +27,8 @@
         <script src="js/userJs/mainSchedule.js"></script>
         <script src="js/userJs/userAccountRegistration.js"></script>
         <script src="js/userJs/userSettings.js"></script>
+        <script src="js/loginSystemJs/loginAJAX.js"></script>
+
 
         <!-- Font Awesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -41,31 +43,31 @@
 
             <h3 id="welcome-user"> Welcome <?php echo $_SESSION["user_name"]; ?>!</h3>
 
-            <div class="row">
-                <div class="col-xs-3">
-                    <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false" data-conferenceId="">
+            <div class="row" role="list">
+                <div class="col-xs-3" role="listitem">
+                    <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" data-conferenceId="">
                         <span>Symposium<br aria-hidden="true">Scheduler</span>
                         <br aria-hidden="true">
                         <i class="fa fa-calendar fa-6x menu-item"></i>
                     </button>
                 </div>
-                <div class="col-xs-3">
-                    <button type="button" id="centerSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
+                <div class="col-xs-3" role="listitem">
+                    <button type="button" id="centerSidebarCollapse" class="btn btn-info btn-block" aria-hidden="false">
                         <span>Accesibility<br aria-hidden="true">Settings</span>
                         <br aria-hidden="true">
                         <i class="fas fa-universal-access fa-6x menu-item"></i>
                     </button>
                 </div>
-                <div class="col-xs-3">
-                    <button type="button" id="leftSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
+                <div class="col-xs-3" role="listitem">
+                    <button type="button" id="leftSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false">
                         <span>User<br aria-hidden="true"> Settings</span>
                         <br aria-hidden="true">
                         <i class="fa fa-user-circle fa-6x menu-item"></i>
                     </button>
                 </div>
-                <div class="col-xs-3">
-                    <button type="button" id="homeButton" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
-                        <span aria-label="Home Button">Go To<br aria-hidden="true"> Home</span>
+                <div class="col-xs-3" role="listitem">
+                    <button id="homeButton" class="btn btn-info btn-block" aria-hidden="false">
+                        <span aria-label="Home">Go To<br aria-hidden="true"> Home</span>
                         <br aria-hidden="true">
                         <i class="fas fa-home fa-6x menu-item"></i>
                     </button>
@@ -88,7 +90,7 @@
                     <a id="returnHome" href="javascript: document.location.reload();" role="button">Home</a>
                 </li>
                 <li>
-                    <button href="#my-scheduler-options" data-toggle="collapse" class="dropdown-button">
+                    <button href="#my-scheduler-options" data-toggle="collapse" class="dropdown-button" aria-expanded="false">
                         My Scheduler Features
                     </button>
                     <ul class="collapse list-unstyled" id="my-scheduler-options">
@@ -176,7 +178,7 @@
                     <button class="btn btn-primary btn-lg layout-button" id="changeUserSettingsButton">Profile Settings</button>
                 </li>
                 <li>
-                    <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='resetPassword.php'">Reset Password</button>
+                    <button  id="resetPasswordButton" class="btn btn-primary btn-lg layout-button">Reset Password</button>
                 </li>
                 <li>
                     <button  id="registerForDifferentConferenceButton" class="btn btn-primary btn-lg layout-button" onclick="">Register for a different conference</button>

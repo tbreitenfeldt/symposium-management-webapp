@@ -90,34 +90,6 @@ session_write_close();
       <div id="outputRegion" aria-live="polite" ></div>
     </form>
 
-              <div class="form-group row">
-                <label for="admin_password" class="col-sm-12 col-form-label">Password:</label>
-                <div class="col-sm-12">
-                  <input type="password" class="form-control" id="admin_password" name="admin_password" required="required">
-                </div>
-              </div>
-              <div class="form-group row">
-                  <label for="confirm_password" class="col-sm-12 col-form-label">Confirm Password:</label>
-                  <div class="col-sm-12">
-                    <input type="password" class="form-control" id="confirm_password" name="confirm_password" required="required">
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row justify-content-center">
-                <div class="form-check col-sm-10">
-                  <input type="submit" id="registerButton" value="Register" class="btn btn-primary btn-lg btn-block"/>
-                </div>
-              </div>    
-              
-              <div class="form-group row justify-content-center">
-                <div class="form-check">
-                      <p>Already have an account?<br aria-hidden="true"> <a href="login.php">Login here</a></p>
-                </div>
-              </div>
-          </fieldset>
-          <div id="outputRegion" aria-live="polite" ></div>
-        </form>
-        </div>
     </div>
     <!-- END content  -->
 

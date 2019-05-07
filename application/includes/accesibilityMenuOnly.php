@@ -1,5 +1,5 @@
 <!-- user-menu -->
-<div id="user-menu" class="col-lg-12" role="navigation" aria-hidden="false" aria-label="user menu">
+<div id="user-menu" class="col-lg-12" role="navigation" aria-hidden="false" aria-label="Accessibility Settings">
             <div class="row">
                 <div class="col-xs-4">
                     <button type="button" id="centerSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
@@ -13,7 +13,7 @@
         <!-- END user-menu -->                                                                                                                                                                                                                                                                                                                                                                                                                
 
         <!-- centerSidebar  -->
-        <nav id="centerSidebar" aria-label="Accesibility Settings">
+        <div id="centerSidebar" aria-hidden="true">
 
             <div id="centerDismiss" >
                 <button href="" id="closeCenterMenu" class="close-menu" aria-label="Close Accesibility Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
@@ -60,5 +60,5 @@
                     </ul>
                 </li>
             </ul>
-        </nav>
+        </div>
         <!-- END centerSidebar  -->

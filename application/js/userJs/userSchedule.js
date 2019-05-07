@@ -49,8 +49,8 @@ function showSchedule(conferenceID, data)
             };
         
 
-            $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button onclick=\"showEventInfo(" + i +")\" class=\"dropbtn\">Open/Close</button></td></tr>"
-            + "<tr><td colspan=4><span id=\"dropdown" + i +"\"style=\"display:none\">Information: " + event.info + "<br>Speakers: " + event.speakers + "<br>Building, Floor, Room: " + event.room + "</span></td></tr>").appendTo("#schedInfo");
+            $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button id=\"openCloseButton" + i + "\" onclick=\"showEventInfo(" + i +")\" class=\"dropbtn\">Open Event</button></td></tr>"
+            + "<tr id=\"eventInfoRow" + i + "\" aria-hidden=\"true\"><td colspan=4><span id=\"dropdown" + i +"\"style=\"display:none\">Information: " + event.info + "<br>Speakers: " + event.speakers + "<br>Building, Floor, Room: " + event.room + "</span></td></tr>").appendTo("#schedInfo");
         }
     }
     else
@@ -116,4 +116,15 @@ function successDel(event, eventID)
 function showEventInfo(count)
 {
     $("#dropdown"+count).toggle("fast");
+    let rowEventInfo = $("#eventInfoRow"+count);
+
+    if (rowEventInfo.attr("aria-hidden") == "false") {
+        notifyScreenreader("collapsed event information");
+        $("#openCloseButton" + count).text("Open Event");
+        rowEventInfo.attr("aria-hidden", "true");
+    } else {
+        notifyScreenreader("expanded event information below");
+        $("#openCloseButton" + count).text("Close Event");
+        rowEventInfo.attr("aria-hidden", "false");
+    }
 }

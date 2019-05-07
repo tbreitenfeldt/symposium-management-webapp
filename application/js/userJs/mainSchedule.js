@@ -30,7 +30,6 @@ function determineIfUserIsRegistered(data)
 
 function updateConferenceRegistration(event)
 {
-	$("title").text("Conference Registration");
 	$("#conferenceChooser").removeAttr("hidden");
 	$("#rightSidebarCollapse").attr("disabled", "true");
 	$("#registerForDifferentConferenceButton").attr("disabled", "true");

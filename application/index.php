@@ -181,7 +181,7 @@
                     <button  id="resetPasswordButton" class="btn btn-primary btn-lg layout-button">Reset Password</button>
                 </li>
                 <li>
-                    <button  id="registerForDifferentConferenceButton" class="btn btn-primary btn-lg layout-button" onclick="">Register for a different conference</button>
+                    <button  id="registerForDifferentConferenceButton" class="btn btn-primary btn-lg layout-button">Register for a different conference</button>
                 </li>
                 <li>
                     <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='logout.php'">Logout</button>
@@ -191,15 +191,17 @@
         </div>
         <!-- END leftSidebar  -->
 
+
         <!-- content  -->
         <div id="content" tabindex="-1">
-            <div id="innerContent" tabindex="-1">
                 <div id="conferenceChooser" role="main" hidden="true">
                     <h2 id="conferenceRegistrationHeading" tabindex="-1">Conference Registration</h2>    
                     <label for="conferenceChooser">Select a conference to register for</label>
                     <select id="conferenceChooserListbox"></select>
                     <input type="button" id ="conferenceRegisterButton" value="Register for Conference" />
                 </div>
+
+            <div id="innerContent" tabindex="-1">
             </div>
         </div>
         <!-- END content  -->

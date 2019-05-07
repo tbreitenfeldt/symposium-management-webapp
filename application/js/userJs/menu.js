@@ -291,7 +291,7 @@ function onFontChange(){
 onloadCook();
 function main(){
     onFontChange();
-    $(window).on("beforeunload", function(evt) {
+    $(window).on("unload", function(evt) {
         setCookie("currentColorSetting",currentColorSetting);
         setCookie("zoomedIn",zoomedIn);
         // Google Chrome requires returnValue to be set
@@ -343,6 +343,10 @@ function main(){
     $(window).resize(function(){
         switchArrowDirection();
         resizeMainMenu();
+    });
+
+    $("#homeButton").on("click", function(event) {
+        document.location.reload();
     });
 
     //ICON MENU

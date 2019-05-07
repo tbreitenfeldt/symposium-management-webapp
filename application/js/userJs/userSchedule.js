@@ -1,5 +1,6 @@
 
 var myTable;
+
 function startUserTable(conferenceID, showSched)
 {  
     if(showSched == 0)
@@ -20,6 +21,7 @@ function startUserTable(conferenceID, showSched)
         if(showSched == 1)
         {
             showSchedule(conferenceID, data);
+            console.log("getting")
         }
         else
         {
@@ -39,9 +41,16 @@ function showSchedule(conferenceID, data)
     {
         for(i = 0; i < data.length; i++)
         {
-            var id = data[i].event_id;
+            var event = 
+            {
+                info: String(data[i].event_desc),
+                speakers: String(data[i].event_speakers),
+                room: String(data[i].event_building + " " + data[i].event_floor + " " + data[i].event_room)
+            };
+        
 
-                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td></tr>").appendTo("#schedInfo");
+            $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button onclick=\"showEventInfo(" + i +")\" class=\"dropbtn\">Open/Close</button></td></tr>"
+            + "<tr><td colspan=4><span id=\"dropdown" + i +"\"style=\"display:none\">Information: " + event.info + "<br>Speakers: " + event.speakers + "<br>Building, Floor, Room: " + event.room + "</span></td></tr>").appendTo("#schedInfo");
         }
     }
     else
@@ -58,17 +67,16 @@ function gotEvent(conferenceID, data)
 
     if(data != null)
     {
-        var table = $("#userConInfo");
-
         for(i = 0; i < data.length; i++)
         {
             var id = data[i].event_id;
-            
             if(!myTable.includes(id))
 		    {
                 myTable.push(id);
-                $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick(this," + conferenceID + "," + id + ")\" aria-label=\"Delete from my Schedule\"> X </button></td></tr>").appendTo("#UsersCon tbody");
-		    }
+                name = String(data[i].event_name);
+                var message = String("Removed from mySchedule: Event - " + name);
+                $("<tr><td>" + data[i].event_name + "</td><td aria-label=\"" + name + "wil start at\">" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick1(this," + id + "," + "\'" + message + "\'" + ")\"><i class=\"fas fa-times-circle fa-w-16 fa-3x\" aria-label=\"Delete from my Schedule\"></i></button></td></tr>").appendTo("#UsersCon tbody");
+            }
         }
     }
     else
@@ -77,7 +85,7 @@ function gotEvent(conferenceID, data)
     }
 }
 
-function onDeleteClick(event,conferenceID, eventID)
+function onDeleteClick1(event, eventID, message)
 {
     var map =
     {
@@ -87,6 +95,8 @@ function onDeleteClick(event,conferenceID, eventID)
     };
 
     $.delete("proxies/deleteProxy.php",map,function(data){successDel(event,eventID);});
+
+    notifyScreenreader(message);
 }
 
 function successDel(event, eventID)
@@ -103,4 +113,7 @@ function successDel(event, eventID)
     }
 }
 
-
+function showEventInfo(count)
+{
+    $("#dropdown"+count).toggle("fast");
+}

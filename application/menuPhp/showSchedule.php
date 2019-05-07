@@ -1,9 +1,8 @@
 <?php ?>
 
 <div id="innerContent">
-    <center>
     <div id="schedule-table">
-            <h2>My Schedule</h2>
+            <header id="h1">My Schedule</header>
                 <div id="UserConference">
                     <table id="mySchedule">
                         <thead>
@@ -18,5 +17,4 @@
                     </table>
                 </div>
     </div>
-    </center>
 </div>

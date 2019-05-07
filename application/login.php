@@ -52,10 +52,11 @@ session_write_close();
 
         <!-- content  -->
         <div id="content">
-          <div id="content-inside">
+          <h1>Login for Conference Management System</h1>
+
+          <div id="content-inside" role="main" aria-label="login form">
             <form id="userLogonForm" method="POST" action="loginAPI/loginFunctions.php" type="json" onSubmit="return submitForm(event)">
                 <fieldset>
-                  <header>Login Form for Conference Management System</header>
                   <div class="form-group row">
                     <label for="user_name" class="col-sm-12 col-form-label">Username:</label>
                   </div>

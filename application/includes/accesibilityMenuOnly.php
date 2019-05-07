@@ -60,5 +60,5 @@
                     </ul>
                 </li>
             </ul>
-        </nav>
+        </div>
         <!-- END centerSidebar  -->

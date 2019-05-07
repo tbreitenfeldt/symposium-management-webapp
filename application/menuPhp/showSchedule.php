@@ -2,7 +2,7 @@
 
 <div id="innerContent">
     <div id="schedule-table">
-            <header id="h1">My Schedule</header>
+            <h1>My Schedule</h1>
                 <div id="UserConference">
                     <table id="mySchedule">
                         <thead>

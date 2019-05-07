@@ -41,31 +41,31 @@
 
             <h3 id="welcome-user"> Welcome <?php echo $_SESSION["user_name"]; ?>!</h3>
 
-            <div class="row">
-                <div class="col-xs-3">
-                    <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false" data-conferenceId="">
+            <div class="row" role="list">
+                <div class="col-xs-3" role="listitem">
+                    <button type="button" id="rightSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" data-conferenceId="">
                         <span>Symposium<br aria-hidden="true">Scheduler</span>
                         <br aria-hidden="true">
                         <i class="fa fa-calendar fa-6x menu-item"></i>
                     </button>
                 </div>
-                <div class="col-xs-3">
-                    <button type="button" id="centerSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
+                <div class="col-xs-3" role="listitem">
+                    <button type="button" id="centerSidebarCollapse" class="btn btn-info btn-block" aria-hidden="false">
                         <span>Accesibility<br aria-hidden="true">Settings</span>
                         <br aria-hidden="true">
                         <i class="fas fa-universal-access fa-6x menu-item"></i>
                     </button>
                 </div>
-                <div class="col-xs-3">
-                    <button type="button" id="leftSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
+                <div class="col-xs-3" role="listitem">
+                    <button type="button" id="leftSidebarCollapse" class="btn btn-info btn-block" aria-label="" aria-hidden="false">
                         <span>User<br aria-hidden="true"> Settings</span>
                         <br aria-hidden="true">
                         <i class="fa fa-user-circle fa-6x menu-item"></i>
                     </button>
                 </div>
-                <div class="col-xs-3">
-                    <button type="button" id="homeButton" class="btn btn-info btn-block" aria-label="" aria-hidden="false" aria-expanded="false">
-                        <span aria-label="Home Button">Go To<br aria-hidden="true"> Home</span>
+                <div class="col-xs-3" role="listitem">
+                    <button id="homeButton" class="btn btn-info btn-block" aria-hidden="false">
+                        <span aria-label="Home">Go To<br aria-hidden="true"> Home</span>
                         <br aria-hidden="true">
                         <i class="fas fa-home fa-6x menu-item"></i>
                     </button>
@@ -88,7 +88,7 @@
                     <a id="returnHome" href="javascript: document.location.reload();" role="button">Home</a>
                 </li>
                 <li>
-                    <button href="#my-scheduler-options" data-toggle="collapse" class="dropdown-button">
+                    <button href="#my-scheduler-options" data-toggle="collapse" class="dropdown-button" aria-expanded="false">
                         My Scheduler Features
                     </button>
                     <ul class="collapse list-unstyled" id="my-scheduler-options">

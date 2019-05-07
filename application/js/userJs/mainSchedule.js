@@ -130,17 +130,11 @@ function gotEventData(data)
       var conferenceID = data[0].conference_id;
       for( i = 0; i < data.length; i++)
       {
-<<<<<<< HEAD
-        var eventID = data[i].event_id;
-        $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button type=\"Button\" " +
-            "onclick=\"onAddClick(" + eventID + "," + conferenceID + ")\" aria-label=\"Add to my Schedule\"> + </button></td></tr>").appendTo("#Conference tbody");
-=======
 				var eventID = data[i].event_id;
 				var name = String(data[i].event_name);
 				var message = String("Added " + name + " to my schedule");
         $("<tr><td class=\"eventName\">" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button type=\"Button\" " +
-						"onclick=\"onAddClick(" + eventID + "," + conferenceID + "," +  "\'" + message +  "\'"  + ")\"> <i class=\"fas fa-plus-circle fa-w-16 fa-3x\"></i> </button></td></tr>").appendTo("#Conference tbody");
->>>>>>> c0ff3c643aea11ab85ecbf1aa58d7823af9fed76
+						"onclick=\"onAddClick(" + eventID + "," + conferenceID + "," +  "\'" + message +  "\'"  + ")\" aria-label=\"Add to my Schedule\"> <i class=\"fas fa-plus-circle fa-w-16 fa-3x\"></i> </button></td></tr>").appendTo("#Conference tbody");
       }
     }
 }

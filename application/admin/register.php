@@ -9,12 +9,8 @@ session_write_close();
 <html lang="en">
 
 <head>
-<<<<<<< HEAD
   <?php require_once "../includes/adminHeader.php"; ?>
   <title>Admin Register</title>
-=======
-    <title>Register for Conference Management System</title>
->>>>>>> chesterBranch
 
     <!-- Meta Tags -->
     <meta charset="utf-8">
@@ -47,8 +43,6 @@ session_write_close();
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
   </head>
-
-<<<<<<< HEAD
   <main class="wrapper">
     <form id="userLogonForm" method="POST" action="../loginAPI/registerFunctions.php" type="json" class="form-horizontal">
       <fieldset>
@@ -95,30 +89,6 @@ session_write_close();
       </fieldset>
       <div id="outputRegion" aria-live="polite" ></div>
     </form>
-=======
-<body id="my-body">
-    <div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
-
-    <!-- content  -->
-      <div id="content">
-        <div id="content-inside">  
-        <form id="userLogonForm" method="POST" action="../loginAPI/registerFunctions.php" type="json" class="form-horizontal">
-          <fieldset>
-            <header>Administrator<br aria-hidden="true">Registration Form</header>
-            <p>Your username must start with a letter, <br aria-hidden="true">and may contain only <br aria-hidden="true">letters, numbers, dashes, and periods.</p>
-            <div id="fieldClass">
-              <div class="form-group row">
-                <label for="admin_name" class="col-sm-12 col-form-label">Username:</label>
-                <div class="col-sm-12">
-                  <input type="text" class="form-control" id="admin_name" name="admin_name" required="required">
-                </div>
-              </div>
-
-              <label for="admin_email" class="control-label">Email:</label>
-              <input type="email" id="admin_email" name="admin_email" required="required" />
-
->>>>>>> chesterBranch
-
 
               <div class="form-group row">
                 <label for="admin_password" class="col-sm-12 col-form-label">Password:</label>

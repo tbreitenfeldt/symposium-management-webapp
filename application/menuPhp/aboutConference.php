@@ -1,9 +1,9 @@
 <?php ?>
 
     <div id="innerContent">
-        <h1> <center> Conference Information </center></h1>
+        <h1> Conference Information </h1>
         <div id="details">
-            <center><p id="description"></p></center>
+            <p id="description"></p>
 
             <header> Location: </header>
             <p id="location" ></p>

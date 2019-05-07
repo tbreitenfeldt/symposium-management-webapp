@@ -27,6 +27,8 @@
         <script src="js/userJs/mainSchedule.js"></script>
         <script src="js/userJs/userAccountRegistration.js"></script>
         <script src="js/userJs/userSettings.js"></script>
+        <script src="js/loginSystemJs/loginAJAX.js"></script>
+
 
         <!-- Font Awesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -176,7 +178,7 @@
                     <button class="btn btn-primary btn-lg layout-button" id="changeUserSettingsButton">Profile Settings</button>
                 </li>
                 <li>
-                    <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='resetPassword.php'">Reset Password</button>
+                    <button  id="resetPasswordButton" class="btn btn-primary btn-lg layout-button">Reset Password</button>
                 </li>
                 <li>
                     <button  id="registerForDifferentConferenceButton" class="btn btn-primary btn-lg layout-button" onclick="">Register for a different conference</button>

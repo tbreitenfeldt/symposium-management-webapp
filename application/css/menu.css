@@ -9,6 +9,12 @@ html{
   background-color:white;
 }
 
+.col-xs-3 button{
+  width: 88.75px;
+}
+
+
+
 ul ul a{
     background:rgb(188, 20, 63);
     }
@@ -237,7 +243,7 @@ a.menu-button:hover {
 }
 
 @media (max-width: 426px){
-  .col-xs-4 button span{
+  .col-xs-3 button span{
     font-size: 13px;
   }
 
@@ -291,9 +297,9 @@ table{
 }
 
 
-@media (max-width: 320px){
-  .col-xs-4 button span{
-    font-size: 16px;
+@media (max-width: 375px){
+  .col-xs-3 button{
+    font-size: 12px;
   }
 
   #content {
@@ -345,7 +351,6 @@ table{
   background:#17a2b8;
 }
 }
-
 
 /* ---------------------------------------------------
     MISC
@@ -476,7 +481,7 @@ table {
 
 svg:not(:root).svg-inline--fa {
   overflow: visible;
-  width: .75em;
+  width: .6em;
 }
 
 .button-fix{
@@ -543,3 +548,9 @@ svg:not(:root).svg-inline--fa {
     font-size: 32px;
     font-weight: bold;
   }
+
+
+.col-xs-3 button{
+  padding-left:0px;
+  padding-right:0px;
+}

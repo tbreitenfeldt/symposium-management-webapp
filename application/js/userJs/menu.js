@@ -71,13 +71,13 @@ function showContentPage(){
 //All Toggle Menu Functions
 
 function isMobile(){
-    return getPageWidth <= 425;
+    return getPageWidth() <= 425;
 }
 
 function resizeMainMenu(){//change button size same when default page opens
-    if(isMobile){
-        var highest = $("#centerSidebarCollapse").css('width');
-        var arr = new Array('#leftSidebarCollapse', '#rightSidebarCollapse');
+    if(isMobile()){
+        var highest = (getPageWidth()/4) - 5;
+        var arr = new Array('#centerSidebarCollapse','#leftSidebarCollapse', '#rightSidebarCollapse', '#homeButton');
         var resizeMenu = arr.join(',');
         $(resizeMenu).css('width', highest);
     }
@@ -199,7 +199,7 @@ function toggleAriaButtonPress(elementId) {
   }
 
 function changeFontScreen(){
-    changeSize("#my-body", fontSizeStyle, arr2[zoomedIn]);  
+    changeSize("#innerContent", fontSizeStyle, arr2[zoomedIn]);  
     changeSize(".checkbox", "width", arr3[zoomedIn]);
     changeSize(".checkbox", "height", arr3[zoomedIn]);
 }
@@ -291,12 +291,12 @@ function onFontChange(){
 onloadCook();
 function main(){
     onFontChange();
-    $(window).on("beforeunload", function(evt) {
+    $(window).on("unload", function(evt) {
         setCookie("currentColorSetting",currentColorSetting);
         setCookie("zoomedIn",zoomedIn);
         // Google Chrome requires returnValue to be set
-        evt.returnValue = 'fafafa';
-        return "fafaf";
+        evt.returnValue = '';
+        return null;
     });
 
     
@@ -343,6 +343,10 @@ function main(){
     $(window).resize(function(){
         switchArrowDirection();
         resizeMainMenu();
+    });
+
+    $("#homeButton").on("click", function(event) {
+        document.location.reload();
     });
 
     //ICON MENU
@@ -426,7 +430,8 @@ function main(){
         switchArrowDirection();
         resizeMainMenu();
     });
-    
+    resizeMainMenu();
+
 }
 
 $(document).ready(main);

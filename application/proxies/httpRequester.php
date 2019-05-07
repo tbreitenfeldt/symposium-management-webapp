@@ -5,7 +5,7 @@
 */
 
 //define("DOMAIN", "http://pacificwesterndisabilitystudies.tk");
-define("DOMAIN", "http://localhost/symposium-management-webapp/application");
+define("DOMAIN", "http://localhost/dashboard/github/TeamLead_TJ_Code/application/");
 
 class HTTPRequester {
     /**

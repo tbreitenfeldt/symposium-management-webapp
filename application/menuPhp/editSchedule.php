@@ -1,8 +1,10 @@
 <?php ?>
-    <div id="innerContent">
+    <div id="innerContent">            
+    <h2>Conference Schedule</h2>
+    <h2 style="display:none" id="conferenceNameHeader"></h2>
         <button id="showConferenceSchedule" onclick="onShowHiddenElementWithAria('conference-table', 'Conference Schedule')">Show/Hide Conference Schedule</button>
         <div id="conference-table" style="display:none">
-            <h2 id="conferenceNameHeader">Conference Schedule</h2>
+
                     <div id="MainConference">
                         <table id="Conference">
                             <thead>
@@ -17,10 +19,10 @@
                         </table>
                     </div>
                 </div>
-
+            <h2>My Schedule</h2>
         <button id="showMySchedule" onclick="onShowHiddenElementWithAria('schedule-table', 'My Schedule')">Show/Hide My Schedule</button>
         <div id="schedule-table" style="display:none">
-            <h2>My Schedule</h2>
+
                 <div id="UserConference">
                     <table id="UsersCon" >
                         <thead>

@@ -409,7 +409,6 @@ function main(){
         $("#content").load("menuPhp/conferenceSchedule.php");
         getConferenceInfoAndSchedule();
         $("#innerContent").focus();
-        console.log("Please why you not working?")
     });
 
     $("#resetPasswordButton").on("click", function(event) {

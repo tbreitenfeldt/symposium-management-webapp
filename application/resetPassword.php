@@ -1,4 +1,9 @@
-        <div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/register.css">
+        
+        
+<div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
 
 
         <div id="content-inside">

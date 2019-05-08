@@ -53,13 +53,9 @@ session_write_close();
           <div id="outputRegion" aria-live="polite" ></div>
 
           <fieldset>
-<<<<<<< HEAD
             <h2>Register Form</h2>
             <p id="usernameDescription">Your username must be between 3 and 30 characters, start with a letter, and may contain only letters, numbers, dashes, and periods.</p>
-=======
-            <header>Register Form for Conference Management System</header>
-            <p>Your username must start with a letter, and may contain only letters, numbers, dashes, and periods.</p>
->>>>>>> chesterBranch
+
             <label for="user_name">* Username:</label>
             <br aria-hidden="true">
             <input type="text" id="user_name" name="user_name" aria-labeledby="usernameDescription" required="required" />
@@ -75,7 +71,7 @@ session_write_close();
               <input type="checkbox" id="user_notifyByEmail" class="checkbox" name="user_notifyByEmail" value="true" checked="checked" />
               <br aria-hidden="true">
               <label for="user_notifyByPhone">Notify by text message:</label>
-              <input type="checkbox" id="user_notifyByPhone" class="checkbox" name="user_notifyByPhone" value="true" onchange="togglePhoneRegion" />
+              <input type="checkbox" id="user_notifyByPhone" class="checkbox" name="user_notifyByPhone" value="true" onchange="togglePhoneRegion(event)" />
             </div>
           </fieldset>
 
@@ -101,7 +97,7 @@ session_write_close();
               <option value="verizon">verizon</option>
             </select></p>
             <!--Message for only screenreaders. read when region is shown, shouldn't be visually visible.-->
-            <div id="screenreaderPhoneRegionMessage" class="screenreader-text" role="alert">Phone Information expanded below</div>
+            <div id="screenreaderPhoneRegionMessage" class="screenreader-text" role="alert"></div>
           </fieldset>
 
           <p id="passwordDescription">Your password must be at least 6 characters long.</p>

@@ -95,6 +95,9 @@
                     </button>
                     <ul class="collapse list-unstyled" id="my-scheduler-options">
                         <li>
+                            <a id="conferenceSchedule">View Conference Schedule</a>
+                        </li>
+                        <li>
                             <a id="mySchedule" role="button">View My Schedule</a>
                         </li>
                         <li>

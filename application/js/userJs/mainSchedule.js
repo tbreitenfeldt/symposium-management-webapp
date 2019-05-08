@@ -1,6 +1,20 @@
 
 $(document).ready(beginMainSchedule);
 
+
+//I'm trying to add some more member variables to mainSchedule so that we don't have to hit the database as often.
+//The goal of these vars is to keep track of the current conference id the user is working on and keeping the json data object stored here as well.
+//The usage of currentConferenceData would look like:
+//function getConferenceData(){
+//	if(currentConferenceData == null || currentConferenceChosen == null){
+//		//do the getRecord call and set these vars
+//	} else {
+//		//call the postback you'd normally use passing in the stored member vars.
+//		//e.g. callbackFunction(currentConferenceData);
+//	}
+//}
+var currentConferenceChosen = null;
+var currentConferenceData = null;
 function beginMainSchedule()
 {
 	getUserConference();
@@ -23,9 +37,25 @@ function determineIfUserIsRegistered(data)
 	} else if (data.length == 1) {
 		$("#rightSidebarCollapse").attr("data-conferenceId", data[0]["conference_id"]);
 		$("#conferenceRegisterButton").click(function(event) {registerUserForConference(event, "put");} );
+		
+		currentConferenceChosen = data[0]["conference_id"];
+		closeMenus();
+		$("#innerContent").empty();
+		$("#content").load("menuPhp/aboutConference.php");
+		$("#innerContent").focus();
+		getCurrentConferenceData(currentConferenceChosen, showConferenceDetails);
 	} else {
 		document.write("There is an error trying to process your request, please contact an administrator.");
 	}
+}
+
+function getCurrentConferenceData(id, callback){
+	if(currentConferenceData == null) {
+		getRecord(["*"], ["conference"], ["conference_id"], [id], callback, "json", "false");
+	} else {
+		callback(currentConferenceData);
+	}
+
 }
 
 function updateConferenceRegistration(event)
@@ -99,6 +129,7 @@ function startMainTable(id)
 
 function gotMainConference(data)
 {
+	currentConferenceData = data;
     var mainObj = {};
     for(i = 0; i<data.length;i++)
     {
@@ -157,6 +188,16 @@ function successPost(conferenceID)
     startUserTable(conferenceID,-1);
 }
 
+function getConferenceInfoAndSchedule(){
+	let map = {"table_names": ["user_conference","conference", "event"], "values_to_select": ["*"], "attrs": ["conference_id"], "values": [currentConferenceChosen], "genFlag": "flag"};
+	$.get("proxies/getProxy.php",map,gotConferenceInfoAndSchedule, "json");
+}
+
+function gotConferenceInfoAndSchedule(data){
+	showConferenceDetails(data);
+	gotEventData(data);
+}
+
 function getConferenceInformation()
 {
 	console.log("here");
@@ -166,6 +207,7 @@ function getConferenceInformation()
 
 function showConferenceDetails(data)
 {
+	console.log(data);
 	let conference = 
 		{
 			name: data[0].conference_name,
@@ -174,14 +216,26 @@ function showConferenceDetails(data)
 			detail: data[0].conference_facilitydesc,
 			email: data[0].conference_contactemail,
 			phone: data[0].conference_contactphone,
-			address: data[0].conference_address,
+			street: data[0].conference_street,
 			city: data[0].conference_city,
 			state: data[0].conference_state,
-			zip: data[0].conference_zip
+			zip: data[0].conference_postalcode,
+			venue: data[0].conference_venue,
+			amenities: data[0].conference_amenities,
+			wheelchair: data[0].conference_wheelchair
+
 		};
 
-		$("#header").html(conference.name + " Information");
-		$("#description").html(conference.startDate + " to " + conference.endDate +"<br>" + conference.detail);
-		$("#location").html(/*conference.address + " " + */conference.city + " " + conference.state /*+ " " + conference.zip*/);
-		$("#contact").html("&nbsp&nbsp&nbsp&nbspEmail: " + conference.email + "<br>&nbsp&nbsp&nbsp&nbspPhone: " + conference.phone + "");
+		$("h2").html(conference.name + " Information");
+		$("#name").html(conference.name);
+		$("#dates").html(conference.startDate + " to " + conference.endDate +"<br>");
+		$("#location").html("Venue: " + conference.venue + "</br>" + conference.street + " " + conference.city + " " + conference.state + " " + conference.zip);
+		$("#description").html(conference.detail);
+		$("#amenities").html(conference.amenities);
+		if(conference.wheelchair == 1){
+			$("#wheelchair").html("This event is wheelchair accessible");
+		} else {
+			$("#wheelchair").html("This event is not wheelchair accessible");
+		}
+		$("#contact").html("Email: " + conference.email + "<br>&nbsp&nbsp&nbsp&nbspPhone: " + conference.phone + "");
 }

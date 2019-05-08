@@ -1,11 +1,4 @@
 <?php ?>
-<head>
-    <script>
-        function onShowHiddenDiv(divId){
-            $("#" + divId).toggle("slow");
-        }
-    </script>
-</head>
     <div id="innerContent">
         <button id="showConferenceSchedule" onclick="onShowHiddenElement('conference-table')">Show/Hide Conference Schedule</button>
         <div id="conference-table" style="display:none">

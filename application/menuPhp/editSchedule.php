@@ -18,7 +18,7 @@
                     </div>
                 </div>
 
-        <button id="showMySchedule" onclick="onShowHiddenElement('schedule-table', 'My Schedule')">Show/Hide My Schedule</button>
+        <button id="showMySchedule" onclick="onShowHiddenElementWithAria('schedule-table', 'My Schedule')">Show/Hide My Schedule</button>
         <div id="schedule-table" style="display:none">
             <h2>My Schedule</h2>
                 <div id="UserConference">

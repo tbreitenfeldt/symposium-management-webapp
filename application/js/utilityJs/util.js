@@ -37,19 +37,22 @@ function addZero(i){
 // would look like the following:
 //	<button id="showHiddenDiv" onclick="onShowHiddenElement('myId')">show my hidden div</button>
 function onShowHiddenElement(elementId){
-    $("#" + elementId).toggle("slow");
+    $("#" + elementId).toggle();
 }
 
 function onShowHiddenElementWithAria(elementId, ariaMsg){
 	onShowHiddenElement(elementId);
-	display = document.getElementById(elementId).style.display;
+	css = $("#"+elementId).css("display");
 	fullmsg = ariaMsg;
-	if(display == "none"){
+	console.log(css);
+	if(css == "none"){
 		fullmsg = "Collapsed " + ariaMsg + " .";
 	} else {
 		fullmsg = "Expanded " + ariaMsg + " below.";
 	}
+	console.log(fullmsg);
 	notifyScreenreader(fullmsg);
+	
 }
 
 function notifyScreenreader(message) {

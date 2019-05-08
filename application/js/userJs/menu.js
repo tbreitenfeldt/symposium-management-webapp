@@ -181,15 +181,6 @@ function removeCurrentColorSetting(){
     }
 }
 
-function notifyScreenreader(message) {
-    if ($("#screenreaderUINotification").length) {
-        $("#screenreaderUINotification").text(message);
-        setTimeout(function() {$("#screenreaderUINotification").text("");}, 3000);
-    } else {
-    alert("missing div region with ID of screenreaderUINotification, either remove this function  call, or add a div with that ID.");
-    }
-}
-
 function toggleAriaButtonPress(elementId) {
     var element = $(elementId);
     // Check to see if the button is pressed

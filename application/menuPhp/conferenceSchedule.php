@@ -1,32 +1,8 @@
 <?php ?>
 <!-- Inner Content Div -->
-<div id="innerContent">
-        <!-- Conference Information -->
-    <h2> <center> Conference Information </center></h2>
-    <button id="showDetails" onclick="onShowHiddenElement('details')">Show/Hide Conference Information</button>
-    <div id="details" style="display:none">
-
-        <header> Name: </header>
-        <p id="name"></p>
-        <header> Dates: </header>
-        <p id="dates"></p>
-        <header> Location: </header>
-        <p id="location" ></p>
-        <header> Description: </header>
-        <p id="description" ></p>
-        <header> Amenities: </header>
-        <p id="amenities"></p>
-        <header> Wheelchair Accessibility: </header>
-        <p id="wheelchair"></p>
-
-        <header> Contact Information: </header>
-        <p id="contact" ></p>
-    </div>
-
-    <!-- Conference Table -->
-    <button id="showHiddenTable" onclick="onShowHiddenElement('conference-table')">Show/Hide Conference Schedule</button>
-    <div id="conference-table" style="display:none">
-        <header id="conferenceNameHeader">Conference Schedule</header>
+<div id="innerContent">    
+    <div id="conference-table">
+        <h2 id="conferenceNameHeader">Conference Schedule</h2>
         <div id="MainConference">
             <table id="Conference">
                 <thead>

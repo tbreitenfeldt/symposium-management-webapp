@@ -39,3 +39,24 @@ function addZero(i){
 function onShowHiddenElement(elementId){
     $("#" + elementId).toggle("slow");
 }
+
+function onShowHiddenElementWithAria(elementId, ariaMsg){
+	onShowHiddenElement(elementId);
+	display = document.getElementById(elementId).style.display;
+	fullmsg = ariaMsg;
+	if(display == "none"){
+		fullmsg = "Collapsed " + ariaMsg + " .";
+	} else {
+		fullmsg = "Expanded " + ariaMsg + " below.";
+	}
+	notifyScreenreader(fullmsg);
+}
+
+function notifyScreenreader(message) {
+    if ($("#screenreaderUINotification").length) {
+        $("#screenreaderUINotification").text(message);
+        setTimeout(function() {$("#screenreaderUINotification").text("");}, 3000);
+    } else {
+    alert("missing div region with ID of screenreaderUINotification, either remove this function  call, or add a div with that ID.");
+    }
+}

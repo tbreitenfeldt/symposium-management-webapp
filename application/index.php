@@ -86,25 +86,15 @@
             <div aria-label="" class="rightSidebar-header">
                 <h3 id="mySchedulerHeading" tabindex="-1">My Scheduler</h3>
             </div>
-            <ul class="list-unstyled components" aria-label="Menu Items">
+            <ul class="list-unstyled components" aria-label="Menu Items">                  
                 <li>
-                    <a id="returnHome" href="javascript: document.location.reload();" role="button">Home</a>
+                    <a id="conferenceSchedule" role="button">View Conference Schedule</a>
                 </li>
                 <li>
-                    <button href="#my-scheduler-options" data-toggle="collapse" class="dropdown-button" aria-expanded="false">
-                        My Scheduler Features
-                    </button>
-                    <ul class="collapse list-unstyled" id="my-scheduler-options">
-                        <li>
-                            <a id="conferenceSchedule">View Conference Schedule</a>
-                        </li>
-                        <li>
-                            <a id="mySchedule" role="button">View My Schedule</a>
-                        </li>
-                        <li>
-                            <a id="editMySchedule" role="button">Edit My Schedule</a>
-                        </li>
-                    </ul>
+                    <a id="mySchedule" role="button">View My Schedule</a>
+                </li>
+                <li>
+                    <a id="editMySchedule" role="button">Edit My Schedule</a>
                 </li>
                 <li>
                     <a  id="aboutCon" role="button">About Conference</a>

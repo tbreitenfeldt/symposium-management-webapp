@@ -1,8 +1,8 @@
 <?php ?>
     <div id="innerContent">
-        <button id="showConferenceSchedule" onclick="onShowHiddenElement('conference-table')">Show/Hide Conference Schedule</button>
+        <button id="showConferenceSchedule" onclick="onShowHiddenElementWithAria('conference-table', 'Conference Schedule')">Show/Hide Conference Schedule</button>
         <div id="conference-table" style="display:none">
-            <header id="conferenceNameHeader">Conference Schedule</header>
+            <h2 id="conferenceNameHeader">Conference Schedule</h2>
                     <div id="MainConference">
                         <table id="Conference">
                             <thead>
@@ -18,9 +18,9 @@
                     </div>
                 </div>
 
-        <button id="showMySchedule" onclick="onShowHiddenElement('schedule-table')">Show/Hide My Schedule</button>
+        <button id="showMySchedule" onclick="onShowHiddenElement('schedule-table', 'My Schedule')">Show/Hide My Schedule</button>
         <div id="schedule-table" style="display:none">
-            <header id="h1" >My Schedule</header>
+            <h2>My Schedule</h2>
                 <div id="UserConference">
                     <table id="UsersCon" >
                         <thead>

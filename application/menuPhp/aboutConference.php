@@ -5,20 +5,20 @@
         <h2> <center> Conference Information </center></h2>
         <div id="details">
 
-            <header> Name: </header>
+            <h3> Name: </h3>
             <p id="name"></p>
-            <header> Dates: </header>
+            <h3> Dates: </h3>
             <p id="dates"></p>
-            <header> Location: </header>
+            <h3> Location: </h3>
             <p id="location" ></p>
-            <header> Description: </header>
+            <h3> Description: </h3>
             <p id="description" ></p>
-            <header> Amenities: </header>
+            <h3> Amenities: </h3>
             <p id="amenities"></p>
-            <header> Wheelchair Accessibility: </header>
+            <h3> Wheelchair Accessibility: </h3>
             <p id="wheelchair"></p>
             
-            <header> Contact Information: </header>
+            <h3> Contact Information: </h3>
             <p id="contact" ></p>
         </div>
     </div>

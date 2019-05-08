@@ -28,6 +28,7 @@
         <script src="js/userJs/userAccountRegistration.js"></script>
         <script src="js/userJs/userSettings.js"></script>
         <script src="js/loginSystemJs/loginAJAX.js"></script>
+        <script src="js/utilityJs/util.js"></script>
 
 
         <!-- Font Awesome JS -->

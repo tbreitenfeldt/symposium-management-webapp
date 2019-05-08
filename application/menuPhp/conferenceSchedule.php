@@ -1,17 +1,9 @@
 <?php ?>
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script>
-        function onShowHiddenDiv(divId){
-            $("#" + divId).toggle("slow");
-        }
-    </script>
-</head>
 <!-- Inner Content Div -->
 <div id="innerContent">
         <!-- Conference Information -->
     <h2> <center> Conference Information </center></h2>
-    <button id="showDetails" onclick="onShowHiddenDiv('details')">Show/Hide Conference Information</button>
+    <button id="showDetails" onclick="onShowHiddenElement('details')">Show/Hide Conference Information</button>
     <div id="details" style="display:none">
 
         <header> Name: </header>
@@ -32,7 +24,7 @@
     </div>
 
     <!-- Conference Table -->
-    <button id="showHiddenTable" onclick="onShowHiddenDiv('conference-table')">Show/Hide Conference Schedule</button>
+    <button id="showHiddenTable" onclick="onShowHiddenElement('conference-table')">Show/Hide Conference Schedule</button>
     <div id="conference-table" style="display:none">
         <header id="conferenceNameHeader">Conference Schedule</header>
         <div id="MainConference">

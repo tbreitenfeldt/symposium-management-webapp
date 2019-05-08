@@ -33,13 +33,13 @@
                         <li id="font-settings-li">
                             <div class="row" style="display:inline-flex">
                                 <div class="col-xs-4">
-                                    <button  class="btn btn-primary btn-lg layout-button" id="decrease-font" aria-label="Decrease Font Size">-</button>
+                                    <button  class="btn btn-primary btn-lg layout-button font-size" id="decrease-font" aria-label="Decrease Font Size">-</button>
                                 </div>
                                 <div class="col-xs-4">
-                                    <button class="btn btn-primary btn-lg layout-button" id="reset-font" aria-pressed="false" aria-label="Reset Font Size">Reset Font</button>
+                                    <button class="btn btn-primary btn-lg layout-button font-size" id="reset-font" aria-pressed="false" aria-label="Reset Font Size">Reset Font</button>
                                 </div>
                                 <div class="col-xs-4">
-                                    <button  class="btn btn-primary btn-lg layout-button" id="increase-font" aria-label="Increase Font Size">+</button>
+                                    <button  class="btn btn-primary btn-lg layout-button font-size" id="increase-font" aria-label="Increase Font Size">+</button>
                                 </div>
                             </div>
                         </li>

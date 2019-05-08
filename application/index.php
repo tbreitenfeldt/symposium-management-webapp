@@ -86,21 +86,10 @@
             <div aria-label="" class="rightSidebar-header">
                 <h3 id="mySchedulerHeading" tabindex="-1">My Scheduler</h3>
             </div>
-            <ul class="list-unstyled components" aria-label="Menu Items">                  
-                <li>
-                    <a id="conferenceSchedule" role="button">View Conference Schedule</a>
-                </li>
-                <li>
-                    <a id="mySchedule" role="button">View My Schedule</a>
-                </li>
-                <li>
-                    <a id="editMySchedule" role="button">Edit My Schedule</a>
-                </li>
-                <li>
-                    <a  id="aboutCon" role="button">About Conference</a>
-                </li>
-            </ul>
-
+            <button id="conferenceSchedule"class="btn btn-primary btn-lg layout-button" role="button">View Conference Schedule</button>
+            <button id="mySchedule" class="btn btn-primary btn-lg layout-button" role="button">View My Schedule</button>
+            <button id="editMySchedule" class="btn btn-primary btn-lg layout-button" role="button">Edit My Schedule</button>
+            <button  id="aboutCon" class="btn btn-primary btn-lg layout-button" role="button">About Conference</button>
             <button id="websiteLink" type="button"  class="btn btn-primary btn-lg layout-button" role="link">View Website</button>
         </div>
         <!-- END rightSideBar -->
@@ -126,13 +115,13 @@
                         <li id="font-settings-li">
                             <div class="row" style="display:inline-flex">
                                 <div class="col-xs-4">
-                                    <button  class="btn btn-primary btn-lg layout-button" id="decrease-font" aria-label="Decrease Font Size">-</button>
+                                    <button  class="btn btn-primary btn-lg layout-button font-size" id="decrease-font" aria-label="Decrease Font Size">-</button>
                                 </div>
                                 <div class="col-xs-4">
-                                    <button class="btn btn-primary btn-lg layout-button" id="reset-font" aria-label="Reset Font Size">Reset Font</button>
+                                    <button class="btn btn-primary btn-lg layout-button font-size" id="reset-font" aria-label="Reset Font Size">Reset Font</button>
                                 </div>
                                 <div class="col-xs-4">
-                                    <button  class="btn btn-primary btn-lg layout-button" id="increase-font" aria-label="Increase Font Size">+</button>
+                                    <button  class="btn btn-primary btn-lg layout-button font-size" id="increase-font" aria-label="Increase Font Size">+</button>
                                 </div>
                             </div>
                         </li>
@@ -167,20 +156,14 @@
                 <h3 tabindex="-1" id="userSettingsHeading">User Settings</h3>
             </div>
 
-            <ul class="list-unstyled components">
-                <li>
-                    <button class="btn btn-primary btn-lg layout-button" id="changeUserSettingsButton">Profile Settings</button>
-                </li>
-                <li>
-                    <button  id="resetPasswordButton" class="btn btn-primary btn-lg layout-button">Reset Password</button>
-                </li>
-                <li>
-                    <button  id="registerForDifferentConferenceButton" class="btn btn-primary btn-lg layout-button">Register for a different conference</button>
-                </li>
-                <li>
-                    <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='logout.php'">Logout</button>
-                </li>
-            </ul>
+            <button class="btn btn-primary btn-lg layout-button" id="changeUserSettingsButton">Profile Settings</button>
+
+            <button  id="resetPasswordButton" class="btn btn-primary btn-lg layout-button">Reset Password</button>
+
+            <button  id="registerForDifferentConferenceButton" class="btn btn-primary btn-lg layout-button">Register for a different conference</button>
+
+            <button  class="btn btn-primary btn-lg layout-button" onclick="location.href='logout.php'">Logout</button>
+
 
         </div>
         <!-- END leftSidebar  -->

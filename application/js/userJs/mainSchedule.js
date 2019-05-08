@@ -98,13 +98,17 @@ function registerUserForConference(event, method)
 		$("#conferenceRegisterButton").off();
 		$("#conferenceRegisterButton").click(function(event) {registerUserForConference(event, "put");} );
 		map = {table_name: "user_conference", attrs: ["conference_id"], values: [conferenceID]};
-		$.post("proxies/postProxy.php", map, function(data) {notifyScreenreader("Successfully Registered for Conference!");} );
+		$.post("proxies/postProxy.php", map, function(data) {successfullyRegisteredForConference(data, "Successfully Registered for Conference!");} );
 	} else if (method == "put") {
 		map = {table_name: "user_conference", attrs: ["conference_id"], values: [conferenceID], target_id_name: [""], target_id_value: [""]};
-		$.put("proxies/putProxy.php", map, function(data) {notifyScreenreader("Successfully Registered for Conference!");} );
+		$.put("proxies/putProxy.php", map, function(data) {successfullyRegisteredForConference(data, "Successfully Registered for Conference!");} );
 	}
 }
 
+function successfullyRegisteredForConference(data, message) {
+	notifyScreenreader(message);
+	setTimeout(function() {document.location.reload();}, 1000);
+}
 async function loadConference()
 {
 	if ( !$("#rightSidebarCollapse").attr("data-conferenceId") || $("#rightSidebarCollapse").attr("data-conferenceId") == "") {

@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
         
         <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="css/menu.css">
+        <link rel="stylesheet" href="./css/menu/menu.css">
 
         <!--AJAX JS-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -82,7 +82,7 @@
             </div>
 
             <div aria-label="" class="rightSidebar-header">
-                <h3 id="mySchedulerHeading" tabindex="-1">My Scheduler</h3>
+                <h3 id="mySchedulerHeading" class="sidebar-heading" tabindex="-1">My Scheduler</h3>
             </div>
             <button id="conferenceSchedule"class="btn btn-primary btn-lg layout-button" role="button">View Conference Schedule</button>
             <button id="mySchedule" class="btn btn-primary btn-lg layout-button" role="button">View My Schedule</button>
@@ -100,7 +100,7 @@
             </div>
 
             <div class="centerSidebar-header">
-                <h3 tabindex="-1" id="accessibilitySettingsHeading">Accesibility Settings</h3>
+                <h3 tabindex="-1" id="accessibilitySettingsHeading" class="sidebar-heading">Accesibility Settings</h3>
             </div>
 
             <ul class="list-unstyled components">
@@ -137,7 +137,6 @@
                         <li><button id="color-scheme-invert" class="btn btn-primary btn-lg layout-button button-fix" aria-label="Change To Inverse Color Scheme">
                             Inverse Color Scheme
                         </button></li>
-                        <!--<li><button class="btn btn-primary btn-lg layout-button button-fix" aria-label="Change Display Color">Black on White Scheme</button></li>-->
                     </ul>
                 </li>
             </ul>
@@ -151,7 +150,7 @@
             </div>
 
             <div class="leftSidebar-header">
-                <h3 tabindex="-1" id="userSettingsHeading">User Settings</h3>
+                <h3 tabindex="-1" id="userSettingsHeading" class="sidebar-heading">User Settings</h3>
             </div>
 
             <button class="btn btn-primary btn-lg layout-button" id="changeUserSettingsButton">Profile Settings</button>

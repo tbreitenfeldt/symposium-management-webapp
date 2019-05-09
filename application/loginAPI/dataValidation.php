@@ -5,6 +5,11 @@ require_once "includeConfig.php";
 
 
 function validateUsername($username) {
+    if ( !isset($username)) {
+        throw new InvalidArgumentException("No username is defined.");
+    }//end if
+
+
     $usernameRegex = '/^[A-Za-z][A-Za-z0-9\.\-]{3,31}$/';
 
     if (empty($username)) {
@@ -17,6 +22,9 @@ function validateUsername($username) {
 
 
 function validatePassword($password) {
+    if ( !isset($password)) {
+        throw new InvalidArgumentException("No password is defined.");
+    }//end if
     if (empty($password)) {
         throw new InvalidArgumentException("Please enter your password");
     }//end if
@@ -27,6 +35,10 @@ function validatePassword($password) {
 
 
 function validatePasswordConfirmation($password, $confirmPassword) {
+    if ( !isset($password) && !isset($confirmPassword)) {
+        throw new InvalidArgumentException("No password or confirm password is defined.");
+    }//end if
+
     validatePassword($password);
 
     if (empty($confirmPassword)) {
@@ -39,6 +51,10 @@ function validatePasswordConfirmation($password, $confirmPassword) {
 
 
 function validateEmail($email) {
+    if ( !isset($email)) {
+        throw new InvalidArgumentException("No email is defined.<br>$email");
+    }//end if
+
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         throw new InvalidArgumentException( "Invalid email address. Email entered: " . $email);
     }
@@ -46,7 +62,10 @@ function validateEmail($email) {
 
 
 function validatePhone(&$phone) {
-    validateNotificationByPhone("user_notifyByPhone");
+    if ( !isset($phone)) {
+        throw new InvalidArgumentException("No phone is defined.");
+    }//end if
+
     if($_POST["user_notifyByPhone"] == 1){
         $numbersOnly = preg_replace("/[^0-9]/", "", $phone);
         $numberOfDigits = strlen($numbersOnly);
@@ -92,31 +111,40 @@ function check_date_in_range($start_date, $end_date, $date_from_user)
     }
 }
 
+
 function validateNotificationByEmail($field) {
-    setCheckboxValue($field);
+    $_POST["user_notifyByEmail"] = setCheckboxValue($field);
 }//end function
 
 
 function validateNotificationByPhone($field) {
-    setCheckboxValue($field);
+    $_POST["user_notifyByPhone"] = setCheckboxValue($field);
 }//end function
 
 
 function setCheckboxValue($field) {
-    if (isset($_POST[$field])) {
-        if($_POST[$field] == 0){}
-        else $_POST[$field] = 1;
-    } else {
-        $_POST[$field] = 0;
-    }//end else
+    if (isset($field)) {
+        if ($field == "true" || $field == 1) {
+            return 1;
+        } else {
+            return 0;
+        }//end else
+    }//end if
+
+
+        return 0;
 }//end function
 
 
 function validatePhoneCarrier($carrier) {
-    validateNotificationByPhone("user_notifyByPhone");
+    if ( !isset($carrier)) {
+        throw new InvalidArgumentException("No carrier is defined.");
+    }//end if
+
     if($_POST["user_notifyByPhone"] == 1){
-        foreach(USER_PHONE_CARRIERS as $carrierName){
             $match = false;
+
+        foreach(USER_PHONE_CARRIERS as $carrierName){
             if($carrier == $carrierName){
                 $match = true;
             }

@@ -26,11 +26,14 @@ function register() {
 
             validateUsername($username);
             validatePasswordConfirmation($password, $confirmPassword);
-            
 
             //validate any other user data that is provided in USER_DATA_FIELDS
             foreach (USER_DATA_FIELDS as $field=>$validationFunction) {
-                $validationFunction($_POST[$field]);
+            if (isset($_POST[$field])) {
+                    $validationFunction($_POST[$field]);
+            } else {
+                    $validationFunction(null);
+                }//end if
             }//end foreach loop
 
             checkIfEmailExists($pdoUtil, $_POST[USER_EMAIL_FIELD]);

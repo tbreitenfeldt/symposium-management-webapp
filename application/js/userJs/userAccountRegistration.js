@@ -4,16 +4,20 @@ function togglePhoneRegion(event) {
         $("#user_phone").attr("required", "true");
         $("#user_phoneCarrier").attr("required", "true");
         $("#phoneRegion").show();
-        $("#screenreaderUINotification").text("Phone Information Expanded Below");
-        setTimeout(function() {$("#screenreaderUINotification").val("");}, 3000);
+
+        if ($("#user_notifyByPhone").attr("data-screenreaderNotify") == "true") {
+            notifyScreenreader("Phone Information Expanded Below");
+        }//end if
     } else {
         $("#user_phone").removeAttr("required");
         $("#user_phoneCarrier").removeAttr("required");
         $("#phoneRegion").hide();
         $("#user_phone").val("");
         $("#user_phoneCarrier").val("");
-        $("#screenreaderUINotification").text("Phone Information Collapsed");
-        setTimeout(function() {$("#screenreaderUINotification").val("");}, 3000);
+
+        if ($("#user_notifyByPhone").attr("data-screenreaderNotify") == "true") {
+            notifyScreenreader("Phone Information collapsed");
+        }//end if
     }//end else
 }//end function
 

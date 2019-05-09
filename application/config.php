@@ -33,7 +33,7 @@ define("USER_PHONE_CARRIERS",
         );
 
 define("USER_DATA_FIELDS",
-array("user_email"=>"validateEmail", "user_phone"=>"validatePhone", "user_phoneCarrier"=>"validatePhoneCarrier", "user_notifyByEmail"=>"validateNotificationByEmail", "user_notifyByPhone"=>"validateNotificationByPhone")
+array("user_notifyByEmail"=>"validateNotificationByEmail", "user_notifyByPhone"=>"validateNotificationByPhone", "user_email"=>"validateEmail", "user_phone"=>"validatePhone", "user_phoneCarrier"=>"validatePhoneCarrier")
 );
 
 define("LOGIN_PAGE_NAME", "login.php");

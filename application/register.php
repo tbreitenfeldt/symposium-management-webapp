@@ -37,6 +37,8 @@ session_write_close();
     <script src="js/conferenceAPIJs/databaseFunctions.js"></script>
     <script src="js/userJs/userAccountRegistration.js"></script>
     <script src="js/userJs/menu.js"></script>
+    <script src="js/utilityJs/util.js"></script>
+
     
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -71,7 +73,7 @@ session_write_close();
               <input type="checkbox" id="user_notifyByEmail" class="checkbox" name="user_notifyByEmail" value="true" checked="checked" />
               <br aria-hidden="true">
               <label for="user_notifyByPhone">Notify by text message:</label>
-              <input type="checkbox" id="user_notifyByPhone" class="checkbox" name="user_notifyByPhone" value="true" onchange="togglePhoneRegion(event)" />
+              <input type="checkbox" id="user_notifyByPhone" class="checkbox" name="user_notifyByPhone" value="true" onChange="togglePhoneRegion(event)" data-screenreaderNotify="true" />
             </div>
           </fieldset>
 
@@ -96,8 +98,6 @@ session_write_close();
               <option value="virgin mobile">virgin mobile</option>
               <option value="verizon">verizon</option>
             </select></p>
-            <!--Message for only screenreaders. read when region is shown, shouldn't be visually visible.-->
-            <div id="screenreaderPhoneRegionMessage" class="screenreader-text" role="alert"></div>
           </fieldset>
 
           <p id="passwordDescription">Your password must be at least 6 characters long.</p>

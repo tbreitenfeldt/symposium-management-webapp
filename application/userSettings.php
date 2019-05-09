@@ -15,7 +15,7 @@
     <h2>Conference Event Notification Settings</h2>
     <input type="checkbox" id="user_notifyByEmail" class="userSettings" name="user_notifyByEmail" data-value="<?php echo $_SESSION['user_notifyByEmail']; ?>" />
     <label for="user_notifyByEmail">Notify me by email:</label>
-    <input type="checkbox" id="user_notifyByPhone" class="userSettings" name="user_notifyByPhone" data-value="<?php echo $_SESSION['user_notifyByPhone']; ?>" onchange="togglePhoneRegion" />
+    <input type="checkbox" id="user_notifyByPhone" class="userSettings" name="user_notifyByPhone" data-value="<?php echo $_SESSION['user_notifyByPhone']; ?>" onChange="togglePhoneRegion(event)" data-screenreaderNotify="true" />
     <label for="user_notifyByPhone">Notify me by text message</label>
     </fieldset>
 
@@ -39,8 +39,6 @@
           <option value="virgin mobile">virgin mobile</option>
           <option value="verizon">verizon</option>
       </select></p>
-      <!--Message for only screenreaders. read when region is shown, shouldn't be visually visible.-->
-      <div id="screenreaderPhoneRegionMessage" class="screenreader-text" role="alert">Phone Information expanded below</div>
     </fieldset>
 
     <input type="submit" id="updateUserDataButton" value="Change" />

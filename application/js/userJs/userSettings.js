@@ -1,14 +1,21 @@
 
 function populateCurrentUserSettings() {
+    $("#user_notifyByPhone").attr("data-screenreaderNotify", "false");
+
     $(".userSettings").each(function(index, element) {
         if ($(element).attr("data-value") != null) {
             let value = $(element).attr("data-value");
 
             if ($(element).is(":checkbox")) {
-                $(element).attr("checked", Boolean(value));
+                if (value == 1) {
+                value = true;    
+            } else {
+                value = false;
+            }
+
+                $(element).prop("checked", value);
 
                 if ($(element).attr("id") == "user_notifyByPhone" && $(element).is(":checked")) {
-                    $("#screenreaderPhoneRegionMessage").hide();  //hides the screenreader text region so that the region does not alert the screenreader on page load
                     $("#phoneRegion").show();
                     $("#user_phone").attr("required", "true");
                     $("#user_phoneCarrier").attr("required", "true");
@@ -18,6 +25,8 @@ function populateCurrentUserSettings() {
             }
         }
     });
+
+    $("#user_notifyByPhone").attr("data-screenreaderNotify", "true");
 }
 
 
@@ -27,8 +36,7 @@ function collectUserSettings(attrs, values) {
         let value = null;
 
         if ($(element).is(":checkbox")) {
-            //value = $(element).attr("checked");
-            value = $(element).is(":checked");
+            value = $(element).prop("checked") ? 1 : 0;
         } else {
             value = $(element).val();
         }

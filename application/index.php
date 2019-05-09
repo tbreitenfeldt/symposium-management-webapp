@@ -30,7 +30,6 @@
         <script src="js/loginSystemJs/loginAJAX.js"></script>
         <script src="js/utilityJs/util.js"></script>
 
-
         <!-- Font Awesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -43,7 +42,6 @@
         <div id="user-menu" class="col-lg-12" role="navigation" aria-hidden="false" aria-label="user menu">
 
             <h3 id="welcome-user"> Welcome <?php echo $_SESSION["user_name"]; ?>!</h3>
-
             <div class="row" role="list">
                 <div class="col-xs-3" role="listitem">
                     <button type="button" id="homeButton" class="btn btn-info btn-block" aria-hidden="false">

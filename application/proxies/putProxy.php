@@ -85,14 +85,15 @@ function modifyAdminSessionVariables($putData) {
 
 
 function setSessionVariable($name, $putData) {
-        $index = array_search($name, $putData["attrs"], false);
+    $index = array_search($name, $putData["attrs"], false);
 
-        if ($index !== false) {
-            $_SESSION[$name] = $putData["values"][$index];
-        } else {
+    if ($index !== false) {
+        $_SESSION[$name] = $putData["values"][$index];
+    } else {
         exit("Invalid data 2");
     }//end else
 }//end function
+
 
 putToConferenceAPI();
 ?>

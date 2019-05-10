@@ -1,22 +1,39 @@
 /**
  * This file manages the single page application for creating and modifying a conference 
+ * this file is imported into the admin/index.php file 
 */
 
 $(document).ready(init);
 
 
+/**
+ * function init
+ * initializes the conference and event forms and hides them,
+ * then loads the conference chooser, and the edit, view and delete buttons 
+*/
 function init() {
-    //set path to main directory for accessing conference API
+    //set path to main directory for accessing the conference API
+    //function is in js/conferenceAPIJs/databaseFunctions.js
     changePathToMainDirectory("../");
 
     initializeConferenceForm();
     initializeEventForm();
     $("#conferenceFormRegion").hide();
     $("#eventFormRegion").hide();
+
+    //make the ajax call to populate the conference list box
     setupAjaxForConferenceNames();
 }//end function
 
 
+/**
+ * function initializeConferenceForm
+ * Dynamically generate the html for the conference form, used for editing and creating conferences
+ * This html could be hard coded into the index.php file in the admin folder
+ * This function uses the code from generateHTML.js, which just returns strings of html
+ * data validation was never done on this form, so the regular expression at the end of each element call was left blank
+ * populates the div with the id of conferenceFormRegion in index.php
+*/
 function initializeConferenceForm() {
     let formID = "conferenceForm";
     let form = createForm(formID);
@@ -56,6 +73,14 @@ function initializeConferenceForm() {
 }//end function 
 
 
+/**
+ * function initializeEventForm
+ * Dynamically generate the html for the event form, used for editing and creating events
+ * This html could be hard coded into the admin/index.php file
+ * This function uses the code from generateHTML.js, which just returns strings of html
+ * data validation was never done on this form, so the regular expression at the end of each create element call was left blank
+ * populates the div with the id of eventFormRegion in index.php
+*/
 function initializeEventForm() {
     let formID = "eventForm";
     let form = createForm(formID);
@@ -87,17 +112,40 @@ function initializeEventForm() {
 }//end function
 
 
+/**
+ * resetForm
+ * This function is a helper function for the event and conference forms
+ * checks with the user if they want to reset their form or not, bound to the reset buttons in the conference and event forms 
+ * if false is returned, the default event handler for the reset button will not be fired 
+ *
+ * @param event - type Event, this is the javascript click event
+ * @return boolean - either true if the user clicks yes, or false if no
+*/
 function resetForm(event) {
     return confirm("Are you sure you want to reset all of the fields in this form?");
 }//end function
 
 
+/**
+ * function setupAjaxForConferenceNames
+ * makes an ajax call to get data from the conference table 
+ * uses the proxy to insert the adminID into the query such that only conferences associated with this adminID will be returned 
+ * on success initializeConferenceChooser is called, and is given the return data, on failure, catchEmptyValue is called
+*/
 function setupAjaxForConferenceNames() {
     let map = {"table_names": ["conference"], "values_to_select": ["*"], "attrs": [""], "values": [""], "genFlag": "flag"};
     $.get("../proxies/getProxy.php", map, initializeConferenceChooser, "json").fail(catchEmptyValue);
 }//end function
 
 
+/**
+ * function catchEmptyValue
+ * This function is called on failure of the ajax call to the proxy 
+ * a check is made if the http status code is 204, which means no data was found, then just pass an empty array to initializeConferenceChooser
+ * if any status code other than 200 is returned, it will hit this fail function
+ *
+ * @param error - Error ajax object
+*/
 function catchEmptyValue(error) {
     if (error.status == 204) {
         initializeConferenceChooser([]);
@@ -105,6 +153,13 @@ function catchEmptyValue(error) {
 }//end function 
 
 
+/**
+ * function initializeConferenceChooser
+ * generates the html for the list box that contains all of the conferences that are associated with this adminID
+ * uses the data returned from the ajax call to create options that have text for the conference name, and values for the conferenceID
+ *
+ * @param data array object 
+*/
 function initializeConferenceChooser(data) {
     clearAllRegions();
 

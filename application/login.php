@@ -41,6 +41,7 @@ session_write_close();
         <script src="js/userJs/userAccountRegistration.js"></script>
         <script src="js/loginSystemJs/loginAJAX.js"></script>
         <script src="js/userJs/menu.js"></script>
+        <script src="js/utilityJs/util.js"></script>
 
         <!-- Font Awesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>

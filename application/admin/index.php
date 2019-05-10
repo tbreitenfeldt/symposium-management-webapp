@@ -14,6 +14,7 @@
   <script src="../js/conferenceAPIJs/databaseFunctions.js"></script>
   <script src="../js/adminJs/generateHTML.js"></script>
   <script src="../js/adminJs/conferenceManager.js"></script>
+  <script src="../js/utilityJs/util.js"></script>
 </head>
 
 <body>

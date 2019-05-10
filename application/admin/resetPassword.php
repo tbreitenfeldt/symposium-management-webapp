@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="../css/login.css">
 
   <script src="../js/loginSystemJs/loginAJAX.js"></script>
+  <script src="../js/utilityJs/util.js"></script>
 </head>
 
 <body>

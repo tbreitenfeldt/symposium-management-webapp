@@ -504,8 +504,8 @@ function updateConferenceEvent(event, eventID, conferenceName) {
 }//end function
 
 
-function updatedEventSuccessfully(event, conferenceName) {
-    returnToSelectedConference(event, conferenceName, "Updated event");
+function updatedEventSuccessfully(data, conferenceName) {
+    returnToSelectedConference(data, conferenceName, "Updated event");
 }//end function
 
 

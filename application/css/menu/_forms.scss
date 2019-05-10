@@ -1,3 +1,12 @@
+/* ---------------------------------------------------
+    Forms
+----------------------------------------------------- */
+
+
+fieldset label{
+    width: 100%;
+}
+
 @media (min-width:451px){
     body {
         display:table-cell; text-align:center; vertical-align:middle;
@@ -151,4 +160,23 @@ a:hover, a:focus {
 
 #signUp{
     color:black;
+}
+
+.check-box-large{
+    width:40px;
+    height:40px;
+}
+
+input{
+    margin-bottom:.5rem;
+}
+
+#check-box-settings{
+    display: inline;
+}
+
+@media (max-width: 450px){
+    #confirm_password {
+        width: 80%;
+    }
 }

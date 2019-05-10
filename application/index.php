@@ -78,7 +78,7 @@
         <!-- rightSideBar -->
         <div id="rightSidebar" hidden>
             <div id="rightDismiss">
-                <button href="" id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button href="" id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-left"></i> </button>
             </div>
 
             <div aria-label="" class="rightSidebar-header">
@@ -96,7 +96,7 @@
         <!-- centerSidebar  -->
         <div id="centerSidebar" hidden>
             <div id="centerDismiss" >
-                <button href="" id="closeCenterMenu" class="close-menu" aria-label="Close Accesibility Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button href="" id="closeCenterMenu" class="close-menu" aria-label="Close Accesibility Settings"><i class="arrow-button fas fa-arrow-left"></i> </button>
             </div>
 
             <div class="centerSidebar-header">
@@ -146,7 +146,7 @@
         <!-- leftSidebar  -->
         <div id="leftSidebar" hidden>
             <div id="leftDismiss" >
-                <button  id="closeLeftMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button  id="closeLeftMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-left"></i> </button>
             </div>
 
             <div class="leftSidebar-header">
@@ -167,15 +167,14 @@
 
 
         <!-- content  -->
-        <div id="content" tabindex="-1">
-                <div id="conferenceChooser" role="main" hidden="true">
-                    <h2 id="conferenceRegistrationHeading" tabindex="-1">Conference Registration</h2>    
+        <div id="content">
+            <div id="innerContent">
+            <div id="conferenceChooser" role="main" hidden="true">
+                    <h2 id="conferenceRegistrationHeading">Conference Registration</h2>    
                     <label for="conferenceChooser">Select a conference to register for</label>
                     <select id="conferenceChooserListbox"></select>
                     <input type="button" id ="conferenceRegisterButton" value="Register for Conference" />
                 </div>
-
-            <div id="innerContent" tabindex="-1">
             </div>
         </div>
         <!-- END content  -->

@@ -6,10 +6,6 @@ header{
     font-weight: bold;
 }
 
-html{
-    background-color:$backgroundColor;
-}
-
 body {
     font-family: 'Poppins', sans-serif;
     overflow-x:hidden;
@@ -23,7 +19,7 @@ body {
     min-height: 100vh;
     /*transition: all 0.3s;*/
     right: 0;
-    padding-top: 280px;
+    padding-top: 230px;
 }
 
 #innerContent{
@@ -89,7 +85,6 @@ a:focus {
     color: $unintensiveWhite;
     margin-bottom:20px;
     width: 80%;
-    margin-left: 10%;
     &:hover{
     background:$unintensiveWhite;
     color:red;

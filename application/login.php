@@ -28,7 +28,7 @@ session_write_close();
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
         <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="css/menu.css">
+        <link rel="stylesheet" href="css/menu/menu.css">
         <link rel="stylesheet" href="css/login.css">
 
         <!--AJAX JS-->
@@ -41,7 +41,6 @@ session_write_close();
         <script src="js/userJs/userAccountRegistration.js"></script>
         <script src="js/loginSystemJs/loginAJAX.js"></script>
         <script src="js/userJs/menu.js"></script>
-        <script src="js/utilityJs/util.js"></script>
 
         <!-- Font Awesome JS -->
         <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -53,10 +52,9 @@ session_write_close();
 
         <!-- content  -->
         <div id="content">
-          <h1>Login for Conference Management System</h1>
-
           <div id="content-inside" role="main" aria-label="login form">
             <form id="userLogonForm" method="POST" action="loginAPI/loginFunctions.php" type="json" onSubmit="return submitForm(event)">
+              <h2>Login for Conference Management System</h2>
                 <fieldset>
                   <div class="form-group row">
                     <label for="user_name" class="col-sm-12 col-form-label">Username:</label>

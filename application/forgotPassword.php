@@ -21,9 +21,9 @@ session_write_close();
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     
         <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="css/menu.css">
         <link rel="stylesheet" href="css/login.css">
         <link rel="stylesheet" href="css/forgotPassword.css">
+        <link rel="stylesheet" href="css/menu/menu.css">
 
         <!--AJAX JS-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -43,8 +43,8 @@ session_write_close();
 
         <?php include "./includes/accesibilityMenuOnly.php";?>
 
-        <!-- content  -->
-        <div id="content">
+             <!-- content  -->
+             <div id="content">
             <div id="content-inside">
                 <form id="userLogonForm" method="POST" action="loginAPI/forgotPasswordFunctions.php" type="json" onSubmit="return submitForm(event)">
                 <legend>Forgot Password Form</legend>

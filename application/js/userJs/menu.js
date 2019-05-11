@@ -351,7 +351,7 @@ function main(){
     $('#aboutCon').on("click", function(){
         closeMenus();
         $("#innerContent").empty();
-        $("#content").load("menuPhp/aboutConference.php");
+        $("#content").load("javascriptLoads/aboutConference.php");
         getConferenceInformation();
         $("#innerContent").focus();
     });
@@ -360,7 +360,7 @@ function main(){
         closeMenus();
         $("title").text("Edit Personal Schedule");
         $("#innerContent").empty();
-        $("#content").load("menuPhp/editSchedule.php");
+        $("#content").load("javascriptLoads/editSchedule.php");
         loadConference();
         $("#innerContent").focus();
     });
@@ -369,7 +369,7 @@ function main(){
         closeMenus();
         $("title").text("My Scheduler");
         $("#innerContent").empty();
-        $("#content").load("menuPhp/showSchedule.php");
+        $("#content").load("javascriptLoads/showSchedule.php");
         let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
         $.get("proxies/getProxy.php", map,function(data){startUserTable(data[0].conference_id, 1);}, "json");
         $("#innerContent").focus();
@@ -387,14 +387,14 @@ function main(){
         closeMenus();
         $("title").text("Profile Settings");
         $("#innerContent").empty();
-        $("#content").load("userSettings.php", populateCurrentUserSettings);
-        $("#userSettingsHeading").focus();
+        $("#content").load("javascriptLoads/userSettings.php",             populateCurrentUserSettings);
+        $("#content").focus();
     });
     
     $('#conferenceSchedule').on("click", function(){
         closeMenus();
         $("#innerContent").empty();
-        $("#content").load("menuPhp/conferenceSchedule.php");
+        $("#content").load("javascriptLoads/conferenceSchedule.php");
         getConferenceInfoAndSchedule();
         $("#innerContent").focus();
     });
@@ -403,7 +403,7 @@ function main(){
         closeMenus();
         $("title").text("Reset Password");
         $("#innerContent").empty();
-        $("#content").load("resetPassword.php");
+        $("#content").load("javascriptLoads/resetPassword.php");
         $("#resetPasswordHeading").focus();
     });
 

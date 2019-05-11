@@ -67,7 +67,7 @@ if (isset($_PUT["table_name"])) {
 		    for($i = 0; $i < sizeof($target_name); $i++){
 		        $target_name_cleaned = preg_replace("/[^a-zA-Z0-9]/", "", $target_name[$i]);
 		        if($target_name_cleaned == "adminid") {
-		            if($target_value[$i] != $uid) exit("Access Restricted (aid mismatch)");
+		            if($target_value[$i] != $aid) exit("Access Restricted (aid mismatch)");
 		            else $access = 1;
 		        }
 		    }

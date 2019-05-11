@@ -15,6 +15,7 @@ $(document).ready(beginMainSchedule);
 //}
 var currentConferenceChosen = null;
 var currentConferenceData = null;
+
 function beginMainSchedule()
 {
 	getUserConference();
@@ -41,7 +42,7 @@ function determineIfUserIsRegistered(data)
 		currentConferenceChosen = data[0]["conference_id"];
 		closeMenus();
 		$("#innerContent").empty();
-		$("#content").load("menuPhp/aboutConference.php");
+		$("#content").load("javascriptLoads/aboutConference.php");
 		$("#innerContent").focus();
 		getCurrentConferenceData(currentConferenceChosen, showConferenceDetails);
 	} else {
@@ -122,7 +123,6 @@ async function loadConference()
 
 function startMainTable(id)
 {
-	console.log(id);
 	valuesToSelect = ["*"];
 	tableNames = ["conference"];
 	attrs = ["conference_id"];
@@ -204,14 +204,12 @@ function gotConferenceInfoAndSchedule(data){
 
 function getConferenceInformation()
 {
-	console.log("here");
 		let map = {"table_names": ["user_conference","conference"], "values_to_select": ["*"], "attrs": [""], "values": [""], "genFlag": "flag"};
 		$.get("proxies/getProxy.php",map,showConferenceDetails, "json");
 }
 
 function showConferenceDetails(data)
 {
-	console.log(data);
 	let conference = 
 		{
 			name: data[0].conference_name,

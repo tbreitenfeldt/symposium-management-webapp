@@ -142,6 +142,7 @@ function setupAjaxForConferenceNames() {
  * function catchEmptyValue
  * This function is called on failure of the ajax call to the proxy 
  * a check is made if the http status code is 204, which means no data was found, then just pass an empty array to initializeConferenceChooser
+ * This is done to make sure that the initializeConferenceChooser is called, if this function was not called on empty value, then no controls would be created at all
  * if any status code other than 200 is returned, it will hit this fail function
  *
  * @param error - Error ajax object
@@ -156,9 +157,10 @@ function catchEmptyValue(error) {
 /**
  * function initializeConferenceChooser
  * generates the html for the list box that contains all of the conferences that are associated with this adminID
- * uses the data returned from the ajax call to create options that have text for the conference name, and values for the conferenceID
+ * uses the data returned from the ajax call to create options that have text for the conference name
+ * populates the divs with the ids of headingRegion1, and mainContentRegion1
  *
- * @param data array object 
+ * @param data - array object from ajax
 */
 function initializeConferenceChooser(data) {
     clearAllRegions();
@@ -188,6 +190,13 @@ function initializeConferenceChooser(data) {
 }//end function
 
 
+/**
+ * function getSelectedConference
+ * event handler for the submit button for the conference chooser
+ * gets the conference that the user chose, and makes the ajax call to get the conference information for that conference
+ *
+ * @param event - javascript onclick Event object
+*/
 function getSelectedConference(event) {
     event.preventDefault ();
 
@@ -196,11 +205,28 @@ function getSelectedConference(event) {
 }//end function
 
 
+/**
+ * function setupAjaxForConferenceInformation
+ * makes ajax call to search the conference table where the conference_name is equal to the user's chosen conference
+ * conference names must be unique, so one result should only ever be returned 
+ * on success, getConferenceEditor is called
+ *
+ * @param conferenceName - string, the name of the conference to query for
+*/
 function setupAjaxForConferenceInformation(conferenceName) {
     getRecord(["*"], ["conference"], ["conference_name"], [conferenceName], getConferenceEditor, "json");
 }//end function 
 
 
+/**
+ * function getConferenceEditor
+ * the success callback  from the ajax call for getting a conference's information. 
+ * This displays the conference information, and binds a callback to an edit conference button
+ * The information for the conference data could be formatted nicer, however a very small number of people will actually have access to what the admin dashboard looks like
+ * The ajax call for the conference events is called here 
+ * 
+ * @param data - array, returned from ajax call that should contain only one record with all of the conference information
+*/
 function getConferenceEditor(data) {
     if (data != null && data.length != 0) {
         clearAllRegions();

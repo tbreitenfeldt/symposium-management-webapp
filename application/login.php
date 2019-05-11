@@ -12,41 +12,22 @@ if (isset($_SESSION[LOGGEDIN_TOKEN_NAME]) && $_SESSION[LOGGEDIN_TOKEN_NAME]) {
 session_write_close();
 ?>
 
+
 <!--NOTE Left and Right Menus are opposite of their variable names-->
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
     <head>
+        <?php require_once "phpIncludes/userHeader.php"; ?>
+
         <title>Login for Conference Management System</title>
-
-        <!-- Meta Tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-        <!-- Bootstrap CSS CDN -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
         <!-- Our Custom CSS -->
         <link rel="stylesheet" href="css/menu/menu.css">
         <link rel="stylesheet" href="css/login.css">
 
-        <!--AJAX JS-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-       
         <!--Our custom JS-->
-        <script src="js/conferenceAPIJs/databaseFunctions.js"></script>
-        <script src="js/userJs/userSchedule.js"></script>
-        <script src="js/userJs/mainSchedule.js"></script>
-        <script src="js/userJs/userAccountRegistration.js"></script>
         <script src="js/loginSystemJs/loginAJAX.js"></script>
-        <script src="js/userJs/menu.js"></script>
-        <script src="js/utilityJs/util.js"></script>
-
-
-        <!-- Font Awesome JS -->
-        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     </head>
 
     <body id="my-body">
@@ -83,7 +64,7 @@ session_write_close();
           </div>
         </div>
         <!-- END content  -->
-        <?php include "./includes/accesibilityMenuOnly.php";?>
-        <?php include "./includes/footer.php"; ?>
+        <?php require_once "phpIncludes/accesibilityMenuOnly.php";?>
+        <?php require_once "phpIncludes/footer.php"; ?>
     </body>
 </html>

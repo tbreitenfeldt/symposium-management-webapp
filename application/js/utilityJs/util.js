@@ -1,25 +1,26 @@
-//$(document).ready($.getScript("https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"));
-
 //Enter in a date in the format "YYYY-MM-DD" and get back a javascript Date object.
 //Use functions with the Date object such as date.toDateString() or date.getMonth().
 function parseDate(dateString){
 	dateSplit = dateString.split("-");
     dateFormatted = dateSplit[1] + "-" + dateSplit[2] + "-" + dateSplit[0];
     date = new Date(dateFormatted);
-    return date;
+    return date.toDateString();
 }
 
 //Takes in a string in the format HH:MM:ss
 //
 function parseTime(timeString){
-	date = new Date(timeString);
+	
+	date = new Date("1970-11-11 " + timeString);
 	hr = date.getHours();
 	ampm = "am";
 	if(hr > 12){
 		hr -= 12;
 		ampm = "pm";
+	} else if (hr == 12){
+		ampm = "pm";
 	}
-	return addZero(hr) + ":" + addZero(date.getMinutes) + " " + ampm;
+	return addZero(hr) + ":" + addZero(date.getMinutes()) + " " + ampm;
 }
 
 //helper method for parseTime
@@ -52,7 +53,29 @@ function onShowHiddenElementWithAria(elementId, ariaMsg){
 	}
 	console.log(fullmsg);
 	notifyScreenreader(fullmsg);
-	
+}
+
+
+/*
+	For whatever reason, jquery does not like it when referencing a table row by ID using a # in front of it. I had to make a version of onShowHiddenElement that 
+	does not use the '#' in it's jQuery selector just for our dynamic table creation.
+*/
+function onShowHiddenRow(elementId){
+    $(elementId).toggle();
+}
+
+function onShowHiddenRowWithAria(elementId, ariaMsg){
+	onShowHiddenRow(elementId);
+	css = $(elementId).css("display");
+	fullmsg = ariaMsg;
+	console.log(css);
+	if(css == "none"){
+		fullmsg = "Collapsed " + ariaMsg + " .";
+	} else {
+		fullmsg = "Expanded " + ariaMsg + " below.";
+	}
+	console.log(fullmsg);
+	notifyScreenreader(fullmsg);
 }
 
 function notifyScreenreader(message) {

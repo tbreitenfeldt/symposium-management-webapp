@@ -13,7 +13,8 @@ function startUserTable(conferenceID, showSched)
       "values_to_select": ["*"], 
       "attrs": ["conference_id"], 
       "values": [conferenceID],
-      "genFlag": "flag"};
+      "genFlag": "flag",
+	  "orderBy": ["event_date", "event_starttime"]};
 
     $.get("proxies/getProxy.php",map,function(data)
     {
@@ -37,8 +38,13 @@ function showSchedule(conferenceID, data)
     // IF schedule is empty, add something saying no events, 
     //if not empty find info on event and add to table
 
+	$("#schedInfo").empty();
+	generateUserEventTable(data, "schedInfo", "myScheduleTable");
+	
+	/*
     if(data != null)
     {
+		myTable = new Array();
         for(i = 0; i < data.length; i++)
         {
             var event = 
@@ -48,14 +54,58 @@ function showSchedule(conferenceID, data)
                 room: String(data[i].event_building + " " + data[i].event_floor + " " + data[i].event_room)
             };
         
+			var id = data[i].event_id;
+		    var message = String("Removed " + name) + " from mySchedule";
 
-            $("<tr><td>" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button id=\"openCloseButton" + i + "\" onclick=\"showEventInfo(" + i +")\" class=\"dropbtn\">Open Event</button></td></tr>"
-            + "<tr id=\"eventInfoRow" + i + "\" aria-hidden=\"true\"><td colspan=4><span id=\"dropdown" + i +"\"style=\"display:none\">Information: " + event.info + "<br>Speakers: " + event.speakers + "<br>Building, Floor, Room: " + event.room + "</span></td></tr>").appendTo("#schedInfo");
-        }
+			if(!myTable.includes(id))
+		    {
+				myTable.push(id);
+				$("<tr><td>" + data[i].event_name +  "</td><td>" + data[i].event_date + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button id='openCloseButton" + i + "' onclick='onShowHiddenRowWithAria(eventInfoRow" + i + ", \"" + data[i].event_name + "\")' class='dropbtn'>More/Less Info</button></td>"
+				+ "<td><button class=\"delBtn\" onclick=\"onDeleteClickMySchedulePage(this," + data[i].event_id + "," + "\'" + message + "\'" + ")\" aria-label=\"Delete from my Schedule\"><i class=\"fas fa-times-circle fa-w-16 fa-3x\"></i></button></td></tr>"
+				+ "<tr  id='eventInfoRow" + i + "' style='display:none' ><td colspan=6><p id='dropdown" + i +"'>Information: " + event.info + "<br>Speakers: " + event.speakers + "<br>Building, Floor, Room: " + event.room + "</p></td></tr>").appendTo("#schedInfo");
+			}
+		}
     }
     else
     {
         $("<tr><td>No Events Here</td></tr>").appendTo("#schedInfo");
+    }
+	*/
+}
+
+function generateUserEventTable(data, tblBodyID, tblID){
+	if(data != null)
+    {
+		myTable = new Array();
+        for(i = 0; i < data.length; i++)
+        {
+            var event = 
+            {
+                info: String(data[i].event_desc),
+                speakers: String(data[i].event_speakers),
+                room: String(data[i].event_building + " " + data[i].event_floor + " " + data[i].event_room)
+            };
+			
+			var date = parseDate(data[i].event_date);
+			var starttime = parseTime(data[i].event_starttime);
+			var et = parseTime(data[i].event_endtime);
+        
+			var id = data[i].event_id;
+			name = String(data[i].event_name);
+		    var message = String("Removed " + name) + " from mySchedule";
+
+			if(!myTable.includes(id))
+		    {
+				myTable.push(id);
+				$("<tr><td>" + data[i].event_name +  "</td><td>" + date + "</td><td>" + starttime + "</td><td>" + et + "</td><td><button id='openCloseButton" + i + "' onclick='onShowHiddenRowWithAria(eventInfoRow" + i + ", \"" + data[i].event_name + "\")' class='dropbtn'>More/Less Info</button></td>"
+				+ "<td><button class=\"delBtn\" onclick=\"onDel(this," + data[i].event_id + "," + "\'" + message + "\'" + ", " + tblID + ")\" aria-label=\"Delete from my Schedule\"><i class=\"fas fa-times-circle fa-w-16 fa-3x\"></i></button></td></tr>"
+				+ "<tr  id='eventInfoRow" + i + "' style='display:none' ><td colspan=6><p id='dropdown" + i +"'>Information: " + event.info + "<br>Speakers: " + event.speakers + "<br>Building, Floor, Room: " + event.room + "</p></td></tr>").appendTo("#" + tblID);
+			}
+		}
+    }
+    else
+    {
+        $("<tr><td>No Events Here</td></tr>").appendTo("#" + tblID);
     }
 }
 
@@ -65,6 +115,10 @@ function gotEvent(conferenceID, data)
     // IF schedule is empty, add something saying no events, 
     //if not empty find info on event and add to table
 
+	$("#UsersCon tbody").empty();
+	generateUserEventTable(data, "userConInfo", "UsersCon");
+	
+	/*
     if(data != null)
     {
         for(i = 0; i < data.length; i++)
@@ -83,6 +137,35 @@ function gotEvent(conferenceID, data)
     {
         $("<tr><td>No Events Here</td></tr>").appendTo("#userConInfo");
     }
+	*/
+}
+
+function onDel(event, eventID, message, tblID){
+	    var map =
+    {
+        table_name: "user_schedule",
+        id_name: ["event_id"],
+        id_value: [eventID]
+    };
+
+    $.delete("proxies/deleteProxy.php",map,function(data){onDelSuccess(event,eventID, tblID);});
+
+    notifyScreenreader(message);
+}
+
+function onDelSuccess(event, eventID, tblID){
+	let rowIndex = event.parentElement.parentElement.rowIndex;
+    let table = tblID ; //document.getElementById(tblID);
+	console.log(tblID);
+	console.log(table);
+    $(event.parentElement).children().off();
+    table.deleteRow(rowIndex);
+    myTable.splice(eventID);
+
+    if(myTable.length == 0)
+    {
+        $("<tr><td>No Events Here</td></tr>").appendTo("#" + tblID);
+    }
 }
 
 function onDeleteClick1(event, eventID, message)
@@ -97,6 +180,34 @@ function onDeleteClick1(event, eventID, message)
     $.delete("proxies/deleteProxy.php",map,function(data){successDel(event,eventID);});
 
     notifyScreenreader(message);
+}
+
+function onDeleteClickMySchedulePage(event, eventID, message)
+{
+    var map =
+    {
+        table_name: "user_schedule",
+        id_name: ["event_id"],
+        id_value: [eventID]
+    };
+
+    $.delete("proxies/deleteProxy.php",map,function(data){onSuccessDeleteFromMySchedule(event,eventID);});
+
+    notifyScreenreader(message);
+}
+
+function onSuccessDeleteFromMySchedule(event, eventID)
+{
+    let rowIndex = event.parentElement.parentElement.rowIndex;
+    let table = document.getElementById("myScheduleTable");
+    $(event.parentElement).children().off();
+    table.deleteRow(rowIndex);
+    myTable.splice(eventID);
+
+    if(myTable.length == 0)
+    {
+        $("<tr><td>No Events Here</td></tr>").appendTo("#myScheduleTable");
+    }
 }
 
 function successDel(event, eventID)

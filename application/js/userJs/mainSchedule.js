@@ -154,7 +154,7 @@ function gotMainConference(data)
 	  attrs = ["conference_id"];
 	  values = [mainObj[0].id];
 
-  	getRecord(valuesToSelect,tableNames,attrs,values,gotEventData,"json","false");
+  	getRecord(valuesToSelect,tableNames,attrs,values,gotEventData,"json","false", ["event_date", "event_starttime"]);
 }
 
 function gotEventData(data)
@@ -164,11 +164,25 @@ function gotEventData(data)
       var conferenceID = data[0].conference_id;
       for( i = 0; i < data.length; i++)
       {
+		  
+			  var event = 
+				{
+					info: String(data[i].event_desc),
+					speakers: String(data[i].event_speakers),
+					room: String(data[i].event_building + " " + data[i].event_floor + " " + data[i].event_room)
+				};
 				var eventID = data[i].event_id;
 				var name = String(data[i].event_name);
 				var message = String("Added " + name + " to my schedule");
-        $("<tr><td class=\"eventName\">" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button type=\"Button\" " +
-						"onclick=\"onAddClick(" + eventID + "," + conferenceID + "," +  "\'" + message +  "\'"  + ")\" aria-label=\"Add to my Schedule\"> <i class=\"fas fa-plus-circle fa-w-16 fa-3x\"></i> </button></td></tr>").appendTo("#Conference tbody");
+				var date = parseDate(data[i].event_date);
+				var starttime = parseTime(data[i].event_starttime);
+				var endtime = parseTime(data[i].event_endtime);
+        $("<tr><td class=\"eventName\">" + data[i].event_name  + "</td><td>" + date + "</td><td>" + starttime + "</td><td>" + endtime  + 
+						"</td><td><button id='openCloseButton" + i + "' onclick='onShowHiddenRowWithAria(eventInfoRow" + i + ", \"" + data[i].event_name + "\")' class='dropbtn'>More/Less Info</button></td>" + 
+						"</td><td><button type=\"Button\" class='addBtn' " +
+						"onclick=\"onAddClick(" + eventID + "," + conferenceID + "," +  "\'" + message +  "\'"  + ")\" aria-label=\"Add to my Schedule\"> <i class=\"fas fa-plus-circle fa-w-16 fa-3x\"></i> </button></td></tr>" +
+						"<tr  id='eventInfoRow" + i + "' style='display:none' ><td colspan=6><p id='dropdown" + i +"'>Information: " + event.info + "<br>Speakers: " + event.speakers + "<br>Building, Floor, Room: " + event.room + "</p></td></tr>"
+						).appendTo("#Conference tbody");
       }
     }
 }
@@ -193,7 +207,7 @@ function successPost(conferenceID)
 }
 
 function getConferenceInfoAndSchedule(){
-	let map = {"table_names": ["user_conference","conference", "event"], "values_to_select": ["*"], "attrs": ["conference_id"], "values": [currentConferenceChosen], "genFlag": "flag"};
+	let map = {"table_names": ["user_conference","conference", "event"], "values_to_select": ["*"], "attrs": ["conference_id"], "values": [currentConferenceChosen], "genFlag": "flag", "orderBy": ["event_date", "event_starttime"]};
 	$.get("proxies/getProxy.php",map,gotConferenceInfoAndSchedule, "json");
 }
 
@@ -215,8 +229,8 @@ function showConferenceDetails(data)
 	let conference = 
 		{
 			name: data[0].conference_name,
-			startDate: data[0].conference_startdate,
-			endDate: data[0].conference_enddate,
+			startDate: parseDate(data[0].conference_startdate),
+			endDate: parseDate(data[0].conference_enddate),
 			detail: data[0].conference_facilitydesc,
 			email: data[0].conference_contactemail,
 			phone: data[0].conference_contactphone,

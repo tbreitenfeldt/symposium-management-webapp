@@ -8,6 +8,7 @@
                 <thead>
                 <tr>
                     <th>Name</th>
+					<th>Date</th>
                     <th>Time Start</th>
                     <th>Time End</th>
                 </tr>

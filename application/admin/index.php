@@ -10,6 +10,7 @@
 
   <link rel="stylesheet" href="../css/home.css">
   <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="../css/innerTable.css">
 
   <script src="../js/conferenceAPIJs/databaseFunctions.js"></script>
   <script src="../js/adminJs/generateHTML.js"></script>

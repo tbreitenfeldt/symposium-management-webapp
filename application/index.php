@@ -17,6 +17,7 @@
         
         <!-- Our Custom CSS -->
         <link rel="stylesheet" href="./css/menu/menu.css">
+		<link rel="stylesheet" href="./css/innerTable.css">
 
         <!--AJAX JS-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

@@ -102,22 +102,53 @@ function changePathToMainDirectory(path) {
 	
 	If you need more ideas on how to use any methods here, please take a look at my databaseTester.js and my databaseOutput.js for live examples of how I've used these functions.
 */
-async function getRecord(valuesToSelect, tableNames, attrs, values, callback, type, formatFlag){
+function getRecord(valuesToSelect, tableNames, attrs, values, callback, type, formatFlag, orderBy, proxyflag){
 	if(formatFlag == "true"){
 		if(!(valuesToSelect[0] == "*")){
 			formatStringArray(valuesToSelect, "`");		
 		}
 		formatStringArray(attrs, "`");
 		formatStringArray(values, "'");
+		formatStringArray(orderBy, "`");
 	}
 	map = {
 		table_names: tableNames,
 		values_to_select: valuesToSelect,
 		attrs: attrs,
 		values: values,
-		genFlag: "flag"
+		genFlag: "flag",
+		orderBy: orderBy
 	};
-	await $.get(pathToMainDirectory + "conferenceAPI/index.php", map, callback, type);
+	//$.get(pathToMainDirectory + "conferenceAPI/index.php", map, callback, type);
+
+	var urlPath = pathToMainDirectory + "conferenceAPI/index.php";
+	if(proxyflag == true){
+		urlPath = pathToMainDirectory + "proxies/getProxy.php";
+	}
+
+	$.ajax({
+		url: urlPath,
+		type: "GET",
+		dataType: type,
+		data: map,
+		cache: false,
+
+	// 	beforeSend: function () {
+	// 	console.log("Loading");
+	// },
+
+		error: function (jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR);
+			console.log(textStatus);
+			console.log(errorThrown);
+		},
+
+		success: callback,
+
+		// complete: function () {
+		// 	console.log('Finished all tasks');
+		// }
+	});
 }
 
 
@@ -145,7 +176,11 @@ function delRecord(tablename, idname, idvalue, callback){
 		id_name: idname,
 		id_value: idvalue
 	};
-	$.delete(pathToMainDirectory + "conferenceAPI/index.php",map,callback);
+	var urlPath = pathToMainDirectory + "conferenceAPI/index.php";
+	if(proxyflag == true){
+		urlPath = pathToMainDirectory + "proxies/deleteProxy.php";
+	}
+	$.delete(urlPath,map,callback);
 }
 
 /*
@@ -198,7 +233,11 @@ function postRecord(tablename, attrs, values, callback, formatFlag){
 		attrs: attrs,
 		values: values,
 	};
-	$.post(pathToMainDirectory + "conferenceAPI/index.php",map,callback).fail(function(error) {document.write(error.responseText);} );
+	var urlPath = pathToMainDirectory + "conferenceAPI/index.php";
+	if(proxyflag == true){
+		urlPath = pathToMainDirectory + "proxies/postProxy.php";
+	}
+	$.post(urlPath,map,callback).fail(function(error) {document.write(error.responseText);} );
 }
 
 
@@ -259,7 +298,11 @@ function putRecord(tablename, attrs, values, idname, idvalue, callback, formatFl
 		target_id_name: idname,
 		target_id_value: idvalue
 	};
-	$.put(pathToMainDirectory + "conferenceAPI/index.php", map, callback, "json");
+	var urlPath = pathToMainDirectory + "conferenceAPI/index.php";
+	if(proxyflag == true){
+		urlPath = pathToMainDirectory + "proxies/putProxy.php";
+	}
+	$.put(urlPath, map, callback, "json");
 }
 
 /*

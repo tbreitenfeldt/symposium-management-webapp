@@ -269,6 +269,14 @@ function getConferenceEditor(data) {
 }//end function 
 
 
+/**
+ * function returnToConferenceChooser
+ * prompts the user if he or she would like to return to the main menu (conference chooser)
+ * calls setupAjaxForConferenceNames if user input is yes
+ *
+ * @param event - javascript onclick Event object
+ * @param message- string, the message to prompt the user with
+*/
 function returnToConferenceChooser(event, message) {
     let isContinue = confirm(message);
 
@@ -278,6 +286,15 @@ function returnToConferenceChooser(event, message) {
 }//end function
 
 
+/**
+ * function returnToSelectedConference
+ * prompts the user if they would like to return back to the previously viewed conference page
+ * calls setupAjaxForConferenceInformation if the user says yes
+ *
+ * @param event - javascript onclick Event object
+ * @param conferenceName - string, the name of the conference to view information for
+ * @param message - string, the message to prompt the user with
+*/
 function returnToSelectedConference(event, conferenceName, message) {
     let isContinue = confirm(message);
 
@@ -287,6 +304,14 @@ function returnToSelectedConference(event, conferenceName, message) {
 }//end function
 
 
+/**
+ * function setupAjaxForEventInformation
+ * Queries the database for all events for the given conferenceID
+ * calls createEventEditor on success to generate the html for the event table
+ *
+ * @param conferenceID - int, a numeric value that uniquely identifys a conference
+ @param conferenceName - string, the name of the conference associated with the conferenceID
+*/
 function setupAjaxForEventInformation(conferenceID, conferenceName) {
     let valuesToSelect = ["event_id", "event_name", "event_starttime", "event_endtime", "event_room", "event_floor", "event_building", "event_speakers", "event_desc",
             "event_wheelchair", "event_date"];
@@ -298,6 +323,14 @@ function setupAjaxForEventInformation(conferenceID, conferenceName) {
 }//end function
 
 
+/**
+ * function createEventEditor
+ * Generates a table containing all of the events for the requested conference, and creates edit and delete controls for each event
+ * populates the div with the id mainContentRegion2, sinse the div with the id mainContentRegion1 already contains the conference information
+ *
+ * @param data - array, the array returned from the ajax call for querying for conference events
+ * @param conferenceName - string, the name of the conference these events are associated with
+*/
 function createEventEditor(data, conferenceName) {
     if (data != null) {
         let table = "";
@@ -313,9 +346,11 @@ function createEventEditor(data, conferenceName) {
             row = "<tr>" + row + "</tr>";
             table += row;
 
+        //guarantees that there is no event handlers for any of the edit or delete buttons already
         $(".editEventButtons").off();
         $(".deleteEventButtons").off();
 
+        //create each row, and populate each column with the respective event data
         for (let event of data) {
             let editEventButton = '<input type="button" value="Edit" data-id="' + event["event_id"] + '" class="editEventButtons" />';
             let deleteEventButton = '<input type="button" value="Delete" data-id="' + event["event_id"] + '" class="deleteEventButtons" />';
@@ -346,6 +381,17 @@ function createEventEditor(data, conferenceName) {
 }//end function 
 
 
+/**
+ * function collectFormData
+ * Will gather the data from a form that has been submited into an array of data names (attrs), and data values (values)
+ * based on the given class name, which must exist on each control that will be accounted for in this function.
+ * The conference and event forms use this function, and both have class names on each input control spacific to their form
+ * this function also depends on the custom attribute data-name to be on each control, which is the name in the database associated with each control 
+ *
+ * @param controlsClassName - string, a html class name that is associated with each control in the form that data is being collected for
+ * @param attrs - array, the array of names that identify the collected data. initially empty, and filled with the values of the custom attribute data-name
+ * @param values - array, the array of values from the form. Initially empty, and filled with the values from each form control
+*/
 function collectFormData(controlsClassName, attrs, values) {
     let dataName = "";
     let value = ""
@@ -368,6 +414,15 @@ function collectFormData(controlsClassName, attrs, values) {
 }//end funtion
 
 
+/**
+ * function populateFormData
+ * Populates the form controls that are associated with the provided class name with the provided data
+ * Both the conference and event forms have class names associated with each input control 
+ * this is used for editing either events or conferences, and loading the currently existing data that is associated with it
+ *
+ * @param controlsClassName - string, a html class name that is associated with each control in the form that data is being collected for
+ * @param data - array, the array returned from an ajax call to retrieve the data to fill the targeted form
+*/
 function populateFormData(controlsClassName, data) {
     $("." + controlsClassName).each(function(index, element) {
         let dataName = $(element).attr("data-name");
@@ -384,6 +439,14 @@ function populateFormData(controlsClassName, data) {
 }//end function
 
 
+/**
+ * function setupConferenceFormForInserting
+ * perform the necessary actions to prepare the conference form for inserting a new conference 
+ * clear all regions, populate the div header with the id insertHeading2, reset the form,
+ * show the form, and associate the appropriate onclick handler for inserting a conference for the submit button
+ * 
+ * @param event - javascript onclick Event object
+*/
 function setupConferenceFormForInserting(event) {
     clearAllRegions();
     insertHeading2("Create Conference", "headingRegion1");
@@ -394,6 +457,16 @@ function setupConferenceFormForInserting(event) {
 }//end function
 
 
+/**
+ * function setupConferenceFormForUpdating
+ * perform the necessary actions to prepare the conference form for updating an existing conference 
+ * clear all regions, populate the div header with the id insertHeading2, reset the form,
+ * show the form, associate the appropriate onclick handler for inserting a conference for the submit button, 
+ * and populate each input control with the provided data
+ * 
+ * @param event - javascript onclick Event object
+ * @param data - array, the array returned from the ajax request whichc retrieved the conference data to fill this form 
+*/
 function setupConferenceFormForUpdating(event, data) {
     let conference = data[0];
     let conferenceID = conference["conference_id"];
@@ -409,6 +482,15 @@ function setupConferenceFormForUpdating(event, data) {
 }//end function
 
 
+/**
+ * function insertConference
+ * This is the initial onclick function to handle inserting a new conference into the database
+ * Makes a GET ajax request to chek if the conference name given already exists in the database before inserting
+ * this function is called on click of the save conference information button, and prevents the default action of the submit button, so that the page does not refresh
+ * on success, call checkIfConferenceNameExists
+ *
+ * @param event - javascript onclick event 
+*/
 function insertConference(event) {
     event.preventDefault ();
     let conferenceName = $("#inputConferenceName").val();
@@ -416,6 +498,14 @@ function insertConference(event) {
 }//end function
 
 
+/**
+ * function checkIfConferenceNameExists
+ * checks if the given conference name, given by the ajax call in insertConference, exists in the database or not
+ * if there is no conference with that name, call processConferenceInsertion and continue,
+ * otherwise, show a javascript alert box to the user notifying them that they can not choose that conference name.
+ *
+ * @param data - array, the array returned from an ajax get request which should contain 1 or 0 records.
+*/
 function checkIfConferenceNameExists(data) {
     if (data == null || data.length == 0) {
         processConferenceInsertion();
@@ -425,6 +515,11 @@ function checkIfConferenceNameExists(data) {
 }//end function
 
 
+/**
+ * function processConferenceInsertion
+ * inserts the conference data into the database using the proxy to get the admin ID with an ajax post request
+  * on success, call createdConferenceSuccessfully
+*/
 function processConferenceInsertion() {
     let map = {};
     let attrs = [];
@@ -436,6 +531,12 @@ function processConferenceInsertion() {
 }//end function
 
 
+/**
+ * function createdConferenceSuccessfully
+ * Alerts the user that the conference was successfully created, then redirects the user to the conference information page by calling setupAjaxForConferenceInformation
+ *
+ * @param data - string, the success message back from the ajax post call from inserting the new conference
+*/
 function createdConferenceSuccessfully(data) {
     let conferenceName = $("#inputConferenceName").val();
     alert("Created Conference");
@@ -443,6 +544,16 @@ function createdConferenceSuccessfully(data) {
 }//end function
 
 
+/**
+ * function updateConferenceInformation
+ * This is the initial onclick function to handle updating an existing conference in the database
+ * Makes a put ajax request to update the existing record in the database with the new provided data
+ * this function is called onclick of the update conference information button, and prevents the default action of the submit button, so that the page does not refresh
+ * on success, call updatedConferenceSuccessfully
+ *
+ * @param event - javascript onclick event 
+ * @param conferenceID - int, A numeric value that uniquely identifys a conference to update
+*/
 function updateConferenceInformation(event, conferenceID) {
     event.preventDefault ();
 
@@ -456,6 +567,12 @@ function updateConferenceInformation(event, conferenceID) {
 }//end function
 
 
+/**
+ * function updatedConferenceSuccessfully
+ * Alerts the user that the conference was successfully updated, then redirects the user to the conference information page by calling setupAjaxForConferenceInformation
+ *
+ * @param data - string, the success message back from the ajax put call from updating the existing conference
+*/
 function updatedConferenceSuccessfully(data) {
     let conferenceName = $("#inputConferenceName").val();
     alert("Updated  Conference!");
@@ -463,6 +580,14 @@ function updatedConferenceSuccessfully(data) {
 }//end function
 
 
+/**
+ * function ajaxSetupForDeleteConference
+ * Deletes a conference from the conference table and all of its associated events based on a given conferenceName
+ * makes an ajax get request to retrieve the conferenceID of the given conferenceName, to be used in querying the event table
+ * gets the conference name from the conference chooser list box on the front page
+ *
+ * @param event - javascript onclick Event object
+*/
 function ajaxSetupForDeleteConference(event) {
     let conferenceName = $("#conferenceList").val();
 
@@ -476,6 +601,13 @@ function ajaxSetupForDeleteConference(event) {
 }//end function
 
 
+/**
+ * function deleteConferenceAndEvents
+ * make ajax delete requests for first the events, based on the retrieved conferenceID, then on success of that ajax call, delete the actual conference
+ * on success of deletion of all of the events, and the conference records, call setupAjaxForConferenceNames, right after alerting the user
+ *
+ * @param data- array, the array returned from an ajax get request, wich retrieved the conferenceID for the selected conference. Should return 1 record
+*/
 function deleteConferenceAndEvents(data) {
     if (data != null) {
         let conferenceID = data[0]["conference_id"];
@@ -490,6 +622,16 @@ function deleteConferenceAndEvents(data) {
 }//end function
 
 
+/**
+ * function setupEventFormForInserting
+ * perform the necessary actions to prepare the event form for inserting a new event for a specified conference
+ * clear all regions, populate the div header with the id insertHeading2, reset the form,
+ * show the form, and associate the appropriate onclick handler for inserting a event for the submit button
+ * 
+ * @param event - javascript onclick Event object
+ * @param conferenceID - int, a numberic value that uniquely identifies a conference
+ @param conferenceName - string, the name of the conference associated with the given conferenceID
+*/
 function setupEventFormForInserting(event, conferenceID, conferenceName) {
     clearAllRegions();
     insertHeading2("Create Event", "headingRegion1");
@@ -500,6 +642,17 @@ function setupEventFormForInserting(event, conferenceID, conferenceName) {
 }//end function
 
 
+/**
+ * function function setupEventFormForUpdating
+ * perform the necessary actions to prepare the event form for updating an existing conference 
+ * clear all regions, populate the div header with the id insertHeading2, reset the form,
+ * show the form, associate the appropriate onclick handler for updating an event for the submit button, 
+ * find which event has the associated eventID that is being targeted, and populate each input control with the provided data
+ * 
+ * @param event - javascript onclick Event object
+ * @param conferenceEvents - array, the array returned from the ajax get request, made when creating the event table 
+ * @param conferenceName - string, the name of the conference that is associated with the targeted event 
+*/
 function setupEventFormForUpdating(event, conferenceEvents, conferenceName) {
     let conferenceEventID = $(event.target).attr("data-id");
     let eventToEdit = null;
@@ -526,6 +679,17 @@ function setupEventFormForUpdating(event, conferenceEvents, conferenceName) {
 }//end function
 
 
+/**
+ * function insertConferenceEvent
+ * This is the initial onclick function to handle inserting a new conference event into the database
+ * Makes a GET ajax request to chek if the event name given already exists in the database before inserting
+ * this function is called on click of the save event information button, and prevents the default action of the submit button, so that the page does not refresh
+ * on success, call checkIfEventNameExistsInConference
+ *
+ * @param event - javascript onclick event 
+ * @param conferenceID - int, a numberic value that uniquely identifies a conference
+ @param conferenceName - string, the name of the conference associated with the given conferenceID that is associated with the new event
+*/
 function insertConferenceEvent(event, conferenceID, conferenceName) {
     event.preventDefault ();
     let eventName = $("#inputEventName").val();
@@ -539,6 +703,16 @@ function insertConferenceEvent(event, conferenceID, conferenceName) {
 }//end function
 
 
+/**
+ * function checkIfEventNameExistsInConference
+ * checks if the given conference event name, given by the ajax call in insertConferenceEvent, exists in the database or not
+ * if there is no event with that name, call processEventInsertion and continue,
+ * otherwise, show a javascript alert box to the user notifying them that they can not choose that event name.
+ *
+ * @param data - array, the array returned from an ajax get request which should contain 1 or 0 records.
+ * @param conferenceID - int, a numberic value that uniquely identifies a conference
+ @param conferenceName - string, the name of the conference associated with the given conferenceID that is associated with the new event
+*/
 function checkIfEventNameExistsInConference(data, conferenceID, conferenceName) {
     if (data == null || data.length == 0) {
         processEventInsertion(conferenceID, conferenceName);
@@ -548,6 +722,14 @@ function checkIfEventNameExistsInConference(data, conferenceID, conferenceName) 
 }//end function
 
 
+/**
+ * function processEventInsertion
+ * inserts the event data into the database using the proxy to get the admin ID with an ajax post request
+  * on success, call createdEventSuccessfully
+  *
+  * @param conferenceID - int, a numberic value that uniquely identifies a conference
+ @param conferenceName - string, the name of the conference associated with the given conferenceID that is associated with the new event
+*/
 function processEventInsertion(conferenceID, conferenceName) {
     let map = {};
     let attrs = [];
@@ -566,12 +748,30 @@ function processEventInsertion(conferenceID, conferenceName) {
 }//end function
 
 
+/**
+ * function createdEventSuccessfully
+ * Alerts the user that the event was successfully created, then redirects the user to the conference information page by calling setupAjaxForConferenceInformation
+ *
+ * @param data - string, the success message back from the ajax post call from inserting the new conference
+ * @param conferenceName - string, the name of the conference that is associated with the new event
+*/
 function createdEventSuccessfully(data, conferenceName) {
-    alert("Created event");
-    setupAjaxForConferenceInformation(conferenceName);
+    let onclickEvent = null;
+    returnToSelectedConference(onclickEvent, conferenceName, "Created event");
 }//end function
 
 
+/**
+ * function updateConferenceEvent
+ * This is the initial onclick function to handle updating an existing conference event in the database
+ * Makes a put ajax request to update the existing record in the database with the new provided data
+ * this function is called onclick of the update event information button, and prevents the default action of the submit button, so that the page does not refresh
+ * on success, call updatedEventSuccessfully
+ *
+ * @param event - javascript onclick event 
+ * @param eventID - int, A numeric value that uniquely identifys an conference event to update
+ * @param conferenceName - string, the name of the conference that is associated with the existing event 
+*/
 function updateConferenceEvent(event, eventID, conferenceName) {
     event.preventDefault ();
 
@@ -585,11 +785,27 @@ function updateConferenceEvent(event, eventID, conferenceName) {
 }//end function
 
 
+/**
+ * function updatedEventSuccessfully
+ * Alerts the user that the conference event was successfully updated, then redirects the user to the conference information page by calling setupAjaxForConferenceInformation
+ *
+ * @param data - string, the success message back from the ajax put call from updating the existing conference
+ * @param conferenceName - string, the name of the conference that is associated with the existing event  
+*/
 function updatedEventSuccessfully(data, conferenceName) {
-    returnToSelectedConference(data, conferenceName, "Updated event");
+    let onclickEvent = null;
+    returnToSelectedConference(onclickEvent, conferenceName, "Updated event");
 }//end function
 
 
+/**
+ * function deleteConferenceEvent
+ * Deletes a conference event from the event table based on an eventID
+ * makes an ajax delete call to delete the chosen event
+ * on success, call deletedEventSuccessfully
+ *
+ * @param event - javascript onclick Event object
+*/
 function deleteConferenceEvent(event) {
     let conferenceEventID = $(event.target).attr("data-id");
     let isDelete = confirm("Are you sure you would like to delete this event?");
@@ -600,6 +816,16 @@ function deleteConferenceEvent(event) {
 }//end function 
 
 
+/**
+ * function deletedEventSuccessfully
+ * Alerts the user that an event was successfully deleted from the database,
+ * then dynamically removes the associated row in the html table by getting the grandparent of the deleteButton, which is the html tr object,
+ * finds the index, and deletes the row from the table by that index.
+ * The table is found by getting a list of all tables on the page, and making the asumption that there is only one table on the page. This could be a problem in the future.
+ *
+ * @param data - string, the success message from deleting a record from the database 
+ * @param deleteButton - Button dom object, the delete button that was clicked to delete the event
+*/
 function deletedEventSuccessfully(data, deleteButton) {
     if (data != null) {
         alert("successfully Deleted event.");
@@ -618,11 +844,18 @@ function deletedEventSuccessfully(data, deleteButton) {
     }//end else 
 }//end function
 
+
+/**
+ * function clearAllRegions
+ * Performs all necessary actions to clean up all of the dynamic regions on the page.
+ * removes all potential event handlers from buttons, clears the contents from each region, and hides the conference and event forms.
+ * not all of these actions are necessary all the time, however, none of these actions will throw an error if they are unneeded.
+*/
 function clearAllRegions() {
     $(".applicationButtons").off();
     $(".editEventButtons").off();
     $(".deleteEventButtons").off();
-    $(".contentRegions").html("");
+    $(".contentRegions").empty();
     $("#conferenceFormRegion").hide();
     $("#eventFormRegion").hide();
 }//end function

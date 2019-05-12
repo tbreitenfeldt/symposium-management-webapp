@@ -25,3 +25,9 @@
     padding-left:0px;
     padding-right:0px;
 }
+
+/* button icon */
+svg:not(:root).svg-inline--fa {
+    overflow: visible;
+    width: .8em;
+}

@@ -126,6 +126,12 @@ a:focus {
   padding-right: 0px;
 }
 
+/* button icon */
+svg:not(:root).svg-inline--fa {
+  overflow: visible;
+  width: .8em;
+}
+
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -172,6 +178,7 @@ a:focus {
   -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
           box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
   overflow-y: overlay;
+  text-align: center;
 }
 
 #leftSidebar.active,
@@ -322,11 +329,6 @@ button.dropdown-button:not(.collapsed)[aria-expanded="true"] {
   text-align: center;
 }
 
-svg:not(:root).svg-inline--fa {
-  overflow: visible;
-  width: .6em;
-}
-
 .button-fix {
   display: inline-block;
   margin-left: 0px;
@@ -372,6 +374,12 @@ svg:not(:root).svg-inline--fa {
   width: 101px;
   padding-left: 0px;
   padding-right: 0px;
+}
+
+/* button icon */
+svg:not(:root).svg-inline--fa {
+  overflow: visible;
+  width: .8em;
 }
 
 /* ---------------------------------------------------
@@ -436,22 +444,87 @@ table {
   color: red;
 }
 
+#innerContent {
+  background: #17a2b8;
+  border-color: black;
+  border-width: 3px;
+  border-style: solid;
+  text-align: center;
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+table {
+  font-weight: bold;
+}
+
+th {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: auto;
+  word-wrap: break-word;
+}
+
+.dropbtn, .delBtn, .addBtn {
+  border-style: solid;
+  border-color: black;
+  background-color: #17a2b8;
+  margin: 2px;
+  font-weight: bold;
+  color: white;
+}
+
+#showConferenceSchedule, #showMySchedule {
+  border-style: solid;
+  border-color: black;
+  color: white;
+  font-weight: bold;
+  background-color: firebrick;
+}
+
+#divUsers {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+tr {
+  background: firebrick;
+}
+
+td {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 20px;
+  max-width: 20px;
+}
+
+#divAdd {
+  background-color: burlywood;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-color: black;
+  border-width: 3px;
+  border-style: solid;
+  width: 500px;
+}
+
+.txtEditField {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-color: black;
+  border-width: thin;
+}
+
 /* ---------------------------------------------------
     MEDIA SIZING
 ----------------------------------------------------- */
+/*All media sizing for single handheld mobile devices*/
 @media (max-width: 426px) {
-  .col-xs-3 button span {
-    font-size: 13px;
-  }
-  #content {
-    width: 100%;
-    padding: 0px 20px 20px 20px;
-    min-height: 100vh;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    right: 0;
-    padding-top: 250px;
-  }
   #rightSidebar,
   #leftSidebar,
   #centerSidebar {
@@ -490,54 +563,19 @@ table {
   }
 }
 
-@media (max-width: 375px) {
+/*media sizing for single handheld mobile devices of medium and large size*/
+@media (max-width: 426px) and (min-width: 375px) {
   .col-xs-3 button {
-    font-size: 12px;
+    font-size: 13px;
+    width: 25vw;
   }
-  #content {
-    width: 100%;
-    padding: 0px 20px 20px 20px;
-    min-height: 100vh;
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    right: 0;
-    padding-top: 220px;
-  }
-  #rightSidebar,
-  #leftSidebar,
-  #centerSidebar {
-    height: 100%;
-    width: 100%;
-    right: 100%;
-  }
-  #rightSidebar.active,
-  #leftSidebar.active,
-  #centerSidebar.active {
-    left: 0;
-  }
-  ul {
-    margin-right: 20px;
-  }
-  #dismiss {
-    font-size: 50px;
-  }
-  ul.CTAs {
-    padding: 20px;
-    padding-left: 40px;
-  }
-  table {
-    width: 100%;
-    margin: 0px;
-  }
-  #user-menu {
-    color: #fff;
-    top: 0px;
-    width: -webkit-fill-available;
-    position: fixed;
-    left: 0%;
-    -webkit-transform: translate(0%);
-            transform: translate(0%);
-    background: #17a2b8;
+}
+
+/*media sizing for single handheld mobile devices of small size*/
+@media (min-width: 320px) and (max-width: 375px) {
+  .col-xs-3 button {
+    font-size: 11px;
+    width: 25vw;
   }
 }
 
@@ -704,4 +742,4 @@ input {
     width: 80%;
   }
 }
-/*# sourceMappingURL=menu.css.map */
+/*# sourceMappingURL=index.css.map */

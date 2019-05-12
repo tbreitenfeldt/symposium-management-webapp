@@ -23,8 +23,7 @@ session_write_close();
         <title>Login for Conference Management System</title>
 
         <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="css/menu/menu.css">
-        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/index.css">
 
         <!--Our custom JS-->
         <script src="js/loginSystemJs/loginAJAX.js"></script>

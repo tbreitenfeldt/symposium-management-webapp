@@ -42,6 +42,7 @@
   overflow-x: hidden !important;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
   overflow-y: overlay;
+  text-align: center;
 }
 
 #leftSidebar.active, 
@@ -181,11 +182,6 @@ button.dropdown-button:not(.collapsed)[aria-expanded="true"]{
   margin-right: 0px;
   font-size: 24px;
   text-align:center;
-}
-
-svg:not(:root).svg-inline--fa {
-  overflow: visible;
-  width: .6em;
 }
 
 .button-fix{

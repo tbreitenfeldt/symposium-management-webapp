@@ -14,9 +14,7 @@ session_write_close();
         <title>Forgot Password</title>
 
         <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="css/login.css">
-        <link rel="stylesheet" href="css/forgotPassword.css">
-        <link rel="stylesheet" href="css/menu/menu.css">
+        <link rel="stylesheet" href="css/index.css">
 
         <!--Our custom JS-->
         <script src="js/loginSystemJs/loginAJAX.js"></script>
@@ -25,9 +23,10 @@ session_write_close();
 
     <body id="my-body">
         <div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
+        <?php require_once "phpIncludes/accesibilityMenuOnly.php";?>
 
-             <!-- content  -->
-             <div id="content">
+        <!-- content  -->
+        <div id="content">
             <div id="content-inside">
                 <form id="userLogonForm" method="POST" action="loginAPI/forgotPasswordFunctions.php" type="json" onSubmit="return submitForm(event)">
                 <legend>Forgot Password Form</legend>
@@ -51,14 +50,7 @@ session_write_close();
         </div>
         <!-- END content  -->
 
-        <?php require_once "phpIncludes/accesibilityMenuOnly.php";?>
         <?php require_once "phpIncludes/footer.php"; ?>
 
-        <!-- jQuery Custom Scroller CDN -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-        <!-- Popper.JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-        <!-- Bootstrap JS -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     </body>
 </html>

@@ -76,10 +76,10 @@ function isMobile(){
 
 function resizeMainMenu(){//change button size same when default page opens
     if(isMobile() && $('#user-menu').children().length != 1){
-        var highest = (getPageWidth()/4) - 5;
-        var arr = new Array('#centerSidebarCollapse','#leftSidebarCollapse', '#rightSidebarCollapse', '#homeButton');
-        var resizeMenu = arr.join(',');
-        $(resizeMenu).css('width', highest);
+        // var highest = (getPageWidth()/4);
+        // var arr = new Array('#centerSidebarCollapse','#leftSidebarCollapse', '#rightSidebarCollapse', '#homeButton');
+        // var resizeMenu = arr.join(',');
+        // $(resizeMenu).css('width', highest);
     }
 }
 

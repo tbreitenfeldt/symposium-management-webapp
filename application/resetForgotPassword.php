@@ -13,9 +13,7 @@ session_write_close();
     <title>Reset Forgot Password</title>
 
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="css/menu.css">
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/index.css">
 
     <!--Our custom JS-->
     <script src="js/loginSystemJs/loginAJAX.js"></script>

@@ -43,6 +43,14 @@
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
   overflow-y: overlay;
   text-align: center;
+  &::-webkit-scrollbar
+  {
+      width: 0px;
+  }
+  &::-webkit-scrollbar-track-piece
+  {
+      background-color: transparent;
+  }
 }
 
 #leftSidebar.active, 

@@ -187,6 +187,14 @@ svg:not(:root).svg-inline--fa {
   text-align: center;
 }
 
+#leftSidebar::-webkit-scrollbar, #rightSidebar::-webkit-scrollbar, #centerSidebar::-webkit-scrollbar {
+  width: 0px;
+}
+
+#leftSidebar::-webkit-scrollbar-track-piece, #rightSidebar::-webkit-scrollbar-track-piece, #centerSidebar::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+}
+
 #leftSidebar.active,
 #rightSidebar.active,
 #centerSidebar.active {

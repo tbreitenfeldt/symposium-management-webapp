@@ -41,7 +41,7 @@ session_write_close();
                     <input type="email" id="user_email" name="user_email" placeholder="Email Address:" required="required" />
                     </div>
                     <input type="submit" id="forgotPasswordButton" value="Submit" />
-                    <a href="./..">Go Back to Login Page</a>
+                    <a href="login.php">Go Back to Login Page</a>
                 </fieldset>
 
                 <div id="outputRegion" aria-live="polite" ></div>

@@ -86,7 +86,7 @@ session_write_close();
           <input type="password" id="confirm_password" name="confirm_password" required="required" />
           <br aria-hidden="true">
           <br aria-hidden="true">
-          <input type="reset" id="resetButton" value="Reset" />
+          <input type="reset" id="resetButton" value="Reset" onclick="return confirm('Are you sure you would like to reset this form?');" />
           <br aria-hidden="true">
           <input type="submit" id="registerButton" value="Register" />
           </fieldset>

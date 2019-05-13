@@ -58,7 +58,7 @@ session_write_close();
               </div>
               <div class="form-group row justify-content-center">
                 <div class="form-check col-sm-10">
-                  <input type="reset" id="resetButton" value="Reset" />
+                  <input type="reset" id="resetButton" value="Reset" onclick="return confirm('Are you sure you would like to reset this form?');" />
                   <input type="submit" id="registerButton" value="Register" class="btn btn-primary btn-lg btn-block"/>
                 </div>
               </div>    

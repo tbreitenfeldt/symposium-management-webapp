@@ -3,6 +3,7 @@
 ----------------------------------------------------- */
 html{
     background: white;
+    width: 100%;
 }
 
 header{
@@ -11,6 +12,7 @@ header{
 }
 
 body {
+    width: 100%;
     font-family: 'Poppins', sans-serif;
     overflow-x:hidden;
     background-image: url($urlBackground);

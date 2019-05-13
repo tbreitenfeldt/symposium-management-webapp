@@ -34,8 +34,8 @@
 
   #user-menu{
     top: 0px;
-    width: -webkit-fill-available;
-    position: fixed;
+    width: 100%;;
+    position: absolute;
     left: 0%;
     transform: translate(0%);
     color:$unintensiveWhite;

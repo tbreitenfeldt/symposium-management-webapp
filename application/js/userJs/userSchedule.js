@@ -160,6 +160,7 @@ function onDelSuccess(event, eventID, tblID){
 	console.log(table);
     $(event.parentElement).children().off();
     table.deleteRow(rowIndex);
+    table.deleteRow(rowIndex);  //delete the row that is associated with this row that holds the event info 
     myTable.splice(eventID);
     console.log("My table length is " +  myTable.length);
     if(myTable.length == 0)

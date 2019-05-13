@@ -1,8 +1,3 @@
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="css/menu/menu.css">
-        
-        
-<div class="overlay"></div> <!-- Used for shadow effect when call upon other menu -->
         <div id="content-inside">
             <form  aria-label="Reset Password Form" id="userLogonForm" method="POST" action="loginAPI/resetPasswordFunctions.php" type="json" onSubmit="return submitForm(event)">
               <div id="outputRegion" aria-live="polite" ></div>
@@ -15,8 +10,8 @@
                 <input type=password id="user_password" name="user_password" />
                 <label for="confirm_password">Confirm New Password:</label>
                 <input type=password id="confirm_password" name="confirm_password" />
-                <input type="submit" id="registerButton" value="Reset Password" />
-                <input type="button" onclick="window.location='<?php echo LOGGEDIN_LANDING_PAGE_NAME; ?>'" id="cancelButton" value="Cancel" />
               </fieldset>
+              <input type="submit" id="registerButton" value="Confirm Password" />
+              <input type="button" onclick="window.location.reload();" id="cancelButton" value="Cancel" />
             </form>
         </div>

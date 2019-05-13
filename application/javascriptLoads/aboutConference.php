@@ -2,7 +2,7 @@
 
 <!--I need to make this all look much nicer and present all the information of the conference.-->
     <div id="innerContent">
-        <h2> <center> Conference Information </center></h2>
+        <h2> Conference Information</h2>
         <div id="details">
 
             <!--<h3> Name: </h3>

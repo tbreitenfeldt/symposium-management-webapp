@@ -51,9 +51,9 @@
   right: 0;
 }
 
-#leftSidebar .leftSidebar-header,
-#rightSidebar .rightSidebar-header,
-#centerSidebar .centerSidebar-header{
+#leftSidebar .sidebar-header,
+#rightSidebar .sidebar-header,
+#centerSidebar .sidebar-header{
     padding: 20px;
     background: $primaryColor;
 }

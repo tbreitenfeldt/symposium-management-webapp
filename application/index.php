@@ -67,7 +67,7 @@
                 <button href="" id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-left"></i> </button>
             </div>
 
-            <div aria-label="" class="rightSidebar-header">
+            <div aria-label="" class="sidebar-header">
                 <h3 id="mySchedulerHeading" class="sidebar-heading" tabindex="-1">My Scheduler</h3>
             </div>
             <button id="conferenceSchedule"class="btn btn-primary btn-lg layout-button" role="button">View Conference Schedule</button>
@@ -85,7 +85,7 @@
                 <button href="" id="closeCenterMenu" class="close-menu" aria-label="Close Accesibility Settings"><i class="arrow-button fas fa-arrow-left"></i> </button>
             </div>
 
-            <div class="centerSidebar-header">
+            <div class="sidebar-header">
                 <h3 tabindex="-1" id="accessibilitySettingsHeading" class="sidebar-heading">Accesibility Settings</h3>
             </div>
 
@@ -135,7 +135,7 @@
                 <button  id="closeLeftMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-left"></i> </button>
             </div>
 
-            <div class="leftSidebar-header">
+            <div class="sidebar-header">
                 <h3 tabindex="-1" id="userSettingsHeading" class="sidebar-heading">User Settings</h3>
             </div>
 

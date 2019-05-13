@@ -74,15 +74,6 @@ function isMobile(){
     return getPageWidth() <= 425;
 }
 
-function resizeMainMenu(){//change button size same when default page opens
-    if(isMobile() && $('#user-menu').children().length != 1){
-        // var highest = (getPageWidth()/4);
-        // var arr = new Array('#centerSidebarCollapse','#leftSidebarCollapse', '#rightSidebarCollapse', '#homeButton');
-        // var resizeMenu = arr.join(',');
-        // $(resizeMenu).css('width', highest);
-    }
-}
-
 function toggleBodySidebar(){
     $("body").toggleClass("no-scroll");
 }
@@ -118,7 +109,7 @@ function setCurrentFontDisplay(){
     if(zoomedIn == ""){
         zoomedIn = 0;
     }
-    $('#current-font-size')[0].innerHTML = "Current Font Size: " + arr[zoomedIn];
+    $('#current-font-size')[0].innerHTML = "Current Font Size: " +currentFontSizeArr[zoomedIn];
 }
 
 function toggleGraystyle(){
@@ -179,9 +170,11 @@ function toggleAriaButtonPress(elementId) {
   }
 
 function changeFontScreen(){
-    changeSize("#innerContent", fontSizeStyle, arr2[zoomedIn]);  
-    changeSize(".checkbox", "width", arr3[zoomedIn]);
-    changeSize(".checkbox", "height", arr3[zoomedIn]);
+    changeSize("#content", fontSizeStyle, fontSizeArr[zoomedIn]); 
+    changeSize("form", fontSizeStyle, fontSizeArr[zoomedIn]);
+    changeSize(".layout-button", fontSizeStyle, fontSizeArr[zoomedIn]);
+    changeSize(":checkbox", "width", checkBoxSizeArr[zoomedIn]);
+    changeSize(":checkbox" , "height", checkBoxSizeArr[zoomedIn]);
 }
 
 //Global Variables for functionality
@@ -203,23 +196,23 @@ var originalMarginTop = $(contentId).css(stylePaddingTop);
 var originalHeaderSize = "1rem";
 var originalTableHeadSize = originalHeaderSize;
 
-var arr = new Array('1x', '2x', '3x');
-var arr2 = new Array('initial', 'x-large', 'xx-large');
-var arr3 = new Array('13px', '20px', '50px');
+var currentFontSizeArr = new Array('1x', '2x', '3x');
+var fontSizeArr = new Array('large', 'x-large', 'xx-large');
+var checkBoxSizeArr = new Array('13px', '20px', '50px');
 
 var maxZoomedIn = 2;
 var minZoomedIn = 0;
 var defaultIn = 0;
 
-if(isMobile()){
-    maxZoomedIn = 1;
-    minZoomedIn = 0;
-}
+// if(isMobile()){
+//     maxZoomedIn = 1;
+//     minZoomedIn = 0;
+// }
 
 var zoomedIn = defaultIn;
 
 
-resizeMainMenu();
+
 var colorSetting = new Array("Default", "Graystyle","Inverse");
 var currentColorSetting = colorSetting[0];
 
@@ -263,7 +256,7 @@ function onloadCook(){
 
 function onFontChange(){
     changeFontScreen();
-    resizeMainMenu(); 
+     
     setCurrentFontDisplay();
 }
 
@@ -321,7 +314,7 @@ function main(){
     window.addEventListener("resize", onresize);
 
     $(window).resize(function(){
-        resizeMainMenu();
+        
     });
 
     $("#homeButton").on("click", function(event) {
@@ -387,7 +380,7 @@ function main(){
         closeMenus();
         $("title").text("Profile Settings");
         $("#innerContent").empty();
-        $("#content").load("javascriptLoads/userSettings.php",             populateCurrentUserSettings);
+        $("#content").load("javascriptLoads/userSettings.php", populateCurrentUserSettings);
         $("#content").focus();
     });
     
@@ -411,13 +404,15 @@ function main(){
         window.open("https://sites.ewu.edu/pwdss/");
     });
 
-    window.addEventListener("resize", onresize);
+    // window.addEventListener("resize", onresize);
+    // $(window).resize(function(){
+    // });
 
-    $(window).resize(function(){
-        resizeMainMenu();
+    $('input').on('focus', function() {
+        document.body.scrollTop = $(this).offset().top;
     });
-    resizeMainMenu();
-
+    
+    
 }
 
 $(document).ready(main);

@@ -2,6 +2,10 @@
 /* ---------------------------------------------------
     CONTENT
 ----------------------------------------------------- */
+html {
+  background: white;
+}
+
 header {
   font-size: 32px;
   font-weight: bold;
@@ -187,9 +191,9 @@ svg:not(:root).svg-inline--fa {
   right: 0;
 }
 
-#leftSidebar .leftSidebar-header,
-#rightSidebar .rightSidebar-header,
-#centerSidebar .centerSidebar-header {
+#leftSidebar .sidebar-header,
+#rightSidebar .sidebar-header,
+#centerSidebar .sidebar-header {
   padding: 20px;
   background: crimson;
 }
@@ -453,12 +457,12 @@ table {
   color: white;
 }
 
-p {
-  color: white;
-}
-
 table {
   font-weight: bold;
+}
+
+table p {
+  color: white;
 }
 
 th {
@@ -492,13 +496,13 @@ th {
 
 tr {
   background: firebrick;
+  border-color: red;
 }
 
 td {
   padding-left: 5px;
   padding-right: 5px;
-  width: 20px;
-  max-width: 20px;
+  min-width: 60px;
 }
 
 #divAdd {
@@ -566,7 +570,7 @@ td {
 /*media sizing for single handheld mobile devices of medium and large size*/
 @media (max-width: 426px) and (min-width: 375px) {
   .col-xs-3 button {
-    font-size: 13px;
+    font-size: 14px;
     width: 25vw;
   }
 }
@@ -574,7 +578,7 @@ td {
 /*media sizing for single handheld mobile devices of small size*/
 @media (min-width: 320px) and (max-width: 375px) {
   .col-xs-3 button {
-    font-size: 11px;
+    font-size: 13px;
     width: 25vw;
   }
 }
@@ -584,6 +588,13 @@ td {
 ----------------------------------------------------- */
 fieldset label {
   width: 100%;
+}
+
+input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
 }
 
 @media (min-width: 451px) {
@@ -642,13 +653,10 @@ fieldset label {
   #inputs .row {
     float: right;
   }
-  p {
-    text-align: center;
-  }
   .w3-check {
     float: right;
   }
-  #userLogonForm {
+  form {
     width: 460px;
     height: 50%;
     background: rgba(255, 255, 255, 0.9);
@@ -661,11 +669,18 @@ fieldset label {
             box-sizing: border-box;
     padding: 30px 50px 10px 50px;
     text-align: center;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  form p {
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
 @media (max-width: 450px) {
-  #userLogonForm {
+  form {
     height: 50%;
     width: auto;
     background: #fffe;
@@ -683,7 +698,7 @@ fieldset label {
     margin-top: 20px;
     margin-bottom: 10px;
   }
-  #user_password, #user_name, #user_email {
+  fieldset input {
     width: 80%;
   }
   #centerSidebar {

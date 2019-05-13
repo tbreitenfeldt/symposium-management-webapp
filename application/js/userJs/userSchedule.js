@@ -161,7 +161,7 @@ function onDelSuccess(event, eventID, tblID){
     $(event.parentElement).children().off();
     table.deleteRow(rowIndex);
     myTable.splice(eventID);
-
+    console.log("My table length is " +  myTable.length);
     if(myTable.length == 0)
     {
         $("<tr><td>No Events Here</td></tr>").appendTo("#" + tblID);

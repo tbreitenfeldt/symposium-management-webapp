@@ -180,7 +180,7 @@ function delRecord(tablename, idname, idvalue, callback){
 	if(proxyflag == true){
 		urlPath = pathToMainDirectory + "proxies/deleteProxy.php";
 	}
-	$.delete(urlPath,map,callback);
+	$.delete(urlPath,map,callback).fail(function(e) {document.write(e.responseText);});
 }
 
 /*

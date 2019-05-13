@@ -44,7 +44,7 @@ function initializeConferenceForm() {
 
     controls += "<legend>Conference Form</legend>";
 
-    controls += createTextbox("Conference Name", "inputConferenceName", className, "conference_name", "");
+    controls += createTextbox("Conference Name", "inputConferenceName", className, "conference_name", "", true);
     controls += createTextarea("Conference Description", "inputConferenceDescription", className, "conference_desc", "");
     controls += createTextbox("Start Date", "inputConferenceStartDate", className, "conference_startdate", "");
     controls += createTextbox("End Date", "inputConferenceEndDate", className, "conference_enddate", "");

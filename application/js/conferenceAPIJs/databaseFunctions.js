@@ -168,7 +168,7 @@ function getRecord(valuesToSelect, tableNames, attrs, values, callback, type, fo
 
 	The above will delete all records from the "user_schedule" table where the user_id == 1, event_id == 20 and conference_id == 1. The result will be used by console.log.
 */
-function delRecord(tablename, idname, idvalue, callback){
+function delRecord(tablename, idname, idvalue, callback, proxyflag){
 	tablename = surround(tablename, "`");
 	formatStringArray(idname, "`");
 	map = {
@@ -222,7 +222,7 @@ function delRecord(tablename, idname, idvalue, callback){
 
 	The above will post a new record to the user_schedule table. The result is logged and input is formatted.
 */
-function postRecord(tablename, attrs, values, callback, formatFlag){
+function postRecord(tablename, attrs, values, callback, formatFlag, proxyflag){
 	if(formatFlag == "true"){
 		tablename = surround(tablename, "`");
 		formatStringArray(attrs, "`");
@@ -284,7 +284,7 @@ function postRecord(tablename, attrs, values, callback, formatFlag){
 	The above will, in the user_schedule table, update the "event_id" column to 40 where the user_id == 1. The result will be logged and input will be formatted.
 
 */
-function putRecord(tablename, attrs, values, idname, idvalue, callback, formatFlag){
+function putRecord(tablename, attrs, values, idname, idvalue, callback, formatFlag, proxyflag){
 	if(formatFlag == "true"){
 		tablename = surround(tablename, "`");
 		formatStringArray(attrs, "`");

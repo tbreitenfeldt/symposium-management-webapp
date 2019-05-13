@@ -10,7 +10,7 @@ session_write_close();
 
 <head>
   <?php require_once "../phpIncludes/adminHeader.php"; ?>
-    <title>Register for Conference Management System</title>
+    <title>Admin Registration for Conference Management System</title>
 
     <link rel="stylesheet" href="../css/menu.css">
     <link rel="stylesheet" href="../css/login.css">
@@ -28,7 +28,7 @@ session_write_close();
         <div id="content-inside">  
         <form id="userLogonForm" method="POST" action="../loginAPI/registerFunctions.php" type="json" class="form-horizontal" onSubmit="return submitForm(event)">
           <fieldset>
-            <h1>Administrator<br aria-hidden="true">Registration Form</h1>
+            <h2>Administrator <br aria-hidden="true">Registration Form</h2>
             <p id="usernameDescription">Your username must be between 3 and 30 characters,<br aria-hidden="true">start with a letter, <br aria-hidden="true">and may contain only <br aria-hidden="true">letters, numbers, dashes, and periods.</p>
             <div id="fieldClass">
               <div class="form-group row">

@@ -450,8 +450,8 @@ function populateFormData(controlsClassName, data) {
 function setupConferenceFormForInserting(event) {
     clearAllRegions();
     insertHeading2("Create Conference", "headingRegion1");
-    $("#confrenceForm").trigger("reset");
     $("#conferenceFormRegion").show();
+    $("#conferenceForm").trigger("reset");
     $("#inputConferenceSubmitButton").off();
     $("#inputConferenceSubmitButton").click(insertConference);
 }//end function
@@ -473,10 +473,9 @@ function setupConferenceFormForUpdating(event, data) {
 
     clearAllRegions();
     insertHeading2("Update Conference", "headingRegion1");
+    $("#conferenceFormRegion").show();
     $("#conferenceForm").trigger("reset");
     populateFormData("conferenceControls", conference);
-
-    $("#conferenceFormRegion").show();
     $("#inputConferenceSubmitButton").off();
     $("#inputConferenceSubmitButton").click(function(event) {updateConferenceInformation(event, conferenceID);} );
 }//end function
@@ -635,8 +634,8 @@ function deleteConferenceAndEvents(data) {
 function setupEventFormForInserting(event, conferenceID, conferenceName) {
     clearAllRegions();
     insertHeading2("Create Event", "headingRegion1");
-    $("#eventForm").trigger("reset");
     $("#eventFormRegion").show();
+    $("#eventForm").trigger("reset");
     $("#inputEventSubmitButton").off();
     $("#inputEventSubmitButton").click(function(event) {insertConferenceEvent(event, conferenceID, conferenceName);} );
 }//end function
@@ -667,10 +666,9 @@ function setupEventFormForUpdating(event, conferenceEvents, conferenceName) {
     if (eventToEdit != null) {
         clearAllRegions();
         insertHeading2("Update Event", "headingRegion1");
+        $("#eventFormRegion").show();
         $("#eventForm").trigger("reset");
         populateFormData("eventControls", eventToEdit);
-
-        $("#eventFormRegion").show();
         $("#inputEventSubmitButton").off();
         $("#inputEventSubmitButton").click(function(event) {updateConferenceEvent(event, conferenceEventID, conferenceName);} );
     } else {

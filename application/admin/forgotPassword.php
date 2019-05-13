@@ -31,6 +31,7 @@ session_write_close();
         <input type="email" id="admin_email" name="admin_email" placeholder="Email Address:" required="required" />
       </div>
       <input type="submit" id="forgotPasswordButton" value="Submit" />
+      <a href="login.php">Go Back to Login Page</a>
     </fieldset>
 
     <div id="outputRegion" aria-live="polite" ></div>
@@ -41,5 +42,3 @@ session_write_close();
   <?php require_once "../phpIncludes/footer.php"; ?>
 </body>
 </html>
-
-<!-- 5Tkikc2y!!! -->

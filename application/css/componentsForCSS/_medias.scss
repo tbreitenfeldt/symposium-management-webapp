@@ -54,10 +54,10 @@
 }
 
 /*media sizing for single handheld mobile devices of small size*/
-@media (min-width: 320px) and (max-width: 375px){
+@media (min-width: 310px) and (max-width: 375px){
   .col-xs-3{
       button{
-        font-size: 13px;
+        font-size: 11px;
         width: 25vw;
       }
   }

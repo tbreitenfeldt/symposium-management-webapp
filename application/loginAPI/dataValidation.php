@@ -69,8 +69,8 @@ function validatePhone(&$phone) {
     if($_POST["user_notifyByPhone"] == 1){
         $numbersOnly = preg_replace("/[^0-9]/", "", $phone);
         $numberOfDigits = strlen($numbersOnly);
-        if (!($numberOfDigits == 7 || $numberOfDigits == 10)) {
-            throw new InvalidArgumentException("Invalid Phone Number format.");
+        if ($numberOfDigits != 10) {
+            throw new InvalidArgumentException("Invalid Phone Number, must be exactly 10 digits.");
         } 
         $phone = $numbersOnly; 
     } else {

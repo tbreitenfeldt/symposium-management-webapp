@@ -1,6 +1,5 @@
-<?php ?>
 
-<div id="innerContent">
+<div id="innerContent" role="main">
     <div id="schedule-table">
             <h1>My Schedule</h1>
                 <div id="UserConference">

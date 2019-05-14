@@ -369,11 +369,9 @@ function main(){
     });
 
     $("#registerForDifferentConferenceButton").on("click", function(event) {
-        closeMenus();
-        $("title").text("Register for Conference");
-        $("#innerContent").empty();
-        updateConferenceRegistration(event);
-        $("#conferenceRegistrationHeading").focus();
+        let method = "put";
+        let pageTitle = "Register for Conference";
+        loadConferenceChooser(method, pageTitle);
     });
 
     $("#changeUserSettingsButton").on("click", function(event) {

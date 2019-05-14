@@ -1,6 +1,5 @@
-<?php ?>
 <!-- Inner Content Div -->
-<div id="innerContent">    
+<div id="innerContent" role="main">
     <div id="conference-table">
         <h2 id="conferenceNameHeader">Conference Schedule</h2>
         <div id="MainConference">

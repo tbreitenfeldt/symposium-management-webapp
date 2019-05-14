@@ -154,14 +154,7 @@
 
         <!-- content  -->
         <div id="content" tabindex="-1">
-            <div id="innerContent">
-            <div id="conferenceChooser" role="main" hidden="true">
-                    <h2 id="conferenceRegistrationHeading">Conference Registration</h2>    
-                    <label for="conferenceChooser">Select a conference to register for</label>
-                    <select id="conferenceChooserListbox"></select>
-                    <input type="button" id ="conferenceRegisterButton" value="Register for Conference" />
-                </div>
-            </div>
+            <div id="innerContent"></div>
         </div>
         <!-- END content  -->
 

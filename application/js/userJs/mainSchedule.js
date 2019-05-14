@@ -30,21 +30,21 @@ function getUserConference()
 function determineIfUserIsRegistered(data)
 {
 	if (data == null || data.length == 0) {
-		$("#conferenceRegisterButton").click(function(event) {registerUserForConference(event, "post");} );
-		$("#conferenceChooser").removeAttr("hidden");
-		$("#rightSidebarCollapse").attr("disabled", "true");
-		$("#registerForDifferentConferenceButton").attr("disabled", "true");
-		getConferenceData();
+		let method = "post";
+		let pageTitle = "Conference Registration";
+		loadConferenceChooser(method, pageTitle);
 	} else if (data.length == 1) {
-		$("#rightSidebarCollapse").attr("data-conferenceId", data[0]["conference_id"]);
-		$("#conferenceRegisterButton").click(function(event) {registerUserForConference(event, "put");} );
 		
-		currentConferenceChosen = data[0]["conference_id"];
+		let currentConferenceChosen = data[0]["conference_id"];
+		$("#rightSidebarCollapse").attr("data-conferenceId", currentConferenceChosen);
+
 		closeMenus();
 		$("#innerContent").empty();
-		$("#content").load("javascriptLoads/aboutConference.php");
-		$("#innerContent").focus();
-		getCurrentConferenceData(currentConferenceChosen, showConferenceDetails);
+
+		$("#content").load("javascriptLoads/aboutConference.php", function() {
+			$("#innerContent").focus();
+			getCurrentConferenceData(currentConferenceChosen, showConferenceDetails);
+		});
 	} else {
 		document.write("There is an error trying to process your request, please contact an administrator.");
 	}
@@ -56,15 +56,20 @@ function getCurrentConferenceData(id, callback){
 	} else {
 		callback(currentConferenceData);
 	}
-
 }
 
-function updateConferenceRegistration(event)
-{
-	$("#conferenceChooser").removeAttr("hidden");
-	$("#rightSidebarCollapse").attr("disabled", "true");
-	$("#registerForDifferentConferenceButton").attr("disabled", "true");
-	getConferenceData();
+function loadConferenceChooser(method, pageTitle) {
+	closeMenus();
+	$("#innerContent").empty();
+	$("title").text(pageTitle);
+
+	$("#content").load("javascriptLoads/conferenceChooser.php", function() {
+		$("#conferenceRegisterButton").click(function(event) {registerUserForConference(event, method);} );
+		$("#innerContent").focus();
+		$("#rightSidebarCollapse").attr("disabled", "true");
+		$("#registerForDifferentConferenceButton").attr("disabled", "true");
+		getConferenceData();
+	});
 }
 
 function getConferenceData()

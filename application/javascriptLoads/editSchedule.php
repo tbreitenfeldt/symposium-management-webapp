@@ -1,5 +1,4 @@
-<?php ?>
-    <div id="innerContent">            
+    <div id="innerContent" role="main">
     <h2>Conference Schedule</h2>
     <h2 style="display:none" id="conferenceNameHeader"></h2>
         <button id="showConferenceSchedule" onclick="onShowHiddenElementWithAria('conference-table', 'Conference Schedule')">Show/Hide Conference Schedule</button>

@@ -1,4 +1,4 @@
-        <div id="content-inside">
+        <div id="innerContent" role="main">
             <form  aria-label="Reset Password Form" id="userLogonForm" method="POST" action="loginAPI/resetPasswordFunctions.php" type="json" onSubmit="return submitForm(event)">
               <div id="outputRegion" aria-live="polite" ></div>
               <h2 id="resetPasswordHeading" tabindex="-1">Reset Password</h2>

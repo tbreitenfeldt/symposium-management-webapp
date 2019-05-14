@@ -264,14 +264,14 @@ function showConferenceDetails(data)
 		if (conference.email != "" || conference.phone != "") {
 			conferenceDetails += "<h3>Contact Information</h3>";
 			conferenceDetails += "<p>";
-			
+
 			if (conference.email != "") {
 				conferenceDetails += "<a href=\"mailto:" + conference.email + "\">" + conference.email + "</a>";
 			}
 			if (conference.phone != "") {
-			conferenceDetails += "<br>&nbsp;&nbsp;&nbsp;&nbsp" + conference.phone;
+			conferenceDetails += "</br>" + conference.phone;
 			}
-			
+
 			conferenceDetails += "</p>";
 		}
 

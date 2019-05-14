@@ -227,29 +227,53 @@ function showConferenceDetails(data)
 	let conference = 
 		{
 			name: data[0].conference_name,
+			conferenceDescription: data[0].conference_desc,
 			startDate: parseDate(data[0].conference_startdate),
 			endDate: parseDate(data[0].conference_enddate),
-			detail: data[0].conference_facilitydesc,
+			venueDescription: data[0].conference_facilitydesc,
 			email: data[0].conference_contactemail,
 			phone: data[0].conference_contactphone,
-			street: data[0].conference_street,
-			city: data[0].conference_city,
-			state: data[0].conference_state,
-			zip: data[0].conference_postalcode,
+			address: data[0].conference_street + " " + data[0].conference_city + ", " + data[0].conference_state + " " + data[0].conference_postalcode,
 			venue: data[0].conference_venue,
 			amenities: data[0].conference_amenities,
 			wheelchair: data[0].conference_wheelchair
 		};
 
 		$("#conferenceInformationHeader").html(conference.name + " Information");
-		$("#dates").html(conference.startDate + " to " + conference.endDate +"<br>");
-		$("#location").html("Venue: " + conference.venue + "</br>" + conference.street + " " + conference.city + " " + conference.state + " " + conference.zip);
-		$("#description").html(conference.detail);
-		$("#amenities").html(conference.amenities);
-		if(conference.wheelchair == 1){
-			$("#wheelchair").html("This event is wheelchair accessible");
-		} else {
-			$("#wheelchair").html("This event is not wheelchair accessible");
+		let conferenceDetails = "";
+
+		if (conference.conferenceDescription != "") {
+			conferenceDetails += "<p>" + conference.conferenceDescription + "</br></p>";
 		}
-		$("#contact").html("Email: " + conference.email + "<br>&nbsp&nbsp&nbsp&nbspPhone: " + conference.phone + "");
+
+		conferenceDetails += "<h3>Dates</h3>";
+		conferenceDetails += "<p>" + conference.startDate + " to " + conference.endDate +"</br></p>";
+
+		conferenceDetails += "<h3>Venue</h3>";
+		conferenceDetails += "<p>Venue: " + conference.venue + "</br>" + conference.address + "</p>";
+
+		if (conference.venueDescription != "") {
+			conferenceDetails += "<p>" + conference.venueDescription + "</p>";
+		}
+
+		if (conference.amenities != "") {
+			conferenceDetails += "<h3>Amenities</h3>";
+			conferenceDetails += "<p>" + conference.amenities + "</p>";
+		}
+
+		if (conference.email != "" || conference.phone != "") {
+			conferenceDetails += "<h3>Contact Information</h3>";
+			conferenceDetails += "<p>";
+			
+			if (conference.email != "") {
+				conferenceDetails += "<a href=\"mailto:" + conference.email + "\">" + conference.email + "</a>";
+			}
+			if (conference.phone != "") {
+			conferenceDetails += "<br>&nbsp;&nbsp;&nbsp;&nbsp" + conference.phone;
+			}
+			
+			conferenceDetails += "</p>";
+		}
+
+	$("#details").html(conferenceDetails);
 }

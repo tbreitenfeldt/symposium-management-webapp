@@ -46,9 +46,9 @@ function initializeConferenceForm() {
 
     controls += createTextbox("Conference Name", "inputConferenceName", className, "conference_name", "", true);
     controls += createTextarea("Conference Description", "inputConferenceDescription", className, "conference_desc", "");
-    controls += createTextbox("Start Date", "inputConferenceStartDate", className, "conference_startdate", "");
-    controls += createTextbox("End Date", "inputConferenceEndDate", className, "conference_enddate", "");
-    controls += createTextbox("Venue Name", "inputConferenceVenue", className, "conference_venue", "");
+    controls += createTextbox("Start Date", "inputConferenceStartDate", className, "conference_startdate", "", true);
+    controls += createTextbox("End Date", "inputConferenceEndDate", className, "conference_enddate", "", true);
+    controls += createTextbox("Venue Name", "inputConferenceVenue", className, "conference_venue", "", true);
     controls += createTextbox("Street Address", "inputConferenceAddress", className, "conference_street", "");
     controls += createTextbox("Zip Code", "inputConferenceZipCode", className, "conference_postalcode", "");
     controls += createTextbox("City", "inputConferenceCity", className, "conference_city", "");

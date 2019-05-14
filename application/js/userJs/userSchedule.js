@@ -47,16 +47,11 @@ function showSchedule(conferenceID, data)
 		myTable = new Array();
         for(i = 0; i < data.length; i++)
         {
-            var event = 
-            {
-                info: String(data[i].event_desc),
-                speakers: String(data[i].event_speakers),
-                room: String(data[i].event_building + " " + data[i].event_floor + " " + data[i].event_room)
-            };
-        
-			var id = data[i].event_id;
+            var id = data[i].event_id;
 		    var message = String("Removed " + name) + " from mySchedule";
 
+
+			
 			if(!myTable.includes(id))
 		    {
 				myTable.push(id);
@@ -79,12 +74,8 @@ function generateUserEventTable(data, tblBodyID, tblID){
 		myTable = new Array();
         for(i = 0; i < data.length; i++)
         {
-            var event = 
-            {
-                info: String(data[i].event_desc),
-                speakers: String(data[i].event_speakers),
-                room: String(data[i].event_building + " " + data[i].event_floor + " " + data[i].event_room)
-            };
+			
+			var eventInfoRow = generateEventDescription(data, i);
 			
 			var date = parseDate(data[i].event_date);
 			var starttime = parseTime(data[i].event_starttime);
@@ -99,7 +90,7 @@ function generateUserEventTable(data, tblBodyID, tblID){
 				myTable.push(id);
 				$("<tr><td>" + data[i].event_name +  "</td><td>" + date + "</td><td>" + starttime + "</td><td>" + et + "</td><td><button id='openCloseButton" + i + "' onclick='onShowHiddenRowWithAria(eventInfoRow" + i + ", \"" + data[i].event_name + "\")' class='dropbtn'>More/Less Info</button></td>"
 				+ "<td><button class=\"delBtn\" onclick=\"onDel(this," + data[i].event_id + "," + "\'" + message + "\'" + ", " + tblID + ")\" aria-label=\"Delete from my Schedule\"><i class=\"fas fa-times-circle fa-w-16 fa-3x\"></i></button></td></tr>"
-				+ "<tr  id='eventInfoRow" + i + "' style='display:none' ><td colspan=6><p id='dropdown" + i +"'>Information: " + event.info + "<br>Speakers: " + event.speakers + "<br>Building, Floor, Room: " + event.room + "</p></td></tr>").appendTo("#" + tblID);
+				+ eventInfoRow).appendTo("#" + tblID);
 			}
 		}
     }

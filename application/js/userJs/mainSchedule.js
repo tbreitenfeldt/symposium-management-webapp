@@ -169,27 +169,51 @@ function gotEventData(data)
       var conferenceID = data[0].conference_id;
       for( i = 0; i < data.length; i++)
       {
-		  
-			  var event = 
-				{
-					info: String(data[i].event_desc),
-					speakers: String(data[i].event_speakers),
-					room: String(data[i].event_building + " " + data[i].event_floor + " " + data[i].event_room)
-				};
 				var eventID = data[i].event_id;
 				var name = String(data[i].event_name);
 				var message = String("Added " + name + " to my schedule");
 				var date = parseDate(data[i].event_date);
 				var starttime = parseTime(data[i].event_starttime);
 				var endtime = parseTime(data[i].event_endtime);
+				
+				var eventInfoRow = generateEventDescription(data, i);
+				
         $("<tr><td class=\"eventName\">" + data[i].event_name  + "</td><td>" + date + "</td><td>" + starttime + "</td><td>" + endtime  + 
 						"</td><td><button id='openCloseButton" + i + "' onclick='onShowHiddenRowWithAria(eventInfoRow" + i + ", \"" + data[i].event_name + "\")' class='dropbtn'>More/Less Info</button></td>" + 
 						"</td><td><button type=\"Button\" class='addBtn' " +
 						"onclick=\"onAddClick(" + eventID + "," + conferenceID + "," +  "\'" + message +  "\'"  + ")\" aria-label=\"Add to my Schedule\"> <i class=\"fas fa-plus-circle fa-w-16 fa-3x\"></i> </button></td></tr>" +
-						"<tr  id='eventInfoRow" + i + "' style='display:none' ><td colspan=6><p id='dropdown" + i +"'>Information: " + event.info + "<br>Speakers: " + event.speakers + "<br>Building, Floor, Room: " + event.room + "</p></td></tr>"
+						eventInfoRow
 						).appendTo("#Conference tbody");
       }
     }
+}
+
+/*
+	This function is used in gotEvent(data) and generateUserSchedule(data) in userSchedule.js.
+	The purpose of this function is to generate the hidden row in the user schedule table and the conference schedule table.
+*/
+function generateEventDescription(data, i){
+	  var event = 
+	{
+		info: String(data[i].event_desc),
+		speakers: String(data[i].event_speakers),
+		room: String(data[i].event_room),
+		building: String(data[i].event_building),
+		floor: String(data[i].event_floor)
+	};
+	
+	
+	var row = "<tr  id='eventInfoRow" + i + "' style='display:none' ><td colspan=6><p id='dropdown" + i +"'>";
+	
+	if(event.info != "") row += "Information: " + event.info + "<br>";
+	if(event.speakers != "") row += "Speakers: " + event.speakers + "<br>";
+	if(event.building != "") row += "Building: " + event.building + "<br>";
+	if(event.floor != "") row += "Floor: " + event.floor + "<br>";
+	if(event.room != "") row += "Room: " + event.room + "<br>";
+	
+	row += "</p></td></tr>";
+	
+	return row;
 }
 
 function onAddClick(eventID, conferenceID, message)

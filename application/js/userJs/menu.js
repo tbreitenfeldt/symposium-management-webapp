@@ -386,7 +386,7 @@ function main(){
         closeMenus();
         $("#innerContent").empty();
         $("#content").load("javascriptLoads/conferenceSchedule.php");
-        getConferenceInfoAndSchedule();
+        getConferenceSchedule();
         $("#innerContent").focus();
     });
 

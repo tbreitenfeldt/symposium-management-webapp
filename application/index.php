@@ -154,7 +154,6 @@
 
         <!-- content  -->
         <div id="content" tabindex="-1">
-            <div id="innerContent"></div>
         </div>
         <!-- END content  -->
 

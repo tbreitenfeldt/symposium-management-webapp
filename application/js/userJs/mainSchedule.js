@@ -35,7 +35,7 @@ function determineIfUserIsRegistered(data)
 		loadConferenceChooser(method, pageTitle);
 	} else if (data.length == 1) {
 		
-		let currentConferenceChosen = data[0]["conference_id"];
+		currentConferenceChosen = data[0]["conference_id"];
 		$("#rightSidebarCollapse").attr("data-conferenceId", currentConferenceChosen);
 
 		closeMenus();
@@ -211,13 +211,19 @@ function successPost(conferenceID)
     startUserTable(conferenceID,-1);
 }
 
-function getConferenceInfoAndSchedule(){
-	let map = {"table_names": ["user_conference","conference", "event"], "values_to_select": ["*"], "attrs": ["conference_id"], "values": [currentConferenceChosen], "genFlag": "flag", "orderBy": ["event_date", "event_starttime"]};
-	$.get("proxies/getProxy.php",map,gotConferenceInfoAndSchedule, "json");
+function getConferenceSchedule(){
+	let map = {
+        table_names: ["user_conference","conference", "event"],
+        values_to_select: ["*"],
+        attrs: ["conference_id"],
+        values: [currentConferenceChosen],
+        genFlag: "flag",
+        orderBy: ["event_date", "event_starttime"]
+    };
+	$.get("proxies/getProxy.php",map,gotConferenceSchedule, "json");
 }
 
-function gotConferenceInfoAndSchedule(data){
-	showConferenceDetails(data);
+function gotConferenceSchedule(data){
 	gotEventData(data);
 }
 

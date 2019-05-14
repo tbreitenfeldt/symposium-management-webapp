@@ -91,7 +91,7 @@ function initializeEventForm() {
 
     controls += "<legend>Event Form</legend>";
 
-    controls += createTextbox("Event Name", "inputEventName", className, "event_name", "");
+    controls += createTextbox("Event Name", "inputEventName", className, "event_name", "", true);
     controls += createTextbox("Start Time", "inputEventStartTime", className, "event_starttime", "");
     controls += createTextbox("End Time", "inputEventEndTime", className, "event_endtime", "");
     controls += createTextbox("Room", "inputEventRoom", className, "event_room", "");
@@ -452,8 +452,8 @@ function setupConferenceFormForInserting(event) {
     insertHeading2("Create Conference", "headingRegion1");
     $("#conferenceFormRegion").show();
     $("#conferenceForm").trigger("reset");
-    $("#inputConferenceSubmitButton").off();
-    $("#inputConferenceSubmitButton").click(insertConference);
+    $("#conferenceForm").off();
+    $("#conferenceForm").submit(insertConference);
 }//end function
 
 
@@ -476,8 +476,8 @@ function setupConferenceFormForUpdating(event, data) {
     $("#conferenceFormRegion").show();
     $("#conferenceForm").trigger("reset");
     populateFormData("conferenceControls", conference);
-    $("#inputConferenceSubmitButton").off();
-    $("#inputConferenceSubmitButton").click(function(event) {updateConferenceInformation(event, conferenceID);} );
+    $("#conferenceForm").off();
+    $("#conferenceForm").submit(function(event) {updateConferenceInformation(event, conferenceID);} );
 }//end function
 
 
@@ -636,8 +636,8 @@ function setupEventFormForInserting(event, conferenceID, conferenceName) {
     insertHeading2("Create Event", "headingRegion1");
     $("#eventFormRegion").show();
     $("#eventForm").trigger("reset");
-    $("#inputEventSubmitButton").off();
-    $("#inputEventSubmitButton").click(function(event) {insertConferenceEvent(event, conferenceID, conferenceName);} );
+    $("#eventForm").off();
+    $("#eventForm").submit(function(event) {insertConferenceEvent(event, conferenceID, conferenceName);} );
 }//end function
 
 
@@ -669,8 +669,8 @@ function setupEventFormForUpdating(event, conferenceEvents, conferenceName) {
         $("#eventFormRegion").show();
         $("#eventForm").trigger("reset");
         populateFormData("eventControls", eventToEdit);
-        $("#inputEventSubmitButton").off();
-        $("#inputEventSubmitButton").click(function(event) {updateConferenceEvent(event, conferenceEventID, conferenceName);} );
+        $("#eventForm").off();
+        $("#eventForm").submit(function(event) {updateConferenceEvent(event, conferenceEventID, conferenceName);} );
     } else {
         alert("There was a problem trying to get your event data, please try refreshing your page, or contacting your database administrator.");
     }//end else

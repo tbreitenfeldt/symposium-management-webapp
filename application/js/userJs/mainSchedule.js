@@ -239,11 +239,9 @@ function showConferenceDetails(data)
 			venue: data[0].conference_venue,
 			amenities: data[0].conference_amenities,
 			wheelchair: data[0].conference_wheelchair
-
 		};
 
-		$("h2").html(conference.name + " Information");
-		$("#name").html(conference.name);
+		$("#conferenceInformationHeader").html(conference.name + " Information");
 		$("#dates").html(conference.startDate + " to " + conference.endDate +"<br>");
 		$("#location").html("Venue: " + conference.venue + "</br>" + conference.street + " " + conference.city + " " + conference.state + " " + conference.zip);
 		$("#description").html(conference.detail);

@@ -92,7 +92,7 @@ if (isset($_PUT["table_name"])) {
 		
 		$result = $pdoUtil->query($sql,$values);
 		http_response_code(201);
-		echo json_encode("Update Succesful");
+		echo json_encode("success");
 	} catch (Exception $e) {
 		error_log($e->getMessage());
 		exit('Error processing');

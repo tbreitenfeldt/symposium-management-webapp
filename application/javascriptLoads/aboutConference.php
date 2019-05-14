@@ -2,11 +2,9 @@
 
 <!--I need to make this all look much nicer and present all the information of the conference.-->
     <div id="innerContent">
-        <h2> Conference Information</h2>
+        <h2 id="conferenceInformationHeader"></h2>
         <div id="details">
 
-            <!--<h3> Name: </h3>
-            <p id="name"></p>-->
             <h3> Dates: </h3>
             <p id="dates"></p>
             <h3> Location: </h3>

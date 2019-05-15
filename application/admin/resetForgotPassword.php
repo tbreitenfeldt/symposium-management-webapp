@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] != "GET" || !isset($_GET["token"]) || !isset($_GE
 
 <head>
   <?php require_once "../phpIncludes/adminHeader.php"; ?>
-  <title>Reset Forgot Password</title>
+  <title>Reset Forgot Password for Conference Management System</title>
 
   <link rel="stylesheet" href="../css/home.css">
   <link rel="stylesheet" href="../css/login.css">

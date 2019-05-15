@@ -6,10 +6,10 @@
                     509.359.6200
                 <br aria-hidden="true">
                 <em>EWU expands opportunities for personal transformation through excellence in learning.</em>
-                <br aria-hidden="true">
+                <br />
                 <em>Need to report a bug? Want to give us feedback?</em>
                 <br aria-hidden="true">
-                <a href="mailto:ewudisabilitysymposiumtechhelp@gmail.com">Contact Us</a>
+                <a href="mailto:ewudisabilitysymposiumtechhelp@gmail.com">Contact Us at ewudisabilitysymposiumtechhelp@gmail.com</a>
             </div>
         </div>
         <!-- END Footer -->

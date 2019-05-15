@@ -113,6 +113,8 @@ a:focus {
           transform: translate(-50%);
   color: #fff;
   background: #17a2b8;
+  outline: black solid 3px;
+  margin-top: 3px;
 }
 
 .col-lg-12 {
@@ -371,6 +373,8 @@ button.dropdown-button:not(.collapsed)[aria-expanded="true"] {
           transform: translate(-50%);
   color: #fff;
   background: #17a2b8;
+  outline: black solid 3px;
+  margin-top: 3px;
 }
 
 .col-lg-12 {

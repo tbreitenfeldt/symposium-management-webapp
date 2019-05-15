@@ -1,5 +1,5 @@
 
-<div id="innerContent" role="main">
+<div id="innerContent" role="main" tabindex="-1">
     <div id="schedule-table">
             <h1>My Schedule</h1>
                 <div id="UserConference">

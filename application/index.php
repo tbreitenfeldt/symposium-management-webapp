@@ -73,8 +73,7 @@
             <button id="conferenceSchedule"class="btn btn-primary btn-lg layout-button" role="button">View Conference Schedule</button>
             <button id="mySchedule" class="btn btn-primary btn-lg layout-button" role="button">View My Schedule</button>
             <button id="editMySchedule" class="btn btn-primary btn-lg layout-button" role="button">Edit My Schedule</button>
-            <button  id="aboutCon" class="btn btn-primary btn-lg layout-button" role="button">About Conference</button>
-            <button id="websiteLink" type="button"  class="btn btn-primary btn-lg layout-button" role="link">View Website</button>
+            <button id="websiteLink" type="button"  class="btn btn-primary btn-lg layout-button">View Website</button>
         </div>
         <!-- END rightSideBar -->
 
@@ -153,7 +152,7 @@
 
 
         <!-- content  -->
-        <div id="content" tabindex="-1">
+        <div id="content">
         </div>
         <!-- END content  -->
 

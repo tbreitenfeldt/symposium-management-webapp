@@ -339,16 +339,6 @@ function main(){
     $('#color-scheme-default').on('click',  turnOnColorDefault);
     $('#color-scheme-invert').on('click',  turnOnInverseStyle);
 
-
-    //MyScheduler Click Event(s)
-    $('#aboutCon').on("click", function(){
-        closeMenus();
-        $("#innerContent").empty();
-        $("#content").load("javascriptLoads/aboutConference.php");
-        getConferenceInformation();
-        $("#innerContent").focus();
-    });
-
     $("#editMySchedule").on("click", function(){
         closeMenus();
         $("title").text("Edit Personal Schedule");
@@ -360,7 +350,7 @@ function main(){
 
     $('#mySchedule').on("click", function(){
         closeMenus();
-        $("title").text("My Scheduler");
+        $("title").text("My Schedule");
         $("#innerContent").empty();
         $("#content").load("javascriptLoads/showSchedule.php");
         let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
@@ -368,9 +358,20 @@ function main(){
         $("#innerContent").focus();
     });
 
+    $('#conferenceSchedule').on("click", function(){
+        closeMenus();
+        $("#innerContent").empty();
+        $("title").text("Conference Schedule");
+
+        $("#content").load("javascriptLoads/conferenceSchedule.php", function() {
+            getConferenceSchedule();
+            $("#innerContent").focus();
+        });
+    });
+
     $("#registerForDifferentConferenceButton").on("click", function(event) {
         let method = "put";
-        let pageTitle = "Register for Conference";
+        let pageTitle = "Conference Registration";
         loadConferenceChooser(method, pageTitle);
     });
 
@@ -378,24 +379,20 @@ function main(){
         closeMenus();
         $("title").text("Profile Settings");
         $("#innerContent").empty();
-        $("#content").load("javascriptLoads/userSettings.php", populateCurrentUserSettings);
-        $("#content").focus();
-    });
-    
-    $('#conferenceSchedule').on("click", function(){
-        closeMenus();
-        $("#innerContent").empty();
-        $("#content").load("javascriptLoads/conferenceSchedule.php");
-        getConferenceSchedule();
-        $("#innerContent").focus();
+        $("#content").load("javascriptLoads/userSettings.php", function() {
+            populateCurrentUserSettings();
+            $("#innerContent").focus();
+        });
     });
 
     $("#resetPasswordButton").on("click", function(event) {
         closeMenus();
         $("title").text("Reset Password");
         $("#innerContent").empty();
-        $("#content").load("javascriptLoads/resetPassword.php");
-        $("#resetPasswordHeading").focus();
+
+        $("#content").load("javascriptLoads/resetPassword.php", function() {
+            $("#resetPasswordHeading").focus();
+        });
     });
 
     $("#websiteLink").on("click", function() {
@@ -409,7 +406,6 @@ function main(){
     $('input').on('focus', function() {
         document.body.scrollTop = $(this).offset().top;
     });
-    
     
 }
 

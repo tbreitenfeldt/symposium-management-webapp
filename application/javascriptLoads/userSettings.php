@@ -1,6 +1,6 @@
 <?php session_start(); ?>
 
-<div id="innerContent" role="main">
+<div id="innerContent" role="main" tabindex="-1">
     <div id="userSettingsRegion">
     
       <form id="userSettingsForm" method="put" onSubmit="return updateUserData(event)">

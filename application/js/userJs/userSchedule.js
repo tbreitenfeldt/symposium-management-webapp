@@ -88,9 +88,10 @@ function generateUserEventTable(data, tblBodyID, tblID){
 			if(!myTable.includes(id))
 		    {
 				myTable.push(id);
-				$("<tr><td>" + data[i].event_name +  "</td><td>" + date + "</td><td>" + starttime + "</td><td>" + et + "</td><td><button id='openCloseButton" + i + "' onclick='onShowHiddenRowWithAria(eventInfoRow" + i + ", \"" + data[i].event_name + "\")' class='dropbtn'>More/Less Info</button></td>"
-				+ "<td><button class=\"delBtn\" onclick=\"onDel(this," + data[i].event_id + "," + "\'" + message + "\'" + ", " + tblID + ")\" aria-label=\"Delete from my Schedule\"><i class=\"fas fa-times-circle fa-w-16 fa-3x\"></i></button></td></tr>"
-				+ eventInfoRow).appendTo("#" + tblID);
+                $("<tr><td>" + data[i].event_name +  "</td><td>" + date + "</td><td>" + starttime + "</td><td>" + et +
+                "<td><button class=\"delBtn\" onclick=\"onDel(this," + data[i].event_id + "," + "\'" + message + "\'" + ", " + tblID + ")\" aria-label=\"Delete from my Schedule\"><i class=\"fas fa-times-circle fa-w-16 fa-3x\"></i></button></td>" +
+                "</td><td><button id='openCloseButton" + i + "' onclick='onShowHiddenRowWithAria(eventInfoRow" + i + ", \"" + data[i].event_name + "\")' class='dropbtn'>More/Less Info</button></td></tr>" +
+				eventInfoRow).appendTo("#" + tblID);
 			}
 		}
     }

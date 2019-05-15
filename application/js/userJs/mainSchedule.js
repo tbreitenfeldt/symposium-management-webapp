@@ -178,10 +178,9 @@ function gotEventData(data)
 				
 				var eventInfoRow = generateEventDescription(data, i);
 				
-        $("<tr><td class=\"eventName\">" + data[i].event_name  + "</td><td>" + date + "</td><td>" + starttime + "</td><td>" + endtime  + 
-						"</td><td><button id='openCloseButton" + i + "' onclick='onShowHiddenRowWithAria(eventInfoRow" + i + ", \"" + data[i].event_name + "\")' class='dropbtn'>More/Less Info</button></td>" + 
-						"</td><td><button type=\"Button\" class='addBtn' " +
-						"onclick=\"onAddClick(" + eventID + "," + conferenceID + "," +  "\'" + message +  "\'"  + ")\" aria-label=\"Add to my Schedule\"> <i class=\"fas fa-plus-circle fa-w-16 fa-3x\"></i> </button></td></tr>" +
+				$("<tr><td class=\"eventName\">" + data[i].event_name  + "</td><td>" + date + "</td><td>" + starttime + "</td><td>" + endtime  + 
+				"</td><td><button type=\"Button\" class='addBtn' onclick=\"onAddClick(" + eventID + "," + conferenceID + "," +  "\'" + message +  "\'"  + ")\" aria-label=\"Add to my Schedule\"> <i class=\"fas fa-plus-circle fa-w-16 fa-3x\"></i> </button></td>" +
+						"</td><td><button id='openCloseButton" + i + "' onclick='onShowHiddenRowWithAria(eventInfoRow" + i + ", \"" + data[i].event_name + "\")' class='dropbtn'>More/Less Info</button></td></tr>" + 
 						eventInfoRow
 						).appendTo("#Conference tbody");
       }

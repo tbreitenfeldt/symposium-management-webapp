@@ -10,6 +10,7 @@
                                 <th>Date</th>
                                 <th>Time Start</th>
 								<th>Time End</th>
+                                <th colspan=2>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="schedInfo">

@@ -465,6 +465,7 @@ table {
   border-style: solid;
   text-align: center;
   color: white;
+  height: auto;
 }
 
 table {

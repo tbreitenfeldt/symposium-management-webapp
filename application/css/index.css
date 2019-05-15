@@ -730,7 +730,7 @@ input {
 
 a {
   all: unset;
-  color: #007bff;
+  color: yellow;
   color: none;
   text-decoration: unset;
   -webkit-transition: unset;
@@ -742,7 +742,7 @@ a:hover, a:focus {
   text-decoration: underline;
   -webkit-transition: unset;
   transition: unset;
-  color: blue;
+  color: gold;
 }
 
 #signUp {

@@ -210,7 +210,7 @@ function generateEventDescription(data, i){
 	if(event.floor != "") row += "Floor: " + event.floor + "<br>";
 	if(event.room != "") row += "Room: " + event.room + "<br>";
 	
-	row += "</p></td></tr>";
+	row += "</p><hr class='screenreader-text'></td></tr>";
 	
 	return row;
 }

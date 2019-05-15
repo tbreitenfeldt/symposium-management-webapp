@@ -474,6 +474,7 @@ table {
 
 table p {
   color: white;
+  padding-top: 1em;
 }
 
 th {

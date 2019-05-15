@@ -113,7 +113,7 @@ a:focus {
           transform: translate(-50%);
   color: #fff;
   background: #17a2b8;
-  outline: black solid 3px;
+  outline: 3px solid black;
   margin-top: 3px;
 }
 
@@ -373,7 +373,7 @@ button.dropdown-button:not(.collapsed)[aria-expanded="true"] {
           transform: translate(-50%);
   color: #fff;
   background: #17a2b8;
-  outline: black solid 3px;
+  outline: 3px solid black;
   margin-top: 3px;
 }
 
@@ -434,7 +434,7 @@ svg:not(:root).svg-inline--fa {
     TABLES
 ----------------------------------------------------- */
 table, th, td {
-  border: 1px solid black;
+  border: 3px solid black;
 }
 
 table {

@@ -44,8 +44,8 @@ CREATE TABLE `conference` (
   `conference_enddate` date NOT NULL,
   `conference_amenities` varchar(100) NOT NULL,
   `conference_wheelchair` tinyint(1) NOT NULL,
-  `conference_facilitydesc` varchar(300) NOT NULL,
-  `conference_desc` varchar(300) NOT NULL,
+  `conference_facilitydesc` varchar(1000) NOT NULL,
+  `conference_desc` varchar(1000) NOT NULL,
   `conference_contactemail` varchar(60) NOT NULL,
   `conference_contactphone` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -60,14 +60,14 @@ CREATE TABLE `event` (
   `event_id` int(11) NOT NULL,
   `conference_id` int(11) NOT NULL,
   `admin_id` int(11) NOT NULL,
-  `event_name` varchar(60) NOT NULL,
+  `event_name` varchar(200) NOT NULL,
   `event_starttime` time NOT NULL,
   `event_endtime` time NOT NULL,
   `event_room` varchar(60) NOT NULL,
   `event_floor` varchar(60) NOT NULL,
   `event_building` varchar(60) NOT NULL,
   `event_speakers` varchar(300) NOT NULL,
-  `event_desc` varchar(300) NOT NULL,
+  `event_desc` varchar(2000) NOT NULL,
   `event_wheelchair` tinyint(1) NOT NULL,
   `event_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

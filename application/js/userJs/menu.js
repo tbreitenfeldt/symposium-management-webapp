@@ -172,7 +172,6 @@ function toggleAriaButtonPress(elementId) {
 function changeFontScreen(){
     changeSize("#content", fontSizeStyle, fontSizeArr[zoomedIn]); 
     changeSize("form", fontSizeStyle, fontSizeArr[zoomedIn]);
-    changeSize(".layout-button", fontSizeStyle, fontSizeArr[zoomedIn]);
     changeSize(":checkbox", "width", checkBoxSizeArr[zoomedIn]);
     changeSize(":checkbox" , "height", checkBoxSizeArr[zoomedIn]);
 }

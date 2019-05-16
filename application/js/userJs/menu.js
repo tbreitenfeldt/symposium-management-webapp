@@ -380,6 +380,7 @@ function main(){
         $("title").text("Profile Settings");
         $("#innerContent").empty();
         $("#content").load("javascriptLoads/userSettings.php", function() {
+            $("#user_notifyByPhone").change(togglePhoneRegion);
             populateCurrentUserSettings();
             $("#innerContent").focus();
         });

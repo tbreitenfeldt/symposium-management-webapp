@@ -17,9 +17,10 @@
           <h2>Conference Event Notification Settings</h2>
           <input type="checkbox" id="user_notifyByEmail" class="userSettings checkbox" name="user_notifyByEmail" data-value="<?php echo $_SESSION['user_notifyByEmail']; ?>" />
           <label for="user_notifyByEmail">Notify me by email:</label>
-          <input type="checkbox" id="user_notifyByPhone" class="userSettings checkbox" name="user_notifyByPhone" data-value="<?php echo $_SESSION['user_notifyByPhone']; ?>" onChange="togglePhoneRegion(event)" data-screenreaderNotify="true" />
+          <input type="checkbox" id="user_notifyByPhone" class="userSettings checkbox" name="user_notifyByPhone" data-value="<?php echo $_SESSION['user_notifyByPhone']; ?>" data-screenreaderNotify="true" />
           <label for="user_notifyByPhone">Notify me by text message</label>
-    
+
+        <fieldset id="phoneRegion" style="display: none;">
           <label for="user_phone">Phone:</label>
           <input type="phone" id="user_phone" class="userSettings" name="user_phone" data-value="<?php echo $_SESSION['user_phone']; ?>" />
           <p>Please choose your carrier from the list. This is necessary to send you text notifications. We support only a small number of carriers,
@@ -39,6 +40,7 @@
               <option value="virgin mobile">virgin mobile</option>
               <option value="verizon">verizon</option>
           </select></p>
+        </fieldset>
         </fieldset>
     
         <input type="submit" id="updateUserDataButton" value="Change Settings" />

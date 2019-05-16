@@ -8,7 +8,7 @@
                 <em>EWU expands opportunities for personal transformation through excellence in learning.</em>
                 <br />
                 <em>Need to report a bug? Want to give us feedback?</em>
-                <br aria-hidden="true">
+                <br />
                 <a href="mailto:ewudisabilitysymposiumtechhelp@gmail.com">Contact Us at ewudisabilitysymposiumtechhelp@gmail.com</a>
             </div>
         </div>

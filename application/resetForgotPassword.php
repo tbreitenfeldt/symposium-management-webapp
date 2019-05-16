@@ -10,7 +10,7 @@ session_write_close();
   <head>
     <?php require_once "phpIncludes/userHeader.php"; ?>
 
-    <title>Reset Forgot Password</title>
+    <title>Reset Forgot Password for Conference Management System</title>
 
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="css/index.css">

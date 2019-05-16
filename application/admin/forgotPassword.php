@@ -10,7 +10,7 @@ session_write_close();
 
 <head>
   <?php require_once "../phpIncludes/adminHeader.php"; ?>
-  <title>Forgot Password</title>
+  <title>Forgot Password for Conference Management System</title>
 
   <link rel="stylesheet" href="../css/home.css">
   <link rel="stylesheet" href="../css/login.css">

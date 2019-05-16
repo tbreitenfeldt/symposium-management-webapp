@@ -13,6 +13,5 @@
                 <input type=password id="confirm_password" name="confirm_password" />
               </fieldset>
               <input type="submit" id="registerButton" value="Change Password" />
-              <input type="button" onclick="window.location.reload();" id="cancelButton" value="Cancel" />
             </form>
         </div>

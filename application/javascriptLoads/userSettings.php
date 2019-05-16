@@ -15,11 +15,11 @@
           <input type="email" id="user_email" class="userSettings" name="user_email" data-value="<?php ECHO $_SESSION["user_email"]; ?>" required="required" />
     
           <h2>Conference Event Notification Settings</h2>
-          <input type="checkbox" id="user_notifyByEmail" class="userSettings checkbox" name="user_notifyByEmail" data-value="<?php echo $_SESSION['user_notifyByEmail']; ?>" />
+          
           <label for="user_notifyByEmail">Notify me by email:</label>
+          <input type="checkbox" id="user_notifyByEmail" class="userSettings checkbox" name="user_notifyByEmail" data-value="<?php echo $_SESSION['user_notifyByEmail']; ?>" />
+          <label for="user_notifyByPhone">Notify me by text message:</label>
           <input type="checkbox" id="user_notifyByPhone" class="userSettings checkbox" name="user_notifyByPhone" data-value="<?php echo $_SESSION['user_notifyByPhone']; ?>" data-screenreaderNotify="true" />
-          <label for="user_notifyByPhone">Notify me by text message</label>
-
         <fieldset id="phoneRegion" style="display: none;">
           <label for="user_phone">Phone:</label>
           <input type="phone" id="user_phone" class="userSettings" name="user_phone" data-value="<?php echo $_SESSION['user_phone']; ?>" />

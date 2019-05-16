@@ -602,17 +602,6 @@ td {
 /* ---------------------------------------------------
     Forms
 ----------------------------------------------------- */
-fieldset label {
-  width: 100%;
-}
-
-input {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin: auto;
-}
-
 @media (min-width: 451px) {
   body {
     display: table-cell;
@@ -714,9 +703,6 @@ input {
     margin-top: 20px;
     margin-bottom: 10px;
   }
-  fieldset input {
-    width: 80%;
-  }
   #centerSidebar {
     height: 100%;
     width: 100%;
@@ -755,22 +741,52 @@ a:hover, a:focus {
   color: black;
 }
 
+input {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: .5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
+}
+
 .check-box-large {
   width: 40px;
   height: 40px;
-}
-
-input {
-  margin-bottom: .5rem;
 }
 
 #check-box-settings {
   display: inline;
 }
 
-@media (max-width: 450px) {
-  #confirm_password {
-    width: 80%;
-  }
+fieldset label {
+  width: 100%;
+}
+
+fieldset input {
+  width: 80%;
+}
+
+form {
+  padding: 20px;
+}
+
+form a {
+  all: unset;
+  color: blue;
+  color: none;
+  text-decoration: unset;
+  -webkit-transition: unset;
+  transition: unset;
+}
+
+form a:hover, form a:focus {
+  color: inherit;
+  text-decoration: underline;
+  -webkit-transition: unset;
+  transition: unset;
+  color: darkblue;
 }
 /*# sourceMappingURL=index.css.map */

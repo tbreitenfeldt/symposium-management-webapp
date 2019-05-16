@@ -42,14 +42,14 @@ session_write_close();
                     <label for="user_name" class="col-sm-12 col-form-label">Username:</label>
                   </div>
                   <div>
-                    <input class="col-sm-12" type="text" id="user_name" name="user_name"/>
+                    <input type="text" id="user_name" name="user_name"/>
                   </div>
                   <br aria-hidden="true">
                   <div class="form-group row">
                     <label for="user_password" class="col-sm-12 col-form-label">Password:</label>
                   </div>
                   <div >
-                      <input class="col-sm-12" type=password id="user_password" name="user_password"/>
+                      <input type=password id="user_password" name="user_password"/>
                   </div>
                   <div class="form-check col-sm-10">
                     <input type="submit" id="loginButton" value="Login" class="btn btn-primary btn-lg btn-block"/>

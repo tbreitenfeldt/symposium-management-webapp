@@ -2,16 +2,6 @@
     Forms
 ----------------------------------------------------- */
 
-
-fieldset label{
-    width: 100%;
-}
-
-input{
-    display: flex;
-    margin: auto;
-}
-
 @media (min-width:451px){
     body {
         display:table-cell; text-align:center; vertical-align:middle;
@@ -127,10 +117,6 @@ input{
         margin-bottom: 10px;
     }
 
-    fieldset input{
-        width:80%;
-    }
-
     #centerSidebar {
         height: 100%;
         width: 100%;
@@ -149,24 +135,36 @@ input{
     }
 }
 
-a{
+@mixin transform($primaryColor, $alterColor) {
     all:unset;
-    color:yellow;
+    color:$primaryColor;
     color: none;
     text-decoration: unset;
     transition: unset;
 
-}
+    &:hover, &:focus{
+        color: inherit;
+        text-decoration: underline;
+        transition: unset;
+        color: $alterColor;
+    }
+  }
 
-a:hover, a:focus {
-    color: inherit;
-    text-decoration: underline;
-    transition: unset;
-    color: gold;
+a{
+    @include transform(yellow, gold);
 }
 
 #signUp{
     color:black;
+}
+
+input{
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:auto;
+    margin-bottom:.5rem;
+    display: flex;
+    margin: auto;
 }
 
 .check-box-large{
@@ -174,16 +172,22 @@ a:hover, a:focus {
     height:40px;
 }
 
-input{
-    margin-bottom:.5rem;
-}
-
 #check-box-settings{
     display: inline;
 }
 
-@media (max-width: 450px){
-    #confirm_password {
-        width: 80%;
+fieldset {
+    label{
+        width: 100%;
+    }
+    input{
+        width:80%;
+    }
+}
+
+form{
+    padding:20px;
+    a{
+        @include transform(blue, darkblue);
     }
 }

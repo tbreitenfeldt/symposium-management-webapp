@@ -69,7 +69,7 @@ function showSchedule(conferenceID, data)
 }
 
 function generateUserEventTable(data, tblBodyID, tblID){
-	if(data != null)
+	if(data.length > 0)
     {
 		myTable = new Array();
         for(i = 0; i < data.length; i++)
@@ -88,7 +88,7 @@ function generateUserEventTable(data, tblBodyID, tblID){
 			if(!myTable.includes(id))
 		    {
 				myTable.push(id);
-                $("<tr><td>" + data[i].event_name +  "</td><td>" + date + "</td><td>" + starttime + "</td><td>" + et +
+                $("<tr tabindex=-1><td>" + data[i].event_name +  "</td><td>" + date + "</td><td>" + starttime + "</td><td>" + et +
                 "<td><button class=\"delBtn\" onclick=\"onDel(this," + data[i].event_id + "," + "\'" + message + "\'" + ", " + tblID + ")\" aria-label=\"Delete from my Schedule\"><i class=\"fas fa-times-circle fa-w-16 fa-3x\"></i></button></td>" +
                 "</td><td><button id='openCloseButton" + i + "' onclick='onShowHiddenRowWithAria(eventInfoRow" + i + ", \"" + data[i].event_name + "\")' class='dropbtn'>More/Less Info</button></td></tr>" +
 				eventInfoRow).appendTo("#" + tblID);
@@ -97,7 +97,7 @@ function generateUserEventTable(data, tblBodyID, tblID){
     }
     else
     {
-        $("<tr><td>No Events Here</td></tr>").appendTo("#" + tblID);
+        $("<tr><td colspan=6>No Events Here</td></tr>").appendTo("#" + tblID);
     }
 }
 
@@ -153,11 +153,16 @@ function onDelSuccess(event, eventID, tblID){
     $(event.parentElement).children().off();
     table.deleteRow(rowIndex);
     table.deleteRow(rowIndex);  //delete the row that is associated with this row that holds the event info 
-    myTable.splice(eventID);
+    myTable.splice(myTable.indexOf(eventID), 1);
+    if(rowIndex >= myTable.length) rowIndex -= 2;
+    if(rowIndex < 0) rowIndex = 0;
+    $(table[rowIndex]).focus();
+    console.log(table.rows[rowIndex]);
+    console.log(myTable);
     console.log("My table length is " +  myTable.length);
     if(myTable.length == 0)
     {
-        $("<tr><td>No Events Here</td></tr>").appendTo("#" + tblID);
+        $("<tr><td colspan=6>No Events Here</td></tr>").appendTo("#" + tblID.id);
     }
 }
 

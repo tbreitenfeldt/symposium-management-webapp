@@ -27,7 +27,7 @@
         <!-- user-menu -->
         <div id="user-menu" class="col-lg-12" role="navigation" aria-hidden="false" aria-label="user menu">
 
-            <h3 id="welcome-user"> Welcome <?php echo $_SESSION["user_name"]; ?>!</h3>
+            <h3 id="welcome-user"> Welcome <?php echo htmlspecialchars($_SESSION["user_name"]); ?>!</h3>
             <div class="row" role="list">
                 <div class="col-xs-3" role="listitem">
                     <button type="button" id="homeButton" class="btn btn-info btn-block" aria-hidden="false">

@@ -16,7 +16,7 @@
                                     <th colspan=2>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="conferenceBody">
                             </tbody>
                         </table>
                     </div>

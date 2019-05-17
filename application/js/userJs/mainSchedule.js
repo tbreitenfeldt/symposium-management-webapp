@@ -182,7 +182,7 @@ function gotEventData(data)
 				"</td><td><button type=\"Button\" class='addBtn' onclick=\"onAddClick(" + eventID + "," + conferenceID + "," +  "\'" + message +  "\'"  + ")\" aria-label=\"Add to my Schedule\"> <i class=\"fas fa-plus-circle fa-w-16 fa-3x\"></i> </button></td>" +
 						"</td><td><button id='openCloseButton" + i + "' onclick='onShowHiddenRowWithAria(eventInfoRow" + i + ", \"" + data[i].event_name + "\")' class='dropbtn'>More/Less Info</button></td></tr>" + 
 						eventInfoRow
-						).appendTo("#Conference tbody");
+						).appendTo("#conferenceBody");
       }
     }
 }

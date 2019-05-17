@@ -16,6 +16,9 @@ It is called an HTML shiv.-->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
 
 <!--jQuery CDN-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

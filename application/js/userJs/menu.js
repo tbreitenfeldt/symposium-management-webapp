@@ -342,19 +342,21 @@ function main(){
         closeMenus();
         $("title").text("Edit Personal Schedule");
         $("#innerContent").empty();
-        $("#content").load("javascriptLoads/editSchedule.php");
-        loadConference();
-        $("#innerContent").focus();
+        $("#content").load("javascriptLoads/editSchedule.php", function() {
+            loadConference();
+            $("#innerContent").focus();
+        });
     });
 
     $('#mySchedule').on("click", function(){
         closeMenus();
         $("title").text("My Schedule");
         $("#innerContent").empty();
-        $("#content").load("javascriptLoads/showSchedule.php");
-        let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
-        $.get("proxies/getProxy.php", map,function(data){startUserTable(data[0].conference_id, 1);}, "json");
-        $("#innerContent").focus();
+        $("#content").load("javascriptLoads/showSchedule.php", function() {
+            let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
+            $.get("proxies/getProxy.php", map,function(data){startUserTable(data[0].conference_id, 1);}, "json");
+            $("#innerContent").focus();
+        });
     });
 
     $('#conferenceSchedule').on("click", function(){

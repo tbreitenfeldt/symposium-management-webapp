@@ -71,18 +71,6 @@ if(isset($_GET["genFlag"])){
 		$result = $pdoUtil->query($sql, $values);
 
 		if($result || $result == []){
-			//escape all data for data to avoid cross site scripting
-
-			for ($i = 0; $i < sizeof($result); $i++) {
-				foreach ($result[$i] as $key=>$value) {
-					//$result[$i][$key] = preg_replace('/"/', "&#34;", $value);
-					$result[$i][$key] = htmlspecialchars($value);
-					//$result[$i][$key] = preg_replace("/'/", "&#8217;", $value);
-
-					//$result[$i][$key] = addslashes($value);
-				}
-			}
-
 			http_response_code(200);
 			echo json_encode($result);
 		} else {

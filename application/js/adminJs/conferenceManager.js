@@ -791,8 +791,8 @@ function updateConferenceEvent(event, eventID, conferenceName) {
  * @param conferenceName - string, the name of the conference that is associated with the existing event  
 */
 function updatedEventSuccessfully(data, conferenceName) {
-    let onclickEvent = null;
-    returnToSelectedConference(onclickEvent, conferenceName, "Updated event");
+        alert("Updated event");
+        setupAjaxForConferenceInformation(conferenceName);
 }//end function
 
 

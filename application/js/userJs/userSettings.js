@@ -7,12 +7,7 @@ function populateCurrentUserSettings() {
             let value = $(element).attr("data-value");
 
             if ($(element).is(":checkbox")) {
-                if (value == 1) {
-                value = true;    
-            } else {
-                value = false;
-            }
-
+                value = (value == 1) ? true : false;    
                 $(element).prop("checked", value);
 
                 if ($(element).attr("id") == "user_notifyByPhone" && $(element).is(":checked")) {

@@ -9,8 +9,8 @@ session_write_close();
 <html lang="en">
 
 <head>
-  <?php require_once "../includes/adminHeader.php"; ?>
-  <title>Forgot Password</title>
+  <?php require_once "../phpIncludes/adminHeader.php"; ?>
+  <title>Forgot Password for Conference Management System</title>
 
   <link rel="stylesheet" href="../css/home.css">
   <link rel="stylesheet" href="../css/login.css">
@@ -31,6 +31,7 @@ session_write_close();
         <input type="email" id="admin_email" name="admin_email" placeholder="Email Address:" required="required" />
       </div>
       <input type="submit" id="forgotPasswordButton" value="Submit" />
+      <a href="login.php">Go Back to Login Page</a>
     </fieldset>
 
     <div id="outputRegion" aria-live="polite" ></div>
@@ -38,8 +39,6 @@ session_write_close();
   </form>
 </main>
 
-  <?php require_once "../includes/footer.php"; ?>
+  <?php require_once "../phpIncludes/footer.php"; ?>
 </body>
 </html>
-
-<!-- 5Tkikc2y!!! -->

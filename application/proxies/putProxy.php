@@ -66,6 +66,7 @@ function modifyUserSessionVariables(&$putData) {
     setSessionVariable("user_name", $putData);
     setSessionVariable("user_email", $putData);
     setSessionVariable("user_phone", $putData);
+    setSessionVariable("user_phoneCarrier", $putData);
     setSessionVariable("user_notifyByPhone", $putData);
     setSessionVariable("user_notifyByEmail", $putData);
     session_write_close();

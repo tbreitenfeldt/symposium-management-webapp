@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-  <?php require_once "../includes/adminHeader.php"; ?>
+  <?php require_once "../phpIncludes/adminHeader.php"; ?>
   <title>Reset Password</title>
 
   <link rel="stylesheet" href="../css/home.css">
@@ -52,7 +52,7 @@
 
 </div>
 
-<?php require_once "../includes/footer.php"; ?>
+<?php require_once "../phpIncludes/footer.php"; ?>
 
 </body>
 </html>

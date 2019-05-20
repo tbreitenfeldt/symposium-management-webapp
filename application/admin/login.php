@@ -17,7 +17,7 @@ session_write_close();
 <html lang="en">
 
 <head>
-  <?php require_once "../includes/adminHeader.php"; ?>
+  <?php require_once "../phpIncludes/adminHeader.php"; ?>
   <title>Admin Login</title>
 
   <link rel="stylesheet" href="../css/home.css">
@@ -59,7 +59,7 @@ session_write_close();
 
       </main>
 
-    <?php require_once "../includes/footer.php"; ?>
+    <?php require_once "../phpIncludes/footer.php"; ?>
 
 <body>
 </html>

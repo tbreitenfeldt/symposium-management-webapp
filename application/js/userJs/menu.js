@@ -74,15 +74,6 @@ function isMobile(){
     return getPageWidth() <= 425;
 }
 
-function resizeMainMenu(){//change button size same when default page opens
-    if(isMobile()){
-        var highest = (getPageWidth()/4) - 5;
-        var arr = new Array('#centerSidebarCollapse','#leftSidebarCollapse', '#rightSidebarCollapse', '#homeButton');
-        var resizeMenu = arr.join(',');
-        $(resizeMenu).css('width', highest);
-    }
-}
-
 function toggleBodySidebar(){
     $("body").toggleClass("no-scroll");
 }
@@ -118,7 +109,7 @@ function setCurrentFontDisplay(){
     if(zoomedIn == ""){
         zoomedIn = 0;
     }
-    $('#current-font-size')[0].innerHTML = "Current Font Size: " + arr[zoomedIn];
+    $('#current-font-size')[0].innerHTML = "Current Font Size: " +currentFontSizeArr[zoomedIn];
 }
 
 function toggleGraystyle(){
@@ -179,9 +170,10 @@ function toggleAriaButtonPress(elementId) {
   }
 
 function changeFontScreen(){
-    changeSize("#innerContent", fontSizeStyle, arr2[zoomedIn]);  
-    changeSize(".checkbox", "width", arr3[zoomedIn]);
-    changeSize(".checkbox", "height", arr3[zoomedIn]);
+    changeSize("#content", fontSizeStyle, fontSizeArr[zoomedIn]); 
+    changeSize("form", fontSizeStyle, fontSizeArr[zoomedIn]);
+    changeSize(":checkbox", "width", checkBoxSizeArr[zoomedIn]);
+    changeSize(":checkbox" , "height", checkBoxSizeArr[zoomedIn]);
 }
 
 //Global Variables for functionality
@@ -203,23 +195,23 @@ var originalMarginTop = $(contentId).css(stylePaddingTop);
 var originalHeaderSize = "1rem";
 var originalTableHeadSize = originalHeaderSize;
 
-var arr = new Array('1x', '2x', '3x');
-var arr2 = new Array('initial', 'x-large', 'xx-large');
-var arr3 = new Array('13px', '20px', '50px');
+var currentFontSizeArr = new Array('1x', '2x', '3x');
+var fontSizeArr = new Array('large', 'x-large', 'xx-large');
+var checkBoxSizeArr = new Array('13px', '20px', '50px');
 
 var maxZoomedIn = 2;
 var minZoomedIn = 0;
 var defaultIn = 0;
 
-if(isMobile()){
-    maxZoomedIn = 1;
-    minZoomedIn = 0;
-}
+// if(isMobile()){
+//     maxZoomedIn = 1;
+//     minZoomedIn = 0;
+// }
 
 var zoomedIn = defaultIn;
 
 
-resizeMainMenu();
+
 var colorSetting = new Array("Default", "Graystyle","Inverse");
 var currentColorSetting = colorSetting[0];
 
@@ -263,7 +255,7 @@ function onloadCook(){
 
 function onFontChange(){
     changeFontScreen();
-    resizeMainMenu(); 
+     
     setCurrentFontDisplay();
 }
 
@@ -321,7 +313,7 @@ function main(){
     window.addEventListener("resize", onresize);
 
     $(window).resize(function(){
-        resizeMainMenu();
+        
     });
 
     $("#homeButton").on("click", function(event) {
@@ -346,78 +338,77 @@ function main(){
     $('#color-scheme-default').on('click',  turnOnColorDefault);
     $('#color-scheme-invert').on('click',  turnOnInverseStyle);
 
-
-    //MyScheduler Click Event(s)
-    $('#aboutCon').on("click", function(){
-        closeMenus();
-        $("#innerContent").empty();
-        $("#content").load("menuPhp/aboutConference.php");
-        getConferenceInformation();
-        $("#innerContent").focus();
-    });
-
     $("#editMySchedule").on("click", function(){
         closeMenus();
         $("title").text("Edit Personal Schedule");
         $("#innerContent").empty();
-        $("#content").load("menuPhp/editSchedule.php");
-        loadConference();
-        $("#innerContent").focus();
+        $("#content").load("javascriptLoads/editSchedule.php", function() {
+            loadConference();
+            $("#innerContent").focus();
+        });
     });
 
     $('#mySchedule').on("click", function(){
         closeMenus();
-        $("title").text("My Scheduler");
+        $("title").text("My Schedule");
         $("#innerContent").empty();
-        $("#content").load("menuPhp/showSchedule.php");
-        let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
-        $.get("proxies/getProxy.php", map,function(data){startUserTable(data[0].conference_id, 1);}, "json");
-        $("#innerContent").focus();
+        $("#content").load("javascriptLoads/showSchedule.php", function() {
+            let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
+            $.get("proxies/getProxy.php", map,function(data){startUserTable(data[0].conference_id, 1);}, "json");
+            $("#innerContent").focus();
+        });
+    });
+
+    $('#conferenceSchedule').on("click", function(){
+        closeMenus();
+        $("#innerContent").empty();
+        $("title").text("Conference Schedule");
+
+        $("#content").load("javascriptLoads/conferenceSchedule.php", function() {
+            getConferenceSchedule();
+            $("#innerContent").focus();
+        });
     });
 
     $("#registerForDifferentConferenceButton").on("click", function(event) {
-        closeMenus();
-        $("title").text("Register for Conference");
-        $("#innerContent").empty();
-        updateConferenceRegistration(event);
-        $("#conferenceRegistrationHeading").focus();
+        let method = "put";
+        let pageTitle = "Conference Registration";
+        loadConferenceChooser(method, pageTitle);
     });
 
     $("#changeUserSettingsButton").on("click", function(event) {
         closeMenus();
         $("title").text("Profile Settings");
         $("#innerContent").empty();
-        $("#content").load("userSettings.php", populateCurrentUserSettings);
-        $("#userSettingsHeading").focus();
-    });
-    
-    $('#conferenceSchedule').on("click", function(){
-        closeMenus();
-        $("#innerContent").empty();
-        $("#content").load("menuPhp/conferenceSchedule.php");
-        getConferenceInfoAndSchedule();
-        $("#innerContent").focus();
+        $("#content").load("javascriptLoads/userSettings.php", function() {
+            $("#user_notifyByPhone").change(togglePhoneRegion);
+            populateCurrentUserSettings();
+            $("#innerContent").focus();
+        });
     });
 
     $("#resetPasswordButton").on("click", function(event) {
         closeMenus();
         $("title").text("Reset Password");
         $("#innerContent").empty();
-        $("#content").load("resetPassword.php");
-        $("#resetPasswordHeading").focus();
+
+        $("#content").load("javascriptLoads/resetPassword.php", function() {
+            $("#resetPasswordHeading").focus();
+        });
     });
 
     $("#websiteLink").on("click", function() {
         window.open("https://sites.ewu.edu/pwdss/");
     });
 
-    window.addEventListener("resize", onresize);
+    // window.addEventListener("resize", onresize);
+    // $(window).resize(function(){
+    // });
 
-    $(window).resize(function(){
-        resizeMainMenu();
+    $('input').on('focus', function() {
+        document.body.scrollTop = $(this).offset().top;
     });
-    resizeMainMenu();
-
+    
 }
 
 $(document).ready(main);

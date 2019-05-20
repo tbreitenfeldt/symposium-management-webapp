@@ -5,21 +5,12 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
     <head>
-        <!-- Meta Tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <?php require_once "phpIncludes/userHeader.php"; ?>
 
         <title>User Control Panel</title>
 
-        <!-- Bootstrap CSS CDN -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-        
         <!-- Our Custom CSS -->
-        <link rel="stylesheet" href="./css/menu/menu.css">
-
-        <!--AJAX JS-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="./css/index.css">
 
         <!--Our custom JS-->
         <script src="js/conferenceAPIJs/databaseFunctions.js"></script>
@@ -28,11 +19,6 @@
         <script src="js/userJs/userAccountRegistration.js"></script>
         <script src="js/userJs/userSettings.js"></script>
         <script src="js/loginSystemJs/loginAJAX.js"></script>
-        <script src="js/utilityJs/util.js"></script>
-
-        <!-- Font Awesome JS -->
-        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
     </head>
 
     <body id="my-body">
@@ -41,7 +27,7 @@
         <!-- user-menu -->
         <div id="user-menu" class="col-lg-12" role="navigation" aria-hidden="false" aria-label="user menu">
 
-            <h3 id="welcome-user"> Welcome <?php echo $_SESSION["user_name"]; ?>!</h3>
+            <h3 id="welcome-user"> Welcome <?php echo htmlspecialchars($_SESSION["user_name"]); ?>!</h3>
             <div class="row" role="list">
                 <div class="col-xs-3" role="listitem">
                     <button type="button" id="homeButton" class="btn btn-info btn-block" aria-hidden="false">
@@ -78,17 +64,16 @@
         <!-- rightSideBar -->
         <div id="rightSidebar" hidden>
             <div id="rightDismiss">
-                <button href="" id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button href="" id="closeRightMenu" class="close-menu" aria-label="Close My Scheduler"><i class="arrow-button fas fa-arrow-left"></i> </button>
             </div>
 
-            <div aria-label="" class="rightSidebar-header">
+            <div aria-label="" class="sidebar-header">
                 <h3 id="mySchedulerHeading" class="sidebar-heading" tabindex="-1">My Scheduler</h3>
             </div>
             <button id="conferenceSchedule"class="btn btn-primary btn-lg layout-button" role="button">View Conference Schedule</button>
             <button id="mySchedule" class="btn btn-primary btn-lg layout-button" role="button">View My Schedule</button>
             <button id="editMySchedule" class="btn btn-primary btn-lg layout-button" role="button">Edit My Schedule</button>
-            <button  id="aboutCon" class="btn btn-primary btn-lg layout-button" role="button">About Conference</button>
-            <button id="websiteLink" type="button"  class="btn btn-primary btn-lg layout-button" role="link">View Website</button>
+            <button id="websiteLink" type="button"  class="btn btn-primary btn-lg layout-button">View Website</button>
         </div>
         <!-- END rightSideBar -->
 
@@ -96,10 +81,10 @@
         <!-- centerSidebar  -->
         <div id="centerSidebar" hidden>
             <div id="centerDismiss" >
-                <button href="" id="closeCenterMenu" class="close-menu" aria-label="Close Accesibility Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button href="" id="closeCenterMenu" class="close-menu" aria-label="Close Accesibility Settings"><i class="arrow-button fas fa-arrow-left"></i> </button>
             </div>
 
-            <div class="centerSidebar-header">
+            <div class="sidebar-header">
                 <h3 tabindex="-1" id="accessibilitySettingsHeading" class="sidebar-heading">Accesibility Settings</h3>
             </div>
 
@@ -146,10 +131,10 @@
         <!-- leftSidebar  -->
         <div id="leftSidebar" hidden>
             <div id="leftDismiss" >
-                <button  id="closeLeftMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-right"></i> </button>
+                <button  id="closeLeftMenu" class="close-menu" aria-label="Close User Settings"><i class="arrow-button fas fa-arrow-left"></i> </button>
             </div>
 
-            <div class="leftSidebar-header">
+            <div class="sidebar-header">
                 <h3 tabindex="-1" id="userSettingsHeading" class="sidebar-heading">User Settings</h3>
             </div>
 
@@ -167,31 +152,11 @@
 
 
         <!-- content  -->
-        <div id="content" tabindex="-1">
-                <div id="conferenceChooser" role="main" hidden="true">
-                    <h2 id="conferenceRegistrationHeading" tabindex="-1">Conference Registration</h2>    
-                    <label for="conferenceChooser">Select a conference to register for</label>
-                    <select id="conferenceChooserListbox"></select>
-                    <input type="button" id ="conferenceRegisterButton" value="Register for Conference" />
-                </div>
-
-            <div id="innerContent" tabindex="-1">
-            </div>
+        <div id="content">
         </div>
         <!-- END content  -->
 
-        <?php include "./includes/footer.php"; ?>
+        <?php require_once "phpIncludes/footer.php"; ?>
 
-        <!--Message for only screenreaders. read when region is shown, shouldn't be visually visible.-->
-        <div id="screenreaderUINotification" class="screenreader-text" aria-live="polite"></div>
-
-        <!-- jQuery Custom Scroller CDN -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-        <!-- Popper.JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-        <!-- Bootstrap JS -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-        <!-- Our Custom JS -->
-        <script src="js/userJs/menu.js"></script>
     </body>
 </html>

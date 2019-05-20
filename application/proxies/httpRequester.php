@@ -5,7 +5,7 @@
 */
 
 //define("DOMAIN", "http://pacificwesterndisabilitystudies.tk");
-//define("DOMAIN", "http://localhost/dashboard/github/symposium-management-webapp/
+//define("DOMAIN", "http://localhost/dashboard/github/symposium-management-webapp/application");
 //define("DOMAIN", "http://localhost/symposium-management-webapp-master/application");
 define("DOMAIN", "http://localhost/symposium-management-webapp/application");
 

@@ -12,8 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] != "GET" || !isset($_GET["token"]) || !isset($_GE
 <html lang="en">
 
 <head>
-  <?php require_once "../includes/adminHeader.php"; ?>
-  <title>Reset Forgot Password</title>
+  <?php require_once "../phpIncludes/adminHeader.php"; ?>
+  <title>Reset Forgot Password for Conference Management System</title>
 
   <link rel="stylesheet" href="../css/home.css">
   <link rel="stylesheet" href="../css/login.css">
@@ -43,6 +43,6 @@ if ($_SERVER["REQUEST_METHOD"] != "GET" || !isset($_GET["token"]) || !isset($_GE
   </form>
 </main>
 
-<?php require_once "../includes/footer.php"; ?>
+<?php require_once "../phpIncludes/footer.php"; ?>
 </body>
 </html>

@@ -102,53 +102,22 @@ function changePathToMainDirectory(path) {
 	
 	If you need more ideas on how to use any methods here, please take a look at my databaseTester.js and my databaseOutput.js for live examples of how I've used these functions.
 */
-function getRecord(valuesToSelect, tableNames, attrs, values, callback, type, formatFlag, orderBy, proxyflag){
+async function getRecord(valuesToSelect, tableNames, attrs, values, callback, type, formatFlag){
 	if(formatFlag == "true"){
 		if(!(valuesToSelect[0] == "*")){
 			formatStringArray(valuesToSelect, "`");		
 		}
 		formatStringArray(attrs, "`");
 		formatStringArray(values, "'");
-		formatStringArray(orderBy, "`");
 	}
 	map = {
 		table_names: tableNames,
 		values_to_select: valuesToSelect,
 		attrs: attrs,
 		values: values,
-		genFlag: "flag",
-		orderBy: orderBy
+		genFlag: "flag"
 	};
-	//$.get(pathToMainDirectory + "conferenceAPI/index.php", map, callback, type);
-
-	var urlPath = pathToMainDirectory + "conferenceAPI/index.php";
-	if(proxyflag == true){
-		urlPath = pathToMainDirectory + "proxies/getProxy.php";
-	}
-
-	$.ajax({
-		url: urlPath,
-		type: "GET",
-		dataType: type,
-		data: map,
-		cache: false,
-
-	// 	beforeSend: function () {
-	// 	console.log("Loading");
-	// },
-
-		error: function (jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR);
-			console.log(textStatus);
-			console.log(errorThrown);
-		},
-
-		success: callback,
-
-		// complete: function () {
-		// 	console.log('Finished all tasks');
-		// }
-	});
+	await $.get(pathToMainDirectory + "conferenceAPI/index.php", map, callback, type);
 }
 
 
@@ -168,7 +137,7 @@ function getRecord(valuesToSelect, tableNames, attrs, values, callback, type, fo
 
 	The above will delete all records from the "user_schedule" table where the user_id == 1, event_id == 20 and conference_id == 1. The result will be used by console.log.
 */
-function delRecord(tablename, idname, idvalue, callback, proxyflag){
+function delRecord(tablename, idname, idvalue, callback){
 	tablename = surround(tablename, "`");
 	formatStringArray(idname, "`");
 	map = {
@@ -176,11 +145,7 @@ function delRecord(tablename, idname, idvalue, callback, proxyflag){
 		id_name: idname,
 		id_value: idvalue
 	};
-	var urlPath = pathToMainDirectory + "conferenceAPI/index.php";
-	if(proxyflag == true){
-		urlPath = pathToMainDirectory + "proxies/deleteProxy.php";
-	}
-	$.delete(urlPath,map,callback).fail(function(e) {document.write(e.responseText);});
+	$.delete(pathToMainDirectory + "conferenceAPI/index.php",map,callback);
 }
 
 /*
@@ -222,7 +187,7 @@ function delRecord(tablename, idname, idvalue, callback, proxyflag){
 
 	The above will post a new record to the user_schedule table. The result is logged and input is formatted.
 */
-function postRecord(tablename, attrs, values, callback, formatFlag, proxyflag){
+function postRecord(tablename, attrs, values, callback, formatFlag){
 	if(formatFlag == "true"){
 		tablename = surround(tablename, "`");
 		formatStringArray(attrs, "`");
@@ -233,11 +198,7 @@ function postRecord(tablename, attrs, values, callback, formatFlag, proxyflag){
 		attrs: attrs,
 		values: values,
 	};
-	var urlPath = pathToMainDirectory + "conferenceAPI/index.php";
-	if(proxyflag == true){
-		urlPath = pathToMainDirectory + "proxies/postProxy.php";
-	}
-	$.post(urlPath,map,callback).fail(function(error) {document.write(error.responseText);} );
+	$.post(pathToMainDirectory + "conferenceAPI/index.php",map,callback).fail(function(error) {document.write(error.responseText);} );
 }
 
 
@@ -284,7 +245,7 @@ function postRecord(tablename, attrs, values, callback, formatFlag, proxyflag){
 	The above will, in the user_schedule table, update the "event_id" column to 40 where the user_id == 1. The result will be logged and input will be formatted.
 
 */
-function putRecord(tablename, attrs, values, idname, idvalue, callback, formatFlag, proxyflag){
+function putRecord(tablename, attrs, values, idname, idvalue, callback, formatFlag){
 	if(formatFlag == "true"){
 		tablename = surround(tablename, "`");
 		formatStringArray(attrs, "`");
@@ -298,11 +259,7 @@ function putRecord(tablename, attrs, values, idname, idvalue, callback, formatFl
 		target_id_name: idname,
 		target_id_value: idvalue
 	};
-	var urlPath = pathToMainDirectory + "conferenceAPI/index.php";
-	if(proxyflag == true){
-		urlPath = pathToMainDirectory + "proxies/putProxy.php";
-	}
-	$.put(urlPath, map, callback, "json");
+	$.put(pathToMainDirectory + "conferenceAPI/index.php", map, callback, "json");
 }
 
 /*

@@ -5,9 +5,15 @@ function createForm(id) {
 }//end function
 
 
-function createTextbox(label, id, className, dataName, regex) {
+function createTextbox(label, id, className, dataName, regex, isRequired) {
     let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
-    let htmlTextbox = '<input type="text" id="' + id + '" name="' + id + '" class="' + className + '" data-verify="' + regex + '" data-name="' + dataName + '" />';
+    let htmlTextbox = '<input type="text" id="' + id + '" name="' + id + '" class="' + className + '" data-verify="' + regex + '" data-name="' + dataName + '" ';
+
+    if (isRequired) {
+        htmlTextbox += 'required="required" ';
+    }//end if
+
+    htmlTextbox += '/>';
     return htmlLabel + '</br>' + htmlTextbox + '</br>';
 }//end function
 

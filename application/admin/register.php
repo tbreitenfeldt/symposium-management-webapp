@@ -9,39 +9,12 @@ session_write_close();
 <html lang="en">
 
 <head>
-  <?php require_once "../includes/adminHeader.php"; ?>
-    <title>Register for Conference Management System</title>
+  <?php require_once "../phpIncludes/adminHeader.php"; ?>
+    <title>Admin Registration for Conference Management System</title>
 
-    <!-- Meta Tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <!-- Bootstrap CSS CDN -->
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    
-    <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="../css/menu.css">
-    <link rel="stylesheet" href="../css/login.css">
-    <link rel="stylesheet" href="../css/register.css">
-
-    <!--AJAX JS-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!--Our custom JS-->
     <script src="../js/loginSystemJs/loginAJAX.js"></script>
-    <script src="../js/userJs/userAccountRegistration.js"></script>
-    <script src="../js/conferenceAPIJs/databaseFunctions.js"></script>
-    <script src="../js/userJs/userSchedule.js"></script>
-    <script src="../js/userJs/mainSchedule.js"></script>
-    <script src="../js/conferenceAPIJs/databaseFunctions.js"></script>
-    <script src="../js/userJs/userAccountRegistration.js"></script>
-    <script src="../js/userJs/menu.js"></script>
-    
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
   </head>
 
 <body id="my-body">
@@ -52,7 +25,7 @@ session_write_close();
         <div id="content-inside">  
         <form id="userLogonForm" method="POST" action="../loginAPI/registerFunctions.php" type="json" class="form-horizontal" onSubmit="return submitForm(event)">
           <fieldset>
-            <h1>Administrator<br aria-hidden="true">Registration Form</h1>
+            <h2>Administrator <br aria-hidden="true">Registration Form</h2>
             <p id="usernameDescription">Your username must be between 3 and 30 characters,<br aria-hidden="true">start with a letter, <br aria-hidden="true">and may contain only <br aria-hidden="true">letters, numbers, dashes, and periods.</p>
             <div id="fieldClass">
               <div class="form-group row">
@@ -82,7 +55,7 @@ session_write_close();
               </div>
               <div class="form-group row justify-content-center">
                 <div class="form-check col-sm-10">
-                  <input type="reset" id="resetButton" value="Reset" />
+                  <input type="reset" id="resetButton" value="Reset" onclick="return confirm('Are you sure you would like to reset this form?');" />
                   <input type="submit" id="registerButton" value="Register" class="btn btn-primary btn-lg btn-block"/>
                 </div>
               </div>    
@@ -99,7 +72,6 @@ session_write_close();
     </div>
     <!-- END content  -->
 
-    <?php include "../includes/accesibilityMenuOnly.php";?>
-    <?php include "../includes/footer.php";?>
+    <?php include "../phpIncludes/footer.php";?>
   </body>
 </html>

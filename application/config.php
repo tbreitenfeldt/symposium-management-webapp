@@ -49,14 +49,14 @@ define("LOGGEDIN_TOKEN_NAME", "user_loggedin");
 define("FORGOT_PASSWORD_TOKEN_EXPERATION_TIME", 360);
 
 //email settings
-define("EMAIL_SENDER_USERNAME", "timothybreitenfeldt@gmail.com");
-define("EMAIL_SENDER_PASSWORD", "seniorTeam4");
+define("EMAIL_SENDER_USERNAME", "ewudisabilitysymposium@gmail.com");
+define("EMAIL_SENDER_PASSWORD", "lcjx cqnt ghtd wjko");
 define("EMAIL_SENDER_HOST", "smtp.gmail.com");
 define("EMAIL_SENDER_PORT", "465");
 
-define("EMAIL_SENDER_FROM", "timothybreitenfeldt@gmail.com");
+define("EMAIL_SENDER_FROM", "ewudisabilitysymposium@gmail.com");
 define("EMAIL_SENDER_NAME", "Disability Symposium Forgot Password");
-define("EMAIL_SENDER_REPLY_TO_EMAIL", "timothybreitenfeldt@gmail.com");
+define("EMAIL_SENDER_REPLY_TO_EMAIL", "ewudisabilitysymposium@gmail.com");
 define("EMAIL_SENDER_REPLY_TO_NAME", "No Reply");
 
 define("RESET_FORGOT_PASSWORD_URL", "http://www.pacificwesterndisabilitystudies.tk/resetForgotPassword.php");

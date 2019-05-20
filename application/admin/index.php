@@ -5,11 +5,12 @@
 <html lang="en">
 
 <head>
-  <?php require_once "../includes/adminHeader.php"; ?>
+  <?php require_once "../phpIncludes/adminHeader.php"; ?>
   <title>Administrator Dashboard</title>
 
   <link rel="stylesheet" href="../css/home.css">
   <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="../css/innerTable.css">
 
   <script src="../js/conferenceAPIJs/databaseFunctions.js"></script>
   <script src="../js/adminJs/generateHTML.js"></script>
@@ -43,6 +44,6 @@
   <div id="eventFormRegion"></div>
 </main>
 
-<?php require_once "../includes/footer.php"; ?>
+<?php require_once "../phpIncludes/footer.php"; ?>
 </body>
 </html>

@@ -15,6 +15,7 @@ $(document).ready(beginMainSchedule);
 //}
 var currentConferenceChosen = null;
 var currentConferenceData = null;
+
 function beginMainSchedule()
 {
 	getUserConference();
@@ -29,21 +30,21 @@ function getUserConference()
 function determineIfUserIsRegistered(data)
 {
 	if (data == null || data.length == 0) {
-		$("#conferenceRegisterButton").click(function(event) {registerUserForConference(event, "post");} );
-		$("#conferenceChooser").removeAttr("hidden");
-		$("#rightSidebarCollapse").attr("disabled", "true");
-		$("#registerForDifferentConferenceButton").attr("disabled", "true");
-		getConferenceData();
+		let method = "post";
+		let pageTitle = "Conference Registration";
+		loadConferenceChooser(method, pageTitle);
 	} else if (data.length == 1) {
-		$("#rightSidebarCollapse").attr("data-conferenceId", data[0]["conference_id"]);
-		$("#conferenceRegisterButton").click(function(event) {registerUserForConference(event, "put");} );
 		
 		currentConferenceChosen = data[0]["conference_id"];
+		$("#rightSidebarCollapse").attr("data-conferenceId", currentConferenceChosen);
+
 		closeMenus();
 		$("#innerContent").empty();
-		$("#content").load("menuPhp/aboutConference.php");
-		$("#innerContent").focus();
-		getCurrentConferenceData(currentConferenceChosen, showConferenceDetails);
+
+		$("#content").load("javascriptLoads/aboutConference.php", function() {
+			$("#innerContent").focus();
+			getCurrentConferenceData(currentConferenceChosen, showConferenceDetails);
+		});
 	} else {
 		document.write("There is an error trying to process your request, please contact an administrator.");
 	}
@@ -55,15 +56,20 @@ function getCurrentConferenceData(id, callback){
 	} else {
 		callback(currentConferenceData);
 	}
-
 }
 
-function updateConferenceRegistration(event)
-{
-	$("#conferenceChooser").removeAttr("hidden");
-	$("#rightSidebarCollapse").attr("disabled", "true");
-	$("#registerForDifferentConferenceButton").attr("disabled", "true");
-	getConferenceData();
+function loadConferenceChooser(method, pageTitle) {
+	closeMenus();
+	$("#innerContent").empty();
+	$("title").text(pageTitle);
+
+	$("#content").load("javascriptLoads/conferenceChooser.php", function() {
+		$("#conferenceRegisterButton").click(function(event) {registerUserForConference(event, method);} );
+		$("#innerContent").focus();
+		$("#rightSidebarCollapse").attr("disabled", "true");
+		$("#registerForDifferentConferenceButton").attr("disabled", "true");
+		getConferenceData();
+	});
 }
 
 function getConferenceData()
@@ -122,7 +128,6 @@ async function loadConference()
 
 function startMainTable(id)
 {
-	console.log(id);
 	valuesToSelect = ["*"];
 	tableNames = ["conference"];
 	attrs = ["conference_id"];
@@ -154,7 +159,7 @@ function gotMainConference(data)
 	  attrs = ["conference_id"];
 	  values = [mainObj[0].id];
 
-  	getRecord(valuesToSelect,tableNames,attrs,values,gotEventData,"json","false");
+  	getRecord(valuesToSelect,tableNames,attrs,values,gotEventData,"json","false", ["event_date", "event_starttime"]);
 }
 
 function gotEventData(data)
@@ -167,10 +172,47 @@ function gotEventData(data)
 				var eventID = data[i].event_id;
 				var name = String(data[i].event_name);
 				var message = String("Added " + name + " to my schedule");
-        $("<tr><td class=\"eventName\">" + data[i].event_name + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button type=\"Button\" " +
-						"onclick=\"onAddClick(" + eventID + "," + conferenceID + "," +  "\'" + message +  "\'"  + ")\" aria-label=\"Add to my Schedule\"> <i class=\"fas fa-plus-circle fa-w-16 fa-3x\"></i> </button></td></tr>").appendTo("#Conference tbody");
+				var date = parseDate(data[i].event_date);
+				var starttime = parseTime(data[i].event_starttime);
+				var endtime = parseTime(data[i].event_endtime);
+				
+				var eventInfoRow = generateEventDescription(data, i);
+				
+				$("<tr><td class=\"eventName\">" + data[i].event_name  + "</td><td>" + date + "</td><td>" + starttime + "</td><td>" + endtime  + 
+				"</td><td><button type=\"Button\" class='addBtn' onclick=\"onAddClick(" + eventID + "," + conferenceID + "," +  "\'" + message +  "\'"  + ")\" aria-label=\"Add to my Schedule\"> <i class=\"fas fa-plus-circle fa-w-16 fa-3x\"></i> </button></td>" +
+						"</td><td><button id='openCloseButton" + i + "' onclick='onShowHiddenRowWithAria(eventInfoRow" + i + ", \"" + data[i].event_name + "\")' class='dropbtn'>More/Less Info</button></td></tr>" + 
+						eventInfoRow
+						).appendTo("#conferenceBody");
       }
     }
+}
+
+/*
+	This function is used in gotEvent(data) and generateUserSchedule(data) in userSchedule.js.
+	The purpose of this function is to generate the hidden row in the user schedule table and the conference schedule table.
+*/
+function generateEventDescription(data, i){
+	  var event = 
+	{
+		info: String(data[i].event_desc),
+		speakers: String(data[i].event_speakers),
+		room: String(data[i].event_room),
+		building: String(data[i].event_building),
+		floor: String(data[i].event_floor)
+	};
+	
+	
+	var row = "<tr  id='eventInfoRow" + i + "' style='display:none' ><td colspan=6><p id='dropdown" + i +"'>";
+	
+	if(event.info != "") row += "Information: " + event.info + "<br>";
+	if(event.speakers != "") row += "Speakers: " + event.speakers + "<br>";
+	if(event.building != "") row += "Building: " + event.building + "<br>";
+	if(event.floor != "") row += "Floor: " + event.floor + "<br>";
+	if(event.room != "") row += "Room: " + event.room + "<br>";
+	
+	row += "</p><hr class='screenreader-text'></td></tr>";
+	
+	return row;
 }
 
 function onAddClick(eventID, conferenceID, message)
@@ -192,54 +234,80 @@ function successPost(conferenceID)
     startUserTable(conferenceID,-1);
 }
 
-function getConferenceInfoAndSchedule(){
-	let map = {"table_names": ["user_conference","conference", "event"], "values_to_select": ["*"], "attrs": ["conference_id"], "values": [currentConferenceChosen], "genFlag": "flag"};
-	$.get("proxies/getProxy.php",map,gotConferenceInfoAndSchedule, "json");
+function getConferenceSchedule(){
+	let map = {
+        table_names: ["user_conference","conference", "event"],
+        values_to_select: ["*"],
+        attrs: ["conference_id"],
+        values: [currentConferenceChosen],
+        genFlag: "flag",
+        orderBy: ["event_date", "event_starttime"]
+    };
+	$.get("proxies/getProxy.php",map,gotConferenceSchedule, "json");
 }
 
-function gotConferenceInfoAndSchedule(data){
-	showConferenceDetails(data);
+function gotConferenceSchedule(data){
 	gotEventData(data);
 }
 
 function getConferenceInformation()
 {
-	console.log("here");
 		let map = {"table_names": ["user_conference","conference"], "values_to_select": ["*"], "attrs": [""], "values": [""], "genFlag": "flag"};
 		$.get("proxies/getProxy.php",map,showConferenceDetails, "json");
 }
 
 function showConferenceDetails(data)
 {
-	console.log(data);
 	let conference = 
 		{
 			name: data[0].conference_name,
-			startDate: data[0].conference_startdate,
-			endDate: data[0].conference_enddate,
-			detail: data[0].conference_facilitydesc,
+			conferenceDescription: data[0].conference_desc,
+			startDate: parseDate(data[0].conference_startdate),
+			endDate: parseDate(data[0].conference_enddate),
+			venueDescription: data[0].conference_facilitydesc,
 			email: data[0].conference_contactemail,
 			phone: data[0].conference_contactphone,
-			street: data[0].conference_street,
-			city: data[0].conference_city,
-			state: data[0].conference_state,
-			zip: data[0].conference_postalcode,
+			address: data[0].conference_street + " " + data[0].conference_city + ", " + data[0].conference_state + " " + data[0].conference_postalcode,
 			venue: data[0].conference_venue,
 			amenities: data[0].conference_amenities,
 			wheelchair: data[0].conference_wheelchair
-
 		};
 
-		$("h2").html(conference.name + " Information");
-		$("#name").html(conference.name);
-		$("#dates").html(conference.startDate + " to " + conference.endDate +"<br>");
-		$("#location").html("Venue: " + conference.venue + "</br>" + conference.street + " " + conference.city + " " + conference.state + " " + conference.zip);
-		$("#description").html(conference.detail);
-		$("#amenities").html(conference.amenities);
-		if(conference.wheelchair == 1){
-			$("#wheelchair").html("This event is wheelchair accessible");
-		} else {
-			$("#wheelchair").html("This event is not wheelchair accessible");
+		$("#conferenceInformationHeader").html(conference.name + " Information");
+		let conferenceDetails = "";
+
+		if (conference.conferenceDescription != "") {
+			conferenceDetails += "<p>" + conference.conferenceDescription + "</br></p>";
 		}
-		$("#contact").html("Email: " + conference.email + "<br>&nbsp&nbsp&nbsp&nbspPhone: " + conference.phone + "");
+
+		conferenceDetails += "<h3>Dates</h3>";
+		conferenceDetails += "<p>" + conference.startDate + " to " + conference.endDate +"</br></p>";
+
+		conferenceDetails += "<h3>Venue</h3>";
+		conferenceDetails += "<p>Venue: " + conference.venue + "</br>" + conference.address + "</p>";
+
+		if (conference.venueDescription != "") {
+			conferenceDetails += "<p>" + conference.venueDescription + "</p>";
+		}
+
+		if (conference.amenities != "") {
+			conferenceDetails += "<h3>Amenities</h3>";
+			conferenceDetails += "<p>" + conference.amenities + "</p>";
+		}
+
+		if (conference.email != "" || conference.phone != "") {
+			conferenceDetails += "<h3>Contact Information</h3>";
+			conferenceDetails += "<p>";
+
+			if (conference.email != "") {
+				conferenceDetails += "<a href=\"mailto:" + conference.email + "\">" + conference.email + "</a>";
+			}
+			if (conference.phone != "") {
+			conferenceDetails += "</br>" + conference.phone;
+			}
+
+			conferenceDetails += "</p>";
+		}
+
+	$("#details").html(conferenceDetails);
 }

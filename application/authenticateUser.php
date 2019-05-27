@@ -1,16 +1,25 @@
 <?php
 
-session_start();
-$_SESSION["user"] = "user";
-$_SESSION["pageToAccess"] = $_SERVER["PHP_SELF"];
+/**
+ * this function authenticates a user to access a page.
+ * If a user does not have the correct session variables set, then they are redirected to the login page.
+*/
+function authenticateUser() {
+    session_start();
+    $_SESSION["user"] = "user";
+    $_SESSION["pageToAccess"] = $_SERVER["PHP_SELF"];
 
-require_once "config.php";
+    require_once "config.php";
 
-if (!isset($_SESSION[LOGGEDIN_TOKEN_NAME]) || !isset($_SESSION["user"])
-        || !$_SESSION[LOGGEDIN_TOKEN_NAME] || !$_SESSION[LOGGEDIN_TOKEN_NAME] || $_SESSION["user"] != "user") {
-    header("location: " . LOGIN_PAGE_NAME);
-    exit;
-    }//end if
+    if (!isset($_SESSION[LOGGEDIN_TOKEN_NAME]) || !isset($_SESSION["user"])
+            || !$_SESSION[LOGGEDIN_TOKEN_NAME] || !$_SESSION[LOGGEDIN_TOKEN_NAME] || $_SESSION["user"] != "user") {
+        header("location: " . LOGIN_PAGE_NAME);
+        exit;
+        }//end if
+    
+    session_write_close();
+}//end function
 
-session_write_close();
+
+authenticateUser();
 ?>

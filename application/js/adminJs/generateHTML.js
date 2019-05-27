@@ -1,10 +1,33 @@
+/**
+ * This module manages the creation of HTML strings.
+ * Most of the functions in this module returns a string of html, but does not add it to the page. It is the callers responsibility to add to the page.
+*/
 
+
+/**
+ * Creates html for an empty form and gives the form an id.
+ *
+ * @param {string} id - The id value to be added to the id attribute for the form element.
+ * @return {string} the html of the empty form
+*/
 function createForm(id) {
     let form = '<form id="' + id + '"></form>';
     return form;
 }//end function
 
 
+/**
+ * Creates an html label and textbox.
+ * Constructs the html attributes based on the given parameters.
+ *
+ * @param {string} label - the text that is used to label the textbox.
+ * @param {string} id - An id value used in the id attribute for the element.
+ * @param {string} className - The value used in the class attribute for the element.
+ * @param {string} dataName - The value for the custom attribute data-name, which reflects the name of the associated field in the database the data will be inserted into.
+ * @param {string} regex - A regular expression value for the custom attribute data-verify, used to verify the user data.
+ * @param {boolean} isRequired - A boolean value that is used for determining if the textbox is required or not.
+ * @return {string} - the html string of the textbox
+*/
 function createTextbox(label, id, className, dataName, regex, isRequired) {
     let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
     let htmlTextbox = '<input type="text" id="' + id + '" name="' + id + '" class="' + className + '" data-verify="' + regex + '" data-name="' + dataName + '" ';
@@ -18,6 +41,18 @@ function createTextbox(label, id, className, dataName, regex, isRequired) {
 }//end function
 
 
+/**
+ * Creates an html label and phone textbox.
+ * Constructs the html attributes based on the given parameters.
+ * Uses a value of phone for the type attribute rather than text.
+ *
+ * @param {string} label - the text that is used to label the textbox.
+ * @param {string} id - An id value used in the id attribute for the element.
+ * @param {string} className - The value used in the class attribute for the element.
+ * @param {string} dataName - The value for the custom attribute data-name, which reflects the name of the associated field in the database the data will be inserted into.
+ * @param {string} regex - A regular expression value for the custom attribute data-verify, used to verify the user data.
+ * @return {string} - the html for the phone textbox
+*/
 function createPhoneTextbox(label, id, className, dataName, regex) {
     let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
     let htmlTextbox = '<input type="phone" id="' + id + '" name="' + id + '" class="' + className + '" data-verify="' + regex + '" data-name="' + dataName + '" />';
@@ -25,6 +60,18 @@ function createPhoneTextbox(label, id, className, dataName, regex) {
 }//end function
 
 
+/**
+ * Creates an html label and email textbox.
+ * Constructs the html attributes based on the given parameters.
+ * Uses a value of email for the type attribute rather than text.
+ *
+ * @param {string} label - the text that is used to label the textbox.
+ * @param {string} id - An id value used in the id attribute for the element.
+ * @param {string} className - The value used in the class attribute for the element.
+ * @param {string} dataName - The value for the custom attribute data-name, which reflects the name of the associated field in the database the data will be inserted into.
+ * @param {string} regex - A regular expression value for the custom attribute data-verify, used to verify the user data.
+ * @return {string} The html for the email textbox
+*/
 function createEmailTextbox(label, id, className, dataName, regex) {
     let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
     let htmlTextbox = '<input type="email" id="' + id + '" name="' + id + '" class="' + className + '" data-verify="' + regex + '" data-name="' + dataName + '" />';
@@ -32,6 +79,17 @@ function createEmailTextbox(label, id, className, dataName, regex) {
 }//end function
 
 
+/**
+ * Creates an html label and textarea.
+ * Constructs the html attributes based on the given parameters.
+ *
+ * @param {string} label - the text that is used to label the textarea.
+ * @param {string} id - An id value used in the id attribute for the element.
+ * @param {string} className - The value used in the class attribute for the element.
+ * @param {string} dataName - The value for the custom attribute data-name, which reflects the name of the associated field in the database the data will be inserted into.
+ * @param {string} regex - A regular expression value for the custom attribute data-verify, used to verify the user data.
+ * @return {string} - the html for the textarea
+*/
 function createTextarea(label, id, className, dataName, regex) {
     let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
     let htmlTextarea = '<textarea id="' + id + '" name="' + id + '" class="' + className + '" data-verify="' + regex + '" data-name="' + dataName + '"></textarea>';
@@ -39,6 +97,17 @@ function createTextarea(label, id, className, dataName, regex) {
 }//end function
 
 
+/**
+ * Creates the html for a group of radio buttons.
+ * Constructs the attributes and elements based on the provided parameters.
+ *
+ * @param {string} legendName - The name of the radio button group
+ * @param {string[][]} radioButtonInfo - A 2d array that contains the information about each radio button. Each sub-array must contain: id, label, and value.
+ * @param {string} name - the value for the name attribute assigned to each radio button.
+ * @param {string} className - The value that is for the class attribute assigned to each radio button.
+ * @param {string} dataName - The value associated with the custom attribute data-name, which defines the name of the field in the database.
+ * @return {string} - The html string that is the radio button group.
+*/
 function createRadioButtons(legendName, radioButtonInfo, name, className, dataName) {
     let radioButtons = '<fieldset><legend>' + legendName + '</legend>';
     let isFirst = true;
@@ -64,23 +133,56 @@ function createRadioButtons(legendName, radioButtonInfo, name, className, dataNa
 }//end function
 
 
+/**
+ * Creates the html for a button.
+ * Constructs the attributes based on the given parameters.
+ *
+ * @param {string} label - the value that is associated with the value attribute for labeling this button.
+ * @param {string} type - Defines the type of button, usually only button, or submit.
+ * @param {string} id - An id value used in the id attribute for the element.
+ * @param {string} className - The value used in the class attribute for the element.
+ * @return {string} - the html string of the requested button.
+*/
 function createButton(label, type, id, className) {
     let htmlButton = '<input type="' + type + '" id="' + id + '" name="' + name + '" class="' + className + '" value="' + label + '" />';
     return htmlButton;
 }//end function
 
 
+/**
+ * Creates the html for a heading level 2, then inserts the element into the region with the provided id.
+ *
+ * @param {string} value - The text for the heading
+ * @param {string} id - The id of the region that this heading is being inserted into.
+*/
 function insertHeading2(value, id) {
     $("#" + id).html("<h2 tabindex='-1'>" + value + "</h2>");
     $("h2").focus();
 }//end function
 
 
+/**
+ * Creates the html for a heading level 3, then inserts the element into the region with the provided id.
+ *
+ * @param {string} value - The text for the heading
+ * @param {string} id - The id of the region that this heading is being inserted into.
+*/
 function insertHeading3(value, id) {
     $("#" + id).html("<h3>" + value + "</h3>");
 }//end function
 
 
+/**
+ * Creates html for a listbox.
+ * constructs the elements and attributes based on the provided parameters.
+ *
+ * @param {string} label - the text that is used to label the listbox.
+ * @param {string[]} options - An array of strings that are used as the text values for each option in the listbox.
+ * @param {string} id - An id value used in the id attribute for the element.
+ * @param {string} className - The value used in the class attribute for the element.
+ * @param {string} dataName - The value for the custom attribute data-name, which reflects the name of the associated field in the database the data will be inserted into.
+ * @return {string} The html for the listbox
+*/
 function createListBox(label, options, id, className, dataName) {
     let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
     let htmlListbox = '<select id="' + id + '" class="' + className + '" data-name="' + dataName + '">' +
@@ -94,6 +196,17 @@ function createListBox(label, options, id, className, dataName) {
 }//end function
 
 
+/**
+ * Creates html for a listbox of states.
+ * The options are already hard coded with all of the states as options.
+ * constructs the elements and attributes based on the provided parameters.
+ *
+ * @param {string} label - the text that is used to label the listbox.
+ * @param {string} id - An id value used in the id attribute for the element.
+ * @param {string} className - The value used in the class attribute for the element.
+ * @param {string} dataName - The value for the custom attribute data-name, which reflects the name of the associated field in the database the data will be inserted into.
+ * @return {string} The html for the listbox
+*/
 function createListOfStates(label, id, className, dataName) {
     let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
     let htmlListbox = '<select id="' + id + '" class="' + className + '" data-name="' + dataName + '">' +
@@ -118,6 +231,17 @@ function createListOfStates(label, id, className, dataName) {
 }//end function
 
 
+/**
+ * Creates html for a listbox of countries.
+ * The options are already hard coded with all of the countries as options.
+ * constructs the elements and attributes based on the provided parameters.
+ *
+ * @param {string} label - the text that is used to label the listbox.
+ * @param {string} id - An id value used in the id attribute for the element.
+ * @param {string} className - The value used in the class attribute for the element.
+ * @param {string} dataName - The value for the custom attribute data-name, which reflects the name of the associated field in the database the data will be inserted into.
+ * @return {string} The html for the listbox
+*/
 function createListOfCountries(label, id, className, dataName) {
     let htmlLabel = '<label for ="' + id + '">' + label + '</label>';
     let htmlListbox = '<select id="' + id + '" class ="' + className + '" data-name="' + dataName + '">' +

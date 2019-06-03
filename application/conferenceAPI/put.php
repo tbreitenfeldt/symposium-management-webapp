@@ -1,4 +1,16 @@
 <?php
+
+/**
+ * File put.php description
+ * This code will do the following in this order:
+ * 1. Restrict access to certain tables within this API on certain conditions.
+ * 2. Parse through the entered arrays, dynamically creating a SQL string Query.
+ * 3. Query the database with the dynamically generated query.
+ *
+ * This file can function without the restrictions in step 1, but will not have any restrictions whatsoever, so it will be a security hole.
+ * The restrictions in step 1 will be marked with comments denoting the beginning of restricitons and the end of restrictions.
+ * Feel free to try it without the restrictions. I'd advise against deleting them, but commenting them out should be fine.
+ */
 parse_str(file_get_contents('php://input'), $_PUT);
 if (isset($_PUT["table_name"])) {
 
@@ -9,11 +21,15 @@ if (isset($_PUT["table_name"])) {
 		$target_value = (array) $_PUT["target_id_value"];
 		$attrs = (array) $_PUT["attrs"];
 		$values = (array) $_PUT["values"];
-		
+
+
+
 		//check which table is trying to be accessed
 		//check if the put call includes a user_id or admin_id in it's target_name array
 		//check if the user_id or admin_id entered in target_name, target_value, attrs or values is the same as the session ids.
 		//PUT requests must include a user_id or admin_id in it's call and it must match up to the current session variable.
+
+        //Beginning of restrictions
 		if($tablecheck == "useraccounts" || $tablecheck ==  "adminaccounts" ) {
 		    if(!(isset($_PUT["updateUserDataFlag"]))){
 		      exit("Access Restricted - 1");   
@@ -72,7 +88,7 @@ if (isset($_PUT["table_name"])) {
 		        }
 		    }
 		    if($access < 1) exit("Access Restricted - 3");
-		}
+		}//End of restrictions
 		
 		
 		$sql = "UPDATE $table SET ";

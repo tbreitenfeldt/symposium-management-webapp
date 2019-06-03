@@ -2,14 +2,18 @@
 
 
 ### 3.1. Known Bugs
+* On occasion, when logging into both the user and admin portals in two different tabs, there is an issue where the admin redirects to the user landing page, or the user may be redirected to the admin landing page. We believe that this is tied to the design decision of using the same session for all account session variables.
+* If provided single or double quotes in the input for the admin dashboard it will break the functionallity of the buttons for the user schedule and conference schedule on the user application side. We believe this is due to a lack of data validation, and the quotes are actually being read as javascript code. See the login system security section for more about this concern.
+* We have strange problems that come up every now and then, our guess is that any inconsistent issues that crop up are related to asynchronus ajax calls, where code is being run before the ajax call has finished.
 
 
-#### 3.2. Security Concerns
+
+### 3.2. Security Concerns
 
 The major Security concern for all user input is that no data is scrubbed or validated except in the register form for the login system. This is an issue that should be addressed because it makes this application susceptible to SQL Injections in places we are not using prepared statements, and cross site scripting. In adition, a known bug is tied with this security concern, where if you input single or double quotes into any of the admin input fields they are read as javascript closing quotes sinse they are not being escaped, and cause various issues on the front end application.
 
 
-###  3.2.1. API Security Concerns
+### 3.2.1. API Security Concerns
 
 In the folder 'conferenceAPI', we have a basic REST Api set up that can be configured for any database. In each of the files, there are restrictions built in specifically for our database structure. These restrictions are meant to not allow malicious users to do certain actions such as access other users/admins account info, edit/delete conference data, etc.
 

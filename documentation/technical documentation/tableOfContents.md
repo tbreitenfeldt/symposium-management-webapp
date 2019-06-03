@@ -10,3 +10,6 @@
 * 3.0. Aditional Information
 * 3.1. Known Bugs
 * 3.2. Security Concerns
+* 3.2.1. API Security Concerns
+
+* 3.2.2. Login System Security Concerns

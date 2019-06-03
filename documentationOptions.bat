@@ -1,1 +1,0 @@
-for %f in (*.txt) do type “%f” >> output & echo: >> output

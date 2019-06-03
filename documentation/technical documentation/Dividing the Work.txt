@@ -54,3 +54,14 @@ Turn in Documentation
 Fri
 Drews Final during lab time
 Profit
+
+To Finish:
+x	Task
+
+	User Documentation Printed
+	Technical Documentation Printed
+	User Documentation in docx format
+	Technical Documentation in docx format
+	Poster Printed and Laminated
+x	Presentation Finished
+	Presentation Practiced 2 times

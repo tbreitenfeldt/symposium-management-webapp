@@ -1,0 +1,526 @@
+
+/**
+ *
+ *
+ * @param {*} barId
+ * @param {*} iconId
+ */
+function removeSideBar(barId, iconId){
+    $(barId).removeClass('active');
+    $(barId)[0].setAttribute("hidden", true);
+    $('.overlay').removeClass('active');
+    toggleBodySidebar();
+    if(!isMobileScreenWidth()){
+        $("#content",).css("paddingLeft", "20px");
+        $("#footer").css("paddingLeft", "20px");
+    }
+    $('.collapse').removeClass('show');
+    $(".dropdown-button").attr("aria-expanded", false);
+    
+    showContentPage(); 
+    $(iconId).focus();
+}
+
+/**
+ *
+ *
+ * @param {*} sidebarType
+ * @param {*} headingId
+ */
+function openSidebar(sidebarType, headingId){
+    notifyScreenreader('dialog, press escape to cancel');
+    var sidebarId = '#' + sidebarType + 'Sidebar';
+    $(sidebarId)[0].removeAttribute('hidden');
+    $(sidebarId).toggleClass('active');
+    if(!isMobileScreenWidth()){
+        $("#content").css("paddingLeft", "260px");
+        $("#footer").css("paddingLeft", "260px");
+    }
+    toggleBodySidebar();
+    $('.overlay').toggleClass('active');
+    $('.collapse.in').toggleClass('in');
+    hideContentPage();
+    $(headingId).focus();
+}
+
+/**
+ *
+ *
+ */
+function closeLeftSideBar(){
+    notifyScreenreader("closed user settings");
+    removeSideBar("#leftSidebar", "#leftSidebarCollapse");
+}
+
+
+//centerSideBar Methods
+
+/**
+ *
+ *
+ */
+function closeCenterSideBar(){
+    notifyScreenreader("closed accessibility settings");
+    removeSideBar("#centerSidebar", "#centerSidebarCollapse");
+}
+
+
+//rightSideBar Methods
+/**
+ *
+ *
+ */
+function closeRightSideBar(){
+    notifyScreenreader("closed my scheduler");
+    removeSideBar("#rightSidebar", "#rightSidebarCollapse");
+}
+
+
+//Icon Menu Methods
+
+/**
+ *
+ *
+ */
+function hideContentPage(){
+    $("#user-menu").attr("aria-hidden", "true");
+    $("#footer").attr("aria-hidden", "true");
+    $("#content").attr("aria-hidden", "true");
+}
+
+/**
+ *
+ *
+ */
+function showContentPage(){
+    $("#user-menu").attr("aria-hidden", "false");
+    $("#footer").attr("aria-hidden", "false");
+    $("#content").attr("aria-hidden", "false");
+}
+
+
+//All Toggle Menu Functions
+
+/**
+ *
+ *
+ * @returns num
+ */
+function isMobile(){
+    return getPageWidth() <= 425;
+}
+
+/**
+ *
+ *
+ */
+function toggleBodySidebar(){
+    $("body").toggleClass("no-scroll");
+}
+
+/**
+ *
+ *
+ * @returns num
+ */
+function getPageWidth(){
+    return $(window).width();
+}
+
+/**
+ *
+ *
+ * @returns num
+ */
+function isMobileScreenWidth(){
+    return getPageWidth() <= "425";
+}
+
+/**
+ *
+ *
+ */
+function closeMenus(){
+    if($('#rightSidebar').hasClass('active')){
+        closeRightSideBar();
+    }
+    else if($('#leftSidebar').hasClass('active')){
+        closeLeftSideBar();
+    }
+    else if($('#centerSidebar').hasClass('active')){
+        closeCenterSideBar();
+    }
+}
+
+//Accesibility Methods
+
+/**
+ *
+ *
+ * @param {*} element
+ * @param {*} style
+ * @param {*} size
+ */
+function changeSize(element, style, size){
+    $(element).css(style, size);
+}
+
+
+/**
+ *
+ *
+ */
+function setCurrentFontDisplay(){
+    if(zoomedIn == ""){
+        zoomedIn = 0;
+    }
+    $('#current-font-size')[0].innerHTML = "Current Font Size: " +currentFontSizeArr[zoomedIn];
+}
+
+/**
+ *
+ *
+ */
+function toggleGraystyle(){
+    $(document.documentElement).toggleClass("gray-style-filter");
+}
+
+/**
+ *
+ *
+ */
+function toggleInvertColor(){
+    $(document.documentElement).toggleClass("inverse-style-filter");
+}
+
+/**
+ *
+ *
+ */
+function turnOnGrayStyle(){
+    if(currentColorSetting != "GrayStyle")
+    {
+        removeCurrentColorSetting();
+        toggleGraystyle();
+        currentColorSetting = "GrayStyle";
+        toggleAriaButtonPress('#color-scheme-b-o-w');
+    }
+}
+
+/**
+ *
+ *
+ */
+function turnOnColorDefault(){
+    if(currentColorSetting != "Default")
+    {
+        removeCurrentColorSetting();
+        currentColorSetting = "Default";
+        console.log("Default overcame");
+        toggleAriaButtonPress('#color-scheme-default');
+    }
+}
+
+/**
+ *
+ *
+ */
+function turnOnInverseStyle(){
+    if(currentColorSetting != "Inverse")
+    {
+        removeCurrentColorSetting();
+        toggleInvertColor();
+        currentColorSetting = "Inverse";
+        toggleAriaButtonPress('#color-scheme-inverse');
+    }
+}
+
+/**
+ *
+ *
+ */
+function removeCurrentColorSetting(){
+    if(currentColorSetting == "Inverse"){
+        toggleInvertColor();
+        toggleAriaButtonPress('#color-scheme-inverse');
+    }
+    else if(currentColorSetting == "GrayStyle"){
+        toggleGraystyle();
+        toggleAriaButtonPress('#color-scheme-b-o-w');
+    }
+}
+
+/**
+ *
+ *
+ * @param {*} elementId
+ */
+function toggleAriaButtonPress(elementId) {
+    var element = $(elementId);
+    // Check to see if the button is pressed
+    var pressed = $(element).attr("aria-pressed") === "true";
+    // Change aria-pressed to the opposite state
+    element.attr("aria-pressed", !pressed);
+  }
+
+/**
+ *
+ *
+ */
+function changeFontScreen(){
+    changeSize("#content", fontSizeStyle, fontSizeArr[zoomedIn]); 
+    changeSize("form", fontSizeStyle, fontSizeArr[zoomedIn]);
+    changeSize(":checkbox", "width", checkBoxSizeArr[zoomedIn]);
+    changeSize(":checkbox" , "height", checkBoxSizeArr[zoomedIn]);
+}
+
+//Global Variables for functionality
+
+//https://www.pair.com/support/kb/resize-sites-font-jquery/
+var buttonText = 'menu-item';
+var menuButtonClass = '.fa-6x';
+var fontSizeStyle = 'font-size';
+var contentId = '#content';
+var stylePaddingTop = 'padding-top';
+var header = 'header';
+var tableHead = 'th';
+
+
+//resets the font size when clicked
+
+var resetFont = $(buttonText).css(fontSizeStyle);
+var originalMarginTop = $(contentId).css(stylePaddingTop);
+var originalHeaderSize = "1rem";
+var originalTableHeadSize = originalHeaderSize;
+
+var currentFontSizeArr = new Array('1x', '2x', '3x');
+var fontSizeArr = new Array('large', 'x-large', 'xx-large');
+var checkBoxSizeArr = new Array('13px', '20px', '50px');
+
+var maxZoomedIn = 2;
+var minZoomedIn = 0;
+var defaultIn = 0;
+
+// if(isMobile()){
+//     maxZoomedIn = 1;
+//     minZoomedIn = 0;
+// }
+
+var zoomedIn = defaultIn;
+
+
+
+var colorSetting = new Array("Default", "Graystyle","Inverse");
+var currentColorSetting = colorSetting[0];
+
+/**
+ *
+ *
+ * @param {*} cname
+ * @param {*} cvalue
+ */
+function setCookie(cname, cvalue) {
+    var expires = "expires=";
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+  
+/**
+ *
+ *
+ * @param {*} cname
+ * @returns num
+ */
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+/**
+ *
+ *
+ */
+function onloadCook(){
+    if(getCookie("zoomedIn") != undefined){
+        zoomedIn = getCookie("zoomedIn");
+        currentColorSetting = getCookie("currentColorSetting");
+
+        if(currentColorSetting == "GrayStyle"){
+            toggleGraystyle();
+        }
+        else if(currentColorSetting == "Inverse"){
+            toggleInvertColor();
+        }
+    }
+    else{
+        setCookie("currentColorSetting","Default");
+        setCookie("zoomedIn","0");
+    }
+}
+
+/**
+ *
+ * When the one of the following ids ['increase-font', 'decrease-font', 'increase-font']
+ * are clicked, the respective clickEvent will change the global variable that contains
+ * the current size setting. onFontChange will adjust the new currentSizing by calling
+ * the respective methods that adjusts sizes.
+ */
+function onFontChange(){
+    changeFontScreen();
+    setCurrentFontDisplay();
+}
+
+
+//MAIN FUNCTION
+onloadCook();
+function main(){
+    onFontChange();
+    $(window).on("unload", function(evt) {
+        setCookie("currentColorSetting",currentColorSetting);
+        setCookie("zoomedIn",zoomedIn);
+        // Google Chrome requires returnValue to be set
+        evt.returnValue = '';
+        return null;
+    });
+
+    $("#reset-font").click(function(){
+        zoomedIn = 0;
+        changeFontScreen();
+        setCurrentFontDisplay();
+        toggleAriaButtonPress("#reset-font");
+    });
+
+    //increases font size when clicked
+    $("#increase-font").click(function(){
+        if(zoomedIn < maxZoomedIn){
+            zoomedIn++;
+            onFontChange();
+        }
+        toggleAriaButtonPress("#increase-font");
+    });
+
+    //decrease font size when clicked
+    $("#decrease-font").click(function(){
+        if(zoomedIn > minZoomedIn){
+            zoomedIn--;
+            onFontChange();
+        }
+        toggleAriaButtonPress("#decrease-font");
+    });
+
+    //close sidebars 
+    $('#leftDismiss, #centerDismiss, #rightDismiss, .overlay').on('click', closeMenus);
+
+    //ALL MENU(S)
+    $(document).keyup(function(e) {
+        if(e.key == "Escape"){
+            closeMenus();
+        }
+    });
+
+    window.addEventListener("resize", onresize);
+
+    $(window).resize(function(){
+        
+    });
+
+    $("#homeButton").on("click", function(event) {
+        document.location.reload();
+    });
+
+    //ICON MENU
+
+    $('#leftSidebarCollapse').on('click', function(){
+        openSidebar('left', '#userSettingsHeading');
+    });
+
+    $('#centerSidebarCollapse').on('click', function () {
+        openSidebar('center', '#accessibilitySettingsHeading');
+    });
+
+    $('#rightSidebarCollapse').on('click', function () {
+        openSidebar('right', '#mySchedulerHeading');
+    });
+
+    $('#color-scheme-b-o-w').on('click',  turnOnGrayStyle);
+    $('#color-scheme-default').on('click',  turnOnColorDefault);
+    $('#color-scheme-invert').on('click',  turnOnInverseStyle);
+
+    $("#editMySchedule").on("click", function(){
+        closeMenus();
+        $("title").text("Edit Personal Schedule");
+        $("#innerContent").empty();
+        $("#content").load("javascriptLoads/editSchedule.php", function() {
+            loadConference();
+            $("#innerContent").focus();
+        });
+    });
+
+    $('#mySchedule').on("click", function(){
+        closeMenus();
+        $("title").text("My Schedule");
+        $("#innerContent").empty();
+        $("#content").load("javascriptLoads/showSchedule.php", function() {
+            let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
+            $.get("proxies/getProxy.php", map,function(data){startUserTable(data[0].conference_id, 1);}, "json");
+            $("#innerContent").focus();
+        });
+    });
+
+    $('#conferenceSchedule').on("click", function(){
+        closeMenus();
+        $("#innerContent").empty();
+        $("title").text("Conference Schedule");
+
+        $("#content").load("javascriptLoads/conferenceSchedule.php", function() {
+            getConferenceSchedule();
+            $("#innerContent").focus();
+        });
+    });
+
+    $("#registerForDifferentConferenceButton").on("click", function(event) {
+        let method = "put";
+        let pageTitle = "Conference Registration";
+        loadConferenceChooser(method, pageTitle);
+    });
+
+    $("#changeUserSettingsButton").on("click", function(event) {
+        closeMenus();
+        $("title").text("Profile Settings");
+        $("#innerContent").empty();
+        $("#content").load("javascriptLoads/userSettings.php", function() {
+            $("#user_notifyByPhone").change(togglePhoneRegion);
+            populateCurrentUserSettings();
+            $("#innerContent").focus();
+        });
+    });
+
+    $("#resetPasswordButton").on("click", function(event) {
+        closeMenus();
+        $("title").text("Reset Password");
+        $("#innerContent").empty();
+
+        $("#content").load("javascriptLoads/resetPassword.php", function() {
+            $("#resetPasswordHeading").focus();
+        });
+    });
+
+    $("#websiteLink").on("click", function() {
+        window.open("https://sites.ewu.edu/pwdss/");
+    });
+
+    $('input').on('focus', function() {
+        document.body.scrollTop = $(this).offset().top;
+    });
+}
+
+$(document).ready(main);

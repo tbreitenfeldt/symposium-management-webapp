@@ -1,0 +1,16 @@
+Date: 4/30/2019
+Changes to:
+
+get.php, put.php, post.php, delete.php
+-added more restrictions to all
+-added better error messages for debugging
+
+-testing new stuff
+
+databaseFunctions.js
+-successfully removed async and await from getchangedStuffInHere
+-added ORDER BY functionality to getRecord
+-all functions can now work with the proxies by passing in a boolean at the end of the method (true if you want to use the proxy).
+
+
+Adding stufff for merge testingldflkasdfkakdfladflasldf.....

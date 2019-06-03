@@ -1,5 +1,29 @@
-## 1.0. Project Overview
+## 1.0 Project Overview
+Title: Symposium Scheduler Web Application
+Dates Worked On: Jan 2019 - June 2019
+Team Members: TJ Breitenfeldt, Andrew Bosco, Chester Southwood, Tatyana Hubbard
 
+This project is a web-based application that allows users to manage their own personal schedule for symposiums/conferences.
+It also allows administrators to create/manage/edit symposiums/conferences that they are in charge of.
+The purpose of this application is to replace the application EWU uses currently (Sched) with an application that is accessible.
+
+#### Technologies:
+
+Front-End:
+
+HTML
+SASS (CSS extension)
+Javascript w/ JQuery
+
+Back-End:
+
+PHP
+MySQL
+
+Section 1 Overview:
+
+1.1 File and Folder Structure
+1.2 Database Structure
 
 
 ### 1.1. File and Folder Structure
@@ -148,3 +172,35 @@ This folder contains these files:
 		putProxy is used by only the admin side. This is used to edit information stored within the database.
 
 ### 1.2. Database Structure
+Database Name: Db_a444c6_senior
+Tables:
+
+admin_accounts - admin account information
+user_accounts - user account information
+conference - conference information
+event - event information
+user_schedule - user event schedule information
+user_conference - user conference information
+
+admin_accounts:
+Primary Key - admin_id
+
+user_accounts:
+Primary Key - user_id
+
+conference:
+Primary Key - conference_id
+Foreign Key - admin_id
+
+event:
+Primary Key - event_id
+Foreign Key - admin_id, conference_id
+
+user_schedule:
+Foreign Keys - user_id, event_id, conference_id
+
+user_conference:
+Foreign Keys - user_id, conference_id
+
+
+![alt text](eag.png "Table Structure Diagram")

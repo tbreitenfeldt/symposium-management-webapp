@@ -16,11 +16,16 @@ $(document).ready(beginMainSchedule);
 var currentConferenceChosen = null;
 var currentConferenceData = null;
 
+/**
+ *  Used to begin the creation of the main conference schedule
+ */
 function beginMainSchedule()
 {
 	getUserConference();
 }
-
+/**
+ *  Gets the conference that the user is registered to
+ */
 function getUserConference()
 {
 	let map = {"table_names": ["user_conference"], "values_to_select": ["conference_id"], "attrs": [""], "values": [""], "genFlag": "flag"};
@@ -126,6 +131,11 @@ async function loadConference()
 	await startUserTable(conferenceID,0);
 }
 
+/**
+ * Start main table is used to get the conference's information from the database
+ * 
+ * @param {int} id: The conference's id 
+ */
 function startMainTable(id)
 {
 	valuesToSelect = ["*"];
@@ -136,6 +146,12 @@ function startMainTable(id)
 	getRecord(valuesToSelect,tableNames,attrs,values,gotMainConference,"json","false")
 }
 
+/**
+ * gotMainConference is used to get the events from the data (conference) passed into
+ * the method. The header for the table is also changed.
+ * 
+ * @param {String[][]} data 
+ */
 function gotMainConference(data)
 {
 	currentConferenceData = data;
@@ -162,6 +178,12 @@ function gotMainConference(data)
   	getRecord(valuesToSelect,tableNames,attrs,values,gotEventData,"json","false", ["event_date", "event_starttime"]);
 }
 
+/**
+ * gotEventData is used once the conference's event data is grabbed. The table is then 
+ * made with each event's information forming a new row.
+ * 
+ * @param {String[][]} data 
+ */
 function gotEventData(data)
 {
     if(data != null)
@@ -215,6 +237,14 @@ function generateEventDescription(data, i){
 	return row;
 }
 
+/**
+ * onAddClick is where the add button on an event was clicked to be added to the user's schedule. 
+ * This rebuilds the userSchedule to show the new event added to the schedule.
+ * 
+ * @param {int} eventID: The event's id
+ * @param {int} conferenceID: The conference's id
+ * @param {String} message: The message to be sent to the screen reader
+ */
 function onAddClick(eventID, conferenceID, message)
 {
   var map = 

@@ -455,6 +455,7 @@ function main(){
     $('#color-scheme-default').on('click',  turnOnColorDefault);
     $('#color-scheme-invert').on('click',  turnOnInverseStyle);
 
+    // Used to open the edit my Schedule page
     $("#editMySchedule").on("click", function(){
         closeMenus();
         $("title").text("Edit Personal Schedule");
@@ -465,6 +466,7 @@ function main(){
         });
     });
 
+    //used to open the user schedule's page
     $('#mySchedule').on("click", function(){
         closeMenus();
         $("title").text("My Schedule");
@@ -476,6 +478,7 @@ function main(){
         });
     });
 
+    // Used to open the conference schedule's page
     $('#conferenceSchedule').on("click", function(){
         closeMenus();
         $("#innerContent").empty();

@@ -39,4 +39,7 @@
 * 2.2.1.3.3. Delete Event
 * 2.2.2. Create Conference
 * 2.2.3. Delete Conference
+* 3.0 Known Bugs
+* 3.1 User Known Bugs
+* 3.2 Admin Known Bugs
 

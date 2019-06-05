@@ -7,7 +7,7 @@
  * Instantiate PDOUtil using the createPDOUtil method, query, and close.
  * the query method returns an associative array based on the results of the query. Sometimes there will be nothing in the array, it will be a 1d array, or it could be a 2d array.
  * 
- * Example:
+ * @example
  * $pdoUtil = PDOUtil::createPDOUtil();
  * $results = $pdoUtil->query("select * from Users where id=?", [12]);
  * echo var_dump($results);
@@ -57,6 +57,11 @@ class PDOUtil {
      * You may include an array of arguments to this object based on the order they would be put into the prepared statement
      * an empty array means there are no arguments for the query
      * This method returns an associative array based on the query results. The array can differ, being empty, 1d, or 2d.
+     * This function uses prepared statements to improve security, and mitagate SQL injections.
+     *
+     * @param string $sql - the sql query
+     * @param array $variables - The parameters to be used in the prepared statement.
+     * @return array - The results from the sql query as an associative array.
     */
     public function query($sql, $variables) {
         $statement = null;
@@ -77,6 +82,7 @@ class PDOUtil {
 
     /**
      * This method gets the id of the last inserted record 
+     * @return string - the id of the last record inserted into the database. Useful if your ids are generated automatically.
     */
     public function getLastInsertedID() {
         return $this->connection->lastInsertId();
@@ -92,5 +98,4 @@ class PDOUtil {
     }//end method
 
 }//end class
-
 ?>

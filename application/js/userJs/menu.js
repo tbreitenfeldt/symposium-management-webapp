@@ -463,6 +463,7 @@ function main(){
         });
     });
 
+    //used to open the user schedule's page
     $('#mySchedule').on("click", function(){
         closeMenus();
         $("title").text("My Schedule");

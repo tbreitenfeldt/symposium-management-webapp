@@ -4,16 +4,28 @@
  * https://stackoverflow.com/questions/5647461/how-do-i-send-a-post-request-with-php
 */
 
+
+/**
+ * The global constant that defines the URL path to the location of the main directory of the project.
+*/
 //define("DOMAIN", "http://pacificwesterndisabilitystudies.tk");
 define("DOMAIN", "http://localhost/dashboard/github/symposium-management-webapp/application");
 //define("DOMAIN", "http://localhost/symposium-management-webapp-master/application");
 //define("DOMAIN", "http://localhost/symposium-management-webapp/application");
 
+
+/**
+ * This class is taken from the programming form stack overflow.<br>
+ * source:
+ * https://stackoverflow.com/questions/5647461/how-do-i-send-a-post-request-with-php<br>
+ * This is a wrapper for curl for making get, post, put, and delete calls to an API.
+*/
 class HTTPRequester {
     /**
-     * @description Make HTTP-GET call
-     * @param       $url
-     * @param       array $params
+     * Make HTTP-GET call
+     *
+     * @param string $url
+     * @param array $params
      * @return      HTTP-Response body or an empty string if the request fails or is empty
      */
     public static function HTTPGet($url, array $params) {
@@ -27,9 +39,10 @@ class HTTPRequester {
         return $response;
     }
     /**
-     * @description Make HTTP-POST call
-     * @param       $url
-     * @param       array $params
+     * Make HTTP-POST call
+     *
+     * @param string $url
+     * @param array $params
      * @return      HTTP-Response body or an empty string if the request fails or is empty
      */
     public static function HTTPPost($url, array $params) {
@@ -46,8 +59,9 @@ class HTTPRequester {
         return $response;
     }
     /**
-     * @description Make HTTP-PUT call
-     * @param       $url
+     * Make HTTP-PUT call
+     *
+     * @param string $url
      * @param       array $params
      * @return      HTTP-Response body or an empty string if the request fails or is empty
      */
@@ -65,9 +79,10 @@ class HTTPRequester {
         return $response;
     }
     /**
-     * @category Make HTTP-DELETE call
-     * @param    $url
-     * @param    array $params
+     * Make HTTP-DELETE call
+     *
+     * @param string $url
+     * @param array $params
      * @return   HTTP-Response body or an empty string if the request fails or is empty
      */
     public static function HTTPDelete($url, array $params) {

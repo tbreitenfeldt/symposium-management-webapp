@@ -16,7 +16,7 @@ function fileRecursor(path){
             }
             else{
                 if(file.endsWith(".php") || file.endsWith(".js")){
-                    let markdownConverter = new JavadocToMarkdown();
+                    let markdownConverter = new JavadocToMarkdown(file);
                     var data = fs.readFileSync(possiblePath, 'utf8');
                     if(file.endsWith(".php")){
                         var convertedData = (markdownConverter.fromPHPDoc(data, 2));

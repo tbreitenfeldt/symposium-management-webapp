@@ -1,11 +1,23 @@
 <?php
-
+/**
+ * File post.php description
+ * This code will do the following in this order:
+ * 1. Restrict access to certain tables within this API on certain conditions.
+ * 2. Parse through the entered arrays, dynamically creating a SQL string Query.
+ * 3. Query the database with the dynamically generated query.
+ *
+ * This file can function without the restrictions in step 1, but will not have any restrictions whatsoever, so it will be a security hole.
+ * The restrictions in step 1 will be marked with comments denoting the beginning of restricitons and the end of restrictions.
+ * Feel free to try it without the restrictions. I'd advise against deleting them, but commenting them out should be fine.
+ */
+function post() {
 if (isset($_POST["table_name"])){
 	$table = $_POST["table_name"];
 	$tablecheck  = preg_replace("/[^a-zA-Z0-9]/", "", $table);
 	$attrs = (array)$_POST["attrs"];
 	$values = (array)$_POST["values"];
 
+	//beginning of restrictions
 	if($tablecheck == "useraccounts" || $tablecheck ==  "adminaccounts") {
 	    exit("Access Restricted - 1");
 	} else if ($tablecheck == "userschedule" || $tablecheck == "userconference"){
@@ -27,7 +39,7 @@ if (isset($_POST["table_name"])){
 	        }
 	    }
 	    if($access < 1) exit("Access Restricted - 2");
-	}
+	} //end of restrictions
 
 	$sql = "INSERT INTO ".$table." ("; 
 	foreach($attrs as $a){
@@ -50,5 +62,8 @@ if (isset($_POST["table_name"])){
 		exit($e->getMessage());
 	}
 }
-?>
+}
 
+
+post();
+?>

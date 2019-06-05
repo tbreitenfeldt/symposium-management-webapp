@@ -1,4 +1,9 @@
 <?php
+/*
+ This module handles resetting a forgot password.
+ Depends on the user providing a correct query string as a url to this module. Based on the URL sent to the user by the forgotPasswordFunctions.php module.
+*/
+
 require_once "PHPMailer/PHPMailer.php";
 require_once "PHPMailer/SMTP.php";
 require_once "PHPMailer/Exception.php";
@@ -8,6 +13,15 @@ require_once "dataValidation.php";
 require_once "../databaseUtil/pdoUtil.php";
 
 
+/**
+ * This is the main function for this module.
+ * Provided a correct query string get request, this will process a users reset password request.
+ * This is expecting the  get arguments token, and email, should be accessed via the URL sent to the user by email for resetting their account password.
+ * This uses the provided email address to lookup a user and compare the provided token with the token in the database.
+ * This validates the user and provides the needed information for resetting the users password.
+ * The token does expire after a set amount of time, defined in config.php, if the time stamp in the database is smaller than the current time, then throw a locked out error.
+ * Otherwise, validate the post request for the password, and update the database with the new password.
+*/
 function resetForgotPassword() {
     $pdoUtil = null;
     $status = "";
@@ -54,6 +68,15 @@ function resetForgotPassword() {
 }//end function
 
 
+/**
+ * Validate that the email and token provided match a user account record in the database.
+ * Once located, and determined to be valid, extract the username and return it.
+ *
+ * @param PDOUtil &$pdoUtil - The memory location of the PDO wrapper object.
+ * @param string $email - The email used to identify the user account.
+ * @param string $token - The randomly generated token that is used to validate the account for resetting a password.
+ * @return string - the username of the account to reset the passwowrd for.
+*/
 function validateUser(&$pdoUtil, $email, $token) {
     $hashedToken = "";
     $tokenExperationTime = 0;
@@ -84,6 +107,15 @@ function validateUser(&$pdoUtil, $email, $token) {
 }//end function
 
 
+/**
+ * Update the user accounts password based on the provided username.
+ * The fields are checked that the confirmation password matches the password field, then the password is updated based on the username.
+ *
+ * @param PDOUtil &$pdoUtil - The memory location of the PDO wrapper object.
+ * @param string $username - The username to identify the account by.
+ * @param string $newPassword - The new password for the account.
+ * @param string $confirmNewPassword - The confirmation of the new password.
+*/
 function updatePassword(&$pdoUtil, $username, $newPassword, $confirmNewPassword) {
     $c = "constant";
     $sql = "UPDATE {$c('USER_TABLE_NAME')} SET {$c('USER_PASSWORD_FIELD')}=?, " .
@@ -96,6 +128,13 @@ function updatePassword(&$pdoUtil, $username, $newPassword, $confirmNewPassword)
 }//end function 
 
 
+/**
+ * On success of the password being reset, a success email is sent out to notify them that their user account password was reset.
+ * This uses a third-party library called phpMailer for sending out emails.
+ *
+ * @param string $username - The username for the account in which the password was reset for.
+ * @param string $userEmail - The email address for the user to send the success email to.
+*/
 function sendSuccessEmail($username, $userEmail) {
     $mail = new PHPMailer\PHPMailer\PHPMailer();
     $mail->CharSet =  "text/html; charset=UTF-8;";

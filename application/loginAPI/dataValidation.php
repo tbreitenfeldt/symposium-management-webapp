@@ -1,14 +1,23 @@
 <?php
+/*
+ A collection of functions used for validating html form field data in the login system.
+*/
 
 require_once "includeConfig.php";
 
 
 
+/**
+ * Validates a string as a username.
+ * A username must have between 3 and 30 characters inclusive, start with a letter,, and may contain: capital and lower case letters,
+ * numbers between 0 and 9, and a period and a dash.
+ *
+ * @param string $username - the username string to validate.
+*/
 function validateUsername($username) {
     if ( !isset($username)) {
         throw new InvalidArgumentException("No username is defined.");
     }//end if
-
 
     $usernameRegex = '/^[A-Za-z][A-Za-z0-9\.\-]{3,31}$/';
 
@@ -21,6 +30,12 @@ function validateUsername($username) {
 }//end function
 
 
+/**
+ * Validates a password string.
+ * A password must contain at least 6 characters.
+ *
+ * @param string $password - the string to validate as a password.
+*/
 function validatePassword($password) {
     if ( !isset($password)) {
         throw new InvalidArgumentException("No password is defined.");
@@ -34,6 +49,12 @@ function validatePassword($password) {
 }//end function
 
 
+/**
+ * Validates a string as a password, and compares the two strings to guarantee that the passwords match.
+ *
+ * @param string $password - the string to be validated as a password.
+ * @param string $confirmPassword - The String to be compared to the password string, this must match the $password string or an error is thrown.
+*/
 function validatePasswordConfirmation($password, $confirmPassword) {
     if ( !isset($password) && !isset($confirmPassword)) {
         throw new InvalidArgumentException("No password or confirm password is defined.");
@@ -50,6 +71,12 @@ function validatePasswordConfirmation($password, $confirmPassword) {
 }//end function
 
 
+/**
+ * Validates a string as an email.
+ * Uses filter_var to validate the email
+ *
+ * @param string $email - The string to be validated as an email.
+*/
 function validateEmail($email) {
     if ( !isset($email)) {
         throw new InvalidArgumentException("No email is defined.<br>$email");
@@ -61,6 +88,12 @@ function validateEmail($email) {
 }//end function 
 
 
+/**
+ * Validates a string as a phone number.
+ * The given string is scrubbed for any characters that are not numbers, then a check is made to test if the scrubbed string length is equal to 10.
+ * 
+ * @param string &$phone - The memory location of a string to be scrubbed and validated as a phone number.
+*/
 function validatePhone(&$phone) {
     if ( !isset($phone)) {
         throw new InvalidArgumentException("No phone is defined.");
@@ -78,50 +111,68 @@ function validatePhone(&$phone) {
     }
 }//end function
 
+
+/**
+ * Validates three ints as components of a date, month, day, year.
+ * Uses php function checkdate to validate.
+ *
+ * @param int $year - an integer that represents a year.
+ * @param int $month - An integer that represents a month.
+ * @param int $day - An integer that represents a day.
+*/
 function validateDate($year, $month, $day){
     if(!(checkdate($month, $day, $year))){
         throw new InvalidArgumentException("Invalid date format. Expected YYYY-MM-DD");
     }
-}
+}//end function
 
+
+/**
+ * Validates a string as a time based on a provided format.
+ * The format string is provided a default value hh:ii:ss.
+ * Uses the php date object to validate.
+ *
+ * @param string $time - A string to be validated as a time.
+ * @param string $format - a string to be used as a template for how to validate the given time. Has a default value of hh:ii:ss.
+*/
 function validateTime($time, $format = "hh:ii:ss"){
     $dateObj = DateTime::createFromFormat($format, $time);
     if(!( $dateObj && $dateObj->format($format) == $time)){
         throw new InvalidArgumentException("Invalid time format. Expected 'hh:mm:ss'.");
     }
-}
+}//end function
 
-/*usage: date_from_user can be the same as start_date/end_date when you just need to make sure that
-            they start date and end date are valid.
-            Can also be used for checking if any date is valid within this range, date_from_user
-            being the date we need to check between the start_date and the end_date.
+
+/**
+ * Validates a string as a boolean value for notify by email.
+ * The resulting value will be 1 for true, and 0 for false.
+ *
+ * @param string $field - The memory location of a string that is a boolean value.
 */
-function check_date_in_range($start_date, $end_date, $date_from_user)
-{
-
-    $start_ts = strtotime($start_date);
-    $end_ts = strtotime($end_date);
-    $user_ts = strtotime($date_from_user);
-    
-
-    if (!(($user_ts >= $start_ts) && ($user_ts <= $end_ts))){
-        throw new InvalidArgumentException("Date entered is not in range. Range: " . $start_date . 
-                                            " to " . $end_date . " ; You entered: " .
-                                            $date_from_user);
-    }
-}
-
-
-function validateNotificationByEmail($field) {
-    $_POST["user_notifyByEmail"] = setCheckboxValue($field);
+function validateNotificationByEmail(&$field) {
+    $field = setCheckboxValue($field);
 }//end function
 
 
-function validateNotificationByPhone($field) {
-    $_POST["user_notifyByPhone"] = setCheckboxValue($field);
+/**
+ * Validates a string as a boolean value for notify by phone.
+ * The resulting value will be 1 for true, and 0 for false.
+ *
+ * @param string $field - The memory location of a string that is a boolean value.
+*/
+function validateNotificationByPhone(&$field) {
+    $field = setCheckboxValue($field);
 }//end function
 
 
+/**
+ * Scrubs a string as a boolean variable.
+ * If given a string value of true or 1, then return 1, otherwise, return 0.
+ * This is used for validating html checkboxes.
+ *
+ * @param string $field - The string boolean value to be scrubbed.
+ * @return int - The scrubbed boolean value.
+*/
 function setCheckboxValue($field) {
     if (isset($field)) {
         if ($field == "true" || $field == 1) {
@@ -136,6 +187,12 @@ function setCheckboxValue($field) {
 }//end function
 
 
+/**
+ * Validates a string as a phone carrier based on the supported carriers of our application.
+ * Insures that the given string matches one of the carriers that are defined in config.php as a constant.
+ *
+ * @param string $carrier - A string to be validated as a phone carrier.
+*/
 function validatePhoneCarrier($carrier) {
     if ( !isset($carrier)) {
         throw new InvalidArgumentException("No carrier is defined.");

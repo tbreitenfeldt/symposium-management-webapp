@@ -1,5 +1,17 @@
 <?php
 //include "./chromephp-master/ChromePhp.php";
+/**
+ * File get.php description
+ * This code will do the following in this order:
+ * 1. Restrict access to certain tables within this API on certain conditions.
+ * 2. Parse through the entered arrays, dynamically creating a SQL string Query.
+ * 3. Query the database with the dynamically generated query.
+ *
+ * This file can function without the restrictions in step 1, but will not have any restrictions whatsoever, so it will be a security hole.
+ * The restrictions in step 1 will be marked with comments denoting the beginning of restricitons and the end of restrictions.
+ * Feel free to try it without the restrictions. I'd advise against deleting them, but commenting them out should be fine.
+ */
+function get() {
 if(isset($_GET["genFlag"])){
 	$sql = "SELECT ";
 	$tables = (array)$_GET["table_names"];
@@ -12,12 +24,13 @@ if(isset($_GET["genFlag"])){
 		$values = (array)$_GET["values"];
 	}
 
-	
+	//beginning of restrictions
 	foreach($tables as $tn){
 	    if($tn == "user_accounts" || $tn == "admin_accounts"){
 	        exit("Access Restricted - 1");
 	    }
 	}
+	//end of restrictions
 	
 	if(!empty($_GET["values_to_select"])){
 		$selectValues = (array)$_GET["values_to_select"];
@@ -82,4 +95,8 @@ if(isset($_GET["genFlag"])){
 		exit($e->getMessage());
 	}
 }
+}
+
+
+get();
 ?>

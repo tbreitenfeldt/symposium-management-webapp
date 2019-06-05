@@ -102,6 +102,23 @@ function changePathToMainDirectory(path) {
 	
 	If you need more ideas on how to use any methods here, please take a look at my databaseTester.js and my databaseOutput.js for live examples of how I've used these functions.
 */
+
+/**
+ *
+ *
+ * @param {Array<String>} valuesToSelect - The name(s) of the columns to return.
+ * @param {Array<String>} tableNames - The name(s) of the tables to GET from. Entering multiple table names results in a Natural Join.
+ * @param {Array<String>} attrs - The name(s) of the columns to select by
+ * @param {Array<String>} values - The value(s) of the columns to select by
+ * @param {Function} callback - The function that will execute after the GET request finishes.
+ * @param {String} type - The data type to be returned. Most common use here is "json".
+ * @param {String} formatFlag - A string that determines if you wish to format the input values. Deprecated.
+ * @param {Array<String>} orderBy - The name(s) of the columns to sort the returned array by. Multiple names can be entered.
+ * @param {Boolean} proxyflag - A boolean (true or false) that determines if you want to use the Proxy.
+ *
+ *
+ */
+
 function getRecord(valuesToSelect, tableNames, attrs, values, callback, type, formatFlag, orderBy, proxyflag){
 	if(formatFlag == "true"){
 		if(!(valuesToSelect[0] == "*")){
@@ -168,6 +185,15 @@ function getRecord(valuesToSelect, tableNames, attrs, values, callback, type, fo
 
 	The above will delete all records from the "user_schedule" table where the user_id == 1, event_id == 20 and conference_id == 1. The result will be used by console.log.
 */
+
+/**
+ *
+ * @param {String} tablename - The name of the table.
+ * @param {Array<String>} idname - The name(s) of the columns to search by
+ * @param {Array<String>} idvalue - The value(s) of the data you are searching for
+ * @param {Function} callback - The function that will execute after the DELETE request finishes.
+ * @param {Boolean} proxyflag - A boolean (true or false) that determines if you want to use the Proxy.
+ */
 function delRecord(tablename, idname, idvalue, callback, proxyflag){
 	tablename = surround(tablename, "`");
 	formatStringArray(idname, "`");
@@ -222,6 +248,16 @@ function delRecord(tablename, idname, idvalue, callback, proxyflag){
 
 	The above will post a new record to the user_schedule table. The result is logged and input is formatted.
 */
+
+/**
+ *
+ * @param {String} tablename - The name of the table.
+ * @param {Array<String>} attrs - The name(s) of the columns to select by
+ * @param {Array<String>} values - The value(s) of the columns to select by
+ * @param {Function} callback - The function that will execute after the POST request finishes.
+ * @param {String} formatFlag - A string that determines if you wish to format the input values. Deprecated.
+ * @param {Boolean} proxyflag - A boolean (true or false) that determines if you want to use the Proxy.
+ */
 function postRecord(tablename, attrs, values, callback, formatFlag, proxyflag){
 	if(formatFlag == "true"){
 		tablename = surround(tablename, "`");
@@ -284,6 +320,18 @@ function postRecord(tablename, attrs, values, callback, formatFlag, proxyflag){
 	The above will, in the user_schedule table, update the "event_id" column to 40 where the user_id == 1. The result will be logged and input will be formatted.
 
 */
+
+/**
+ *
+ * @param {String} tablename - The name of the table.
+ * @param {Array<String>} attrs - The name(s) of the columns to select by
+ * @param {Array<String>} values - The value(s) of the columns to select by
+ * @param {Array<String>} idname - The name(s) of the columns to put new data into
+ * @param {Array<String>} idvalue - The value(s) of the data you are putting
+ * @param {Function} callback - The function that will execute after the PUT request finishes.
+ * @param {String} formatFlag - A string that determines if you wish to format the input values. Deprecated.
+ * @param {Boolean} proxyflag - A boolean (true or false) that determines if you want to use the Proxy.
+ */
 function putRecord(tablename, attrs, values, idname, idvalue, callback, formatFlag, proxyflag){
 	if(formatFlag == "true"){
 		tablename = surround(tablename, "`");

@@ -1,3 +1,6 @@
+
+var filename = "";
+
 /**
  * Generate Markdown from your Javadoc, PHPDoc or JSDoc comments
  *
@@ -6,8 +9,8 @@
  *
  * @constructor
  */
-var JavadocToMarkdown = function () {
-
+var JavadocToMarkdown = function (fName) {
+	filename = fName;
 	"use strict";
 
 	var self = this;
@@ -30,7 +33,7 @@ var JavadocToMarkdown = function () {
 		// initialize a string buffer
 		out = [];
 
-		out.push("#".repeat(headingsLevel)+" Documentation");
+		out.push("\n\n#".repeat(headingsLevel) + " " + filename + " Documentation");
 
 		for (i = 0; i < sections.length; i++) {
 			out.push(fromSection(sections[i], headingsLevel, fnAddTagsMarkdown));

@@ -1,5 +1,0 @@
-
-
-#
-
-# logout.php Documentation

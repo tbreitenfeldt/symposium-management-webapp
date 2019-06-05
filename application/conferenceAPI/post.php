@@ -10,6 +10,7 @@
  * The restrictions in step 1 will be marked with comments denoting the beginning of restricitons and the end of restrictions.
  * Feel free to try it without the restrictions. I'd advise against deleting them, but commenting them out should be fine.
  */
+function post() {
 if (isset($_POST["table_name"])){
 	$table = $_POST["table_name"];
 	$tablecheck  = preg_replace("/[^a-zA-Z0-9]/", "", $table);
@@ -61,5 +62,8 @@ if (isset($_POST["table_name"])){
 		exit($e->getMessage());
 	}
 }
-?>
+}
 
+
+post();
+?>

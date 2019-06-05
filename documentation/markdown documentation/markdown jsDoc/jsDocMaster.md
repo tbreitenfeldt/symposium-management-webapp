@@ -302,11 +302,6 @@ Removes all potential event handlers from buttons, clears the contents from each
 
 #
 
-# fileRecursor.js Documentation
-
-
-#
-
 # generateHTML.js Documentation
 
 ### `function createForm(id)`
@@ -437,88 +432,6 @@ Creates html for a listbox of countries. The options are already hard coded with
    * `className` — `string` — - The value used in the class attribute for the element.
    * `dataName` — `string` — - The value for the custom attribute data-name, which reflects the name of the associated field in the database the data will be inserted into.
  * **Returns:** `string` — The html for the listbox
-
-
-#
-
-# javadoc-to-markdown.js Documentation
-
-### `var JavadocToMarkdown = function (fName)`
-
-Generate Markdown from your Javadoc, PHPDoc or JSDoc comments
-
-Usage: Create a new instance of `JavadocToMarkdown` and then call either `fromJavadoc()`, `fromPHPDoc()` or `fromJSDoc()`
-
- * **Constructor**
-
-### `function fromDoc(code, headingsLevel, fnAddTagsMarkdown)`
-
-Generates Markdown documentation from code on a more abstract level
-
- * **Parameters:**
-   * `code` — `string` — the code that contains doc comments
-   * `headingsLevel` — `number` — the headings level to use as the base (1-6)
-   * `fnAddTagsMarkdown` — `function` — the function that processes doc tags and generates the Markdown documentation
- * **Returns:** `string` — the Markdown documentation
-
-### `this.fromStaticTypesDoc = function(code, headingsLevel)`
-
-Generates Markdown documentation from a statically typed language's doc comments
-
- * **Parameters:**
-   * `code` — `string` — the code that contains doc comments
-   * `headingsLevel` — `number` — the headings level to use as the base (1-6)
- * **Returns:** `string` — the Markdown documentation
-
-### `this.fromDynamicTypesDoc = function(code, headingsLevel, fnFormatType, fnFormatTypeAndName)`
-
-Generates Markdown documentation from a dynamically typed language's doc comments
-
- * **Parameters:**
-   * `code` — `string` — the code that contains doc comments
-   * `headingsLevel` — `number` — the headings level to use as the base (1-6)
-   * `fnFormatType` — `function` — the function that formats a type information (single argument)
-   * `fnFormatTypeAndName` — `function` — the function that formats type and name information (two arguments)
- * **Returns:** `string` — the Markdown documentation
-
-### `this.fromJavadoc = function(code, headingsLevel)`
-
-Generates Markdown documentation from Javadoc comments
-
- * **Parameters:**
-   * `code` — `string` — the code that contains doc comments
-   * `headingsLevel` — `number` — the headings level to use as the base (1-6)
- * **Returns:** `string` — the Markdown documentation
-
-### `this.fromPHPDoc = function(code, headingsLevel)`
-
-Generates Markdown documentation from PHPDoc comments
-
- * **Parameters:**
-   * `code` — `string` — the code that contains doc comments
-   * `headingsLevel` — `number` — the headings level to use as the base (1-6)
- * **Returns:** `string` — the Markdown documentation
-
-### `this.fromJSDoc = function(code, headingsLevel)`
-
-Generates Markdown documentation from JSDoc comments
-
- * **Parameters:**
-   * `code` — `string` — the code that contains doc comments
-   * `headingsLevel` — `number` — the headings level to use as the base (1-6)
- * **Returns:** `string` — the Markdown documentation
-
-### `function fromSection(section, headingsLevel, fnAddTagsMarkdown)`
-
-Generates Markdown documentation from a given section
-
-The function processes units of documentation, a line of code with accompanying doc comment
-
- * **Parameters:**
-   * `section` — `object` — the section that consists of code line and doc comment
-   * `headingsLevel` — `number` — the headings level to use as the base (1-6)
-   * `fnAddTagsMarkdown` — `function` — the function that processes doc tags and generates the Markdown documentation
- * **Returns:** `string` — the Markdown documentation
 
 
 #
@@ -823,11 +736,6 @@ Removes all potential event handlers from buttons, clears the contents from each
 
 #
 
-# fileRecursor.js Documentation
-
-
-#
-
 # generateHTML.js Documentation
 
 ### `function createForm(id)`
@@ -962,97 +870,13 @@ Creates html for a listbox of countries. The options are already hard coded with
 
 #
 
-# javadoc-to-markdown.js Documentation
-
-### `var JavadocToMarkdown = function (fName)`
-
-Generate Markdown from your Javadoc, PHPDoc or JSDoc comments
-
-Usage: Create a new instance of `JavadocToMarkdown` and then call either `fromJavadoc()`, `fromPHPDoc()` or `fromJSDoc()`
-
- * **Constructor**
-
-### `function fromDoc(code, headingsLevel, fnAddTagsMarkdown)`
-
-Generates Markdown documentation from code on a more abstract level
-
- * **Parameters:**
-   * `code` — `string` — the code that contains doc comments
-   * `headingsLevel` — `number` — the headings level to use as the base (1-6)
-   * `fnAddTagsMarkdown` — `function` — the function that processes doc tags and generates the Markdown documentation
- * **Returns:** `string` — the Markdown documentation
-
-### `this.fromStaticTypesDoc = function(code, headingsLevel)`
-
-Generates Markdown documentation from a statically typed language's doc comments
-
- * **Parameters:**
-   * `code` — `string` — the code that contains doc comments
-   * `headingsLevel` — `number` — the headings level to use as the base (1-6)
- * **Returns:** `string` — the Markdown documentation
-
-### `this.fromDynamicTypesDoc = function(code, headingsLevel, fnFormatType, fnFormatTypeAndName)`
-
-Generates Markdown documentation from a dynamically typed language's doc comments
-
- * **Parameters:**
-   * `code` — `string` — the code that contains doc comments
-   * `headingsLevel` — `number` — the headings level to use as the base (1-6)
-   * `fnFormatType` — `function` — the function that formats a type information (single argument)
-   * `fnFormatTypeAndName` — `function` — the function that formats type and name information (two arguments)
- * **Returns:** `string` — the Markdown documentation
-
-### `this.fromJavadoc = function(code, headingsLevel)`
-
-Generates Markdown documentation from Javadoc comments
-
- * **Parameters:**
-   * `code` — `string` — the code that contains doc comments
-   * `headingsLevel` — `number` — the headings level to use as the base (1-6)
- * **Returns:** `string` — the Markdown documentation
-
-### `this.fromPHPDoc = function(code, headingsLevel)`
-
-Generates Markdown documentation from PHPDoc comments
-
- * **Parameters:**
-   * `code` — `string` — the code that contains doc comments
-   * `headingsLevel` — `number` — the headings level to use as the base (1-6)
- * **Returns:** `string` — the Markdown documentation
-
-### `this.fromJSDoc = function(code, headingsLevel)`
-
-Generates Markdown documentation from JSDoc comments
-
- * **Parameters:**
-   * `code` — `string` — the code that contains doc comments
-   * `headingsLevel` — `number` — the headings level to use as the base (1-6)
- * **Returns:** `string` — the Markdown documentation
-
-### `function fromSection(section, headingsLevel, fnAddTagsMarkdown)`
-
-Generates Markdown documentation from a given section
-
-The function processes units of documentation, a line of code with accompanying doc comment
-
- * **Parameters:**
-   * `section` — `object` — the section that consists of code line and doc comment
-   * `headingsLevel` — `number` — the headings level to use as the base (1-6)
-   * `fnAddTagsMarkdown` — `function` — the function that processes doc tags and generates the Markdown documentation
- * **Returns:** `string` — the Markdown documentation
-
-
-#
-
 # conferenceManager.js Documentation
 
 ### `function startConferenceManager()`
 
 initializes the conference and event forms and hides them, then loads the conference chooser, and the edit, view and delete buttons
 
-### `function initializeConferenceForm()`
-
-function initializeConferenceForm. Dynamically generate the html for the conference form, used for editing and creating conferences This html could be hard 
+##
 
 #
 

@@ -1,5 +1,0 @@
-
-
-#
-
-# userSettings.php Documentation

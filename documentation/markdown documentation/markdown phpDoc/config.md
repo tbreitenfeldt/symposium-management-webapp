@@ -1,5 +1,0 @@
-
-
-#
-
-# config.php Documentation

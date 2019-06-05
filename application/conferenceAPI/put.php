@@ -11,6 +11,7 @@
  * The restrictions in step 1 will be marked with comments denoting the beginning of restricitons and the end of restrictions.
  * Feel free to try it without the restrictions. I'd advise against deleting them, but commenting them out should be fine.
  */
+function put() {
 parse_str(file_get_contents('php://input'), $_PUT);
 if (isset($_PUT["table_name"])) {
 
@@ -114,4 +115,8 @@ if (isset($_PUT["table_name"])) {
 		exit('Error processing');
 	}
 }
+}
+
+
+put();
 ?>

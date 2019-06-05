@@ -1,5 +1,0 @@
-
-
-#
-
-# footer.php Documentation

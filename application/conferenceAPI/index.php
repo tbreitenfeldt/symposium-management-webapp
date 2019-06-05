@@ -1,4 +1,6 @@
 <?php
+include_once("../databaseUtil/creds.php");
+include_once("../databaseUtil/pdoUtil.php");
 
 /**
  * File index.php description
@@ -9,9 +11,7 @@
  * 2. Set the global user id ($uid) or global admin id ($aid) variable respectively.
  * 3. Send the HTTP request to the appropriate Request Method, i.e. if you used getRecord, index.php will redirect to get.php.
  */
-include_once("../databaseUtil/creds.php");
-include_once("../databaseUtil/pdoUtil.php");
-
+function processRequest() {
 $uid = -1;
 $aid = -1;
 
@@ -39,10 +39,12 @@ try{
 	exit($e->getMessage());
 }
 session_write_close();
+}
 
 function shorten($string, $shortenBy){
 	$return = substr($string, 0, strlen($string) - $shortenBy);
 	return $return;
 }
 
+processRequest();
 ?>

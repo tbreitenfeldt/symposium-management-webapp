@@ -1,5 +1,0 @@
-
-
-#
-
-# creds.php Documentation

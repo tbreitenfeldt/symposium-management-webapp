@@ -4,7 +4,7 @@
 
 # post.php Documentation
 
-### `if (isset($_POST["table_name"]))`
+### `function post()`
 
 File post.php description This code will do the following in this order: 1. Restrict access to certain tables within this API on certain conditions. 2. Parse through the entered arrays, dynamically creating a SQL string Query. 3. Query the database with the dynamically generated query.
 

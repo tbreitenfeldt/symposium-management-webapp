@@ -1,5 +1,0 @@
-
-
-#
-
-# resetPassword.php Documentation

@@ -1,5 +1,0 @@
-
-
-#
-
-# userHeader.php Documentation

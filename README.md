@@ -1,1 +1,0 @@
-# symposium-management-webapp

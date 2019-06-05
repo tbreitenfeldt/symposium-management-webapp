@@ -4,8 +4,7 @@ del /Q "markdown phpDoc\*"
 
 node fileRecursor.js
 cd "markdown jsDoc"
-del fileRecursor.md
-del javadoc-to-markdown.md
+del doctools.md documentation_options.md jquery.md jquery-3.2.1.md language_data.md searchindex.md searchtools.md sidebar.md underscore.md underscore-1.3.1.md javadoc-to-markdown.md fileRecursor.md
 type *.md > jsDocMaster.md
 pandoc jsDocMaster.md -o jsDoc.docx
 xcopy /Y jsDoc.docx ..\

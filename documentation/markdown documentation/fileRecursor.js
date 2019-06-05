@@ -45,12 +45,13 @@ function fileRecursor(path){
     });
 }
 
+/*
 function fileRecursor(path){
     var md = new Markdown();
 md.bufmax = 2048;
 var fileName = 'test/test.md';
 var opts = {title: 'File $BASENAME in $DIRNAME', stylesheet: 'test/style.css'};
-...
+
 // Write a header.
 console.log('===============================');
 // Write a trailer at eof.
@@ -65,5 +66,6 @@ md.render(fileName, opts, function(err) {
   md.pipe(process.stdout);
 });
 }
+*/
 
 fileRecursor("./../../");

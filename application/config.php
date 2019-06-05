@@ -32,8 +32,7 @@ define("USER_PHONE_CARRIERS",
         array("verizon", "metro pcs", "nextel", "sprint", "t-mobile", "u.s. cellular", "at&t", "virgin mobile", "tracfone", "ting", "boost mobil")
         );
 
-define("USER_DATA_FIELDS",
-array("user_notifyByEmail"=>"validateNotificationByEmail", "user_notifyByPhone"=>"validateNotificationByPhone", "user_email"=>"validateEmail", "user_phone"=>"validatePhone", "user_phoneCarrier"=>"validatePhoneCarrier")
+define("USER_DATA_FIELDS",array("user_notifyByEmail"=>"validateNotificationByEmail", "user_notifyByPhone"=>"validateNotificationByPhone", "user_email"=>"validateEmail", "user_phone"=>"validatePhone", "user_phoneCarrier"=>"validatePhoneCarrier")
 );
 
 define("LOGIN_PAGE_NAME", "login.php");

@@ -16,7 +16,6 @@ class DemoObj:
         return self.x
 
 
-
 demoObj = DemoObj()
     
 

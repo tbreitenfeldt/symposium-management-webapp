@@ -41,13 +41,10 @@ session_write_close();
             <label for="user_email">* Email:</label>
             <br aria-hidden="true">
             <input type="email" id="user_email" name="user_email" required="required" />
-          </fieldset>
-          <fieldset>
             <h2>Conference Event Notification Settings</h2>
             <div id="check-box-settings">
               <label for="user_notifyByEmail">Notify by email address:</label>
               <input type="checkbox" id="user_notifyByEmail" class="checkbox" name="user_notifyByEmail" value="true" checked="checked" />
-              <br aria-hidden="true">
               <label for="user_notifyByPhone">Notify by text message:</label>
               <input type="checkbox" id="user_notifyByPhone" class="checkbox" name="user_notifyByPhone" value="true" onChange="togglePhoneRegion(event)" data-screenreaderNotify="true" />
             </div>
@@ -76,7 +73,7 @@ session_write_close();
             </select></p>
           </fieldset>
 
-          <p id="passwordDescription">Your password must be at least 6 characters long.</p>
+          <label id="passwordDescription">Your password must be at least 6 characters long.</label>
           <label for="user_password">* Password:</label>
           <br aria-hidden="true">
           <input type=password id="user_password" name="user_password" aria-labeledby="passwordDescription" required="required" />
@@ -85,13 +82,13 @@ session_write_close();
           <br aria-hidden="true">
           <input type="password" id="confirm_password" name="confirm_password" required="required" />
           <br aria-hidden="true">
+          <input type="reset" id="resetButton" class="btn btn-primary btn-lg btn-block" value="Reset" onclick="return confirm('Are you sure you would like to reset this form?');" />
           <br aria-hidden="true">
-          <input type="reset" id="resetButton" value="Reset" onclick="return confirm('Are you sure you would like to reset this form?');" />
-          <br aria-hidden="true">
-          <input type="submit" id="registerButton" value="Register" />
+          <input type="submit" id="registerButton" class="btn btn-primary btn-lg btn-block" value="Register" />
           </fieldset>
 
-          <p>Already have an account? <a href="login.php"><br aria-hidden="true">Login here</a>.</p>
+          <label>Already have an account? </label>
+          <a href="login.php">Login here</a>
         </form>
       </div>
     </div>

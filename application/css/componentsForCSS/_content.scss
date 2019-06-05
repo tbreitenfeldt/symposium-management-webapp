@@ -1,12 +1,14 @@
-/* ---------------------------------------------------
-    CONTENT
------------------------------------------------------ */
+// Content
+//
+// Components used for primary layout of user interface once signed into application.
+//
+// Styleguide Content
+
+
 html{
     background: white;
     width: 100%;
 }
-
-
 
 header{
     font-size: 32px;
@@ -98,4 +100,8 @@ a:focus {
     background:$unintensiveWhite;
     color:red;
     }
+}
+
+#welcome-user{
+    font-size: 1.75rem !important;
 }

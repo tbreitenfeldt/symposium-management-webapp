@@ -1,7 +1,9 @@
-/* ---------------------------------------------------
-    HIDES TEXT VISUALLY, BUT ALLOWS SCREENREADERS
-    TO READ IT.
------------------------------------------------------ */
+// Screenreader Assistance
+//
+// Provides a nearly invisible tag that is used to pass aria-live messages for actions that isn't spoken already
+// by the screen reader.
+//
+// styleguide Screenreader Assistance
 
 .screenreader-text {
     border: 0; 

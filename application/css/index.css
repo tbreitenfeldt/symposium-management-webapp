@@ -1,7 +1,4 @@
 @charset "UTF-8";
-/* ---------------------------------------------------
-    CONTENT
------------------------------------------------------ */
 html {
   background: white;
   width: 100%;
@@ -55,7 +52,7 @@ a:focus {
 
 #footer {
   outline: 0;
-  background-color: crimson;
+  background-color: #DC143C;
   color: #fff;
   padding: 10px;
   max-width: none;
@@ -77,7 +74,7 @@ a:focus {
   border-radius: 0;
   -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
           box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-  background: crimson !important;
+  background: #DC143C !important;
   margin-bottom: 30px;
 }
 
@@ -101,9 +98,10 @@ a:focus {
   color: red;
 }
 
-/* ---------------------------------------------------
-    USER MENU
------------------------------------------------------ */
+#welcome-user {
+  font-size: 1.75rem !important;
+}
+
 #user-menu {
   top: 0px;
   width: 404px;
@@ -134,15 +132,11 @@ a:focus {
   padding-right: 0px;
 }
 
-/* button icon */
 svg:not(:root).svg-inline--fa {
   overflow: visible;
   width: .8em;
 }
 
-/* ---------------------------------------------------
-    SIDEBAR STYLE
------------------------------------------------------ */
 #dismiss {
   width: 100%;
   text-align: center;
@@ -178,7 +172,7 @@ svg:not(:root).svg-inline--fa {
   left: 0px;
   height: 100vh;
   z-index: 999;
-  background: crimson;
+  background: #DC143C;
   color: #fff;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
@@ -207,14 +201,14 @@ svg:not(:root).svg-inline--fa {
 #rightSidebar .sidebar-header,
 #centerSidebar .sidebar-header {
   padding: 20px;
-  background: crimson;
+  background: #DC143C;
 }
 
 #leftSidebar ul.components,
 #rightSidebar ul.components,
 #centerSidebar .centerSidebar-header {
   padding: 20px 0;
-  border-bottom: 1px crimson;
+  border-bottom: 1px #DC143C;
 }
 
 #leftSidebar ul p,
@@ -235,7 +229,7 @@ svg:not(:root).svg-inline--fa {
 #leftSidebar ul li a:hover,
 #rightSidebar ul li a:hover,
 #centerSidebar ul li a:hover {
-  color: crimson;
+  color: #DC143C;
   background: #fff;
 }
 
@@ -329,7 +323,7 @@ a.download {
 
 .dropdown-button:hover {
   background: #fff;
-  color: crimson;
+  color: #DC143C;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
@@ -361,9 +355,6 @@ button.dropdown-button:not(.collapsed)[aria-expanded="true"] {
   overflow-y: hidden;
 }
 
-/* ---------------------------------------------------
-    USER MENU
------------------------------------------------------ */
 #user-menu {
   top: 0px;
   width: 404px;
@@ -394,15 +385,11 @@ button.dropdown-button:not(.collapsed)[aria-expanded="true"] {
   padding-right: 0px;
 }
 
-/* button icon */
 svg:not(:root).svg-inline--fa {
   overflow: visible;
   width: .8em;
 }
 
-/* ---------------------------------------------------
-    FILTER CLASS DISPLAYS
------------------------------------------------------ */
 .gray-style-filter {
   -moz-filter: grayscale(100%);
   -webkit-filter: grayscale(100%);
@@ -415,10 +402,6 @@ svg:not(:root).svg-inline--fa {
   filter: invert(0.8);
 }
 
-/* ---------------------------------------------------
-    HIDES TEXT VISUALLY, BUT ALLOWS SCREENREADERS
-    TO READ IT.
------------------------------------------------------ */
 .screenreader-text {
   border: 0;
   clip: rect(0 0 0 0);
@@ -430,9 +413,6 @@ svg:not(:root).svg-inline--fa {
   width: 1px;
 }
 
-/* ---------------------------------------------------
-    TABLES
------------------------------------------------------ */
 table, th, td {
   border: 3px solid black;
 }
@@ -540,9 +520,6 @@ td {
   border-width: thin;
 }
 
-/* ---------------------------------------------------
-    MEDIA SIZING
------------------------------------------------------ */
 /*All media sizing for single handheld mobile devices*/
 @media (max-width: 426px) {
   #rightSidebar,
@@ -599,9 +576,6 @@ td {
   }
 }
 
-/* ---------------------------------------------------
-    Forms
------------------------------------------------------ */
 @media (min-width: 451px) {
   body {
     display: table-cell;
@@ -788,5 +762,35 @@ form a:hover, form a:focus {
   -webkit-transition: unset;
   transition: unset;
   color: darkblue;
+}
+
+form [type=submit], form .btn-primary {
+  background: #17a2b8;
+  color: white;
+  border: black;
+  border-style: solid;
+  text-align: center;
+  text-align: center;
+  display: block;
+  font-size: 32px;
+}
+
+form input {
+  font-size: 32px;
+  max-width: -webkit-fill-available;
+}
+
+form label, form h2, form p, form a {
+  padding-top: 20px;
+  display: block;
+}
+
+#check-box-settings label {
+  padding-top: 20px;
+}
+
+input[type="checkbox"] {
+  width: 35px;
+  height: 35px;
 }
 /*# sourceMappingURL=index.css.map */

@@ -3,9 +3,26 @@ import smtplib
 import imghdr
 from email.message import EmailMessage
 
+"""
+SenderObjects.EmailNotification
+====================================
+The core module of my example project
+"""
+
 class EmailNotification:
+    """
+    SenderObjects.EmailNotification
+    ====================================
+    The core module of my example project
+    """
 
     def __init__(self):
+        """fafaf[DVC Constructor]
+        """
+
+        """This function does something Maybve.
+
+        """
         self._sender_email = os.environ.get('SENDER_EMAIL')
         self._sender_email_password = os.environ.get('SENDER_EMAIL_PASSWORD')
         self._server_address = os.environ.get('SENDER_EMAIL_ADDRESS')
@@ -13,38 +30,82 @@ class EmailNotification:
 
     @property
     def sender_email(self):
+        """This function does something Maybve.
+
+        :param name: The name to use.
+        :type name: str.
+        :param state: Current state to be in.
+        :type state: bool.
+        :returns:  string -- The email address of the host/sender.
+        """
         return self._sender_email
 
     @sender_email.setter
     def sender_email(self, sender_email_new):
+        """[Receives and sets EmailNotifcation object's email to the received email string.]
+        
+        Arguments:
+            sender_email_new {[type]} -- [description]
+        """
         self._sender_email = sender_email_new
 
     @sender_email.deleter
     def sender_email(self):
+        """[summary]
+        """
         del self._sender_email
 
     @property
     def sender_email_password(self):
+        """[summary]
+        
+        Returns:
+            [type] -- [description]
+        """
         return self._sender_email_password
 
     @sender_email_password.setter
     def sender_email_password(self, sender_email_password_new):
+        """Sets the password of the host/sender's email acccount.
+        
+        Arguments:
+            sender_email_password_new {string} -- Password to be set as new password for email account.
+        """
         self._sender_email_password = sender_email_password_new
 
     @sender_email_password.deleter
     def sender_email_password(self):
+        """[summary]
+        """
         del self._sender_email_password
 
     @property
     def server_address(self):
+        """[summary]
+        
+        Returns:
+            [type] -- [description]
+        """
         return self._server_address
 
     @property
     def server_port_number(self):
+        """[summary]
+        
+        Returns:
+            [type] -- [description]
+        """
         return self._server_port_number
 
-    def send_email(self, reciever_email, body, subject):
 
+    def send_email(self, reciever_email, body, subject):
+        """Sends email using the passed in email address (reciever_email) along with the body and subject of the email.
+        
+        Arguments:
+            reciever_email {string} -- [Email address to be sent to.]
+            body {[type]} -- [Body of email that will be attached to email object before sending.]
+            subject {[type]} -- [Subject of email that will be attached to email object before sending.]
+        """
         msg = EmailMessage()
 
         msg['Subject'] = subject
@@ -62,20 +123,6 @@ if __name__ == "__main__":
     #test
     emailNotify = EmailNotification()
     emailNotify.send_email(os.environ.get("TEST_EMAIL"), "Testing Email Subject!", "Testing Email Body")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # 'HTML BODY EXAMPE

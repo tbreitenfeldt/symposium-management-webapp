@@ -7,6 +7,12 @@ class ReminderEvent:
 
     @property
     def return_text_body_str(self):
+        """This function acts as get/set for _phoneNumber 
+        
+        :getter: Returfajflajjfajfakl;jfafkakjsfk;ajfakns this phone_number, or False if empty.
+        :setter: Sets this phone_number, or sets to False if passed in phoneNumber is empty.
+        :type: int
+        """
         return "Notification Reminder from the {}.\nThe event {} will start in 15 minutes.".format(self.eventInfo.conference_name, self.eventInfo.event_name)
 
     @property

@@ -56,7 +56,8 @@ session_write_close();
                   </div>  
                   <a href="forgotPassword.php">Forgot Password?</a>
                 </fieldset>
-                <p id="signUp">Don't have an account? <br aria-hidden="true"><a href="register.php">Sign up now</a>.</p>
+                <label id="signUp">Don't have an account? </label>
+                <a href="register.php">Sign up now</a>
 
                 <div id="outputRegion" aria-live="polite" ></div>
             </form>

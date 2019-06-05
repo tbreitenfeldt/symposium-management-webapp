@@ -1,4 +1,6 @@
 var JavadocToMarkdown = require("./javadoc-to-markdown.js");
+var MarkdownToHtml = require("./javadoc-to-markdown.js");
+
 var fs = require('fs');
 
 function fileRecursor(path){
@@ -17,7 +19,6 @@ function fileRecursor(path){
                     let markdownConverter = new JavadocToMarkdown();
                     var data = fs.readFileSync(possiblePath, 'utf8');
                     if(file.endsWith(".php")){
-
                         var convertedData = (markdownConverter.fromPHPDoc(data, 2));
                         fs.writeFile("./markdown phpDoc/" + file.substr(0, file.length - 3) + "md", convertedData, function(err) {
                             if(err) {
@@ -42,6 +43,27 @@ function fileRecursor(path){
             }
         });
     });
+}
+
+function fileRecursor(path){
+    var md = new Markdown();
+md.bufmax = 2048;
+var fileName = 'test/test.md';
+var opts = {title: 'File $BASENAME in $DIRNAME', stylesheet: 'test/style.css'};
+...
+// Write a header.
+console.log('===============================');
+// Write a trailer at eof.
+md.once('end', function() {
+  console.log('===============================');
+});
+md.render(fileName, opts, function(err) {
+  if (err) {
+    console.error('>>>' + err);
+    process.exit();
+  }
+  md.pipe(process.stdout);
+});
 }
 
 fileRecursor("./../../");

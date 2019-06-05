@@ -2,7 +2,19 @@ import smtplib
 import os
 import enum
 
+
+"""
+Providers
+====================================
+The core module of my example project
+"""
+
 class Providers(enum.Enum):
+    """
+    Providers
+    ====================================
+    The core module of my example project
+    """
     verizon = "@vtext.com"                # "verizon"
     metro_pcs = "@metropcs.sms.us"        # "metro pcs"
     nextel = "@messaging.nextel.com"      # "nextel"

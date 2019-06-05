@@ -1,6 +1,9 @@
-/* ---------------------------------------------------
-    Forms
------------------------------------------------------ */
+// Forms
+//
+// Ids and Classes used for form layout and structure.
+//
+// Styleguide Forms
+
 
 @media (min-width:451px){
     body {
@@ -185,9 +188,41 @@ fieldset {
     }
 }
 
+@mixin buttonStyle() {
+    background: $userButtonColor;
+    color:white;
+    border:black;
+    border-style:solid;
+    text-align: center;
+  }
+
 form{
     padding:20px;
     a{
         @include transform(blue, darkblue);
     }
+
+    [type=submit], .btn-primary{
+        @include buttonStyle();
+        text-align: center;
+        display: block;
+        font-size:32px;
+    }
+    input{
+        font-size:32px;
+        max-width: -webkit-fill-available;
+    }
+    label,h2, p, a{
+        padding-top:20px;
+        display:block;
+    }
+}
+
+#check-box-settings label{
+    padding-top:20px;
+}
+
+input[type="checkbox"]{
+    width: 35px;
+    height: 35px;
 }

@@ -8,10 +8,16 @@ import heapq
 import schedule
 import time
 import logging
-
+"""
+SenderObjects.UserInfo
+====================================
+The UserInfo module acts as container for each 'User Object'.
+"""
 
 class database_sql:
+    """DVC Constructor - Declares and initlizes empty queue instance variable. 
 
+    """
     def __init__(self):
         self.pQueue = []
 
@@ -83,19 +89,6 @@ class database_sql:
 
         logging.info("Time of termination after submitting notifications: {}".format(datetime.datetime.now()) )
         logging.info("___________________________\n")
-
-
-        
-
-    # def print_tables(self):
-    #     schedule.every(1).seconds.do(self.retrieve_table_info)
-    #     num = 1
-    #     while True:
-    #         print("At second: {}".format(num) )
-    #         num = num + 1
-    #         schedule.run_pending()
-    #         print("Retrieved from database")
-    #         time.sleep(1)
 
 if __name__ == "__main__":
     d = database_sql()

@@ -202,6 +202,7 @@ var JavadocToMarkdown = function () {
 				// if we have a valid type (and name)
 				if (/^\{([^{}]+)\}$/.test(type)) {
 					return "`"+name+"` — `"+type.substr(1, type.length-2)+"`";
+					return type.substr(1, type.length-2)+"`" +  "` — `" +"`"+name +"`";
 				}
 				// if it seems we only have a name
 				else {

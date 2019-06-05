@@ -1,6 +1,21 @@
-
+/**
+ *  This file is used to create and manipulate the User's conference schedule.
+ *      - myTable is a variable to correctly reload a table. It is an Array.
+ * 
+ */
 var myTable;
 
+
+/**
+ *  startUserTable is used to create or re-create the table by attempting 
+ *  to get the user conference from the database and sending it to gotEvent or showSchedule.
+ * 
+ *     If something is added to the table, the table must be re-created. 
+ * 
+ * @param {int} conferenceID: The user's conference id to find the conference in the database
+ * @param {int} showSched: Boolean to determine whether something has been added or if the table
+ *                         is just loading (1 = adding to table and 0 == load table)
+ */
 function startUserTable(conferenceID, showSched)
 {  
     if(showSched == 0)
@@ -32,41 +47,28 @@ function startUserTable(conferenceID, showSched)
     }, "json");
 }
 
-function showSchedule(conferenceID, data)
-{   
-    // Put information from event into table, along with delete button
-    // IF schedule is empty, add something saying no events, 
-    //if not empty find info on event and add to table
+/**
+ * showSchedule is used to empty the table location and send the information to 
+ * generateUserEventTable.
+ * 
+ * @param {int} conferenceID: The user's conference id to find the conference in the database
+ * @param {string[][]} data: The data that is returned from the SQL statement into the database. 
+ */
 
+function showSchedule(conferenceID, data)
+{ 
 	$("#schedInfo").empty();
 	generateUserEventTable(data, "schedInfo", "myScheduleTable");
-	
-	/*
-    if(data != null)
-    {
-		myTable = new Array();
-        for(i = 0; i < data.length; i++)
-        {
-            var id = data[i].event_id;
-		    var message = String("Removed " + name) + " from mySchedule";
-
-
-			
-			if(!myTable.includes(id))
-		    {
-				myTable.push(id);
-				$("<tr><td>" + data[i].event_name +  "</td><td>" + data[i].event_date + "</td><td>" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button id='openCloseButton" + i + "' onclick='onShowHiddenRowWithAria(eventInfoRow" + i + ", \"" + data[i].event_name + "\")' class='dropbtn'>More/Less Info</button></td>"
-				+ "<td><button class=\"delBtn\" onclick=\"onDeleteClickMySchedulePage(this," + data[i].event_id + "," + "\'" + message + "\'" + ")\" aria-label=\"Delete from my Schedule\"><i class=\"fas fa-times-circle fa-w-16 fa-3x\"></i></button></td></tr>"
-				+ "<tr  id='eventInfoRow" + i + "' style='display:none' ><td colspan=6><p id='dropdown" + i +"'>Information: " + event.info + "<br>Speakers: " + event.speakers + "<br>Building, Floor, Room: " + event.room + "</p></td></tr>").appendTo("#schedInfo");
-			}
-		}
-    }
-    else
-    {
-        $("<tr><td>No Events Here</td></tr>").appendTo("#schedInfo");
-    }
-	*/
 }
+
+/**
+ * generateUserEventTable is used to build the table from scratch and put it within the 
+ * content div
+ * 
+ * @param {string[][]} data: The data that is returned from the SQL statement into the database
+ * @param {string} tblBodyID: The user tables body div id
+ * @param {string} tblID : The user tables id
+ */
 
 function generateUserEventTable(data, tblBodyID, tblID){
 	if(data.length > 0)
@@ -101,37 +103,27 @@ function generateUserEventTable(data, tblBodyID, tblID){
     }
 }
 
+/**
+ *  gotEvent is used to empty the tables information and then is recreated in 
+ * generateUserEventTable.
+ * 
+ * @param {int} conferenceID: (Not needed)
+ * @param {string[][]} data: The data that is returned from the SQL statement into the database
+ */
 function gotEvent(conferenceID, data)
-{   
-    // Put information from event into table, along with delete button
-    // IF schedule is empty, add something saying no events, 
-    //if not empty find info on event and add to table
-
+{
 	$("#UsersCon tbody").empty();
 	generateUserEventTable(data, "userConInfo", "UsersCon");
-	
-	/*
-    if(data != null)
-    {
-        for(i = 0; i < data.length; i++)
-        {
-            var id = data[i].event_id;
-            if(!myTable.includes(id))
-		    {
-                myTable.push(id);
-                name = String(data[i].event_name);
-                var message = String("Removed " + name) + " from mySchedule";
-                $("<tr><td>" + data[i].event_name + "</td><td aria-label=\"" + name + "wil start at\">" + data[i].event_starttime + "</td><td>" + data[i].event_endtime + "</td><td><button class=\"delBtn\" onclick=\"onDeleteClick1(this," + id + "," + "\'" + message + "\'" + ")\" aria-label=\"Delete from my Schedule\"><i class=\"fas fa-times-circle fa-w-16 fa-3x\"></i></button></td></tr>").appendTo("#UsersCon tbody");
-            }
-        }
-    }
-    else
-    {
-        $("<tr><td>No Events Here</td></tr>").appendTo("#userConInfo");
-    }
-	*/
 }
 
+/** 
+ * onDel  is used to delete an event from a table
+ * 
+ * @param {Object} event: The event that will be manipulated within onDelSuccess.
+ * @param {int} eventID: The id for the event being deleted
+ * @param {String} message: Message to give to the screenreader.
+ * @param {int} tblID: The id for the table being deleted.
+ */
 function onDel(event, eventID, message, tblID){
 	    var map =
     {
@@ -145,6 +137,12 @@ function onDel(event, eventID, message, tblID){
     notifyScreenreader(message);
 }
 
+/**
+ * 
+ * @param {*} event 
+ * @param {*} eventID 
+ * @param {*} tblID 
+ */
 function onDelSuccess(event, eventID, tblID){
 	let rowIndex = event.parentElement.parentElement.rowIndex;
     let table = tblID ; //document.getElementById(tblID);
@@ -166,6 +164,13 @@ function onDelSuccess(event, eventID, tblID){
     }
 }
 
+/**
+ * When a button is clicked, this delete is performed if necessary
+ * 
+ * @param {Object} event: The event that will be manipulated within successDel.
+ * @param {int} eventID: The events id
+ * @param {String} message: The message to be sent to the screenreader.
+ */
 function onDeleteClick1(event, eventID, message)
 {
     var map =
@@ -180,6 +185,13 @@ function onDeleteClick1(event, eventID, message)
     notifyScreenreader(message);
 }
 
+/**
+ *  OnDeleteClickMySchedulePage will remove the event from the user_schedule
+ * 
+ * @param {Object} event: The event that will be manipulated within onSuccessDeleteFromMySchedule.
+ * @param {int} eventID: The events id
+ * @param {String} message: The message to be sent to the screenreader.
+ */
 function onDeleteClickMySchedulePage(event, eventID, message)
 {
     var map =
@@ -194,6 +206,12 @@ function onDeleteClickMySchedulePage(event, eventID, message)
     notifyScreenreader(message);
 }
 
+/**
+ * onSuccessDeleteFromMySchedule is where the event gets removed from the table (So it cant be seen anymore)
+ * 
+ * @param {Object} event: The event that will be manipulated
+ * @param {int} eventID: The events id.
+ */
 function onSuccessDeleteFromMySchedule(event, eventID)
 {
     let rowIndex = event.parentElement.parentElement.rowIndex;
@@ -207,7 +225,13 @@ function onSuccessDeleteFromMySchedule(event, eventID)
         $("<tr><td>No Events Here</td></tr>").appendTo("#myScheduleTable");
     }
 }
-
+/**
+ * successDel is used to remove from the editMySchedule portion of the website. 
+ * Specifically from te user's schedule
+ * 
+ * @param {Object} event: A reference to the event that was used 
+ * @param {int} eventID: The event's id 
+ */
 function successDel(event, eventID)
 {
     let rowIndex = event.parentElement.parentElement.rowIndex -1;
@@ -222,6 +246,12 @@ function successDel(event, eventID)
     }
 }
 
+/**
+ * showEventInfo is used to toggle the dropdown information for an event alog with
+ * the dropdown's aria
+ * 
+ * @param {int} count 
+ */
 function showEventInfo(count)
 {
     $("#dropdown"+count).toggle("fast");

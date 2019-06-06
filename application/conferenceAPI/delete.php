@@ -10,7 +10,6 @@
  * The restrictions in step 1 will be marked with comments denoting the beginning of restricitons and the end of restrictions.
  * Feel free to try it without the restrictions. I'd advise against deleting them, but commenting them out should be fine.
  */
-function delete() {
 parse_str(file_get_contents('php://input'), $_DELETE);
 if (isset($_DELETE["id_name"]) && isset($_DELETE["id_value"]) && isset($_DELETE["table_name"])) {
 	try {
@@ -56,8 +55,6 @@ if (isset($_DELETE["id_name"]) && isset($_DELETE["id_value"]) && isset($_DELETE[
 		exit('Error processing');
 	}
 } 
-}
 
 
-delete();
 ?>

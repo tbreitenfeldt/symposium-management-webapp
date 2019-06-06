@@ -9,9 +9,9 @@
  * The global constant that defines the URL path to the location of the main directory of the project.
 */
 //define("DOMAIN", "http://pacificwesterndisabilitystudies.tk");
-define("DOMAIN", "http://localhost/dashboard/github/symposium-management-webapp/application");
+//define("DOMAIN", "http://localhost/dashboard/github/symposium-management-webapp/application");
 //define("DOMAIN", "http://localhost/symposium-management-webapp-master/application");
-//define("DOMAIN", "http://localhost/symposium-management-webapp/application");
+define("DOMAIN", "http://localhost/symposium-management-webapp/application");
 
 
 /**
@@ -24,8 +24,8 @@ class HTTPRequester {
     /**
      * Make HTTP-GET call
      *
-     * @param string $url
-     * @param array $params
+     * @param string $url - The url to target with your HTTP request.
+     * @param array $params - The array of arguments that are to be passed along with the request.
      * @return      HTTP-Response body or an empty string if the request fails or is empty
      */
     public static function HTTPGet($url, array $params) {
@@ -41,8 +41,8 @@ class HTTPRequester {
     /**
      * Make HTTP-POST call
      *
-     * @param string $url
-     * @param array $params
+     * @param string $url - The url to target with your HTTP request.
+     * @param array $params - The array of arguments that are to be passed along with the request.
      * @return      HTTP-Response body or an empty string if the request fails or is empty
      */
     public static function HTTPPost($url, array $params) {
@@ -61,8 +61,8 @@ class HTTPRequester {
     /**
      * Make HTTP-PUT call
      *
-     * @param string $url
-     * @param       array $params
+     * @param string $url - The url to target with your HTTP request.
+     * @param array $params - The array of arguments that are to be passed along with the request.
      * @return      HTTP-Response body or an empty string if the request fails or is empty
      */
     public static function HTTPPut($url, array $params) {
@@ -81,8 +81,8 @@ class HTTPRequester {
     /**
      * Make HTTP-DELETE call
      *
-     * @param string $url
-     * @param array $params
+     * @param string $url - The url to target with your HTTP request.
+     * @param array $params - The array of arguments that are to be passed along with the request.
      * @return   HTTP-Response body or an empty string if the request fails or is empty
      */
     public static function HTTPDelete($url, array $params) {

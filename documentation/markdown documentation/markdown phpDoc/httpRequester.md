@@ -13,8 +13,8 @@ This class is taken from the programming form stack overflow.<br> source: https:
 Make HTTP-GET call
 
  * **Parameters:**
-   * `$url` — `string` — 
-   * `$params` — `array` — 
+   * `$url` — `string` — - The url to target with your HTTP request.
+   * `$params` — `array` — - The array of arguments that are to be passed along with the request.
  * **Returns:** `HTTP-Response` — body or an empty string if the request fails or is empty
 
 ### `public static function HTTPPost($url, array $params)`
@@ -22,8 +22,8 @@ Make HTTP-GET call
 Make HTTP-POST call
 
  * **Parameters:**
-   * `$url` — `string` — 
-   * `$params` — `array` — 
+   * `$url` — `string` — - The url to target with your HTTP request.
+   * `$params` — `array` — - The array of arguments that are to be passed along with the request.
  * **Returns:** `HTTP-Response` — body or an empty string if the request fails or is empty
 
 ### `public static function HTTPPut($url, array $params)`
@@ -31,8 +31,8 @@ Make HTTP-POST call
 Make HTTP-PUT call
 
  * **Parameters:**
-   * `$url` — `string` — 
-   * `$params` — `array` — 
+   * `$url` — `string` — - The url to target with your HTTP request.
+   * `$params` — `array` — - The array of arguments that are to be passed along with the request.
  * **Returns:** `HTTP-Response` — body or an empty string if the request fails or is empty
 
 ### `public static function HTTPDelete($url, array $params)`
@@ -40,6 +40,6 @@ Make HTTP-PUT call
 Make HTTP-DELETE call
 
  * **Parameters:**
-   * `$url` — `string` — 
-   * `$params` — `array` — 
+   * `$url` — `string` — - The url to target with your HTTP request.
+   * `$params` — `array` — - The array of arguments that are to be passed along with the request.
  * **Returns:** `HTTP-Response` — body or an empty string if the request fails or is empty

@@ -11,7 +11,6 @@
  * The restrictions in step 1 will be marked with comments denoting the beginning of restricitons and the end of restrictions.
  * Feel free to try it without the restrictions. I'd advise against deleting them, but commenting them out should be fine.
  */
-function get() {
 if(isset($_GET["genFlag"])){
 	$sql = "SELECT ";
 	$tables = (array)$_GET["table_names"];
@@ -95,8 +94,6 @@ if(isset($_GET["genFlag"])){
 		exit($e->getMessage());
 	}
 }
-}
 
 
-get();
 ?>

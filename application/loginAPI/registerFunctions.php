@@ -43,7 +43,7 @@ function register() {
             foreach (USER_DATA_FIELDS as $field=>$validationFunction) {
             if (isset($_POST[$field])) {
                     $validationFunction($_POST[$field]);
-            } else {
+                } else {
                     $validationFunction(null);
                 }//end if
             }//end foreach loop

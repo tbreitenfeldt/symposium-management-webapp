@@ -6,7 +6,6 @@
 require_once "includeConfig.php";
 
 
-
 /**
  * Validates a string as a username.
  * A username must have between 3 and 30 characters inclusive, start with a letter,, and may contain: capital and lower case letters,
@@ -18,6 +17,7 @@ function validateUsername($username) {
     if ( !isset($username)) {
         throw new InvalidArgumentException("No username is defined.");
     }//end if
+
 
     $usernameRegex = '/^[A-Za-z][A-Za-z0-9\.\-]{3,31}$/';
 
@@ -88,6 +88,7 @@ function validateEmail($email) {
 }//end function 
 
 
+
 /**
  * Validates a string as a phone number.
  * The given string is scrubbed for any characters that are not numbers, then a check is made to test if the scrubbed string length is equal to 10.
@@ -149,8 +150,8 @@ function validateTime($time, $format = "hh:ii:ss"){
  *
  * @param string $field - The memory location of a string that is a boolean value.
 */
-function validateNotificationByEmail(&$field) {
-    $field = setCheckboxValue($field);
+function validateNotificationByEmail($field) {
+    $_POST["user_notifyByEmail"] = setCheckboxValue($field);
 }//end function
 
 
@@ -160,8 +161,8 @@ function validateNotificationByEmail(&$field) {
  *
  * @param string $field - The memory location of a string that is a boolean value.
 */
-function validateNotificationByPhone(&$field) {
-    $field = setCheckboxValue($field);
+function validateNotificationByPhone($field) {
+    $_POST["user_notifyByPhone"] = setCheckboxValue($field);
 }//end function
 
 
